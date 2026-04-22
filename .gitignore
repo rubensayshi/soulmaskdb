@@ -6,3 +6,14 @@ uasset_export/
 uasset_export_test/
 uasset_export.zip
 _errors.txt
+
+# Build artifacts
+data/app.db
+web/node_modules/
+web/dist/
+backend/bin/
+backend/internal/spa/dist/*
+!backend/internal/spa/dist/.gitkeep
+
+# Pipeline outputs
+tasks/translate_batch.yaml
