@@ -1,9 +1,6 @@
 __pycache__/
 *.pyc
 .claude/
-Game/Parsed/recipes.json
-Game/Parsed/items.json
-Game/Parsed/tech_tree.json
 Game/Parsed/*_errors.json
 uasset_export/
 uasset_export_test/
