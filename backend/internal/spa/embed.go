@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-//go:embed dist/*
+//go:embed all:dist
 var distFS embed.FS
 
 // ProdHandler serves embedded dist/; any path that isn't a file in dist
