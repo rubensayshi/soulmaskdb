@@ -18,3 +18,6 @@ backend/internal/spa/dist/*
 # Pipeline outputs
 tasks/translate_batch.yaml
 tasks/chunks/
+
+# TS incremental build info
+web/tsconfig.tsbuildinfo

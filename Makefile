@@ -18,6 +18,7 @@ build: sqlc
 	cd web && pnpm install && pnpm build
 	rm -rf backend/internal/spa/dist
 	cp -r web/dist backend/internal/spa/dist
+	touch backend/internal/spa/dist/.gitkeep
 	cd backend && go build -o bin/server ./cmd/server
 
 dev:
