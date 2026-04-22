@@ -7,6 +7,7 @@ import QtyControl from '../components/QtyControl'
 import TreeView from '../components/TreeView'
 import FlowView from '../components/FlowView'
 import RawMatsCollapsible from '../components/RawMats'
+import UsedIn from '../components/UsedIn'
 
 export default function Item() {
   const { id } = useParams<{ id: string }>()
@@ -42,6 +43,8 @@ export default function Item() {
           <RawMatsCollapsible graph={graph} rootId={item.id} />
         </>
       )}
+      <SectionHeader label="Used as ingredient in" color="jade" />
+      <UsedIn graph={graph} rootId={item.id} view={view} />
     </div>
   )
 }
