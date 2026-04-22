@@ -4,13 +4,13 @@
 
 ### What We Have
 
-| Data Type    | Source              | Status    | Records |
-|--------------|---------------------|-----------|---------|
-| Drop tables  | 11 DataTables       | Parsed    | 1,292   |
-| Item names   | Localization .po    | Parsed    | 5,203   |
-| Recipes      | BP_PeiFang assets   | **Missing** | ~970  |
-| Items        | BP_DaoJu assets     | **Missing** | ~1,500 |
-| Tech tree    | BP_KJS nodes        | **Missing** | ~300  |
+| Data Type   | Source              | Status | Records |
+|-------------|---------------------|--------|---------|
+| Drop tables | 11 DataTables       | Parsed | 1,292   |
+| Item names  | Localization .po    | Parsed | 5,203   |
+| Recipes     | BP_PeiFang assets   | Parsed | 1,109   |
+| Items       | BP_DaoJu assets     | Parsed | 2,015   |
+| Tech tree   | BP_KJS nodes        | Parsed | 777     |
 
 ### Data Sources in Modkit
 
@@ -212,23 +212,41 @@ Exported on Windows to `uasset_export/Blueprints/PeiFang/**/*.json.gz` (gitignor
 - ✅ Quality levels (when applicable)
 - ❌ Alternative input groups (no recipes seem to use this structure)
 
-### Priority 2: Item Metadata (BP_DaoJu) - TODO
+### ✅ Items (BP_DaoJu) - COMPLETED
 
-**Challenge**: ~1,500 item Blueprints with varying properties.
+**Source**: 2,015 files in `uasset_export/Blueprints/DaoJu/`
 
-**Fields needed**:
-- Weight, Max stack size, Durability
-- Base stats (damage, armor, etc.)
-- Category/subcategory
+**Results**: 2,015 items parsed (0 errors)
 
-### Priority 3: Tech Tree (BP_KJS) - TODO
+**Fields extracted**:
+- ✅ Name (Chinese — English needs localization lookup)
+- ✅ Description (Chinese)
+- ✅ Category (material, weapon, equipment, food, tool, building, mask, potion, etc.)
+- ✅ Subcategory (from folder structure)
+- ✅ Weight
+- ✅ Max stack (`MaxAmount`)
+- ✅ Durability + decay coefficient (weapons/equipment)
+- ✅ Equipment stats (`DefaultZhuangBeiProp` → [{attr, value, op}])
+- ✅ Material type (`CaiLiaoType`)
+- ✅ Spoil time (food)
+- ✅ Storage level enum (`DJCunDangDengJi`)
+- ✅ Icon path
 
-**Challenge**: Hierarchical structure across multiple assets.
+### ✅ Tech Tree (BP_KJS) - COMPLETED
 
-**Fields needed**:
-- Node hierarchy (parent/child)
-- Recipes unlocked by each node
-- Unlock requirements
+**Source**: 777 files in `uasset_export/Blueprints/KeJiShu/`
+
+**Results**: 777 nodes parsed — 180 main nodes, 597 sub nodes, 2,162 recipe unlocks
+
+**Fields extracted**:
+- ✅ Name / Description (Chinese)
+- ✅ Category (main/sub × regular/action/management — 6 node types)
+- ✅ Required mask level (`NeedMaskLevel`)
+- ✅ Point cost (`ConsumePoints`, subnodes)
+- ✅ Prerequisite main/sub nodes
+- ✅ Child subnodes (main nodes)
+- ✅ Auto-learn subnodes
+- ✅ Recipes unlocked (`KeJiPeiFangSoftList` SoftObjectPath array)
 
 ---
 
@@ -335,15 +353,14 @@ For this project, **pattern matching** on asset paths proved sufficient for extr
 
 ## 9. Next Steps
 
-1. [x] Export BP_PeiFang assets from modkit
-2. [x] Analyze recipe Blueprint structure
-3. [x] Write recipe parser (parse_recipes.py)
-4. [ ] Extract item metadata (BP_DaoJu) - weight, stack size, stats
-5. [ ] Extract tech tree (BP_KJS) - node hierarchy, unlock requirements
-6. [ ] Build SQLite database from JSON exports
-7. [ ] Add quantity extraction (requires deeper UE4 parsing)
-8. [ ] Design API layer
-9. [ ] Build UI
+1. [x] Export BP_PeiFang / BP_DaoJu / BP_KJS assets via UAssetGUI
+2. [x] Write recipe parser (parse_recipes.py) — 99.5% with quantities
+3. [x] Write item parser (parse_items.py) — 2,015 items
+4. [x] Write tech tree parser (parse_tech_tree.py) — 777 nodes, 2,162 unlocks
+5. [ ] Resolve English names: link Chinese text + asset paths to PO localization
+6. [ ] Build SQLite database from JSON exports (items ↔ recipes ↔ drops ↔ tech)
+7. [ ] Design API layer
+8. [ ] Build UI
 
 ---
 

@@ -7,6 +7,8 @@ producing a structured JSON database with English item names.
 
 - `Game/Parsed/drops.json` — 1292 drop entries, 1250 unique items
 - `Game/Parsed/recipes.json` — 1109 crafting recipes with full metadata (inputs + quantities, output, station, craft time, proficiency, XP)
+- `Game/Parsed/items.json` — 2015 items (materials, weapons, equipment, food, etc.) with weight, stack, durability, stats
+- `Game/Parsed/tech_tree.json` — 777 tech nodes (180 main + 597 sub) with prerequisites and 2162 recipe unlocks
 
 ### Drops
 
