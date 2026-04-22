@@ -20,27 +20,46 @@ def write_json(path: Path, data):
 
 def make_fixture(tmp: Path):
     """Build a minimal Game/Parsed/ + data/translations/ under tmp."""
+    def item(i, cat="material", nz="?"):
+        return {"id": i, "category": cat, "subcategory": None, "name_zh": nz,
+                "description_zh": None, "weight": None, "max_stack": None,
+                "durability": None, "icon_path": None, "material_type": None,
+                "storage_level": None, "spoil_time_seconds": None, "stats": None,
+                "durability_decay": None}
+
     write_json(tmp / "Game" / "Parsed" / "items.json", [
-        {"id": "Daoju_Iron_Ore",   "category": "material", "subcategory": "ore",
-         "name_zh": "铁矿石", "description_zh": "...", "weight": 0.5, "max_stack": 100,
-         "durability": None, "icon_path": "/Game/...", "material_type": "EDJCL_KuangWu",
-         "storage_level": "EDJCD_LiJiCunDang", "spoil_time_seconds": None,
-         "stats": None, "durability_decay": None},
-        {"id": "Daoju_Iron_Ingot", "category": "processed", "subcategory": None,
-         "name_zh": "铁锭", "description_zh": None, "weight": 0.3, "max_stack": 50,
-         "durability": None, "icon_path": None, "material_type": None,
-         "storage_level": None, "spoil_time_seconds": None, "stats": None,
-         "durability_decay": None},
+        item("Daoju_Iron_Ore",   "material",  "铁矿石"),
+        item("Daoju_Iron_Ingot", "processed", "铁锭"),
+        item("Daoju_Hide_A",     "material",  "皮A"),
+        item("Daoju_Hide_B",     "material",  "皮B"),
+        item("Daoju_Leather",    "processed", "皮革"),
     ])
     write_json(tmp / "Game" / "Parsed" / "recipes.json", [
         {"id": "BP_PeiFang_Iron_Ingot", "unique_id": "II_1", "brief_zh": "炼铁",
          "recipe_level": 1,
-         "output":   {"item_id": "Daoju_Iron_Ingot", "item_path": "/Game/..."},
-         "inputs":   [{"item_id": "Daoju_Iron_Ore", "item_path": "/Game/...", "quantity": 2}],
+         "output": {"item_id": "Daoju_Iron_Ingot", "item_path": "/Game/..."},
+         "input_slots": [
+             {"kind": "all", "quantity": 2,
+              "items": [{"item_id": "Daoju_Iron_Ore", "item_path": "/Game/..."}]},
+         ],
          "station_id": "BP_GongZuoTai_GaoLu", "station_name": "Blast Furnace",
          "station_paths": None, "station_required_level": 1,
          "can_make_by_hand": False, "craft_time_seconds": 20.0,
          "proficiency": "Smelting", "proficiency_xp": 5.0, "quality_levels": None},
+        {"id": "BP_PeiFang_Leather", "unique_id": "L_1", "brief_zh": "制革",
+         "recipe_level": 1,
+         "output": {"item_id": "Daoju_Leather", "item_path": "/Game/..."},
+         "input_slots": [
+             {"kind": "one_of", "quantity": 1,
+              "items": [
+                  {"item_id": "Daoju_Hide_A", "item_path": "/Game/..."},
+                  {"item_id": "Daoju_Hide_B", "item_path": "/Game/..."},
+              ]},
+         ],
+         "station_id": "BP_GongZuoTai_GaoLu", "station_name": "Blast Furnace",
+         "station_paths": None, "station_required_level": None,
+         "can_make_by_hand": False, "craft_time_seconds": 10.0,
+         "proficiency": "Leatherworking", "proficiency_xp": 3.0, "quality_levels": None},
     ])
     write_json(tmp / "Game" / "Parsed" / "tech_tree.json", [])
     write_json(tmp / "data" / "translations" / "manual.json", {
@@ -71,8 +90,8 @@ def test_build_db_produces_expected_rows():
         )
 
         db = sqlite3.connect(tmp / "data" / "app.db")
-        assert db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 2
-        assert db.execute("SELECT COUNT(*) FROM recipes").fetchone()[0] == 1
+        assert db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 5
+        assert db.execute("SELECT COUNT(*) FROM recipes").fetchone()[0] == 2
         assert db.execute("SELECT COUNT(*) FROM stations").fetchone()[0] == 1
 
         # Iron Ore is raw (nothing outputs it); Iron Ingot is not
@@ -82,14 +101,26 @@ def test_build_db_produces_expected_rows():
         # English names applied
         assert db.execute("SELECT name_en FROM items WHERE id='Daoju_Iron_Ore'").fetchone()[0] == "Iron Ore"
 
-        # Recipe has one 'all' group with one input
-        group = db.execute(
+        # Iron Ingot recipe: one 'all' group with Iron Ore x2
+        ingot_group = db.execute(
             "SELECT kind FROM recipe_input_groups WHERE recipe_id='BP_PeiFang_Iron_Ingot'"
         ).fetchone()
-        assert group[0] == "all"
+        assert ingot_group == ("all",)
         row = db.execute(
             "SELECT item_id, quantity FROM recipe_input_group_items rigi "
             "JOIN recipe_input_groups rig ON rig.id=rigi.group_id "
             "WHERE rig.recipe_id='BP_PeiFang_Iron_Ingot'"
         ).fetchone()
         assert row == ("Daoju_Iron_Ore", 2)
+
+        # Leather recipe: one 'one_of' group with both hides at qty 1
+        leather_group = db.execute(
+            "SELECT kind FROM recipe_input_groups WHERE recipe_id='BP_PeiFang_Leather'"
+        ).fetchone()
+        assert leather_group == ("one_of",)
+        leather_items = db.execute(
+            "SELECT item_id, quantity FROM recipe_input_group_items rigi "
+            "JOIN recipe_input_groups rig ON rig.id=rigi.group_id "
+            "WHERE rig.recipe_id='BP_PeiFang_Leather' ORDER BY item_id"
+        ).fetchall()
+        assert leather_items == [("Daoju_Hide_A", 1), ("Daoju_Hide_B", 1)]

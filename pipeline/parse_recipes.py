@@ -114,29 +114,40 @@ def get_prop(exports, name):
     return None
 
 
-def extract_inputs(demand_array, imports):
-    """DemandDaoJu = array of ZhiZuoDemandDaoJu structs, each with inner
-    DemandDaoJu (object array) + DemandCount (int)."""
-    result = []
+def extract_input_slots(demand_array, imports):
+    """
+    DemandDaoJu = array of ZhiZuoDemandDaoJu structs ("slots"). Each slot has:
+      - inner DemandDaoJu: array of 1..N ObjectProperty refs.
+        1 ref  → fixed ingredient for that slot.
+        N refs → OR group ("pick any one of these N items for this slot").
+      - DemandCount: int quantity that applies to whichever option is chosen.
+
+    Returns: list of {kind, quantity, items:[{item_id, item_path}]}
+      kind = 'all'   when the slot has exactly 1 option
+      kind = 'one_of' when the slot has 2+ alternatives
+    """
+    slots = []
     for struct in demand_array.get("Value") or []:
-        item_path = None
+        item_paths = []
         quantity = None
         for sub in struct.get("Value") or []:
             if not isinstance(sub, dict):
                 continue
             if sub.get("Name") == "DemandDaoJu":
-                objs = sub.get("Value") or []
-                if objs:
-                    item_path = resolve_import_path(imports, objs[0].get("Value"))
+                for obj in sub.get("Value") or []:
+                    path = resolve_import_path(imports, obj.get("Value"))
+                    if path:
+                        item_paths.append(path)
             elif sub.get("Name") == "DemandCount":
                 quantity = sub.get("Value")
-        if item_path:
-            result.append({
-                "item_id": item_path.split("/")[-1],
-                "item_path": item_path,
-                "quantity": quantity if quantity is not None else 1,
-            })
-    return result
+        if not item_paths:
+            continue
+        slots.append({
+            "kind": "one_of" if len(item_paths) > 1 else "all",
+            "quantity": quantity if quantity is not None else 1,
+            "items": [{"item_id": p.split("/")[-1], "item_path": p} for p in item_paths],
+        })
+    return slots
 
 
 def extract_stations(match_data, imports):
@@ -212,7 +223,7 @@ def parse_recipe(filepath):
         }
 
     demand_prop = get_prop(exports, "DemandDaoJu")
-    inputs = extract_inputs(demand_prop, imports) if demand_prop else []
+    input_slots = extract_input_slots(demand_prop, imports) if demand_prop else []
 
     match_prop = get_prop(exports, "MatchGongZuoTaiData")
     station_paths, station_level = extract_stations(match_prop, imports) if match_prop else ([], 0)
@@ -229,7 +240,7 @@ def parse_recipe(filepath):
         "brief_zh": brief,
         "recipe_level": recipe_level,
         "output": output,
-        "inputs": inputs,
+        "input_slots": input_slots,
         "station_id": station_id,
         "station_name": station_name,
         "station_paths": station_paths if len(station_paths) > 1 else None,
@@ -255,7 +266,7 @@ def main():
     for fp in files:
         try:
             r = parse_recipe(fp)
-            if not r["output"] and not r["inputs"]:
+            if not r["output"] and not r["input_slots"]:
                 empty += 1
                 continue
             recipes.append(r)
@@ -268,12 +279,12 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(recipes, f, ensure_ascii=False, indent=2)
 
-    with_qty = sum(1 for r in recipes if r["inputs"] and all(i["quantity"] is not None for i in r["inputs"]))
+    with_or = sum(1 for r in recipes if any(s["kind"] == "one_of" for s in r["input_slots"]))
     print(f"\nResults:")
-    print(f"  Parsed: {len(recipes)}")
-    print(f"  Skipped (empty): {empty}")
-    print(f"  Errors: {len(errors)}")
-    print(f"  With full quantities: {with_qty} ({100*with_qty/max(1,len(recipes)):.1f}%)")
+    print(f"  Parsed:           {len(recipes)}")
+    print(f"  Skipped (empty):  {empty}")
+    print(f"  Errors:           {len(errors)}")
+    print(f"  With OR slot:     {with_or} ({100*with_or/max(1,len(recipes)):.1f}%)")
 
     stations = {}
     for r in recipes:
@@ -295,8 +306,12 @@ def main():
     for r in recipes[:3]:
         print(f"  {r['id']} (lvl {r['recipe_level']}, {r['craft_time_seconds']}s)")
         print(f"    Output: {r['output']['item_id'] if r['output'] else 'None'}")
-        for i in r["inputs"]:
-            print(f"    Input: {i['quantity']}x {i['item_id']}")
+        for s in r["input_slots"]:
+            if s["kind"] == "all":
+                print(f"    Input: {s['quantity']}x {s['items'][0]['item_id']}")
+            else:
+                opts = " | ".join(i["item_id"] for i in s["items"])
+                print(f"    Input: {s['quantity']}x [one of: {opts}]")
         print(f"    Station: {r['station_name']}  hand={r['can_make_by_hand']}")
 
     print(f"\nOutput: {out_path}")

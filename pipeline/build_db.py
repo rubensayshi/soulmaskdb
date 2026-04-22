@@ -74,9 +74,33 @@ def main():
             (sid, None, name_en),
         )
 
-    # recipes + their single 'all' input group
-    # Skip recipes whose input or output item doesn't exist in items (prevents FK violations).
+    # Auto-insert placeholder rows for item IDs that appear in recipes but not
+    # in items.json (mostly DLC boss keys / unexported subfolder items — 33 total
+    # as of this writing). Without these, FK constraints would force us to drop
+    # entire recipes just because one OR alternative is missing. Placeholders
+    # keep the recipes searchable; when parse_items.py later covers those folders,
+    # the placeholders get overwritten.
     item_ids = {it["id"] for it in items}
+    referenced = set()
+    for r in recipes:
+        for slot in r.get("input_slots") or []:
+            for opt in slot.get("items") or []:
+                referenced.add(opt["item_id"])
+        if (r.get("output") or {}).get("item_id"):
+            referenced.add(r["output"]["item_id"])
+    missing = referenced - item_ids
+    for mid in sorted(missing):
+        db.execute(
+            "INSERT INTO items (id, category, subcategory, name_zh, name_en, "
+            "description_zh, weight, max_stack, durability, icon_path, is_raw, stats_json) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            (mid, "unknown", None, None, None, None, None, None, None, None, 1, None),
+        )
+        item_ids.add(mid)
+    if missing:
+        print(f"  [placeholders] inserted {len(missing)} unknown item refs")
+
+    # recipes + one input group per slot (kind='all' for fixed, 'one_of' for OR)
     inserted_recipe_ids = set()
     skipped = 0
     for r in recipes:
@@ -84,8 +108,17 @@ def main():
         if not out.get("item_id") or out["item_id"] not in item_ids:
             skipped += 1
             continue
-        inputs = r.get("inputs") or []
-        if any(i["item_id"] not in item_ids for i in inputs):
+        input_slots = r.get("input_slots") or []
+        # Validate every referenced item exists
+        missing = False
+        for slot in input_slots:
+            for opt in slot.get("items") or []:
+                if opt["item_id"] not in item_ids:
+                    missing = True
+                    break
+            if missing:
+                break
+        if missing:
             skipped += 1
             continue
         db.execute(
@@ -102,19 +135,19 @@ def main():
             ),
         )
         inserted_recipe_ids.add(r["id"])
-        if not inputs:
-            continue
-        cur = db.execute(
-            "INSERT INTO recipe_input_groups (recipe_id, group_index, kind) VALUES (?, 0, 'all')",
-            (r["id"],),
-        )
-        group_id = cur.lastrowid
-        for ingr in inputs:
-            db.execute(
-                "INSERT INTO recipe_input_group_items (group_id, item_id, quantity) "
-                "VALUES (?,?,?)",
-                (group_id, ingr["item_id"], ingr.get("quantity") or 1),
+        for gi, slot in enumerate(input_slots):
+            cur = db.execute(
+                "INSERT INTO recipe_input_groups (recipe_id, group_index, kind) VALUES (?,?,?)",
+                (r["id"], gi, slot["kind"]),
             )
+            group_id = cur.lastrowid
+            qty = slot.get("quantity") or 1
+            for opt in slot.get("items") or []:
+                db.execute(
+                    "INSERT INTO recipe_input_group_items (group_id, item_id, quantity) "
+                    "VALUES (?,?,?)",
+                    (group_id, opt["item_id"], qty),
+                )
 
     # tech nodes — parent_id set to first prerequisite main node (flat ancestry model).
     # Two passes: insert rows with NULL parent_id, then update once all rows exist
