@@ -17,3 +17,4 @@ backend/internal/spa/dist/*
 
 # Pipeline outputs
 tasks/translate_batch.yaml
+tasks/chunks/
