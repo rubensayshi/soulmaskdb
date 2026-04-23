@@ -2,7 +2,9 @@
 SELECT * FROM items WHERE id = ?;
 
 -- name: ListItemsForGraph :many
-SELECT id, name_en, name_zh, category, role, icon_path, slug FROM items;
+SELECT id, name_en, name_zh, category, role, icon_path, slug,
+       description_zh, weight, durability, stats_json
+FROM items;
 
 -- name: GetItemBySlug :one
 SELECT * FROM items WHERE slug = ?;
@@ -57,3 +59,10 @@ FROM tech_node_unlocks_recipe u
 JOIN tech_nodes tn ON tn.id = u.tech_node_id
 WHERE tn.required_mask_level IS NOT NULL
 GROUP BY u.recipe_id;
+
+-- name: GetDropSourcesForItem :many
+SELECT ds.source_name, ds.source_type, dsi.probability, dsi.qty_min, dsi.qty_max
+FROM drop_source_items dsi
+JOIN drop_sources ds ON ds.id = dsi.source_id
+WHERE dsi.item_id = ?
+ORDER BY ds.source_type, dsi.probability DESC;

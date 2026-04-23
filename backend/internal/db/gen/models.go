@@ -8,6 +8,22 @@ import (
 	"database/sql"
 )
 
+type DropSource struct {
+	ID         int64
+	BagName    string
+	SourceType string
+	SourceName sql.NullString
+}
+
+type DropSourceItem struct {
+	SourceID    int64
+	ItemID      string
+	Probability int64
+	QtyMin      int64
+	QtyMax      int64
+	Weight      int64
+}
+
 type Item struct {
 	ID            string
 	Category      sql.NullString

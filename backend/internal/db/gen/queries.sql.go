@@ -10,6 +10,51 @@ import (
 	"database/sql"
 )
 
+const getDropSourcesForItem = `-- name: GetDropSourcesForItem :many
+SELECT ds.source_name, ds.source_type, dsi.probability, dsi.qty_min, dsi.qty_max
+FROM drop_source_items dsi
+JOIN drop_sources ds ON ds.id = dsi.source_id
+WHERE dsi.item_id = ?
+ORDER BY ds.source_type, dsi.probability DESC
+`
+
+type GetDropSourcesForItemRow struct {
+	SourceName  sql.NullString
+	SourceType  string
+	Probability int64
+	QtyMin      int64
+	QtyMax      int64
+}
+
+func (q *Queries) GetDropSourcesForItem(ctx context.Context, itemID string) ([]GetDropSourcesForItemRow, error) {
+	rows, err := q.db.QueryContext(ctx, getDropSourcesForItem, itemID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetDropSourcesForItemRow{}
+	for rows.Next() {
+		var i GetDropSourcesForItemRow
+		if err := rows.Scan(
+			&i.SourceName,
+			&i.SourceType,
+			&i.Probability,
+			&i.QtyMin,
+			&i.QtyMax,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getItem = `-- name: GetItem :one
 SELECT id, category, subcategory, name_zh, name_en, description_zh, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug FROM items WHERE id = ?
 `
@@ -228,17 +273,23 @@ func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, er
 }
 
 const listItemsForGraph = `-- name: ListItemsForGraph :many
-SELECT id, name_en, name_zh, category, role, icon_path, slug FROM items
+SELECT id, name_en, name_zh, category, role, icon_path, slug,
+       description_zh, weight, durability, stats_json
+FROM items
 `
 
 type ListItemsForGraphRow struct {
-	ID       string
-	NameEn   sql.NullString
-	NameZh   sql.NullString
-	Category sql.NullString
-	Role     string
-	IconPath sql.NullString
-	Slug     sql.NullString
+	ID            string
+	NameEn        sql.NullString
+	NameZh        sql.NullString
+	Category      sql.NullString
+	Role          string
+	IconPath      sql.NullString
+	Slug          sql.NullString
+	DescriptionZh sql.NullString
+	Weight        sql.NullFloat64
+	Durability    sql.NullInt64
+	StatsJson     sql.NullString
 }
 
 func (q *Queries) ListItemsForGraph(ctx context.Context) ([]ListItemsForGraphRow, error) {
@@ -258,6 +309,10 @@ func (q *Queries) ListItemsForGraph(ctx context.Context) ([]ListItemsForGraphRow
 			&i.Role,
 			&i.IconPath,
 			&i.Slug,
+			&i.DescriptionZh,
+			&i.Weight,
+			&i.Durability,
+			&i.StatsJson,
 		); err != nil {
 			return nil, err
 		}
