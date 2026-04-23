@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Codex">
+  <title>Codex</title>
+  <rect width="64" height="64" fill="#161815"></rect>
+  <g transform="translate(32 32) scale(0.25) translate(-100 -100)">
+    <path d="M100 44 L138 100 L100 156 L62 100 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="6"></path>
+    <circle cx="86" cy="92" r="8" fill="#b8a060"></circle>
+    <circle cx="114" cy="92" r="8" fill="#b8a060"></circle>
+    <path d="M95 134 L105 134 L100 142 Z" fill="#8aa074"></path>
+  </g>
+</svg>

@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import markSvg from '../assets/mark.svg'
 
 const TABS = [
   { to: '/', label: 'Recipes', match: (p: string) => p === '/' || p.startsWith('/item/') },
@@ -15,14 +16,10 @@ export default function TopNav() {
            style={{ background: 'linear-gradient(90deg, transparent 0%, #5a6e48 20%, #5a6e48 80%, transparent 100%)' }} />
 
       <Link to="/" className="flex items-center gap-3 pr-6">
-        <svg viewBox="0 0 28 28" fill="none" stroke="#8aa074" strokeWidth="1.2" className="w-[26px] h-[26px]">
-          <path d="M14 2 L26 14 L14 26 L2 14 Z" />
-          <path d="M14 6 L22 14 L14 22 L6 14 Z" opacity=".6" />
-          <circle cx="14" cy="14" r="2" fill="#8aa074" stroke="none" />
-        </svg>
+        <img src={markSvg} alt="Soulmask Codex" className="w-[34px] h-[34px]" />
         <div className="flex flex-col leading-none">
           <span className="font-display text-[17px] font-semibold text-text tracking-[.08em]">Soulmask</span>
-          <span className="text-[9px] text-text-dim tracking-widest2 uppercase mt-[3px]">Recipe Codex</span>
+          <span className="text-[9px] text-text-dim tracking-widest2 uppercase mt-[3px]">Codex</span>
         </div>
       </Link>
 
