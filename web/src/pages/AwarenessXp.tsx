@@ -16,25 +16,34 @@ const SKILLS = [
   'Leatherworking', 'Plant', 'Potting', 'Weapon Crafting', 'Weaving', 'Wood & Stone',
 ]
 
-type RoleFilter = 'all' | 'final' | 'intermediate'
+const ROLES: { value: string; label: string }[] = [
+  { value: 'final', label: 'Final' },
+  { value: 'intermediate', label: 'Intermediate' },
+]
 
 interface Row {
   recipe: Recipe
   item: Item
-  xpPerSec: number
+  xpPerMin: number
 }
 
 function tierLabel(lvl: number | null | undefined): string {
   return TIERS.find(t => t.lvl === (lvl ?? null))?.label ?? '?'
 }
 
+function toggleInSet<T>(prev: Set<T>, val: T): Set<T> {
+  const next = new Set(prev)
+  next.has(val) ? next.delete(val) : next.add(val)
+  return next
+}
+
 export default function AwarenessXp() {
   const graph = useStore(s => s.graph)
   const status = useStore(s => s.graphStatus)
 
-  const [tierFilter, setTierFilter] = useState<Set<number | null>>(() => new Set(TIERS.map(t => t.lvl)))
-  const [skillFilter, setSkillFilter] = useState<Set<string>>(() => new Set(SKILLS))
-  const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
+  const [tierFilter, setTierFilter] = useState<Set<number | null>>(() => new Set())
+  const [skillFilter, setSkillFilter] = useState<Set<string>>(() => new Set())
+  const [roleFilter, setRoleFilter] = useState<Set<string>>(() => new Set())
 
   const itemById = useMemo(
     () => graph ? new Map(graph.items.map(i => [i.id, i])) : new Map<string, Item>(),
@@ -48,39 +57,25 @@ export default function AwarenessXp() {
       if (!r.awXp || !r.t || r.t <= 0) continue
       const item = itemById.get(r.out)
       if (!item) continue
-      result.push({ recipe: r, item, xpPerSec: r.awXp / r.t })
+      result.push({ recipe: r, item, xpPerMin: (r.awXp / r.t) * 60 })
     }
-    result.sort((a, b) => b.xpPerSec - a.xpPerSec)
+    result.sort((a, b) => b.xpPerMin - a.xpPerMin)
     return result
   }, [graph, itemById])
 
   const filtered = useMemo(() => {
+    const hasTier = tierFilter.size > 0
+    const hasSkill = skillFilter.size > 0
+    const hasRole = roleFilter.size > 0
     return rows.filter(r => {
-      const lvl = r.recipe.lvl ?? null
-      if (!tierFilter.has(lvl)) return false
-      if (r.recipe.prof && r.recipe.prof !== 'None' && !skillFilter.has(r.recipe.prof)) return false
-      if (roleFilter !== 'all' && r.item.role !== roleFilter) return false
+      if (hasTier && !tierFilter.has(r.recipe.lvl ?? null)) return false
+      if (hasSkill && r.recipe.prof && r.recipe.prof !== 'None' && !skillFilter.has(r.recipe.prof)) return false
+      if (hasRole && !roleFilter.has(r.item.role)) return false
       return true
     })
   }, [rows, tierFilter, skillFilter, roleFilter])
 
   if (status === 'loading' || !graph) return <div className="p-8 text-text-dim">Loading...</div>
-
-  const toggleTier = (lvl: number | null) => {
-    setTierFilter(prev => {
-      const next = new Set(prev)
-      next.has(lvl) ? next.delete(lvl) : next.add(lvl)
-      return next
-    })
-  }
-
-  const toggleSkill = (s: string) => {
-    setSkillFilter(prev => {
-      const next = new Set(prev)
-      next.has(s) ? next.delete(s) : next.add(s)
-      return next
-    })
-  }
 
   return (
     <div className="p-6 max-w-4xl">
@@ -88,30 +83,27 @@ export default function AwarenessXp() {
         Top Awareness XP
       </h1>
       <p className="text-[12px] text-text-mute mb-5">
-        Recipes ranked by awareness XP per second of craft time.
+        Recipes ranked by awareness XP per minute of craft time.
       </p>
 
       {/* Filters */}
       <div className="flex flex-col gap-3 mb-6 p-4 bg-panel border border-hair">
-        {/* Tier */}
         <FilterRow label="Tier">
           {TIERS.map(t => (
-            <Toggle key={String(t.lvl)} label={t.label} active={tierFilter.has(t.lvl)} onClick={() => toggleTier(t.lvl)} />
+            <Toggle key={String(t.lvl)} label={t.label} active={tierFilter.has(t.lvl)} onClick={() => setTierFilter(prev => toggleInSet(prev, t.lvl))} />
           ))}
         </FilterRow>
 
-        {/* Skill */}
         <FilterRow label="Skill">
           {SKILLS.map(s => (
-            <Toggle key={s} label={s} active={skillFilter.has(s)} onClick={() => toggleSkill(s)} />
+            <Toggle key={s} label={s} active={skillFilter.has(s)} onClick={() => setSkillFilter(prev => toggleInSet(prev, s))} />
           ))}
         </FilterRow>
 
-        {/* Role */}
         <FilterRow label="Type">
-          <Toggle label="All" active={roleFilter === 'all'} onClick={() => setRoleFilter('all')} />
-          <Toggle label="Final" active={roleFilter === 'final'} onClick={() => setRoleFilter('final')} />
-          <Toggle label="Intermediate" active={roleFilter === 'intermediate'} onClick={() => setRoleFilter('intermediate')} />
+          {ROLES.map(r => (
+            <Toggle key={r.value} label={r.label} active={roleFilter.has(r.value)} onClick={() => setRoleFilter(prev => toggleInSet(prev, r.value))} />
+          ))}
         </FilterRow>
       </div>
 
@@ -119,7 +111,7 @@ export default function AwarenessXp() {
       <div className="text-[12px]">
         <div className="grid grid-cols-[1fr_80px_70px_70px_80px_80px] gap-x-3 px-3 py-2 border-b border-hair-strong text-text-dim uppercase tracking-[.1em] text-[10px] font-medium">
           <span>Item</span>
-          <span className="text-right">XP/s</span>
+          <span className="text-right">XP/min</span>
           <span className="text-right">XP</span>
           <span className="text-right">Time</span>
           <span className="text-right">Tier</span>
@@ -135,7 +127,7 @@ export default function AwarenessXp() {
             className={`grid grid-cols-[1fr_80px_70px_70px_80px_80px] gap-x-3 px-3 py-[7px] items-center border-b border-hair hover:bg-green-bg transition-colors ${i % 2 === 0 ? 'bg-panel' : ''}`}
           >
             <span className="text-text truncate">{r.item.n ?? r.item.nz ?? r.item.id}</span>
-            <span className="text-right text-green-hi font-medium tabular-nums">{r.xpPerSec.toFixed(1)}</span>
+            <span className="text-right text-green-hi font-medium tabular-nums">{r.xpPerMin.toFixed(1)}</span>
             <span className="text-right text-text-mute tabular-nums">{r.recipe.awXp}</span>
             <span className="text-right text-text-mute tabular-nums">{r.recipe.t}s</span>
             <span className="text-right text-gold">{tierLabel(r.recipe.lvl)}</span>
