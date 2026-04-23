@@ -110,6 +110,10 @@ export default function Sidebar() {
         )}
       </div>
 
+      <div className="px-4 py-3 border-t border-line-soft">
+        <p className="text-[9px] text-text-dim leading-snug">Not affiliated with CampFire Studio or Qooland Games.</p>
+      </div>
+
       {/* right hairline glow */}
       <div className="pointer-events-none absolute top-0 bottom-0 -right-px w-px"
            style={{ background: 'linear-gradient(180deg, transparent, #4a5040 15%, #4a5040 85%, transparent)' }} />
