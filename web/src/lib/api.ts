@@ -1,4 +1,4 @@
-import type { Graph, BuffedItem } from './types'
+import type { Graph, BuffedItem, ItemDetail } from './types'
 
 export async function fetchGraph(etag: string | null): Promise<
   { status: 'notModified' } | { status: 'loaded'; graph: Graph; etag: string }
@@ -24,6 +24,12 @@ export interface SearchHit {
 export async function fetchFoodBuffs(): Promise<BuffedItem[]> {
   const res = await fetch('/api/food-buffs')
   if (!res.ok) throw new Error(`food-buffs: ${res.status}`)
+  return res.json()
+}
+
+export async function fetchItemDetail(id: string): Promise<ItemDetail> {
+  const res = await fetch(`/api/items/${encodeURIComponent(id)}`)
+  if (!res.ok) throw new Error(`item detail: ${res.status}`)
   return res.json()
 }
 
