@@ -55,6 +55,8 @@ func main() {
 		Addr:              *addr,
 		Handler:           root,
 		ReadHeaderTimeout: 10 * time.Second,
+		WriteTimeout:      30 * time.Second,
+		IdleTimeout:       120 * time.Second,
 	}
 	go func() {
 		log.Info().Str("addr", *addr).Bool("dev", *dev).Msg("listening")
