@@ -3,6 +3,8 @@ WORKDIR /web
 COPY web/package.json ./
 RUN npm install
 COPY web/ .
+ARG VITE_ICON_BASE=https://soulmask-icons.fly.storage.tigris.dev
+ENV VITE_ICON_BASE=$VITE_ICON_BASE
 RUN npm run build
 
 FROM golang:1.25-alpine AS backend
@@ -17,5 +19,4 @@ FROM alpine:3.21
 RUN apk add --no-cache ca-certificates
 COPY --from=backend /server /server
 COPY data/app.db /data/app.db
-COPY Game/Icons /icons
-ENTRYPOINT ["/server", "-db", "/data/app.db", "-icons", "/icons"]
+ENTRYPOINT ["/server", "-db", "/data/app.db"]

@@ -99,6 +99,28 @@ station, craft time, skill (proficiency) type, XP awarded, and quality levels.
 | Carpentry Workbench   | 13      |
 | Water Mill            | 12      |
 
+## Deployment (Fly.io)
+
+Hosted at [soulmask-codex.fly.dev](https://soulmask-codex.fly.dev). Single-region (Amsterdam), scales to zero.
+
+**Architecture:**
+- App container runs the Go backend + embedded SPA (no icons in image)
+- Icons served from Tigris CDN (`soulmask-icons.fly.storage.tigris.dev`) — globally distributed, `Cache-Control: immutable`
+
+**Prerequisites:** `fly` CLI authenticated, `aws` CLI installed.
+
+**Deploy:**
+
+```bash
+make deploy          # syncs icons to Tigris, then fly deploy
+make icons-sync      # upload icons to Tigris CDN only (no app deploy)
+fly deploy           # deploy app only (skip icon sync)
+```
+
+The icon sync script uses the `tigris` AWS CLI profile (`~/.aws/credentials`). Subsequent runs are `--size-only` diffed.
+
+If icons are added/changed, run `make icons-sync` before or during deploy. The `make deploy` target does both.
+
 ## Requirements
 
 - Soulmask modkit installed at `C:\Program Files\Epic Games\SoulMaskModkit`

@@ -1,16 +1,18 @@
-.PHONY: help dev build db sqlc tidy test translate clean
+.PHONY: help dev build db sqlc tidy test translate clean deploy icons-sync
 
 help:
 	@echo "Usage: make <target>"
 	@echo ""
-	@echo "  dev        Run backend (live-reload) + Vite dev server"
-	@echo "  build      Build SPA + embed into single Go binary at backend/bin/server"
-	@echo "  db         Rebuild data/app.db from Game/Parsed/*.json + translations"
-	@echo "  sqlc       Regenerate backend/internal/db/gen/ from queries.sql"
-	@echo "  tidy       go mod tidy"
-	@echo "  test       Run go + web + python test suites"
-	@echo "  translate  Emit tasks/translate_batch.yaml for untranslated items"
-	@echo "  clean      Remove build artifacts"
+	@echo "  dev          Run backend (live-reload) + Vite dev server"
+	@echo "  build        Build SPA + embed into single Go binary at backend/bin/server"
+	@echo "  db           Rebuild data/app.db from Game/Parsed/*.json + translations"
+	@echo "  sqlc         Regenerate backend/internal/db/gen/ from queries.sql"
+	@echo "  tidy         go mod tidy"
+	@echo "  test         Run go + web + python test suites"
+	@echo "  translate    Emit tasks/translate_batch.yaml for untranslated items"
+	@echo "  deploy       Deploy app to Fly.io"
+	@echo "  icons-sync   Upload icons to Tigris CDN"
+	@echo "  clean        Remove build artifacts"
 
 dev:
 	./dev.sh
@@ -38,6 +40,12 @@ build: sqlc
 	cp -r web/dist backend/internal/spa/dist
 	touch backend/internal/spa/dist/.gitkeep
 	cd backend && go build -o bin/server ./cmd/server
+
+deploy: icons-sync
+	fly deploy
+
+icons-sync:
+	./scripts/sync-icons.sh
 
 clean:
 	rm -rf backend/bin backend/internal/spa/dist/* web/dist web/node_modules data/app.db

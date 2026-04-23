@@ -2,9 +2,11 @@ import type { Item } from '../lib/types'
 import { useState } from 'react'
 import { noRecipe } from '../lib/graph'
 
+const ICON_BASE = import.meta.env.VITE_ICON_BASE || '/icons'
+
 function iconUrl(path: string): string {
   const name = path.split('/').pop()
-  return `/icons/${name}.webp`
+  return `${ICON_BASE}/${name}.webp`
 }
 
 type Variant = 'default' | 'root' | 'raw' | 'rust' | 'green-lit' | 'lit'
