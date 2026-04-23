@@ -262,6 +262,54 @@ def main():
             slug = base
         db.execute("UPDATE items SET slug=? WHERE id=?", (slug, item_id))
 
+    # --- drops ---
+    drops = load_json(PARSED / "drops.json")
+    creature_names = json.loads((TRANSLATIONS / "creature_names.json").read_text(encoding="utf-8"))
+
+    def resolve_source_name(bag_name, source_type):
+        """Derive a human-readable source name from bag_name."""
+        stem = re.sub(r'^DL_', '', bag_name)
+        clean = re.sub(r'(_Extra|Elite_Extra)$', '', stem)
+        clean = re.sub(r'Elite$', '', clean)
+        clean = re.sub(r'_JY$', '', clean)
+        hunt_match = re.match(r'Hunt_(?:Egypt_)?(.+?)_?$', clean)
+        if hunt_match:
+            clean = hunt_match.group(1)
+        if clean in creature_names:
+            return creature_names[clean]
+        clean2 = clean.rstrip('_')
+        if clean2 in creature_names:
+            return creature_names[clean2]
+        return prettify_bp_id(bag_name)
+
+    def extract_item_id_from_ref(ref):
+        m = re.search(r'/([^/]+)\.[^/\"]+_C', ref)
+        return m.group(1) if m else None
+
+    drop_source_count = 0
+    drop_item_count = 0
+    for d in drops:
+        source_name = resolve_source_name(d["bag_name"], d["source_type"])
+        cur = db.execute(
+            "INSERT INTO drop_sources (bag_name, source_type, source_name) VALUES (?,?,?)",
+            (d["bag_name"], d["source_type"], source_name),
+        )
+        source_id = cur.lastrowid
+        drop_source_count += 1
+        for g in d.get("groups", []):
+            prob = g.get("probability", 100)
+            for item in g.get("items", []):
+                extracted_id = extract_item_id_from_ref(item.get("item_ref", ""))
+                if extracted_id and extracted_id in item_ids:
+                    db.execute(
+                        "INSERT INTO drop_source_items (source_id, item_id, probability, qty_min, qty_max, weight) "
+                        "VALUES (?,?,?,?,?,?)",
+                        (source_id, extracted_id, prob,
+                         item.get("qty_min", 1), item.get("qty_max", 1),
+                         item.get("weight", 1)),
+                    )
+                    drop_item_count += 1
+
     db.commit()
     db.execute("VACUUM")
     db.close()
@@ -271,6 +319,8 @@ def main():
     print(f"  recipes inserted:  {len(inserted_recipe_ids)}  (skipped {skipped})")
     print(f"  stations:          {len(stations)}")
     print(f"  tech_nodes:        {len(tech_nodes)}")
+    print(f"  drop_sources:      {drop_source_count}")
+    print(f"  drop_items:        {drop_item_count}")
 
 
 if __name__ == "__main__":
