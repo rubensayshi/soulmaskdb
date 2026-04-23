@@ -2,10 +2,15 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import { useStore } from '../store'
 import { primaryRecipeFor, buildUsedInIndex, resolveItem, hasMatchingFinal, indexItems } from '../lib/graph'
+import { fetchItemDetail } from '../lib/api'
+import type { ItemDetail } from '../lib/types'
 import ItemHeader from '../components/ItemHeader'
 import FlowView from '../components/FlowView'
 import RawMatsCollapsible from '../components/RawMats'
 import UsedIn from '../components/UsedIn'
+import ItemStats from '../components/ItemStats'
+import ObtainedFrom from '../components/ObtainedFrom'
+import TechUnlock from '../components/TechUnlock'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -19,6 +24,13 @@ export default function Item() {
   const id = item?.id
 
   useEffect(() => { if (id) pushVisit(id) }, [id, pushVisit])
+
+  const [detail, setDetail] = useState<ItemDetail | null>(null)
+  useEffect(() => {
+    if (!id) return
+    setDetail(null)
+    fetchItemDetail(id).then(setDetail).catch(() => setDetail(null))
+  }, [id])
 
   const recipe = useMemo(() => graph && id ? primaryRecipeFor(graph, id) : undefined, [graph, id])
   const station = useMemo(
@@ -80,6 +92,28 @@ export default function Item() {
   return (
     <div>
       <ItemHeader item={item} recipe={recipe} station={station} />
+
+      {item.stats && item.stats.length > 0 && (
+        <>
+          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" />
+          <ItemStats stats={item.stats} />
+        </>
+      )}
+
+      {detail?.tech_unlocked_by && detail.tech_unlocked_by.length > 0 && (
+        <>
+          <SectionHeader title="Unlocked By" sub="Tech Tree" accent="gold" />
+          <TechUnlock unlocks={detail.tech_unlocked_by} />
+        </>
+      )}
+
+      {detail?.drop_sources && detail.drop_sources.length > 0 && (
+        <>
+          <SectionHeader title="Obtained From" sub="Drop Sources" accent="rust" />
+          <ObtainedFrom sources={detail.drop_sources} />
+        </>
+      )}
+
       {recipe && (
         <>
           <SectionHeader title="Materials Required" sub="Direct Ingredients" accent="green"
@@ -143,6 +177,8 @@ function Ornament({ accent }: { accent: string }) {
     accent === 'green' ? '#8aa074' :
     accent === 'final' ? '#8aa074' :
     accent === 'intermediate' ? '#b8a060' :
+    accent === 'gold' ? '#b8a060' :
+    accent === 'rust' ? '#a67a52' :
     '#a67a52'
   return (
     <svg viewBox="0 0 14 14" className="w-[14px] h-[14px]" fill="none" stroke={color} strokeWidth="1" strokeLinecap="square">
@@ -157,14 +193,20 @@ function SectionHeader({ title, sub, accent, count, trailing }: { title: string;
     accent === 'green' ? 'linear-gradient(90deg, #5a6e48 0%, transparent 100%)' :
     accent === 'final' ? 'linear-gradient(90deg, #5a6e48 0%, transparent 100%)' :
     accent === 'intermediate' ? 'linear-gradient(90deg, #7a6830 0%, transparent 100%)' :
+    accent === 'gold' ? 'linear-gradient(90deg, #7a6830 0%, transparent 100%)' :
+    accent === 'rust' ? 'linear-gradient(90deg, #6e4d2e 0%, transparent 100%)' :
     'linear-gradient(90deg, #6e4d2e 0%, transparent 100%)'
   const titleColor =
     accent === 'final' ? 'text-green-hi' :
+    accent === 'green' ? 'text-green-hi' :
     accent === 'intermediate' ? 'text-gold' :
+    accent === 'gold' ? 'text-gold' :
+    accent === 'rust' ? 'text-rust' :
     'text-text'
   const countColor =
     accent === 'final' ? 'text-green-hi border-green-dim' :
     accent === 'intermediate' ? 'text-gold border-gold-dim' :
+    accent === 'gold' ? 'text-gold border-gold-dim' :
     'text-text-dim border-hair'
 
   return (
