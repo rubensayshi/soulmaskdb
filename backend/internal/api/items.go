@@ -10,22 +10,38 @@ import (
 	dbgen "github.com/rubensayshi/soulmask-codex/backend/internal/db/gen"
 )
 
+type DropSource struct {
+	SourceName  string `json:"source_name"`
+	SourceType  string `json:"source_type"`
+	Probability int64  `json:"probability"`
+	QtyMin      int64  `json:"qty_min"`
+	QtyMax      int64  `json:"qty_max"`
+}
+
+type TechUnlock struct {
+	ID                string `json:"id"`
+	NameEn            *string `json:"name_en"`
+	NameZh            *string `json:"name_zh"`
+	RequiredMaskLevel *int64  `json:"required_mask_level"`
+}
+
 type ItemDetail struct {
-	ID             string      `json:"id"`
-	NameEn         *string     `json:"name_en"`
-	NameZh         *string     `json:"name_zh"`
-	DescriptionZh  *string     `json:"description_zh"`
-	Category       *string     `json:"category"`
-	Subcategory    *string     `json:"subcategory"`
-	Weight         *float64    `json:"weight"`
-	MaxStack       *int64      `json:"max_stack"`
-	Durability     *int64      `json:"durability"`
-	Role           string      `json:"role"`
-	IconPath       *string     `json:"icon_path"`
-	Stats          interface{} `json:"stats"`
-	TechUnlockedBy []string    `json:"tech_unlocked_by"`
-	RecipesToCraft []string    `json:"recipes_to_craft"`
-	RecipesUsedIn  []string    `json:"recipes_used_in"`
+	ID             string       `json:"id"`
+	NameEn         *string      `json:"name_en"`
+	NameZh         *string      `json:"name_zh"`
+	DescriptionZh  *string      `json:"description_zh"`
+	Category       *string      `json:"category"`
+	Subcategory    *string      `json:"subcategory"`
+	Weight         *float64     `json:"weight"`
+	MaxStack       *int64       `json:"max_stack"`
+	Durability     *int64       `json:"durability"`
+	Role           string       `json:"role"`
+	IconPath       *string      `json:"icon_path"`
+	Stats          interface{}  `json:"stats"`
+	TechUnlockedBy []TechUnlock `json:"tech_unlocked_by"`
+	RecipesToCraft []string     `json:"recipes_to_craft"`
+	RecipesUsedIn  []string     `json:"recipes_used_in"`
+	DropSources    []DropSource `json:"drop_sources"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -54,12 +70,36 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		usedInIDs = append(usedInIDs, r.ID)
 	}
 
-	var tech []string
+	var techUnlocks []TechUnlock
 	for _, rec := range toCraft {
 		nodes, _ := q.GetTechUnlocksForRecipe(ctx, rec.ID)
 		for _, n := range nodes {
-			tech = append(tech, n.ID)
+			techUnlocks = append(techUnlocks, TechUnlock{
+				ID:                n.ID,
+				NameEn:            nullStr(n.NameEn),
+				NameZh:            nullStr(n.NameZh),
+				RequiredMaskLevel: nullInt(n.RequiredMaskLevel),
+			})
 		}
+	}
+	if techUnlocks == nil {
+		techUnlocks = []TechUnlock{}
+	}
+
+	dropRows, _ := q.GetDropSourcesForItem(ctx, item.ID)
+	dropSources := make([]DropSource, 0, len(dropRows))
+	for _, d := range dropRows {
+		name := ""
+		if d.SourceName.Valid {
+			name = d.SourceName.String
+		}
+		dropSources = append(dropSources, DropSource{
+			SourceName:  name,
+			SourceType:  d.SourceType,
+			Probability: d.Probability,
+			QtyMin:      d.QtyMin,
+			QtyMax:      d.QtyMax,
+		})
 	}
 
 	var stats interface{}
@@ -80,9 +120,10 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		Role:           item.Role,
 		IconPath:       nullStr(item.IconPath),
 		Stats:          stats,
-		TechUnlockedBy: tech,
+		TechUnlockedBy: techUnlocks,
 		RecipesToCraft: toCraftIDs,
 		RecipesUsedIn:  usedInIDs,
+		DropSources:    dropSources,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
