@@ -1,18 +1,13 @@
-import { useSearchParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useStore } from '../store'
 
 export default function TopNav() {
-  const [params, setParams] = useSearchParams()
-  const view = params.get('view') === 'tree' ? 'tree' : 'flow'
-  const setView = (v: 'tree' | 'flow') => {
-    const next = new URLSearchParams(params)
-    if (v === 'flow') next.delete('view')
-    else next.set('view', v)
-    setParams(next, { replace: true })
-  }
+  const tweaks = useStore(s => s.tweaks)
+  const setTweaks = useStore(s => s.setTweaks)
+
   return (
     <div className="relative flex items-center h-14 px-6 flex-shrink-0 border-b border-hair"
          style={{ background: 'linear-gradient(180deg, #0f0d0a 0%, #14110d 100%)' }}>
-      {/* thin green under-glow */}
       <div className="pointer-events-none absolute left-0 right-0 -bottom-px h-px opacity-50"
            style={{ background: 'linear-gradient(90deg, transparent 0%, #5a6e48 20%, #5a6e48 80%, transparent 100%)' }} />
 
@@ -30,7 +25,6 @@ export default function TopNav() {
 
       <div className="w-px h-8 bg-hair mx-1" />
 
-      {/* tab strip — currently a decorative indicator of active section */}
       <div className="flex items-stretch h-full ml-4">
         <button disabled className="relative px-[22px] flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-[.15em] text-text bg-transparent">
           Recipes
@@ -44,23 +38,48 @@ export default function TopNav() {
         <div className="flex items-stretch h-7 border border-hair bg-bg-2">
           <button
             className={`px-3.5 flex items-center gap-1.5 text-[10px] tracking-[.16em] uppercase font-semibold border-r border-hair transition-colors ${
-              view === 'tree'
+              tweaks.viewMode === 'tree'
                 ? 'bg-panel-2 text-green-hi'
                 : 'text-text-dim hover:text-text-mute'
             }`}
-            style={view === 'tree' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
-            onClick={() => setView('tree')}
+            style={tweaks.viewMode === 'tree' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
+            onClick={() => setTweaks({ viewMode: 'tree' })}
           >Tree</button>
           <button
             className={`px-3.5 flex items-center gap-1.5 text-[10px] tracking-[.16em] uppercase font-semibold transition-colors ${
-              view === 'flow'
+              tweaks.viewMode === 'flow'
                 ? 'bg-panel-2 text-green-hi'
                 : 'text-text-dim hover:text-text-mute'
             }`}
-            style={view === 'flow' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
-            onClick={() => setView('flow')}
+            style={tweaks.viewMode === 'flow' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
+            onClick={() => setTweaks({ viewMode: 'flow' })}
           >Flow</button>
         </div>
+
+        {tweaks.viewMode === 'flow' && (
+          <div className="flex items-stretch h-7 border border-hair bg-bg-2">
+            <button
+              className={`px-3 flex items-center gap-1 text-[10px] tracking-[.12em] uppercase font-semibold border-r border-hair transition-colors ${
+                tweaks.flowOrient === 'horiz'
+                  ? 'bg-panel-2 text-green-hi'
+                  : 'text-text-dim hover:text-text-mute'
+              }`}
+              style={tweaks.flowOrient === 'horiz' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
+              onClick={() => setTweaks({ flowOrient: 'horiz' })}
+              title="Horizontal (left → right)"
+            >⇄ H</button>
+            <button
+              className={`px-3 flex items-center gap-1 text-[10px] tracking-[.12em] uppercase font-semibold transition-colors ${
+                tweaks.flowOrient === 'vert'
+                  ? 'bg-panel-2 text-green-hi'
+                  : 'text-text-dim hover:text-text-mute'
+              }`}
+              style={tweaks.flowOrient === 'vert' ? { boxShadow: 'inset 0 1px 0 rgba(138,160,116,.25)' } : undefined}
+              onClick={() => setTweaks({ flowOrient: 'vert' })}
+              title="Vertical (top → down)"
+            >⇅ V</button>
+          </div>
+        )}
       </div>
     </div>
   )

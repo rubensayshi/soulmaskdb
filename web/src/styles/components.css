@@ -107,4 +107,30 @@
     background-size: 4px 1px;
   }
   .tree-wrap { position: relative; }
+
+  /* ─── Full-bleed vertical flow ─────────────────────────────── */
+  .flow-vert {
+    width: 100cqw;
+    margin-left: -36px;
+    position: relative;
+    left: calc((100% + 72px - 100cqw) / 2);
+  }
+
+  /* ─── Vertical flow connectors ─────────────────────────────── */
+  .flow-branch-item.vert {
+    padding: 0 10px;
+  }
+  .flow-branch-item.vert::before {
+    left: 50%; top: 0;
+    width: 1px; height: 14px;
+    transform: translateX(-0.5px);
+  }
+  .flow-branch-item.vert::after {
+    left: 0; right: 0; top: 0;
+    width: auto; height: 1px;
+    bottom: auto;
+  }
+  .flow-branch-item.vert:first-child::after { left: 50%; right: 0; top: 0; }
+  .flow-branch-item.vert:last-child::after  { left: 0; right: 50%; top: 0; bottom: auto; }
+  .flow-branch-item.vert:only-child::after  { display: none; }
 }

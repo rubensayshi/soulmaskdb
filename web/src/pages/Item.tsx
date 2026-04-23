@@ -1,9 +1,8 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import { useStore } from '../store'
 import { primaryRecipeFor } from '../lib/graph'
 import ItemHeader from '../components/ItemHeader'
-import QtyControl from '../components/QtyControl'
 import TreeView from '../components/TreeView'
 import FlowView from '../components/FlowView'
 import RawMatsCollapsible from '../components/RawMats'
@@ -11,12 +10,13 @@ import UsedIn from '../components/UsedIn'
 
 export default function Item() {
   const { id } = useParams<{ id: string }>()
-  const [params] = useSearchParams()
-  const view = params.get('view') === 'tree' ? 'tree' : 'flow'
 
   const pushVisit  = useStore(s => s.pushVisit)
   const resetOrSel = useStore(s => s.resetOrSel)
   const graph      = useStore(s => s.graph)
+  const tweaks     = useStore(s => s.tweaks)
+
+  const view = tweaks.viewMode
 
   useEffect(() => { if (id) { pushVisit(id); resetOrSel() } }, [id, pushVisit, resetOrSel])
 
@@ -33,18 +33,17 @@ export default function Item() {
   return (
     <div>
       <ItemHeader item={item} recipe={recipe} station={station} />
-      {recipe && <QtyControl />}
       {recipe && (
         <>
           <SectionHeader title="Materials Required" sub="Direct Ingredients" accent="green" />
           {view === 'tree'
             ? <TreeView graph={graph} rootId={item.id} />
-            : <FlowView graph={graph} rootId={item.id} />}
-          <RawMatsCollapsible graph={graph} rootId={item.id} />
+            : <FlowView graph={graph} rootId={item.id} orient={tweaks.flowOrient} />}
+          {tweaks.showRaw && <RawMatsCollapsible graph={graph} rootId={item.id} />}
         </>
       )}
       <SectionHeader title="Used as Ingredient" sub="Downstream Recipes" accent="rust" />
-      <UsedIn graph={graph} rootId={item.id} view={view} />
+      <UsedIn graph={graph} rootId={item.id} view={view} orient={tweaks.flowOrient} />
     </div>
   )
 }

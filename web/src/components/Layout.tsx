@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import TopNav from './TopNav'
 import Sidebar from './Sidebar'
+import TweaksPanel from './TweaksPanel'
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -8,12 +9,13 @@ export default function Layout({ children }: { children: ReactNode }) {
       <TopNav />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto bg-bg">
-          <div className="px-9 pt-7 pb-12 max-w-[1100px]">
+        <main className="main-pane flex-1 overflow-y-auto bg-bg">
+          <div className="px-9 pt-7 pb-12 max-w-[1100px] mx-auto">
             {children}
           </div>
         </main>
       </div>
+      <TweaksPanel />
     </div>
   )
 }

@@ -30,3 +30,9 @@ body > * { position: relative; z-index: 1; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { @apply bg-hair; }
 ::-webkit-scrollbar-thumb:hover { @apply bg-hair-strong; }
+
+/* Container query support for full-bleed sections */
+.main-pane {
+  container-type: inline-size;
+  container-name: main;
+}

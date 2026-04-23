@@ -6,6 +6,26 @@ const GRAPH_CACHE_KEY = 'soulmask:graph'
 const ETAG_CACHE_KEY  = 'soulmask:etag'
 const VISITS_KEY      = 'soulmask:visits'
 
+type ViewMode = 'tree' | 'flow'
+type FlowOrient = 'horiz' | 'vert'
+
+interface Tweaks {
+  viewMode: ViewMode
+  flowOrient: FlowOrient
+  quantity: number
+  showRaw: boolean
+}
+
+const TWEAK_DEFAULTS: Tweaks = { viewMode: 'flow', flowOrient: 'horiz', quantity: 1, showRaw: true }
+const TWEAKS_KEY = 'soulmask:tweaks'
+
+function loadTweaks(): Tweaks {
+  try {
+    const raw = localStorage.getItem(TWEAKS_KEY)
+    return raw ? { ...TWEAK_DEFAULTS, ...JSON.parse(raw) } : TWEAK_DEFAULTS
+  } catch { return TWEAK_DEFAULTS }
+}
+
 interface Store {
   graph: Graph | null
   graphStatus: 'idle' | 'loading' | 'ready' | 'error'
@@ -20,6 +40,13 @@ interface Store {
   setOrSel: (key: string, idx: number) => void
   resetOrSel: () => void
 
+  tweaks: Tweaks
+  setTweaks: (patch: Partial<Tweaks>) => void
+
+  tweaksOpen: boolean
+  setTweaksOpen: (v: boolean) => void
+
+  // kept for backwards compat — delegates to tweaks
   quantity: number
   setQuantity: (n: number) => void
 }
@@ -40,6 +67,7 @@ function loadVisits(): string[] {
 
 export const useStore = create<Store>((set, get) => {
   const cached = loadCachedGraph()
+  const tweaks = loadTweaks()
   return {
     graph: cached.graph,
     graphStatus: cached.graph ? 'ready' : 'idle',
@@ -76,7 +104,17 @@ export const useStore = create<Store>((set, get) => {
     setOrSel(key, idx) { set(s => ({ orSel: { ...s.orSel, [key]: idx } })) },
     resetOrSel() { set({ orSel: {} }) },
 
-    quantity: 1,
-    setQuantity(n) { set({ quantity: Math.max(1, Math.min(99, n)) }) },
+    tweaks,
+    setTweaks(patch) {
+      const next = { ...get().tweaks, ...patch }
+      localStorage.setItem(TWEAKS_KEY, JSON.stringify(next))
+      set({ tweaks: next, quantity: next.quantity })
+    },
+
+    tweaksOpen: false,
+    setTweaksOpen(v) { set({ tweaksOpen: v }) },
+
+    quantity: tweaks.quantity,
+    setQuantity(n) { get().setTweaks({ quantity: Math.max(1, Math.min(99, n)) }) },
   }
 })

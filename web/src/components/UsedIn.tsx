@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import type { Graph, Item, Recipe } from '../lib/types'
 import { buildUsedInIndex, qtyNeeded, indexItems } from '../lib/graph'
 import Diamond from './Diamond'
 import Icon from './Icon'
 
-interface Props { graph: Graph; rootId: string; view: 'tree' | 'flow' }
+interface Props { graph: Graph; rootId: string; view: 'tree' | 'flow'; orient?: 'horiz' | 'vert' }
 
-export default function UsedIn({ graph, rootId, view }: Props) {
+export default function UsedIn({ graph, rootId, view, orient = 'horiz' }: Props) {
   const usedInIdx = useMemo(() => buildUsedInIndex(graph), [graph])
   const byId = useMemo(() => indexItems(graph), [graph])
 
@@ -25,15 +25,10 @@ export default function UsedIn({ graph, rootId, view }: Props) {
 
   if (view === 'flow') {
     return (
-      <div className="overflow-auto pb-5 mb-5 p-5 border border-hair"
-           style={{ background: 'linear-gradient(180deg, #181a16 0%, #161815 100%)' }}>
-        <div className="flex flex-col gap-4" style={{ minWidth: 'fit-content' }}>
-          {directItems.map(id => (
-            <UsedInFlowNode key={id} graph={graph} byId={byId} usedInIdx={usedInIdx}
-                            id={id} sourceId={rootId} depth={0} />
-          ))}
-        </div>
-      </div>
+      <UsedInFlowWrap
+        graph={graph} byId={byId} usedInIdx={usedInIdx}
+        directItems={directItems} rootId={rootId} orient={orient}
+      />
     )
   }
   return (
@@ -42,6 +37,35 @@ export default function UsedIn({ graph, rootId, view }: Props) {
         <UsedInTreeNode key={id} graph={graph} byId={byId} usedInIdx={usedInIdx}
                         id={id} sourceId={rootId} depth={0} />
       ))}
+    </div>
+  )
+}
+
+function UsedInFlowWrap({ graph, byId, usedInIdx, directItems, rootId, orient }: {
+  graph: Graph; byId: Map<string, Item>; usedInIdx: Map<string, string[]>;
+  directItems: string[]; rootId: string; orient: 'horiz' | 'vert'
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isVert = orient === 'vert'
+
+  useEffect(() => {
+    if (!isVert || !ref.current) return
+    const el = ref.current
+    requestAnimationFrame(() => {
+      el.scrollLeft = Math.max(0, (el.scrollWidth - el.clientWidth) / 2)
+    })
+  }, [isVert, rootId])
+
+  return (
+    <div ref={ref} className={`flow-container overflow-auto pb-5 mb-5 p-5 border border-hair${isVert ? ' flow-vert' : ''}`}
+         style={{ background: 'linear-gradient(180deg, #181a16 0%, #161815 100%)' }}>
+      <div className={`flex ${isVert ? 'flex-row gap-6 justify-center' : 'flex-col gap-4'}`}
+           style={{ minWidth: 'fit-content' }}>
+        {directItems.map(id => (
+          <UsedInFlowNode key={id} graph={graph} byId={byId} usedInIdx={usedInIdx}
+                          id={id} sourceId={rootId} depth={0} orient={orient} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -105,9 +129,9 @@ function UsedInTreeNode({ graph, byId, usedInIdx, id, sourceId, depth }: {
   )
 }
 
-function UsedInFlowNode({ graph, byId, usedInIdx, id, sourceId, depth }: {
+function UsedInFlowNode({ graph, byId, usedInIdx, id, sourceId, depth, orient = 'horiz' }: {
   graph: Graph; byId: Map<string, Item>; usedInIdx: Map<string, string[]>;
-  id: string; sourceId: string; depth: number
+  id: string; sourceId: string; depth: number; orient?: 'horiz' | 'vert'
 }) {
   const item = byId.get(id)
   const nav = useNavigate()
@@ -117,12 +141,13 @@ function UsedInFlowNode({ graph, byId, usedInIdx, id, sourceId, depth }: {
   )
   const qty = recipe ? qtyNeeded(recipe, sourceId) : null
   const station = recipe?.st ? graph.stations.find(s => s.id === recipe.st) : undefined
+  const isVert = orient === 'vert'
 
   if (!item || depth > 4) return null
 
   const tile = (
     <div className="flex flex-col items-center gap-[7px] flex-shrink-0">
-      <Diamond item={item} size={48} variant="rust" onClick={() => nav(`/item/${item.id}?view=flow`)} />
+      <Diamond item={item} size={48} variant="rust" onClick={() => nav(`/item/${item.id}`)} />
       <div className="flex flex-col items-center gap-[2px] max-w-[110px] text-center">
         <span className="text-[11px] text-rust leading-[1.25] tracking-[.02em]">{item.n ?? item.nz ?? item.id}</span>
         {qty != null && <span className="text-[11px] font-bold text-rust tabular-nums">needs ×{qty}</span>}
@@ -140,15 +165,15 @@ function UsedInFlowNode({ graph, byId, usedInIdx, id, sourceId, depth }: {
     .filter(r => seen.has(r.out) ? false : (seen.add(r.out), true))
 
   return (
-    <div className="flex items-center" style={{ minWidth: 'fit-content' }}>
+    <div className={`flex ${isVert ? 'flex-col items-center' : 'items-center'}`} style={{ minWidth: 'fit-content' }}>
       {tile}
-      <div className="w-6 h-px bg-rust-dim flex-shrink-0 self-center" />
-      <div className="flex flex-col relative self-stretch justify-center">
+      <div className={`${isVert ? 'w-px h-6' : 'w-6 h-px'} bg-rust-dim flex-shrink-0 self-center`} />
+      <div className={`flex ${isVert ? 'flex-row' : 'flex-col'} relative self-stretch justify-center`}>
         {children.map(r => (
-          <div key={r.out} className="flow-branch-item rust flex items-center">
-            <div className="ml-[14px]">
+          <div key={r.out} className={`flow-branch-item rust${isVert ? ' vert' : ''} flex ${isVert ? 'flex-col' : ''} items-center`}>
+            <div className={isVert ? 'mt-[14px]' : 'ml-[14px]'}>
               <UsedInFlowNode graph={graph} byId={byId} usedInIdx={usedInIdx}
-                              id={r.out} sourceId={id} depth={depth + 1} />
+                              id={r.out} sourceId={id} depth={depth + 1} orient={orient} />
             </div>
           </div>
         ))}
