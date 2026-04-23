@@ -73,3 +73,20 @@ CREATE TABLE translations (
   en      TEXT NOT NULL,
   source  TEXT NOT NULL
 );
+
+CREATE TABLE drop_sources (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  bag_name    TEXT NOT NULL UNIQUE,
+  source_type TEXT NOT NULL,
+  source_name TEXT
+);
+
+CREATE TABLE drop_source_items (
+  source_id   INTEGER NOT NULL REFERENCES drop_sources(id),
+  item_id     TEXT NOT NULL,
+  probability INTEGER NOT NULL,
+  qty_min     INTEGER NOT NULL DEFAULT 1,
+  qty_max     INTEGER NOT NULL DEFAULT 1,
+  weight      INTEGER NOT NULL DEFAULT 1
+);
+CREATE INDEX idx_dsi_item ON drop_source_items(item_id);
