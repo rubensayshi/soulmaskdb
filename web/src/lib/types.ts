@@ -22,6 +22,8 @@ export interface Recipe {
   st?: string | null
   t?: number | null
   prof?: string | null
+  profXp?: number | null
+  awXp?: number | null
   groups: Group[]
 }
 

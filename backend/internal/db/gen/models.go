@@ -32,6 +32,7 @@ type Recipe struct {
 	CraftTimeSeconds sql.NullFloat64
 	Proficiency      sql.NullString
 	ProficiencyXp    sql.NullFloat64
+	AwarenessXp      sql.NullInt64
 	RecipeLevel      sql.NullInt64
 }
 

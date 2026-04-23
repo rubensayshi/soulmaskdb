@@ -6,7 +6,7 @@ SELECT id, name_en, name_zh, category, role, icon_path FROM items;
 
 -- name: ListRecipesForGraph :many
 SELECT id, output_item_id, output_qty, station_id, craft_time_seconds,
-       proficiency, recipe_level
+       proficiency, proficiency_xp, awareness_xp, recipe_level
 FROM recipes;
 
 -- name: ListRecipeGroupsForGraph :many

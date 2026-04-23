@@ -35,7 +35,7 @@ func (q *Queries) GetItem(ctx context.Context, id string) (Item, error) {
 }
 
 const getRecipesForOutput = `-- name: GetRecipesForOutput :many
-SELECT id, output_item_id, output_qty, station_id, can_make_by_hand, craft_time_seconds, proficiency, proficiency_xp, recipe_level FROM recipes WHERE output_item_id = ?
+SELECT id, output_item_id, output_qty, station_id, can_make_by_hand, craft_time_seconds, proficiency, proficiency_xp, awareness_xp, recipe_level FROM recipes WHERE output_item_id = ?
 `
 
 func (q *Queries) GetRecipesForOutput(ctx context.Context, outputItemID string) ([]Recipe, error) {
@@ -56,6 +56,7 @@ func (q *Queries) GetRecipesForOutput(ctx context.Context, outputItemID string) 
 			&i.CraftTimeSeconds,
 			&i.Proficiency,
 			&i.ProficiencyXp,
+			&i.AwarenessXp,
 			&i.RecipeLevel,
 		); err != nil {
 			return nil, err
@@ -72,7 +73,7 @@ func (q *Queries) GetRecipesForOutput(ctx context.Context, outputItemID string) 
 }
 
 const getRecipesUsingInput = `-- name: GetRecipesUsingInput :many
-SELECT DISTINCT r.id, r.output_item_id, r.output_qty, r.station_id, r.can_make_by_hand, r.craft_time_seconds, r.proficiency, r.proficiency_xp, r.recipe_level FROM recipes r
+SELECT DISTINCT r.id, r.output_item_id, r.output_qty, r.station_id, r.can_make_by_hand, r.craft_time_seconds, r.proficiency, r.proficiency_xp, r.awareness_xp, r.recipe_level FROM recipes r
 JOIN recipe_input_groups rig ON rig.recipe_id = r.id
 JOIN recipe_input_group_items rigi ON rigi.group_id = rig.id
 WHERE rigi.item_id = ?
@@ -96,6 +97,7 @@ func (q *Queries) GetRecipesUsingInput(ctx context.Context, itemID string) ([]Re
 			&i.CraftTimeSeconds,
 			&i.Proficiency,
 			&i.ProficiencyXp,
+			&i.AwarenessXp,
 			&i.RecipeLevel,
 		); err != nil {
 			return nil, err
@@ -242,7 +244,7 @@ func (q *Queries) ListRecipeGroupsForGraph(ctx context.Context) ([]ListRecipeGro
 
 const listRecipesForGraph = `-- name: ListRecipesForGraph :many
 SELECT id, output_item_id, output_qty, station_id, craft_time_seconds,
-       proficiency, recipe_level
+       proficiency, proficiency_xp, awareness_xp, recipe_level
 FROM recipes
 `
 
@@ -253,6 +255,8 @@ type ListRecipesForGraphRow struct {
 	StationID        sql.NullString
 	CraftTimeSeconds sql.NullFloat64
 	Proficiency      sql.NullString
+	ProficiencyXp    sql.NullFloat64
+	AwarenessXp      sql.NullInt64
 	RecipeLevel      sql.NullInt64
 }
 
@@ -272,6 +276,8 @@ func (q *Queries) ListRecipesForGraph(ctx context.Context) ([]ListRecipesForGrap
 			&i.StationID,
 			&i.CraftTimeSeconds,
 			&i.Proficiency,
+			&i.ProficiencyXp,
+			&i.AwarenessXp,
 			&i.RecipeLevel,
 		); err != nil {
 			return nil, err

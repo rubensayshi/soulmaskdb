@@ -58,6 +58,8 @@ export default function ItemHeader({ item, recipe, station }: Props) {
               {station?.n && <Stat label="Station" value={station.n} accent="green" />}
               {recipe?.t != null && <Stat label="Craft Time" value={`${recipe.t}s`} />}
               {recipe?.prof && <Stat label="Skill" value={recipe.prof} accent="gold" />}
+              {recipe?.profXp != null && <Stat label="Skill XP" value={`${recipe.profXp}`} accent="gold" />}
+              {recipe?.awXp != null && <Stat label="Awareness XP" value={`${recipe.awXp}`} accent="rust" />}
             </>
           ) : (
             <Stat label="Source" value={item.role === 'raw' ? 'Gathered' : 'Dropped'} accent="rust" />

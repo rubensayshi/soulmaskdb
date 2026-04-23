@@ -127,14 +127,16 @@ def main():
             continue
         db.execute(
             "INSERT INTO recipes (id, output_item_id, output_qty, station_id, "
-            "can_make_by_hand, craft_time_seconds, proficiency, proficiency_xp, recipe_level) "
-            "VALUES (?,?,?,?,?,?,?,?,?)",
+            "can_make_by_hand, craft_time_seconds, proficiency, proficiency_xp, "
+            "awareness_xp, recipe_level) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?)",
             (
                 r["id"], out["item_id"], 1,
                 r.get("station_id"),
                 1 if r.get("can_make_by_hand") else 0,
                 r.get("craft_time_seconds"),
                 r.get("proficiency"), r.get("proficiency_xp"),
+                r.get("awareness_xp"),
                 r.get("recipe_level"),
             ),
         )

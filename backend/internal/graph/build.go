@@ -33,6 +33,8 @@ type Recipe struct {
 	Station *string  `json:"st,omitempty"` // station_id
 	Time    *float64 `json:"t,omitempty"`  // craft_time_seconds
 	Prof    *string  `json:"prof,omitempty"`
+	ProfXP  *float64 `json:"profXp,omitempty"`
+	AwXP    *int64   `json:"awXp,omitempty"`
 	Groups  []Group  `json:"groups"`
 }
 
@@ -86,6 +88,8 @@ func Build(ctx context.Context, sqlDB *sql.DB) (*Graph, error) {
 			Station: nullable(r.StationID),
 			Time:    nullablef(r.CraftTimeSeconds),
 			Prof:    nullable(r.Proficiency),
+			ProfXP:  nullablef(r.ProficiencyXp),
+			AwXP:    nullablei(r.AwarenessXp),
 			Groups:  []Group{},
 		}
 		recipes = append(recipes, rec)
@@ -147,5 +151,13 @@ func nullablef(f sql.NullFloat64) *float64 {
 		return nil
 	}
 	v := f.Float64
+	return &v
+}
+
+func nullablei(i sql.NullInt64) *int64 {
+	if !i.Valid {
+		return nil
+	}
+	v := i.Int64
 	return &v
 }

@@ -28,6 +28,7 @@ CREATE TABLE recipes (
   craft_time_seconds  REAL,
   proficiency         TEXT,
   proficiency_xp      REAL,
+  awareness_xp        INTEGER,
   recipe_level        INTEGER
 );
 
