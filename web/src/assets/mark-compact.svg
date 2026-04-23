@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Codex" shape-rendering="geometricPrecision">
+  <title>Codex</title>
+  
+  <g stroke="#8aa074" stroke-width="6" stroke-linecap="round">
+    <line x1="100" y1="18" x2="100" y2="36"></line>
+    <line x1="100" y1="164" x2="100" y2="182"></line>
+    <line x1="18" y1="100" x2="36" y2="100"></line>
+    <line x1="164" y1="100" x2="182" y2="100"></line>
+  </g>
+  
+  <path d="M100 46 L154 100 L100 154 L46 100 Z" fill="#161815" stroke="#8aa074" stroke-width="8" stroke-linejoin="miter"></path>
+  
+  <circle cx="82" cy="90" r="9" fill="#b8a060"></circle>
+  <circle cx="118" cy="90" r="9" fill="#b8a060"></circle>
+  
+  <path d="M90 126 L110 126 L100 140 Z" fill="#8aa074"></path>
+</svg>

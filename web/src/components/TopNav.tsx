@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
-import markSvg from '../assets/mark.svg'
+import markSvg from '../assets/mark-compact.svg'
 
 const TABS = [
   { to: '/', label: 'Codex', match: (p: string) => p === '/' },
   { to: '/item/Daoju_Item_TieDing', label: 'Recipes', match: (p: string) => p.startsWith('/item/') },
   { to: '/awareness-xp', label: 'Awareness XP', match: (p: string) => p === '/awareness-xp' },
+  { to: '/food-almanac', label: 'Food Almanac', match: (p: string) => p === '/food-almanac' },
 ]
 
 export default function TopNav() {

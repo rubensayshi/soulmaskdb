@@ -1,10 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Codex">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Codex" shape-rendering="geometricPrecision">
   <title>Codex</title>
   <rect width="64" height="64" fill="#161815"></rect>
-  <g transform="translate(32 32) scale(0.25) translate(-100 -100)">
-    <path d="M100 44 L138 100 L100 156 L62 100 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="6"></path>
-    <circle cx="86" cy="92" r="8" fill="#b8a060"></circle>
-    <circle cx="114" cy="92" r="8" fill="#b8a060"></circle>
-    <path d="M95 134 L105 134 L100 142 Z" fill="#8aa074"></path>
+  <g stroke="#8aa074" stroke-width="2.5" stroke-linecap="round">
+    <line x1="32" y1="8" x2="32" y2="13"></line>
+    <line x1="32" y1="51" x2="32" y2="56"></line>
+    <line x1="8" y1="32" x2="13" y2="32"></line>
+    <line x1="51" y1="32" x2="56" y2="32"></line>
   </g>
+  <path d="M32 17 L47 32 L32 47 L17 32 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="3" stroke-linejoin="miter"></path>
+  <circle cx="27" cy="29" r="3" fill="#b8a060"></circle>
+  <circle cx="37" cy="29" r="3" fill="#b8a060"></circle>
+  <path d="M29 39 L35 39 L32 43 Z" fill="#8aa074"></path>
 </svg>

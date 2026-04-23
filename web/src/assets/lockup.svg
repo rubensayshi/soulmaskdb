@@ -1,27 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 140" width="680" height="140" role="img" aria-label="Soulmask Recipe Codex">
   <title>Soulmask Recipe Codex</title>
-  <g transform="translate(15 15) scale(0.55)">
-    <g stroke="#8aa074" stroke-width="1" opacity=".5">
-      <line x1="100" y1="8" x2="100" y2="192"></line>
-      <line x1="8" y1="100" x2="192" y2="100"></line>
+  
+  <g transform="translate(25 25) scale(0.45)" shape-rendering="geometricPrecision">
+    <g stroke="#8aa074" stroke-width="6" stroke-linecap="round">
+      <line x1="100" y1="18" x2="100" y2="36"></line>
+      <line x1="100" y1="164" x2="100" y2="182"></line>
+      <line x1="18" y1="100" x2="36" y2="100"></line>
+      <line x1="164" y1="100" x2="182" y2="100"></line>
     </g>
-    <circle cx="100" cy="100" r="74" fill="none" stroke="#8aa074" stroke-width=".8" opacity=".4"></circle>
-    <circle cx="100" cy="100" r="58" fill="none" stroke="#8aa074" stroke-width=".8" opacity=".4"></circle>
-    <g transform="translate(150 50)">
-      <circle r="8" fill="#b8a060" opacity=".7"></circle>
-      <circle cx="3" r="8" fill="#161815"></circle>
-    </g>
-    <path d="M100 44 L138 100 L100 156 L62 100 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="2.5"></path>
-    <circle cx="86" cy="92" r="5" fill="#b8a060"></circle>
-    <circle cx="114" cy="92" r="5" fill="#b8a060"></circle>
-    <path d="M95 134 L105 134 L100 142 Z" fill="#8aa074"></path>
-    <path d="M100 56 L106 64 L100 72 L94 64 Z" fill="#8aa074"></path>
-    <path d="M100 96 L100 124" stroke="#8aa074" stroke-width="1.5"></path>
+    <path d="M100 46 L154 100 L100 154 L46 100 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="8" stroke-linejoin="miter"></path>
+    <circle cx="82" cy="90" r="9" fill="#b8a060"></circle>
+    <circle cx="118" cy="90" r="9" fill="#b8a060"></circle>
+    <path d="M90 126 L110 126 L100 140 Z" fill="#8aa074"></path>
   </g>
-  <line x1="140" y1="30" x2="140" y2="110" stroke="#8aa074" stroke-width="1" opacity=".35"></line>
-  <g font-family="'Cinzel', 'Cormorant Garamond', serif">
-    <text x="160" y="66" fill="#d8dcc8" font-size="28" font-weight="700" letter-spacing="5">SOULMASK</text>
-    <text x="160" y="100" fill="#8aa074" font-size="28" font-weight="800" letter-spacing="5">CODEX</text>
+  
+  <line x1="135" y1="30" x2="135" y2="110" stroke="#8aa074" stroke-width="1" opacity=".35"></line>
+  
+  <g font-family="&#39;Cinzel&#39;, &#39;Cormorant Garamond&#39;, Georgia, serif">
+    <text x="155" y="64" fill="#d8dcc8" font-size="26" font-weight="700" letter-spacing="5">SOULMASK</text>
+    <text x="155" y="98" fill="#8aa074" font-size="26" font-weight="800" letter-spacing="5">CODEX</text>
   </g>
-  <text x="160" y="122" fill="#b8a060" font-family="'Cormorant Garamond', serif" font-size="12" font-style="italic" letter-spacing="4">◆ ATLAS OF THE CRAFTED WORLD</text>
+  <text x="155" y="120" fill="#b8a060" font-family="&#39;Cormorant Garamond&#39;, Georgia, serif" font-size="11" font-style="italic" letter-spacing="4">◆ ATLAS OF THE CRAFTED WORLD</text>
 </svg>

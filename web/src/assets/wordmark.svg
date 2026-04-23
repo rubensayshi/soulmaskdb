@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="Soulmask Codex">
+  <title>Soulmask Codex</title>
+  <g font-family="&#39;Cinzel&#39;, &#39;Cormorant Garamond&#39;, Georgia, serif" text-anchor="middle">
+    <text x="260" y="52" fill="#d8dcc8" font-size="30" font-weight="700" letter-spacing="8">SOULMASK</text>
+    <text x="260" y="92" fill="#8aa074" font-size="30" font-weight="800" letter-spacing="8">CODEX</text>
+  </g>
+  <line x1="200" y1="64" x2="240" y2="64" stroke="#8aa074" stroke-width="1" opacity=".5"></line>
+  <line x1="280" y1="64" x2="320" y2="64" stroke="#8aa074" stroke-width="1" opacity=".5"></line>
+  <circle cx="260" cy="64" r="2" fill="#8aa074"></circle>
+  <text x="260" y="114" fill="#b8a060" font-family="&#39;Cormorant Garamond&#39;, Georgia, serif" font-size="11" font-style="italic" letter-spacing="5">◆ ATLAS OF THE CRAFTED WORLD</text>
+</svg>

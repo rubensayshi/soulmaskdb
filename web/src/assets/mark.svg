@@ -1,27 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Soulmask Recipe Codex">
   <title>Soulmask Recipe Codex</title>
+  
   <g stroke="#8aa074" stroke-width=".6" opacity=".5">
     <line x1="100" y1="8" x2="100" y2="192"></line>
     <line x1="8" y1="100" x2="192" y2="100"></line>
   </g>
+  <g stroke="#8aa074" stroke-width=".4" opacity=".2">
+    <line x1="28" y1="28" x2="172" y2="172"></line>
+    <line x1="172" y1="28" x2="28" y2="172"></line>
+  </g>
+  
   <g fill="#8aa074">
     <path d="M100 8 L104 20 L100 26 L96 20 Z"></path>
     <path d="M100 192 L104 180 L100 174 L96 180 Z"></path>
     <circle cx="8" cy="100" r="2.5"></circle>
     <circle cx="192" cy="100" r="2.5"></circle>
   </g>
+  
   <circle cx="100" cy="100" r="74" fill="none" stroke="#8aa074" stroke-width=".5" opacity=".35"></circle>
   <circle cx="100" cy="100" r="58" fill="none" stroke="#8aa074" stroke-width=".5" opacity=".35"></circle>
+  
   <g transform="translate(150 50)">
     <circle r="8" fill="#b8a060" opacity=".7"></circle>
     <circle cx="3" r="8" fill="#161815"></circle>
   </g>
+  
   <path d="M100 44 L138 100 L100 156 L62 100 Z" fill="#1c1f1b" stroke="#8aa074" stroke-width="2"></path>
+  
   <circle cx="86" cy="92" r="4.5" fill="#b8a060"></circle>
   <circle cx="114" cy="92" r="4.5" fill="#b8a060"></circle>
   <circle cx="86" cy="92" r="1.5" fill="#d8dcc8"></circle>
   <circle cx="114" cy="92" r="1.5" fill="#d8dcc8"></circle>
+  
   <path d="M100 96 L100 124" stroke="#8aa074" stroke-width="1.2" fill="none"></path>
+  
   <path d="M95 134 L105 134 L100 142 Z" fill="#8aa074"></path>
+  
   <path d="M100 56 L106 64 L100 72 L94 64 Z" fill="#8aa074" opacity=".8"></path>
 </svg>
