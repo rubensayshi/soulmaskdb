@@ -394,8 +394,16 @@ def main():
 
             dur = eff.get("duration_seconds")
             period = eff.get("period_seconds")
+            is_burst = dur is not None and dur <= 60
 
             for mod in eff.get("modifiers") or []:
+                # Skip modifiers from short-duration burst GEs (eating effects)
+                # unless they're nutritional/preference attributes needed for classification
+                if is_burst and mod["attribute"] not in (
+                    "food", "water", "mood", "awareness",
+                    "meat_preference", "fruit_preference", "staple_preference",
+                ):
+                    continue
                 entry = {
                     "attribute": mod["attribute"],
                     "value": mod["value"],
@@ -403,14 +411,14 @@ def main():
                 }
                 if mod.get("computed"):
                     entry["computed"] = True
-                if dur and dur > 10:
+                if dur and dur > 60:
                     entry["duration_seconds"] = dur
                 elif period:
                     entry["over_seconds"] = period
                 all_modifiers.append(entry)
 
             # The "main" effect (non-common) typically has the longest duration
-            if dur and dur > 10 and (total_duration is None or dur > total_duration):
+            if dur and dur > 60 and (total_duration is None or dur > total_duration):
                 total_duration = dur
 
         buff = {"modifiers": all_modifiers}

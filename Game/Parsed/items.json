@@ -24801,11 +24801,6 @@
           "duration_seconds": 1800.0
         },
         {
-          "attribute": "health_regen",
-          "value": 5.0,
-          "op": "multiply"
-        },
-        {
           "attribute": "food",
           "value": 60.0,
           "op": "add"
@@ -24875,13 +24870,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_HuoXueGao",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 0.0,
-          "op": "add"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "活血膏"
     }
   },
@@ -25043,11 +25032,6 @@
           "op": "add"
         },
         {
-          "attribute": "health_regen",
-          "value": 5.0,
-          "op": "multiply"
-        },
-        {
           "attribute": "max_health",
           "value": 100.0,
           "op": "add",
@@ -25100,11 +25084,6 @@
           "value": 150.0,
           "op": "add",
           "duration_seconds": 1200.0
-        },
-        {
-          "attribute": "health_regen",
-          "value": 2.0,
-          "op": "multiply"
         },
         {
           "attribute": "food",
@@ -25246,14 +25225,7 @@
         {
           "attribute": "awareness",
           "value": 0.25,
-          "op": "add",
-          "duration_seconds": 30.0
-        },
-        {
-          "attribute": "max_awareness",
-          "value": -0.25,
-          "op": "add",
-          "duration_seconds": 30.0
+          "op": "add"
         }
       ],
       "buff_name_zh": "卷烟",
@@ -25315,13 +25287,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_KangFuSheJingHua",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "radiation",
-          "value": 0.5,
-          "op": "multiply"
-        }
-      ]
+      "modifiers": []
     }
   },
   {
@@ -25364,11 +25330,6 @@
           "attribute": "food",
           "value": 10.0,
           "op": "add"
-        },
-        {
-          "attribute": "health_regen",
-          "value": 2.0,
-          "op": "multiply"
         },
         {
           "attribute": "meat_preference",
@@ -25805,13 +25766,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_LuHuiJingHua",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 80.0,
-          "op": "add"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "芦荟精华"
     }
   },
@@ -25832,13 +25787,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_LuHuiZhi",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 20.0,
-          "op": "add"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "芦荟汁"
     }
   },
@@ -25880,11 +25829,6 @@
         {
           "attribute": "food",
           "value": 20.0,
-          "op": "add"
-        },
-        {
-          "attribute": "radiation",
-          "value": -5.0,
           "op": "add"
         }
       ],
@@ -27741,13 +27685,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_NingXueGao",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 0.0,
-          "op": "add"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "凝血膏"
     }
   },
@@ -29151,18 +29089,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_ShengMingJingHua",
     "role": "final",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 0.0,
-          "op": "add"
-        },
-        {
-          "attribute": "stamina",
-          "value": 150.0,
-          "op": "add"
-        }
-      ]
+      "modifiers": []
     }
   },
   {
@@ -29182,18 +29109,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_ShengXueGao",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 0.0,
-          "op": "add"
-        },
-        {
-          "attribute": "stamina",
-          "value": 100.0,
-          "op": "add"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "生血膏"
     }
   },
@@ -29381,11 +29297,6 @@
       "modifiers": [
         {
           "attribute": "food",
-          "value": 5.0,
-          "op": "add"
-        },
-        {
-          "attribute": "healing",
           "value": 5.0,
           "op": "add"
         },
@@ -30989,11 +30900,6 @@
           "value": -0.02,
           "op": "add",
           "duration_seconds": 1200.0
-        },
-        {
-          "attribute": "health_regen",
-          "value": 5.0,
-          "op": "multiply"
         },
         {
           "attribute": "food",
@@ -33255,18 +33161,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_XianRenZhangJingHua",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "stamina",
-          "value": 40.0,
-          "op": "add"
-        },
-        {
-          "attribute": "poison",
-          "value": 0.8,
-          "op": "multiply"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "仙人掌精华"
     }
   },
@@ -33287,18 +33182,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_XianRenZhangZhi",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "stamina",
-          "value": 10.0,
-          "op": "add"
-        },
-        {
-          "attribute": "poison",
-          "value": 0.9,
-          "op": "multiply"
-        }
-      ],
+      "modifiers": [],
       "buff_desc_zh": "仙人掌汁"
     }
   },
@@ -33389,14 +33273,7 @@
         {
           "attribute": "awareness",
           "value": 0.5,
-          "op": "add",
-          "duration_seconds": 30.0
-        },
-        {
-          "attribute": "max_awareness",
-          "value": -0.5,
-          "op": "add",
-          "duration_seconds": 30.0
+          "op": "add"
         }
       ],
       "buff_name_zh": "兴奋药剂",
@@ -33470,11 +33347,6 @@
           "op": "add"
         },
         {
-          "attribute": "health_regen",
-          "value": 2.0,
-          "op": "multiply"
-        },
-        {
           "attribute": "meat_preference",
           "value": 20.0,
           "op": "add"
@@ -33522,11 +33394,6 @@
           "op": "add"
         },
         {
-          "attribute": "health_regen",
-          "value": 5.0,
-          "op": "multiply"
-        },
-        {
           "attribute": "meat_preference",
           "value": 50.0,
           "op": "add"
@@ -33572,11 +33439,6 @@
           "attribute": "food",
           "value": 100.0,
           "op": "add"
-        },
-        {
-          "attribute": "health_regen",
-          "value": 10.0,
-          "op": "multiply"
         },
         {
           "attribute": "meat_preference",
@@ -33755,11 +33617,6 @@
           "attribute": "food",
           "value": 100.0,
           "op": "add"
-        },
-        {
-          "attribute": "health_regen",
-          "value": 10.0,
-          "op": "multiply"
         },
         {
           "attribute": "max_health",
@@ -34084,18 +33941,7 @@
     "icon_path": "/Game/UI/Icon/daojuicon/DaoJu_Item_ZhiWuJingCui",
     "role": "intermediate",
     "buffs": {
-      "modifiers": [
-        {
-          "attribute": "healing",
-          "value": 200.0,
-          "op": "add"
-        },
-        {
-          "attribute": "poison",
-          "value": 0.4,
-          "op": "multiply"
-        }
-      ]
+      "modifiers": []
     }
   },
   {
