@@ -7,37 +7,56 @@ interface Props {
   station?: Station
 }
 
+function Stat({ label, value, accent }: { label: string; value: string; accent?: 'green' | 'gold' | 'rust' }) {
+  const color =
+    accent === 'green' ? 'text-green' :
+    accent === 'gold'  ? 'text-gold'  :
+    accent === 'rust'  ? 'text-rust'  :
+    'text-text'
+  return (
+    <div className="flex items-center gap-[7px] text-[11.5px] text-text-mute">
+      <span className="w-[5px] h-[5px] rotate-45 bg-green opacity-80 flex-shrink-0" />
+      <span className="text-text-dim uppercase text-[10px] tracking-[.1em] font-medium">{label}</span>
+      <span className={`font-medium ${color}`}>{value}</span>
+    </div>
+  )
+}
+
 export default function ItemHeader({ item, recipe, station }: Props) {
   const title = item.n ?? item.nz ?? item.id
-  const subtitle = item.raw ? 'Raw Material' : (station?.n ?? 'Crafted Item')
+  const classification = item.raw ? 'Raw Material' : (item.cat ?? 'Crafted')
+
   return (
-    <div className="flex items-start gap-4 p-5 mb-5 bg-panel border border-border-lit border-t-[2px] border-t-gold-dim">
-      <div className="flex-shrink-0 flex flex-col items-center gap-2">
-        <Diamond item={item} size={58} variant={item.ic ? 'root' : 'default'} />
+    <div
+      className="relative flex items-start gap-5 p-[22px_26px_20px] border border-hair-strong mb-[26px]"
+      style={{ background: 'linear-gradient(180deg, rgba(138,160,116,.04) 0%, transparent 60%), #242822' }}
+    >
+      {/* Green hairline top border */}
+      <div className="pointer-events-none absolute -top-px -left-px -right-px h-[2px]"
+           style={{ background: 'linear-gradient(90deg, transparent 0%, #5a6e48 15%, #8aa074 50%, #5a6e48 85%, transparent 100%)' }} />
+      {/* Thin separator under title block */}
+      <div className="pointer-events-none absolute left-[26px] right-[26px] bottom-[18px] h-px"
+           style={{ background: 'linear-gradient(90deg, #4a5040, transparent)' }} />
+
+      <div className="flex-shrink-0">
+        <Diamond item={item} size={72} variant="green-lit" />
       </div>
-      <div className="flex-1">
-        <div className="font-display text-lg font-semibold text-text mb-1 tracking-wide">{title}</div>
-        <div className="text-[10px] text-text-muted tracking-wider2 uppercase mb-2">{subtitle}</div>
-        <div className="flex flex-wrap gap-1">
-          {item.raw && (
-            <span className="inline-flex items-center gap-1 px-2 py-[3px] text-[10px] font-medium border border-raw-border text-raw bg-raw-bg">
-              Gathered
-            </span>
-          )}
-          {station?.n && (
-            <span className="inline-flex items-center gap-1 px-2 py-[3px] text-[10px] font-medium border border-gold-dim text-gold bg-card">
-              {station.n}
-            </span>
-          )}
-          {recipe?.t != null && (
-            <span className="inline-flex items-center gap-1 px-2 py-[3px] text-[10px] font-medium border border-border text-text-muted bg-card">
-              ⏱ {recipe.t}s
-            </span>
-          )}
-          {recipe?.prof && (
-            <span className="inline-flex items-center gap-1 px-2 py-[3px] text-[10px] font-medium border border-border text-text-muted bg-card">
-              {recipe.prof}
-            </span>
+
+      <div className="flex-1 min-w-0">
+        <div className="font-display text-[24px] font-semibold text-text leading-[1.2] tracking-[.02em]">{title}</div>
+        <div className="text-[11px] text-text-dim tracking-[.12em] uppercase mt-[3px] font-medium">
+          Classification: {classification}
+        </div>
+
+        <div className="flex flex-wrap gap-[18px] mt-[14px]">
+          {item.raw ? (
+            <Stat label="Source" value="Gathered" accent="rust" />
+          ) : (
+            <>
+              {station?.n && <Stat label="Station" value={station.n} accent="green" />}
+              {recipe?.t != null && <Stat label="Craft Time" value={`${recipe.t}s`} />}
+              {recipe?.prof && <Stat label="Skill" value={recipe.prof} accent="gold" />}
+            </>
           )}
         </div>
       </div>

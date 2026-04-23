@@ -5,36 +5,60 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg:            '#080808',
-        surface:       '#0d0d0d',
-        panel:         '#111111',
-        card:          '#171712',
-        'card-hover':  '#1f1f18',
-        border:        '#272518',
-        'border-lit':  '#3e3c28',
-        gold:          '#b89840',
-        'gold-dim':    '#6a5820',
-        'gold-glow':   'rgba(184,152,64,.12)',
-        text:          '#c8c0a0',
-        'text-muted':  '#706858',
-        'text-dim':    '#3e3828',
-        raw:           '#6aaa44',
-        'raw-bg':      '#0b160a',
-        'raw-border':  '#1e3818',
-        jade:          '#44a08a',
-        'jade-bg':     '#091410',
-        'jade-border': '#1a3828',
-        or:            '#9080cc',
-        'or-bg':       '#0e0c1c',
-        'or-border':   '#302858',
+        // Cool-dark core — sampled from Knowledge & Technology panel
+        bg:              '#161815',
+        'bg-2':          '#1c1f1b',
+        panel:           '#242822',
+        'panel-2':       '#2c312a',
+        'panel-lift':    '#363c33',
+        tile:            '#2a2e27',
+        'tile-hi':       '#363b32',
+        hair:            '#373c32',
+        'hair-strong':   '#4a5040',
+        'line-soft':     '#242821',
+
+        // Text — cool cream
+        text:            '#d8dcc8',
+        'text-mute':     '#99a08a',
+        'text-dim':      '#6b7163',
+        'text-faint':    '#474c40',
+
+        // Primary accent — game green
+        green:           '#8aa074',
+        'green-hi':      '#a4ba8c',
+        'green-dim':     '#5a6e48',
+        'green-soft':    '#2e372a',
+
+        // Secondary olive
+        olive:           '#6e7252',
+        'olive-dim':     '#4a4e38',
+
+        // Gold — reduced to minor tier/badge accent
+        gold:            '#b8a060',
+        'gold-dim':      '#7a6830',
+
+        // Used-in (warm desaturated rust)
+        rust:            '#a67a52',
+        'rust-dim':      '#6e4d2e',
+
+        // OR group — cool teal
+        teal:            '#6ea09a',
+        'teal-dim':      '#3f5b58',
+      },
+      backgroundColor: {
+        'green-bg':      'rgba(138,160,116,.08)',
+        'green-glow':    'rgba(138,160,116,.18)',
+        'gold-glow':     'rgba(184,160,96,.08)',
+        'rust-bg':       'rgba(166,122,82,.06)',
+        'teal-bg':       'rgba(110,160,154,.08)',
       },
       fontFamily: {
-        display: ['Cinzel', 'serif'],
+        display: ['"Cormorant Garamond"', 'serif'],
         sans:    ['Inter', 'sans-serif'],
       },
       letterSpacing: {
         wider2:  '.12em',
-        widest2: '.16em',
+        widest2: '.22em',
       },
     },
   },

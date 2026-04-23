@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,19 +7,26 @@
 html, body, #root { height: 100%; }
 body {
   @apply bg-bg text-text font-sans antialiased;
+  font-size: 13px;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(201,169,98,.03) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.5) 0%, transparent 60%);
 }
 
+/* Subtle scanline overlay — game CRT feel */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(184,152,64,.025) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(68,160,138,.02) 0%, transparent 50%);
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.15) 0 1px, transparent 1px 3px);
+  opacity: .18;
+  mix-blend-mode: multiply;
 }
 body > * { position: relative; z-index: 1; }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { @apply bg-border; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-hair; }
+::-webkit-scrollbar-thumb:hover { @apply bg-hair-strong; }

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import type { Graph, Item } from '../lib/types'
 import { primaryRecipeFor, indexItems } from '../lib/graph'
 import Diamond from './Diamond'
+import Icon from './Icon'
 import { useStore } from '../store'
 
 interface Props { graph: Graph; rootId: string }
@@ -15,12 +16,19 @@ export default function FlowView({ graph, rootId }: Props) {
   const navigate = useNavigate()
   const root = byId.get(rootId)
   if (!root || root.raw) {
-    return <div className="h-16 flex items-center justify-center text-[11px] text-text-dim">Raw material — gathered, not crafted</div>
+    return <div className="p-8 text-center text-[12px] text-text-dim italic border border-dashed border-hair bg-panel">Raw material — gathered, not crafted</div>
   }
   return (
-    <div className="overflow-x-auto pb-5 mb-5">
-      <FlowNode graph={graph} byId={byId} id={rootId} qty={1} multiplier={quantity}
-                isRoot orSel={orSel} setOrSel={setOrSel} onNavigate={id => navigate(`/item/${id}?view=flow`)} />
+    <div
+      className="overflow-auto mb-[22px] p-[20px_8px_24px] border border-hair"
+      style={{
+        background: 'radial-gradient(ellipse at 20% 40%, rgba(138,160,116,.05) 0%, transparent 45%), linear-gradient(180deg, #181a16 0%, #161815 100%)',
+      }}
+    >
+      <div className="flex items-center" style={{ minWidth: 'fit-content' }}>
+        <FlowNode graph={graph} byId={byId} id={rootId} qty={1} multiplier={quantity}
+                  isRoot orSel={orSel} setOrSel={setOrSel} onNavigate={id => navigate(`/item/${id}?view=flow`)} />
+      </div>
     </div>
   )
 }
@@ -48,39 +56,39 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
   )
   if (!item || depth > 6) return null
   const hasKids = !!recipe && recipe.groups.length > 0
-  const size = isRoot ? 52 : 42
+  const size = isRoot ? 64 : 48
 
-  const diamond = (
-    <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
+  const tile = (
+    <div className="flex flex-col items-center gap-[7px] flex-shrink-0">
       <Diamond
         item={item}
         size={size}
         variant={isRoot ? 'root' : item.raw ? 'raw' : 'default'}
         onClick={() => !item.raw && onNavigate(item.id)}
       />
-      <div className="flex flex-col items-center gap-[1px]">
-        <span className={`text-[10px] text-center leading-tight max-w-[88px] ${
-          isRoot ? 'text-text text-[11px]' : item.raw ? 'text-raw' : 'text-text-muted'
+      <div className="flex flex-col items-center gap-[2px] max-w-[110px] text-center">
+        <span className={`text-[11px] leading-[1.25] tracking-[.02em] ${
+          isRoot ? 'text-green-hi text-[12px] font-semibold' : item.raw ? 'text-text-mute' : 'text-text'
         }`}>
           {item.n ?? item.nz ?? item.id}
         </span>
-        <span className={`text-[10px] font-bold tabular-nums ${item.raw ? 'text-raw' : 'text-gold'}`}>×{total}</span>
-        {stationName && <span className="text-[9px] text-text-dim">{stationName}</span>}
+        <span className={`text-[11px] font-bold tabular-nums tracking-[.04em] ${item.raw ? 'text-rust' : 'text-green-hi'}`}>×{total}</span>
+        {stationName && !isRoot && <span className="text-[9px] text-text-dim uppercase tracking-[.1em] font-medium">{stationName}</span>}
       </div>
     </div>
   )
 
-  if (!hasKids || !recipe) return diamond
+  if (!hasKids || !recipe) return tile
 
   return (
-    <div className="flex items-center">
-      {diamond}
-      <div className="w-7 h-px bg-gold-dim flex-shrink-0" />
-      <div className="flex flex-col gap-2 relative flow-branch">
+    <div className="flex items-center" style={{ minWidth: 'fit-content' }}>
+      {tile}
+      <div className="w-6 h-px bg-green-dim flex-shrink-0 self-center" />
+      <div className="flex flex-col relative self-stretch justify-center">
         {recipe.groups.map((grp, gi) =>
           grp.kind === 'all'
             ? grp.items.map(ing => (
-              <div key={`${gi}-${ing.id}`} className="flex items-center relative flow-branch-item">
+              <div key={`${gi}-${ing.id}`} className="flow-branch-item flex items-center">
                 <div className="ml-[14px]">
                   <FlowNode graph={graph} byId={byId} id={ing.id} qty={ing.q * qty} multiplier={multiplier}
                             depth={depth + 1} orSel={orSel} setOrSel={setOrSel} onNavigate={onNavigate} />
@@ -88,22 +96,24 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
               </div>
             ))
             : (
-              <div key={gi} className="flex items-center relative flow-branch-item">
-                <div className="ml-[14px] p-2 bg-or-bg border border-or-border min-w-[140px]">
-                  <div className="text-[8px] text-or tracking-wider2 uppercase mb-1 font-semibold">Choose one</div>
+              <div key={gi} className="flow-branch-item flex items-center">
+                <div className="ml-[14px] p-2.5 bg-teal-bg border border-teal-dim min-w-[170px]"
+                     style={{ borderLeftWidth: 2, borderLeftColor: '#6ea09a' }}>
+                  <div className="text-[9px] tracking-[.18em] uppercase text-teal font-semibold mb-1.5">◈ Choose one</div>
                   {grp.items.map((alt, ai) => {
                     const altItem = byId.get(alt.id)
                     const active = (orSel[`${recipe.id}:${gi}`] ?? 0) === ai
                     return (
                       <div
                         key={alt.id}
-                        className={`py-1 px-1.5 border flex items-center justify-between gap-1 my-[2px] cursor-pointer transition-colors ${
-                          active ? 'bg-[rgba(144,128,204,.14)] border-or' : 'border-transparent hover:bg-[rgba(144,128,204,.1)] hover:border-or-border'
+                        className={`flex items-center gap-2 px-1.5 py-1.5 mt-px cursor-pointer border transition-colors ${
+                          active ? 'bg-[rgba(109,158,148,.1)] border-teal-dim' : 'border-transparent hover:bg-[rgba(109,158,148,.06)]'
                         }`}
                         onClick={() => setOrSel(`${recipe.id}:${gi}`, ai)}
                       >
-                        <span className="text-[11px] text-text">{altItem?.n ?? altItem?.nz ?? alt.id}</span>
-                        <span className="text-[10px] font-semibold text-or">×{alt.q * qty * multiplier}</span>
+                        <Icon item={altItem} size={20} />
+                        <span className="flex-1 text-[11px] text-text truncate">{altItem?.n ?? altItem?.nz ?? alt.id}</span>
+                        <span className="text-[10px] font-bold text-teal tabular-nums">×{alt.q * total}</span>
                       </div>
                     )
                   })}

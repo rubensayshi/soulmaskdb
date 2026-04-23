@@ -3,13 +3,14 @@ import type { Graph } from '../lib/types'
 import { computeRawMats } from '../lib/graph'
 import { useStore } from '../store'
 import { Link } from 'react-router-dom'
+import Icon from './Icon'
 
 interface Props { graph: Graph; rootId: string }
 
 export default function RawMatsCollapsible({ graph, rootId }: Props) {
   const quantity = useStore(s => s.quantity)
   const orSel    = useStore(s => s.orSel)
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [copied, setCopied] = useState(false)
   const mats = useMemo(
     () => computeRawMats(graph, rootId, quantity, orSel),
@@ -18,43 +19,69 @@ export default function RawMatsCollapsible({ graph, rootId }: Props) {
   const byId = useMemo(() => new Map(graph.items.map(i => [i.id, i])), [graph])
   const entries = Object.entries(mats).sort((a, b) => b[1] - a[1])
   if (!entries.length) return null
+  const totalItems = entries.reduce((s, [, q]) => s + q, 0)
 
   return (
-    <div className="mb-5 border border-border">
-      <div className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-card select-none"
-           onClick={() => setOpen(o => !o)}>
-        <div className={`w-[7px] h-[7px] rotate-45 border border-raw-border ${open ? 'bg-raw' : 'bg-transparent'}`} />
-        <span className="flex-1 text-[9px] tracking-wider2 uppercase text-text-muted font-semibold">Total Raw Materials</span>
-        <span className="text-[9px] text-text-dim">{open ? '▴' : '▾'} {entries.length}</span>
+    <div className="relative mt-3.5 bg-panel border border-hair-strong">
+      {/* rust hairline accent on top */}
+      <div className="pointer-events-none absolute -top-px -left-px -right-px h-px"
+           style={{ background: 'linear-gradient(90deg, transparent, #6e4d2e 30%, #6e4d2e 70%, transparent)' }} />
+
+      <div
+        className="flex items-center gap-3 px-4 py-3 cursor-pointer select-none hover:bg-[rgba(166,122,82,.04)] transition-colors"
+        onClick={() => setOpen(o => !o)}
+      >
+        <svg className="w-4 h-4 text-rust flex-shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3">
+          <path d="M8 1 L14 4.5 L14 11.5 L8 15 L2 11.5 L2 4.5 Z" />
+          <path d="M2 4.5 L8 8 L14 4.5 M8 8 L8 15" />
+        </svg>
+        <div>
+          <div className="font-display text-[14px] font-semibold text-text tracking-[.02em]">Total Raw Materials</div>
+          <div className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium">Gathering Checklist</div>
+        </div>
+        <div className="ml-auto text-[11px] text-text-mute tabular-nums">
+          {entries.length} types · {totalItems} total
+        </div>
+        <span className="text-text-dim text-[11px]">{open ? '▴' : '▾'}</span>
       </div>
+
       {open && (
-        <div className="border-t border-border p-1">
+        <div className="border-t border-hair p-1.5">
           {entries.map(([id, qty]) => {
             const it = byId.get(id)
             return (
-              <Link key={id} to={`/item/${id}`} className="flex items-center gap-2 px-2 py-1 hover:bg-card">
-                <div className="w-6 h-6 bg-raw-bg border border-raw-border flex items-center justify-center text-[8px] font-semibold text-raw">
-                  {(it?.n ?? it?.nz ?? id).slice(0, 2).toUpperCase()}
+              <Link
+                key={id}
+                to={`/item/${id}`}
+                className="flex items-center gap-3 px-2.5 py-[7px] hover:bg-[rgba(166,122,82,.04)] transition-colors"
+              >
+                <Icon item={it} size={26} />
+                <div className="flex-1 min-w-0">
+                  <div className="text-[12.5px] text-text truncate">{it?.n ?? it?.nz ?? id}</div>
+                  <div className="text-[10px] text-text-dim tracking-[.04em]">{it?.cat ?? 'Gathered'}</div>
                 </div>
-                <span className="flex-1 text-[11px] text-text">{it?.n ?? it?.nz ?? id}</span>
-                <span className="text-xs font-semibold text-raw tabular-nums">×{qty}</span>
+                <span className="text-[13px] font-bold text-rust tabular-nums min-w-[40px] text-right">×{qty}</span>
               </Link>
             )
           })}
-          <button
-            className={`w-full mt-1 p-1.5 border text-[9px] tracking-wider2 uppercase transition-colors ${
-              copied ? 'border-raw-border text-raw' : 'border-border text-text-dim hover:border-gold-dim hover:text-gold'
-            }`}
-            onClick={() => {
-              navigator.clipboard?.writeText(
-                entries.map(([id, q]) => `${byId.get(id)?.n ?? id}: ×${q}`).join('\n')
-              )
-              setCopied(true)
-              setTimeout(() => setCopied(false), 1800)
-            }}
-          >
-            {copied ? '✓ Copied' : 'Copy shopping list'}
-          </button>
+          <div className="flex gap-1.5 mx-1.5 mt-1.5 mb-1.5">
+            <button
+              className={`flex-1 py-2 border text-[10px] tracking-[.18em] uppercase font-semibold transition-colors ${
+                copied
+                  ? 'border-green text-green'
+                  : 'border-hair text-text-mute hover:border-green-dim hover:text-green-hi'
+              }`}
+              onClick={() => {
+                navigator.clipboard?.writeText(
+                  entries.map(([id, q]) => `${byId.get(id)?.n ?? id}: ×${q}`).join('\n')
+                )
+                setCopied(true)
+                setTimeout(() => setCopied(false), 1800)
+              }}
+            >
+              {copied ? '✓ Copied to Clipboard' : 'Copy Gathering List'}
+            </button>
+          </div>
         </div>
       )}
     </div>

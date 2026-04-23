@@ -3,59 +3,58 @@ import { useState } from 'react'
 
 const CDN = 'https://www.soulmaskdatabase.com/images/'
 
+type Variant = 'default' | 'root' | 'raw' | 'rust' | 'green-lit' | 'lit'
+
 interface Props {
   item: Item | undefined
   size?: number
-  variant?: 'default' | 'root' | 'raw' | 'jade'
+  variant?: Variant
   onClick?: () => void
+  className?: string
 }
 
 function initials(s: string): string {
   return s.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase()
 }
 
-export default function Diamond({ item, size = 42, variant = 'default', onClick }: Props) {
+export default function Diamond({ item, size = 42, variant = 'default', onClick, className = '' }: Props) {
   const [err, setErr] = useState(false)
   if (!item) return null
   const label = item.n ?? item.nz ?? item.id
   const hasImg = item.ic && !err
 
-  const border = {
-    default: 'border-border-lit',
-    root:    'border-gold border-[1.5px]',
-    raw:     'border-raw-border',
-    jade:    'border-jade-border',
-  }[variant]
-  const bg = {
-    default: 'bg-card hover:bg-card-hover',
-    root:    'bg-card-hover',
-    raw:     'bg-raw-bg',
-    jade:    'bg-jade-bg',
-  }[variant]
-  const hover = variant === 'raw' ? '' : 'hover:border-gold'
-  const cursor = onClick ? 'cursor-pointer' : ''
+  const effVariant: Variant = variant === 'default' && item.raw ? 'raw' : variant
+  const modifier = {
+    default:    '',
+    root:       'lit',
+    raw:        'raw',
+    rust:       'rust',
+    'green-lit':'green-lit',
+    lit:        'lit',
+  }[effVariant]
+
+  const hover = onClick && !item.raw ? 'hover:border-green hover:-translate-y-px transition-all' : 'transition-colors'
+  const cursor = onClick && !item.raw ? 'cursor-pointer' : ''
 
   return (
     <div
-      className={`diamond border ${border} ${bg} ${hover} ${cursor} transition-colors`}
+      className={`tile ${modifier} ${hover} ${cursor} ${className}`}
       style={{ width: size, height: size }}
       onClick={onClick}
     >
-      <div className="diamond-inner" style={{ width: size, height: size }}>
-        {hasImg ? (
-          <img
-            src={CDN + (item.ic as string)}
-            alt={label}
-            style={{ width: size * 0.7, height: size * 0.7 }}
-            className="object-cover"
-            onError={() => setErr(true)}
-          />
-        ) : (
-          <span style={{ fontSize: size * 0.24 }} className="font-semibold text-text-muted">
-            {initials(label)}
-          </span>
-        )}
-      </div>
+      {hasImg ? (
+        <img
+          src={CDN + (item.ic as string)}
+          alt={label}
+          style={{ width: '82%', height: '82%', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,.6))' }}
+          className="object-contain"
+          onError={() => setErr(true)}
+        />
+      ) : (
+        <span className="tile-initials" style={{ fontSize: Math.round(size * 0.34) }}>
+          {initials(label)}
+        </span>
+      )}
     </div>
   )
 }

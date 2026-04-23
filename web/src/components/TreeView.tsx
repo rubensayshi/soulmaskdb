@@ -18,7 +18,7 @@ export default function TreeView({ graph, rootId }: Props) {
 
   const recipe = primaryRecipeFor(graph, rootId)
   if (!recipe) {
-    return <div className="h-16 flex items-center justify-center text-[11px] text-text-dim">Raw material — gathered, not crafted</div>
+    return <div className="p-8 text-center text-[12px] text-text-dim italic border border-dashed border-hair bg-panel">Raw material — gathered, not crafted</div>
   }
 
   return (
@@ -32,41 +32,80 @@ export default function TreeView({ graph, rootId }: Props) {
         const orKey = `${recipe.id}:${gi}`
         const chosen = orSel[orKey] ?? 0
         return (
-          <div key={gi} className="ml-2 mb-1 p-2 bg-or-bg border border-or-border">
-            <div className="text-[8px] tracking-wider2 uppercase text-or mb-1 font-semibold flex items-center gap-2">
-              Choose one
-              <span className="flex-1 h-px bg-or-border" />
-            </div>
-            {grp.items.map((alt, ai) => {
-              const item = byId.get(alt.id)
-              const active = chosen === ai
-              return (
-                <div
-                  key={alt.id}
-                  className={`flex items-center gap-2 px-1.5 py-1 border transition-colors cursor-pointer my-0.5 ${
-                    active ? 'bg-[rgba(144,128,204,.14)] border-or' : 'border-transparent hover:bg-[rgba(144,128,204,.1)] hover:border-or-border'
-                  }`}
-                  onClick={() => setOrSel(orKey, ai)}
-                >
-                  <Icon item={item} size={22} />
-                  <span className="text-xs text-text flex-1">{item?.n ?? item?.nz ?? alt.id}</span>
-                  <span className="text-[10px] font-semibold text-or">×{alt.q * quantity}</span>
-                </div>
-              )
-            })}
-            {(() => {
-              const picked = grp.items[chosen] ?? grp.items[0]
-              const subItem = byId.get(picked.id)
-              if (!subItem || subItem.raw) return null
-              return (
-                <div className="ml-2 mt-1 pl-4 border-l border-or-border">
-                  <TreeNode graph={graph} id={picked.id} qty={picked.q * quantity} byId={byId} />
-                </div>
-              )
-            })()}
+          <OrGroup
+            key={gi}
+            items={grp.items}
+            chosen={chosen}
+            onSelect={i => setOrSel(orKey, i)}
+            byId={byId}
+            graph={graph}
+            multiplier={quantity}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
+function OrGroup({
+  items, chosen, onSelect, byId, graph, multiplier,
+}: {
+  items: { id: string; q: number }[]
+  chosen: number
+  onSelect: (i: number) => void
+  byId: Map<string, Item>
+  graph: Graph
+  multiplier: number
+}) {
+  const picked = items[chosen] ?? items[0]
+  const subItem = byId.get(picked.id)
+  const subHasRecipe = subItem && !subItem.raw && !!primaryRecipeFor(graph, picked.id)
+  const [showSub, setShowSub] = useState(false)
+
+  return (
+    <div
+      className="or-box relative mb-0.5 px-3 py-2.5 bg-teal-bg border border-teal-dim"
+      style={{ borderLeftWidth: 2, borderLeftColor: '#6ea09a' }}
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-[9px] tracking-widest2 uppercase text-teal font-semibold">Choose one</span>
+        <div className="flex-1 h-px bg-teal-dim" />
+      </div>
+      {items.map((alt, ai) => {
+        const altItem = byId.get(alt.id)
+        const active = chosen === ai
+        return (
+          <div
+            key={alt.id}
+            className={`flex items-center gap-2.5 px-2 py-1.5 mt-0.5 cursor-pointer border transition-colors ${
+              active ? 'bg-[rgba(109,158,148,.1)] border-teal-dim' : 'border-transparent hover:bg-[rgba(109,158,148,.06)]'
+            }`}
+            onClick={() => onSelect(ai)}
+          >
+            <span className={`w-3 h-3 flex-shrink-0 border flex items-center justify-center ${active ? 'bg-teal border-teal' : 'bg-bg-2 border-teal-dim'}`}>
+              {active && <span className="w-1 h-1 bg-bg" />}
+            </span>
+            <Icon item={altItem} size={22} />
+            <span className="flex-1 text-[12.5px] text-text">{altItem?.n ?? altItem?.nz ?? alt.id}</span>
+            <span className="text-[12px] font-semibold text-teal tabular-nums">×{alt.q * multiplier}</span>
           </div>
         )
       })}
+      {subHasRecipe && (
+        <>
+          <button
+            onClick={() => setShowSub(s => !s)}
+            className="mt-2 w-full px-2 py-[5px] bg-transparent border border-dashed border-teal-dim text-teal text-[10px] uppercase tracking-[.14em] font-semibold hover:bg-[rgba(109,158,148,.06)] hover:border-solid transition-all"
+          >
+            {showSub ? '▾ Hide' : '▸ Show'} ingredients for {subItem?.n ?? subItem?.nz ?? picked.id}
+          </button>
+          {showSub && (
+            <div className="mt-2 pt-2 border-t border-dashed border-teal-dim">
+              <TreeNode graph={graph} id={picked.id} qty={picked.q * multiplier} byId={byId} />
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
 }
@@ -91,31 +130,40 @@ function TreeNode({ graph, id, qty, byId }: NodeProps) {
   if (!item) return null
 
   return (
-    <div>
+    <div className="tree-wrap">
       <div
-        className={`group flex items-center gap-2 px-2 py-1.5 my-px ${hasKids ? 'cursor-pointer' : 'cursor-default'} hover:bg-card`}
+        className={`group relative flex items-center gap-[11px] px-3 py-2 mb-0.5 border transition-colors ${
+          item.raw
+            ? 'bg-transparent border-line-soft hover:bg-[rgba(166,122,82,.03)]'
+            : 'bg-panel border-hair hover:bg-panel-2 hover:border-hair-strong'
+        } ${hasKids ? 'cursor-pointer' : 'cursor-default'}`}
         onClick={() => hasKids && setExpanded(v => !v)}
       >
-        <span className="w-3 text-[9px] text-text-dim text-center">
+        <span className="w-3 text-text-dim text-[10px] text-center flex-shrink-0">
           {hasKids ? (expanded ? '▾' : '▸') : ''}
         </span>
-        <Icon item={item} size={26} />
-        <span className="text-sm text-text flex-1">{item.n ?? item.nz ?? item.id}</span>
-        {item.raw && <span className="w-1.5 h-1.5 rotate-45 bg-raw" />}
+        <Icon item={item} size={30} />
+        <span className={`flex-1 text-[13px] truncate ${item.raw ? 'text-text-mute' : 'text-text'}`}>
+          {item.n ?? item.nz ?? item.id}
+        </span>
         {stationName && (
-          <span className="text-[9px] text-text-dim px-1 py-px bg-panel">{stationName}</span>
+          <span className="text-[10px] tracking-[.08em] font-medium px-2 py-[3px] text-green border border-green-soft bg-green-bg flex-shrink-0">
+            {stationName}
+          </span>
         )}
-        <span className="text-xs font-semibold text-gold tabular-nums min-w-[28px] text-right">×{qty}</span>
+        <span className={`text-[13px] font-semibold tabular-nums min-w-[32px] text-right flex-shrink-0 ${item.raw ? 'text-rust' : 'text-green-hi'}`}>
+          ×{qty}
+        </span>
         {!item.raw && (
           <Link
             to={`/item/${item.id}`}
             onClick={e => e.stopPropagation()}
-            className="w-[18px] h-[18px] flex items-center justify-center bg-card text-gold text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"
+            className="w-[22px] h-[22px] flex items-center justify-center bg-bg border border-hair text-text-mute text-[12px] opacity-0 group-hover:opacity-100 hover:border-green hover:text-green-hi transition-all flex-shrink-0"
           >→</Link>
         )}
       </div>
-      {expanded && recipe && (
-        <div className="relative pl-4 ml-4 border-l border-gold-dim">
+      {expanded && recipe && hasKids && (
+        <div className="tree-kids">
           {recipe.groups.map((grp, gi) =>
             grp.items.map(ing => (
               <TreeNode key={`${gi}-${ing.id}`} graph={graph} id={ing.id} qty={ing.q * qty} byId={byId} />

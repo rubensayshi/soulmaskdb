@@ -19,12 +19,10 @@ export default function Icon({ item, size = 28, className = '' }: Props) {
   if (!item) return null
 
   const classes = [
-    'flex items-center justify-center overflow-hidden border text-xs font-semibold',
-    item.raw
-      ? 'bg-raw-bg border-raw-border text-raw'
-      : 'bg-card border-border text-text-muted',
+    'tile',
+    item.raw ? 'raw' : '',
     className,
-  ].join(' ')
+  ].filter(Boolean).join(' ')
 
   const style = { width: size, height: size }
   const label = item.n ?? item.nz ?? item.id
@@ -36,11 +34,14 @@ export default function Icon({ item, size = 28, className = '' }: Props) {
         <img
           src={CDN + (item.ic as string)}
           alt={label}
-          className="w-full h-full object-cover"
+          style={{ width: '82%', height: '82%', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,.6))' }}
+          className="object-contain"
           onError={() => setErr(true)}
         />
       ) : (
-        initials(label)
+        <span className="tile-initials" style={{ fontSize: Math.round(size * 0.34) }}>
+          {initials(label)}
+        </span>
       )}
     </div>
   )

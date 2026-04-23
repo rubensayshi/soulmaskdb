@@ -1,26 +1,110 @@
 @tailwind components;
 
 @layer components {
-  /* Diamond shape: wrapper rotates 45deg, child counter-rotates. */
-  .diamond {
-    @apply flex items-center justify-center overflow-hidden;
-    transform: rotate(45deg);
+  /* ─── Square tile (game-accurate) ────────────────────────── */
+  .tile {
+    @apply relative flex-shrink-0 flex items-center justify-center overflow-hidden border border-hair;
+    background:
+      radial-gradient(ellipse at 30% 25%, rgba(255,240,200,.06) 0%, transparent 55%),
+      linear-gradient(180deg, #363b32 0%, #2a2e27 100%);
   }
-  .diamond-inner {
-    @apply flex items-center justify-center overflow-hidden;
-    transform: rotate(-45deg);
-  }
-  /* L-shaped connector used in FlowView branches */
-  .flow-branch::before {
+  .tile::before {
     content: '';
-    @apply absolute left-0 w-px bg-gold-dim;
-    top: 30px;
-    bottom: 30px;
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255,255,255,.025);
+    pointer-events: none;
   }
+  .tile.raw { @apply border-rust-dim; }
+  .tile.raw::after {
+    content: '';
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 4px; height: 4px;
+    background: #a67a52;
+    opacity: .7;
+  }
+  .tile.green-lit {
+    @apply border-green;
+    box-shadow: 0 0 0 1px rgba(122,146,104,.15) inset;
+  }
+  .tile.lit {
+    @apply border-green;
+    box-shadow: 0 0 0 1px rgba(138,160,116,.18) inset, 0 0 12px rgba(138,160,116,.18);
+  }
+  .tile.rust { @apply border-rust-dim; }
+
+  .tile-initials {
+    font-family: 'Cormorant Garamond', serif;
+    color: #99a08a;
+    font-weight: 600;
+  }
+
+  /* ─── Flow tree connectors ──────────────────────────────── */
+  .flow-branch-item {
+    position: relative;
+    padding: 6px 0;
+  }
+  /* horizontal stub from spine to child */
   .flow-branch-item::before {
     content: '';
-    @apply absolute left-0 top-1/2 w-[14px] h-px bg-gold-dim;
+    position: absolute;
+    left: 0; top: 50%;
+    width: 14px; height: 1px;
+    background: #5a6e48;
   }
-  .flow-branch.jade::before { @apply bg-jade-border; }
-  .flow-branch-item.jade::before { @apply bg-jade-border; }
+  .flow-branch-item.rust::before { background: #6e4d2e; }
+  /* vertical spine segment */
+  .flow-branch-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1px;
+    background: #5a6e48;
+    top: 0; bottom: 0;
+  }
+  .flow-branch-item.rust::after { background: #6e4d2e; }
+  .flow-branch-item:first-child::after { top: 50%; }
+  .flow-branch-item:last-child::after { bottom: 50%; }
+  .flow-branch-item:only-child::after { display: none; }
+
+  /* ─── Tree kids L-connectors (dotted hairlines) ─────────── */
+  .tree-kids {
+    position: relative;
+    margin-left: 18px;
+    padding-left: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  .tree-kids::before {
+    content: '';
+    position: absolute;
+    left: 0; top: -2px; bottom: 20px;
+    width: 1px;
+    background-image: linear-gradient(180deg, #4a5040 50%, transparent 50%);
+    background-size: 1px 4px;
+  }
+  .tree-kids.rust::before {
+    background-image: linear-gradient(180deg, #6e4d2e 50%, transparent 50%);
+  }
+  .tree-kids > .tree-wrap::before {
+    content: '';
+    position: absolute;
+    left: -16px; top: 22px;
+    width: 14px; height: 1px;
+    background-image: linear-gradient(90deg, #4a5040 50%, transparent 50%);
+    background-size: 4px 1px;
+  }
+  .tree-kids.rust > .tree-wrap::before {
+    background-image: linear-gradient(90deg, #6e4d2e 50%, transparent 50%);
+  }
+  .tree-kids > .or-box::before {
+    content: '';
+    position: absolute;
+    left: -16px; top: 22px;
+    width: 14px; height: 1px;
+    background-image: linear-gradient(90deg, #3f5b58 50%, transparent 50%);
+    background-size: 4px 1px;
+  }
+  .tree-wrap { position: relative; }
 }

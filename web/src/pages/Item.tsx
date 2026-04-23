@@ -27,8 +27,8 @@ export default function Item() {
     [graph, recipe]
   )
 
-  if (!graph) return <div>Loading…</div>
-  if (!item) return <div>Item not found: {id}</div>
+  if (!graph) return <div className="p-8 text-text-dim">Loading…</div>
+  if (!item) return <div className="p-8 text-text-dim">Item not found: {id}</div>
 
   return (
     <div>
@@ -36,28 +36,39 @@ export default function Item() {
       {recipe && <QtyControl />}
       {recipe && (
         <>
-          <SectionHeader label="Ingredients" color="gold" />
+          <SectionHeader title="Materials Required" sub="Direct Ingredients" accent="green" />
           {view === 'tree'
             ? <TreeView graph={graph} rootId={item.id} />
             : <FlowView graph={graph} rootId={item.id} />}
           <RawMatsCollapsible graph={graph} rootId={item.id} />
         </>
       )}
-      <SectionHeader label="Used as ingredient in" color="jade" />
+      <SectionHeader title="Used as Ingredient" sub="Downstream Recipes" accent="rust" />
       <UsedIn graph={graph} rootId={item.id} view={view} />
     </div>
   )
 }
 
-function SectionHeader({ label, color }: { label: string; color: 'gold' | 'jade' }) {
-  const diamondColor = color === 'gold' ? 'border-gold-dim bg-gold-dim' : 'border-jade-border bg-jade-border'
+function Ornament({ accent }: { accent: 'green' | 'rust' }) {
+  const color = accent === 'green' ? '#8aa074' : '#a67a52'
   return (
-    <div className="flex items-center gap-2 mt-0.5 mb-3">
-      <div className="flex-1 h-px bg-gradient-to-r from-transparent to-border" />
-      <div className={`w-2 h-2 rotate-45 border ${diamondColor}`} />
-      <div className="text-[9px] tracking-wider2 uppercase text-text-dim font-semibold whitespace-nowrap">{label}</div>
-      <div className={`w-2 h-2 rotate-45 border ${diamondColor}`} />
-      <div className="flex-1 h-px bg-border" />
+    <svg viewBox="0 0 14 14" className="w-[14px] h-[14px]" fill="none" stroke={color} strokeWidth="1" strokeLinecap="square">
+      <path d="M7 1 L13 7 L7 13 L1 7 Z" />
+      <path d="M7 4 L10 7 L7 10 L4 7 Z" fill={color} stroke="none" opacity=".6" />
+    </svg>
+  )
+}
+
+function SectionHeader({ title, sub, accent }: { title: string; sub: string; accent: 'green' | 'rust' }) {
+  const gradient = accent === 'green'
+    ? 'linear-gradient(90deg, #5a6e48 0%, transparent 100%)'
+    : 'linear-gradient(90deg, #6e4d2e 0%, transparent 100%)'
+  return (
+    <div className="flex items-center gap-3.5 mt-7 mb-4">
+      <Ornament accent={accent} />
+      <span className="font-display text-[16px] font-semibold text-text tracking-[.04em] flex-shrink-0">{title}</span>
+      <span className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium ml-1.5 flex-shrink-0">{sub}</span>
+      <div className="flex-1 h-px" style={{ background: gradient }} />
     </div>
   )
 }

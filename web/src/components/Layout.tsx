@@ -8,7 +8,11 @@ export default function Layout({ children }: { children: ReactNode }) {
       <TopNav />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto px-6 py-5">{children}</main>
+        <main className="flex-1 overflow-y-auto bg-bg">
+          <div className="px-9 pt-7 pb-12 max-w-[1100px]">
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   )
