@@ -1,0 +1,14 @@
+.git
+.venv
+uasset_export
+Game/Exports
+Game/Parsed
+pipeline
+docs
+web/node_modules
+web/.vite
+web/dist
+backend/bin
+backend/server
+*.md
+.env*
