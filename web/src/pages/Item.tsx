@@ -11,12 +11,11 @@ export default function Item() {
   const { id } = useParams<{ id: string }>()
 
   const pushVisit  = useStore(s => s.pushVisit)
-  const resetOrSel = useStore(s => s.resetOrSel)
   const graph      = useStore(s => s.graph)
   const tweaks     = useStore(s => s.tweaks)
   const setTweaks  = useStore(s => s.setTweaks)
 
-  useEffect(() => { if (id) { pushVisit(id); resetOrSel() } }, [id, pushVisit, resetOrSel])
+  useEffect(() => { if (id) pushVisit(id) }, [id, pushVisit])
 
   const item = useMemo(() => graph?.items.find(i => i.id === id), [graph, id])
   const recipe = useMemo(() => graph && id ? primaryRecipeFor(graph, id) : undefined, [graph, id])

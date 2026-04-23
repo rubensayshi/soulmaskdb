@@ -5,6 +5,7 @@ import type { Graph } from '../lib/types'
 const GRAPH_CACHE_KEY = 'soulmask:graph'
 const ETAG_CACHE_KEY  = 'soulmask:etag'
 const VISITS_KEY      = 'soulmask:visits'
+const OR_SEL_KEY      = 'soulmask:orSel'
 
 interface Tweaks {
   quantity: number
@@ -103,9 +104,18 @@ export const useStore = create<Store>((set, get) => {
       set({ recentVisits: [] })
     },
 
-    orSel: {},
-    setOrSel(key, idx) { set(s => ({ orSel: { ...s.orSel, [key]: idx } })) },
-    resetOrSel() { set({ orSel: {} }) },
+    orSel: (() => { try { const r = localStorage.getItem(OR_SEL_KEY); return r ? JSON.parse(r) : {} } catch { return {} } })(),
+    setOrSel(key, idx) {
+      set(s => {
+        const next = { ...s.orSel, [key]: idx }
+        localStorage.setItem(OR_SEL_KEY, JSON.stringify(next))
+        return { orSel: next }
+      })
+    },
+    resetOrSel() {
+      localStorage.removeItem(OR_SEL_KEY)
+      set({ orSel: {} })
+    },
 
     tweaks,
     setTweaks(patch) {
