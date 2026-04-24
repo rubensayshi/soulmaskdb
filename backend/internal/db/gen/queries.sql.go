@@ -221,6 +221,52 @@ func (q *Queries) GetSeedSourceForItem(ctx context.Context, itemID string) (GetS
 	return i, err
 }
 
+const getSpawnLocationsForItem = `-- name: GetSpawnLocationsForItem :many
+SELECT cs.creature_type, cs.lat, cs.lon, cs.level_desc
+FROM creature_spawns cs
+WHERE cs.creature_type IN (
+  SELECT DISTINCT
+    CASE
+      WHEN ds.source_name LIKE '% (Bonus)' THEN REPLACE(ds.source_name, ' (Bonus)', '')
+      WHEN ds.source_name LIKE '% (Hunt Elite)' THEN REPLACE(ds.source_name, ' (Hunt Elite)', ' (Elite)')
+      WHEN ds.source_name LIKE '% (Hunt)' THEN REPLACE(ds.source_name, ' (Hunt)', '')
+      ELSE ds.source_name
+    END
+  FROM drop_source_items dsi
+  JOIN drop_sources ds ON ds.id = dsi.source_id
+  WHERE dsi.item_id = ? AND ds.source_type = 'creature_body'
+)
+ORDER BY cs.creature_type, cs.lat, cs.lon
+`
+
+func (q *Queries) GetSpawnLocationsForItem(ctx context.Context, itemID string) ([]CreatureSpawn, error) {
+	rows, err := q.db.QueryContext(ctx, getSpawnLocationsForItem, itemID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []CreatureSpawn{}
+	for rows.Next() {
+		var i CreatureSpawn
+		if err := rows.Scan(
+			&i.CreatureType,
+			&i.Lat,
+			&i.Lon,
+			&i.LevelDesc,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getTechUnlocksForRecipe = `-- name: GetTechUnlocksForRecipe :many
 SELECT tn.id, tn.name_en, tn.name_zh, tn.required_mask_level,
        parent.name_en AS parent_name_en, parent.name_zh AS parent_name_zh

@@ -47,6 +47,17 @@ type SeedSource struct {
 	Sources      []SeedSourceEntry `json:"sources"`
 }
 
+type SpawnPoint struct {
+	Lat int64 `json:"lat"`
+	Lon int64 `json:"lon"`
+}
+
+type SpawnGroup struct {
+	Creature string       `json:"creature"`
+	Level    string       `json:"level"`
+	Spawns   []SpawnPoint `json:"spawns"`
+}
+
 type ItemDetail struct {
 	ID             string       `json:"id"`
 	NameEn         *string      `json:"name_en"`
@@ -65,6 +76,7 @@ type ItemDetail struct {
 	RecipesUsedIn  []string     `json:"recipes_used_in"`
 	DropSources    []DropSource `json:"drop_sources"`
 	SeedSource     *SeedSource  `json:"seed_source,omitempty"`
+	SpawnLocations []SpawnGroup `json:"spawn_locations,omitempty"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -155,6 +167,30 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	spawnRows, _ := q.GetSpawnLocationsForItem(ctx, item.ID)
+	var spawnLocations []SpawnGroup
+	if len(spawnRows) > 0 {
+		groupMap := make(map[string]*SpawnGroup)
+		var groupOrder []string
+		for _, r := range spawnRows {
+			key := r.CreatureType
+			g, ok := groupMap[key]
+			if !ok {
+				level := ""
+				if r.LevelDesc.Valid {
+					level = r.LevelDesc.String
+				}
+				g = &SpawnGroup{Creature: key, Level: level}
+				groupMap[key] = g
+				groupOrder = append(groupOrder, key)
+			}
+			g.Spawns = append(g.Spawns, SpawnPoint{Lat: r.Lat, Lon: r.Lon})
+		}
+		for _, key := range groupOrder {
+			spawnLocations = append(spawnLocations, *groupMap[key])
+		}
+	}
+
 	var stats interface{}
 	if item.StatsJson.Valid {
 		_ = json.Unmarshal([]byte(item.StatsJson.String), &stats)
@@ -178,6 +214,7 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		RecipesUsedIn:  usedInIDs,
 		DropSources:    dropSources,
 		SeedSource:     seedSource,
+		SpawnLocations: spawnLocations,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

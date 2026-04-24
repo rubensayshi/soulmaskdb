@@ -389,6 +389,75 @@ def main():
             )
             seed_source_count += 1
 
+    # --- creature spawns ---
+    # Maps saraserenity.net creature names → our normalized drop_sources.source_name.
+    # "Normalized" means after stripping (Bonus)/(Hunt)/(Hunt Elite) suffixes,
+    # which the SQL query does at read time.
+    SPAWN_NAME_MAP = {
+        "Giant Alligator": "Alligator",
+        "Elite Alligator": "Alligator (Elite)",
+        "Anaconda": "Cobra",
+        "Elite Anaconda": "Cobra (Elite)",
+        "Armadillo Lizard": "Forest Lizard",
+        "Elite Armadillo Lizard": "Forest Lizard (Elite)",
+        "Arrow-poison Frog": "Poison Frog",
+        "Elite Arrow-poison Frog": "Poison Frog (Elite)",
+        "Bear": "Black Bear",
+        "Elite Bear": "Black Bear (Elite)",
+        "Bison": "Wild Bull",
+        "Elite Bison": "Wild Bull (Elite)",
+        "Bush Dog": "Hunting Dog",
+        "Coconut Crab": "Lobster",
+        "Giant Elephant": "Elephant",
+        "Elite Giant Elephant": "Elephant (Elite)",
+        "Horned Eagle": "Pterodactyl",
+        "Elite Horned Eagle": "Pterodactyl (Elite)",
+        "Llama": "Large Alpaca",
+        "Monitor Lizard": "Giant Lizard",
+        "Elite Monitor Lizard": "Giant Lizard (Elite)",
+        "Mutant Rat": "Rat",
+        "Elite Mutant Rat": "Rat (Elite)",
+        "Pronghorn": "Stag",
+        "Scarlet Macaw": "Parrot",
+        "Wasteland Wolf": "Alpha Wolf",
+        "Elite Wasteland Wolf": "Alpha Wolf (Elite)",
+        "White-Tailed Deer": "Deer",
+        "Wild Lion": "Lion",
+        "Elite Wild Lion": "Lion (Elite)",
+        "Wolf": "Grey Wolf",
+        "Elite Wolf": "Grey Wolf (Elite)",
+    }
+
+    # Names that pass through unchanged (auto-match: same name, or "Elite X" → "X (Elite)")
+    SPAWN_SKIP = {
+        "(Multiple)", "Alligator (Ruins)", "Arctic Wolf (Ruins)",
+        "Bear (Ruins)", "Monitor Lizard (Ruins)", "Snow Leopard (Ruins)",
+        "Wasteland Wolf (Ruins)", "Wolf (Ruins)",
+        "Horned Eagle Egg", "Ostrich Egg", "Tortoise Egg",
+        "Tapir (Insane)", "Fireflies",
+    }
+
+    spawn_path = PARSED / "spawn_locations.json"
+    spawn_count = 0
+    if spawn_path.exists():
+        spawn_data = load_json(spawn_path)
+        for s in spawn_data:
+            raw_name = s["creature"]
+            if raw_name in SPAWN_SKIP:
+                continue
+            if raw_name in SPAWN_NAME_MAP:
+                creature_type = SPAWN_NAME_MAP[raw_name]
+            elif raw_name.startswith("Elite ") and not raw_name.startswith("Elite Elite"):
+                creature_type = f"{raw_name[6:]} (Elite)"
+            else:
+                creature_type = raw_name
+            db.execute(
+                "INSERT OR IGNORE INTO creature_spawns (creature_type, lat, lon, level_desc) "
+                "VALUES (?,?,?,?)",
+                (creature_type, s["lat"], s["lon"], s.get("level") or None),
+            )
+            spawn_count += 1
+
     db.commit()
     db.execute("VACUUM")
     db.close()
@@ -401,6 +470,7 @@ def main():
     print(f"  drop_sources:      {drop_source_count}")
     print(f"  drop_items:        {drop_item_count}")
     print(f"  seed_sources:      {seed_source_count}")
+    print(f"  creature_spawns:   {spawn_count}")
 
 
 if __name__ == "__main__":

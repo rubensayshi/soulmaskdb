@@ -14,6 +14,7 @@ import SeedSources, { SeedFarmingStats } from '../components/SeedSources'
 import TechUnlock from '../components/TechUnlock'
 import ItemStats from '../components/ItemStats'
 import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
+import SpawnMap from '../components/SpawnMap'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -222,6 +223,13 @@ export default function Item() {
         <>
           <SectionHeader title="Obtained From" sub="Drop Sources" accent="rust" />
           <ObtainedFrom sources={detail.drop_sources} />
+        </>
+      )}
+
+      {detail?.spawn_locations && detail.spawn_locations.length > 0 && (
+        <>
+          <SectionHeader title="Spawn Locations" sub="World Map" accent="rust" />
+          <SpawnMap groups={detail.spawn_locations} />
         </>
       )}
     </div>

@@ -20,5 +20,8 @@ backend/internal/spa/dist/*
 tasks/translate_batch.yaml
 tasks/chunks/
 
+# Raw map textures (too large, converted to JPEG in web/public/)
+Game/Maps/
+
 # TS incremental build info
 web/tsconfig.tsbuildinfo

@@ -8,6 +8,13 @@ import (
 	"database/sql"
 )
 
+type CreatureSpawn struct {
+	CreatureType string
+	Lat          int64
+	Lon          int64
+	LevelDesc    sql.NullString
+}
+
 type DropSource struct {
 	ID         int64
 	BagName    string

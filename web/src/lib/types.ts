@@ -116,9 +116,21 @@ export interface SeedSource {
   sources: SeedSourceEntry[]
 }
 
+export interface SpawnPoint {
+  lat: number
+  lon: number
+}
+
+export interface SpawnGroup {
+  creature: string
+  level: string
+  spawns: SpawnPoint[]
+}
+
 export interface ItemDetail {
   id: string
   drop_sources: DropSource[]
   tech_unlocked_by: TechUnlock[]
   seed_source?: SeedSource
+  spawn_locations?: SpawnGroup[]
 }

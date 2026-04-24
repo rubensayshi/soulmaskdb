@@ -76,5 +76,22 @@ SELECT name_en, map, grindable, grinder_input, fertilizer, temp_growth, temp_opt
 FROM seed_sources
 WHERE item_id = ?;
 
+-- name: GetSpawnLocationsForItem :many
+SELECT cs.creature_type, cs.lat, cs.lon, cs.level_desc
+FROM creature_spawns cs
+WHERE cs.creature_type IN (
+  SELECT DISTINCT
+    CASE
+      WHEN ds.source_name LIKE '% (Bonus)' THEN REPLACE(ds.source_name, ' (Bonus)', '')
+      WHEN ds.source_name LIKE '% (Hunt Elite)' THEN REPLACE(ds.source_name, ' (Hunt Elite)', ' (Elite)')
+      WHEN ds.source_name LIKE '% (Hunt)' THEN REPLACE(ds.source_name, ' (Hunt)', '')
+      ELSE ds.source_name
+    END
+  FROM drop_source_items dsi
+  JOIN drop_sources ds ON ds.id = dsi.source_id
+  WHERE dsi.item_id = ? AND ds.source_type = 'creature_body'
+)
+ORDER BY cs.creature_type, cs.lat, cs.lon;
+
 -- name: ListItemSlugs :many
 SELECT id, slug FROM items;

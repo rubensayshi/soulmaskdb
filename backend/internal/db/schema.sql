@@ -103,3 +103,11 @@ CREATE TABLE seed_sources (
   temp_optimal  TEXT,
   sources_json  TEXT NOT NULL
 );
+
+CREATE TABLE creature_spawns (
+  creature_type TEXT NOT NULL,
+  lat           INTEGER NOT NULL,
+  lon           INTEGER NOT NULL,
+  level_desc    TEXT,
+  PRIMARY KEY (creature_type, lat, lon)
+);

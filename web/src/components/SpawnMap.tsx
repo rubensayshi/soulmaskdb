@@ -1,0 +1,106 @@
+import { useEffect, useRef } from 'react'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import type { SpawnGroup } from '../lib/types'
+
+const COLORS = [
+  '#a4ba8c', // green-hi
+  '#e8a87c', // warm salmon
+  '#89c4c0', // teal
+  '#c4a4d4', // lavender
+  '#d4a04a', // gold
+  '#d47070', // coral
+  '#70b0d4', // sky
+  '#b4d470', // lime
+]
+
+const MAP_BOUNDS: L.LatLngBoundsExpression = [[-4096, 0], [0, 4096]]
+
+interface Props {
+  groups: SpawnGroup[]
+}
+
+export default function SpawnMap({ groups }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<L.Map | null>(null)
+
+  useEffect(() => {
+    if (!containerRef.current || mapRef.current) return
+
+    const map = L.map(containerRef.current, {
+      crs: L.CRS.Simple,
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      boxZoom: false,
+      keyboard: false,
+      zoomSnap: 0.1,
+      minZoom: -5,
+    })
+
+    L.imageOverlay('/map-cloud-mist.jpg', MAP_BOUNDS).addTo(map)
+
+    map.fitBounds(MAP_BOUNDS)
+
+    const allPts: L.LatLng[] = []
+    groups.forEach((group, gi) => {
+      const color = COLORS[gi % COLORS.length]
+      group.spawns.forEach(pt => {
+        allPts.push(L.latLng(pt.lat, pt.lon))
+        L.circleMarker([pt.lat, pt.lon], {
+          radius: 5,
+          color: '#000',
+          fillColor: color,
+          fillOpacity: 0.85,
+          weight: 1.5,
+          opacity: 0.5,
+        }).addTo(map)
+      })
+    })
+
+    if (allPts.length > 0) {
+      const spawnBounds = L.latLngBounds(allPts)
+      const zoomedIn = map.getZoom() + 1
+      map.setView(spawnBounds.getCenter(), zoomedIn)
+      const viewBounds = map.getBounds()
+      if (!viewBounds.contains(spawnBounds)) {
+        map.fitBounds(MAP_BOUNDS)
+      }
+    }
+
+    mapRef.current = map
+
+    return () => {
+      map.remove()
+      mapRef.current = null
+    }
+  }, [groups])
+
+  return (
+    <div className="mb-4">
+      <div
+        ref={containerRef}
+        className="w-full border border-hair bg-panel"
+        style={{ aspectRatio: '4 / 3', maxHeight: 600, cursor: 'default' }}
+      />
+      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+        {groups.map((g, i) => (
+          <div key={g.creature} className="flex items-center gap-1.5 text-[11px]">
+            <span
+              className="w-2.5 h-2.5 rounded-full inline-block flex-shrink-0"
+              style={{ backgroundColor: COLORS[i % COLORS.length] }}
+            />
+            <span className="text-text">{g.creature}</span>
+            {g.level && (
+              <span className="text-text-dim">Lv {g.level}</span>
+            )}
+            <span className="text-text-mute tabular-nums">({g.spawns.length})</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
