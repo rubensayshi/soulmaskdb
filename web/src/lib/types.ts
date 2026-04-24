@@ -10,6 +10,8 @@ export interface StatEntry {
   attr: string
   value: number
   op: string | null
+  qlo?: number[]
+  qhi?: number[]
 }
 
 export interface Item {

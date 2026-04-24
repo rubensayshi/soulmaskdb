@@ -1,10 +1,15 @@
 import type { Item, Recipe, Station } from '../lib/types'
 import Diamond from './Diamond'
+import { QUALITY_TIERS } from './QualitySelector'
+
+const QUALITY_SCALE = [1.0, 1.05, 1.1, 1.15, 1.2, 1.25]
 
 interface Props {
   item: Item
   recipe?: Recipe
   station?: Station
+  quality?: number
+  trailing?: React.ReactNode
 }
 
 function Stat({ label, value, accent }: { label: string; value: string; accent?: 'green' | 'gold' | 'rust' }) {
@@ -22,25 +27,32 @@ function Stat({ label, value, accent }: { label: string; value: string; accent?:
   )
 }
 
-export default function ItemHeader({ item, recipe, station }: Props) {
+export default function ItemHeader({ item, recipe, station, quality = 0, trailing }: Props) {
   const title = item.n ?? item.nz ?? item.id
   const classification =
     item.role === 'raw' ? 'Raw Material'
     : item.role === 'standalone' ? (item.cat ?? 'Drop')
     : (item.cat ?? 'Crafted')
   const showsCraftMeta = item.role === 'final' || item.role === 'intermediate'
+  const qScale = QUALITY_SCALE[quality] ?? 1
+  const scaledDur = item.dur != null ? Math.round(item.dur * qScale) : null
+
+  const qColor = QUALITY_TIERS[quality]?.color ?? '#8aa074'
+  const qColorDim = qColor + '80'
+  const topBorder = `linear-gradient(90deg, transparent 0%, ${qColorDim} 15%, ${qColor} 50%, ${qColorDim} 85%, transparent 100%)`
+  const bgTint = quality === 0
+    ? 'linear-gradient(180deg, rgba(138,160,116,.04) 0%, transparent 60%), #242822'
+    : `linear-gradient(180deg, ${qColor}08 0%, transparent 60%), #242822`
 
   return (
     <div
-      className="relative flex items-start gap-5 p-[22px_26px_20px] border border-hair-strong mb-[26px]"
-      style={{ background: 'linear-gradient(180deg, rgba(138,160,116,.04) 0%, transparent 60%), #242822' }}
+      className="relative flex items-start gap-5 p-[22px_26px_20px] border border-hair-strong mb-[26px] transition-colors"
+      style={{ background: bgTint }}
     >
-      {/* Green hairline top border */}
-      <div className="pointer-events-none absolute -top-px -left-px -right-px h-[2px]"
-           style={{ background: 'linear-gradient(90deg, transparent 0%, #5a6e48 15%, #8aa074 50%, #5a6e48 85%, transparent 100%)' }} />
-      {/* Thin separator under title block */}
+      <div className="pointer-events-none absolute -top-px -left-px -right-px h-[2px] transition-all"
+           style={{ background: topBorder }} />
       <div className="pointer-events-none absolute left-[26px] right-[26px] bottom-[18px] h-px"
-           style={{ background: 'linear-gradient(90deg, #4a5040, transparent)' }} />
+           style={{ background: `linear-gradient(90deg, ${qColorDim}, transparent)` }} />
 
       <div className="flex-shrink-0">
         <Diamond item={item} size={72} variant="green-lit" />
@@ -68,9 +80,15 @@ export default function ItemHeader({ item, recipe, station }: Props) {
             <Stat label="Source" value={item.role === 'raw' ? 'Gathered' : 'Dropped'} accent="rust" />
           )}
           {item.w != null && <Stat label="Weight" value={`${Math.round(item.w * 100) / 100}`} />}
-          {item.dur != null && <Stat label="Durability" value={`${item.dur}`} />}
+          {scaledDur != null && <Stat label="Durability" value={`${scaledDur}`} />}
         </div>
       </div>
+
+      {trailing && (
+        <div className="absolute top-[22px] right-[26px]">
+          {trailing}
+        </div>
+      )}
     </div>
   )
 }

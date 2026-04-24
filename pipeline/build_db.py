@@ -52,11 +52,21 @@ def main():
 
     def resolve_stats(it):
         """Resolve prop_pack_ids + extra_prop_pack_id into a merged stats array.
+        Each stat entry gets quality scaling [Q0..Q5] as [lo, hi] pairs.
         Falls back to the per-blueprint DefaultZhuangBeiProp stats."""
         merged = []
         for ppid in it.get("prop_pack_ids") or []:
-            merged.extend(prop_packs.get(str(ppid), []))
-        merged.extend(prop_packs.get(str(it.get("extra_prop_pack_id") or 0), []))
+            pack = prop_packs.get(str(ppid))
+            if pack:
+                q = pack["quality"]
+                for a in pack["attrs"]:
+                    merged.append({**a, "qlo": [t[0] for t in q], "qhi": [t[1] for t in q]})
+        eppid = it.get("extra_prop_pack_id") or 0
+        pack = prop_packs.get(str(eppid))
+        if pack:
+            q = pack["quality"]
+            for a in pack["attrs"]:
+                merged.append({**a, "qlo": [t[0] for t in q], "qhi": [t[1] for t in q]})
         return merged if merged else it.get("stats")
 
     # items — `role` is set by classify_items.py. Reject if missing so

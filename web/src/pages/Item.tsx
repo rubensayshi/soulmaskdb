@@ -11,6 +11,7 @@ import UsedIn from '../components/UsedIn'
 import ObtainedFrom from '../components/ObtainedFrom'
 import TechUnlock from '../components/TechUnlock'
 import ItemStats from '../components/ItemStats'
+import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -62,8 +63,11 @@ export default function Item() {
     return { finalIds: finals, intermediateIds: intermediates }
   }, [id, usedInIdx, graph, byId])
 
+  const [quality, setQuality] = useState(0)
+  const hasStats = !!(item?.stats && item.stats.length > 0)
+
   const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set())
-  useEffect(() => { setSelectedCats(new Set()) }, [id])
+  useEffect(() => { setSelectedCats(new Set()); setQuality(0) }, [id])
 
   const finalCats = useMemo(() => {
     const counts = new Map<string, number>()
@@ -91,12 +95,14 @@ export default function Item() {
 
   return (
     <div>
-      <ItemHeader item={item} recipe={recipe} station={station} />
+      <ItemHeader item={item} recipe={recipe} station={station} quality={quality}
+        trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
+      />
 
-      {item.stats && item.stats.length > 0 && (
+      {hasStats && (
         <>
-          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" />
-          <ItemStats stats={item.stats} />
+          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" qualityColor={quality > 0 ? QUALITY_TIERS[quality]?.color : undefined} />
+          <ItemStats stats={item.stats!} quality={quality} />
         </>
       )}
 
@@ -172,14 +178,14 @@ export default function Item() {
   )
 }
 
-function Ornament({ accent }: { accent: string }) {
-  const color =
-    accent === 'green' ? '#8aa074' :
+function Ornament({ accent, qualityColor }: { accent: string; qualityColor?: string }) {
+  const color = qualityColor ??
+    (accent === 'green' ? '#8aa074' :
     accent === 'final' ? '#8aa074' :
     accent === 'intermediate' ? '#b8a060' :
     accent === 'gold' ? '#b8a060' :
     accent === 'rust' ? '#a67a52' :
-    '#a67a52'
+    '#a67a52')
   return (
     <svg viewBox="0 0 14 14" className="w-[14px] h-[14px]" fill="none" stroke={color} strokeWidth="1" strokeLinecap="square">
       <path d="M7 1 L13 7 L7 13 L1 7 Z" />
@@ -188,21 +194,19 @@ function Ornament({ accent }: { accent: string }) {
   )
 }
 
-function SectionHeader({ title, sub, accent, count, trailing }: { title: string; sub: string; accent: string; count?: number; trailing?: React.ReactNode }) {
-  const gradient =
-    accent === 'green' ? 'linear-gradient(90deg, #5a6e48 0%, transparent 100%)' :
-    accent === 'final' ? 'linear-gradient(90deg, #5a6e48 0%, transparent 100%)' :
-    accent === 'intermediate' ? 'linear-gradient(90deg, #7a6830 0%, transparent 100%)' :
-    accent === 'gold' ? 'linear-gradient(90deg, #7a6830 0%, transparent 100%)' :
-    accent === 'rust' ? 'linear-gradient(90deg, #6e4d2e 0%, transparent 100%)' :
-    'linear-gradient(90deg, #6e4d2e 0%, transparent 100%)'
-  const titleColor =
-    accent === 'final' ? 'text-green-hi' :
-    accent === 'green' ? 'text-green-hi' :
-    accent === 'intermediate' ? 'text-gold' :
-    accent === 'gold' ? 'text-gold' :
-    accent === 'rust' ? 'text-rust' :
-    'text-text'
+function SectionHeader({ title, sub, accent, count, trailing, qualityColor }: { title: string; sub: string; accent: string; count?: number; trailing?: React.ReactNode; qualityColor?: string }) {
+  const baseGradientColor =
+    accent === 'green' || accent === 'final' ? '#5a6e48' :
+    accent === 'intermediate' || accent === 'gold' ? '#7a6830' :
+    '#6e4d2e'
+  const gradientColor = qualityColor ? qualityColor + '80' : baseGradientColor
+  const gradient = `linear-gradient(90deg, ${gradientColor} 0%, transparent 100%)`
+  const titleColor = qualityColor
+    ? ''
+    : accent === 'final' || accent === 'green' ? 'text-green-hi'
+    : accent === 'intermediate' || accent === 'gold' ? 'text-gold'
+    : accent === 'rust' ? 'text-rust'
+    : 'text-text'
   const countColor =
     accent === 'final' ? 'text-green-hi border-green-dim' :
     accent === 'intermediate' ? 'text-gold border-gold-dim' :
@@ -211,8 +215,8 @@ function SectionHeader({ title, sub, accent, count, trailing }: { title: string;
 
   return (
     <div className="flex items-center gap-3.5 mt-7 mb-4">
-      <Ornament accent={accent} />
-      <span className={`font-display text-[16px] font-semibold tracking-[.04em] flex-shrink-0 ${titleColor}`}>{title}</span>
+      <Ornament accent={accent} qualityColor={qualityColor} />
+      <span className={`font-display text-[16px] font-semibold tracking-[.04em] flex-shrink-0 ${titleColor}`} style={qualityColor ? { color: qualityColor } : undefined}>{title}</span>
       <span className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium ml-1.5 flex-shrink-0">{sub}</span>
       {count != null && (
         <span className={`text-[10px] font-bold tabular-nums px-2 py-[2px] bg-panel border tracking-[.06em] flex-shrink-0 ${countColor}`}>

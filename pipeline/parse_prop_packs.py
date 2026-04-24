@@ -38,6 +38,27 @@ def parse_attr_entry(entry):
     return {"attr": attr_name, "value": value, "op": op}
 
 
+def parse_quality_scaling(row_value):
+    """Extract quality tier multipliers [Q0..Q5] as [[lo, hi], ...]."""
+    for prop in row_value:
+        if prop.get("Name") != "PinZhiJiaCheng":
+            continue
+        tiers = {}
+        for tier in prop.get("Value", []):
+            q = lo = hi = None
+            for sub in tier.get("Value", []):
+                if sub.get("Name") == "PinZhi":
+                    q = sub.get("Value")
+                elif sub.get("Name") == "PinZhiJiaChengXia":
+                    lo = sub.get("Value")
+                elif sub.get("Name") == "PinZhiJiaChengShang":
+                    hi = sub.get("Value")
+            if q is not None:
+                tiers[q] = [round(lo, 4), round(hi, 4)]
+        return [tiers.get(i, [1.0, 1.0]) for i in range(6)]
+    return [[1.0, 1.0]] * 6
+
+
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -57,21 +78,22 @@ def main():
                     parsed = parse_attr_entry(entry)
                     if parsed:
                         attrs.append(parsed)
-        packs[str(pack_id)] = attrs
+        quality = parse_quality_scaling(row["Value"])
+        packs[str(pack_id)] = {"attrs": attrs, "quality": quality}
 
     out_path = OUTPUT_DIR / "prop_packs.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(packs, f, ensure_ascii=False, indent=2)
 
-    with_attrs = sum(1 for v in packs.values() if v)
+    with_attrs = sum(1 for v in packs.values() if v["attrs"])
     print(f"\nResults:")
     print(f"  Total packs: {len(packs)}")
     print(f"  With attributes: {with_attrs}")
 
     from collections import Counter
     attr_counts = Counter()
-    for attrs in packs.values():
-        for a in attrs:
+    for pack in packs.values():
+        for a in pack["attrs"]:
             attr_counts[a["attr"]] += 1
     print(f"\nAttribute frequency:")
     for attr, count in attr_counts.most_common():

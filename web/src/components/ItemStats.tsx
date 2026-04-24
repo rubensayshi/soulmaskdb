@@ -66,45 +66,81 @@ const PERCENTAGE_STATS = new Set([
   'CritDef', 'ShengYinRatio',
 ])
 
-function formatValue(attr: string, value: number, op?: string | null): string {
-  const isMultiplicative = op === 'Multiplicitive' || op === 'Multiplicative'
-  if (isMultiplicative || PERCENTAGE_STATS.has(attr)) {
+function isPercent(attr: string, op?: string | null): boolean {
+  return op === 'Multiplicitive' || op === 'Multiplicative' || PERCENTAGE_STATS.has(attr)
+}
+
+function fmt(attr: string, value: number, op?: string | null): string {
+  if (isPercent(attr, op)) {
     return `${value > 0 ? '+' : ''}${Math.round(value * 100)}%`
   }
   const rounded = Math.round(value * 100) / 100
   return `${rounded > 0 ? '+' : ''}${rounded}`
 }
 
-interface Props {
-  stats: StatEntry[]
+function fmtRange(attr: string, lo: number, hi: number, op?: string | null): string {
+  if (isPercent(attr, op)) {
+    const loP = Math.round(lo * 100)
+    const hiP = Math.round(hi * 100)
+    if (loP === hiP) return `${loP > 0 ? '+' : ''}${loP}%`
+    return `${loP > 0 ? '+' : ''}${loP}–${hiP}%`
+  }
+  const loR = Math.round(lo * 100) / 100
+  const hiR = Math.round(hi * 100) / 100
+  if (loR === hiR) return `${loR > 0 ? '+' : ''}${loR}`
+  return `${loR > 0 ? '+' : ''}${loR}–${hiR}`
 }
 
-function mergeStats(stats: StatEntry[]): StatEntry[] {
-  const merged = new Map<string, StatEntry>()
+interface MergedStat {
+  attr: string
+  op: string | null
+  valueLo: number
+  valueHi: number
+}
+
+function mergeStats(stats: StatEntry[], quality: number): MergedStat[] {
+  const merged = new Map<string, MergedStat>()
   for (const s of stats) {
     const key = `${s.attr}:${s.op ?? ''}`
+    const qlo = s.qlo?.[quality] ?? 1
+    const qhi = s.qhi?.[quality] ?? 1
+    const vLo = s.value * qlo
+    const vHi = s.value * qhi
     const existing = merged.get(key)
     if (existing) {
-      existing.value += s.value
+      existing.valueLo += vLo
+      existing.valueHi += vHi
     } else {
-      merged.set(key, { ...s })
+      merged.set(key, { attr: s.attr, op: s.op, valueLo: vLo, valueHi: vHi })
     }
   }
   return [...merged.values()]
 }
 
-export default function ItemStats({ stats }: Props) {
+interface Props {
+  stats: StatEntry[]
+  quality: number
+}
+
+export default function ItemStats({ stats, quality }: Props) {
   if (!stats.length) return null
-  const rows = mergeStats(stats)
+  const rows = mergeStats(stats, quality)
 
   return (
     <div className="grid grid-cols-2 gap-x-6 gap-y-0 text-[12px] mb-4">
-      {rows.map((s, i) => (
-        <div key={i} className="flex items-center justify-between py-[4px] border-b border-hair">
-          <span className="text-text-dim">{STAT_NAMES[s.attr] ?? s.attr}</span>
-          <span className="font-medium text-text tabular-nums">{formatValue(s.attr, s.value, s.op)}</span>
-        </div>
-      ))}
+      {rows.map((s, i) => {
+        const isRange = Math.abs(s.valueLo - s.valueHi) > 0.001
+        return (
+          <div key={i} className="flex items-center justify-between py-[4px] border-b border-hair">
+            <span className="text-text-dim">{STAT_NAMES[s.attr] ?? s.attr}</span>
+            <span className="font-medium text-text tabular-nums">
+              {isRange
+                ? fmtRange(s.attr, s.valueLo, s.valueHi, s.op)
+                : fmt(s.attr, s.valueLo, s.op)}
+            </span>
+          </div>
+        )
+      })}
     </div>
   )
 }
