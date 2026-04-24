@@ -19,10 +19,12 @@ type DropSource struct {
 }
 
 type TechUnlock struct {
-	ID                string `json:"id"`
+	ID                string  `json:"id"`
 	NameEn            *string `json:"name_en"`
 	NameZh            *string `json:"name_zh"`
 	RequiredMaskLevel *int64  `json:"required_mask_level"`
+	ParentNameEn      *string `json:"parent_name_en,omitempty"`
+	ParentNameZh      *string `json:"parent_name_zh,omitempty"`
 }
 
 type ItemDetail struct {
@@ -88,6 +90,8 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 				NameEn:            nullStr(n.NameEn),
 				NameZh:            nullStr(n.NameZh),
 				RequiredMaskLevel: nullInt(n.RequiredMaskLevel),
+				ParentNameEn:      nullStr(n.ParentNameEn),
+				ParentNameZh:      nullStr(n.ParentNameZh),
 			})
 		}
 	}

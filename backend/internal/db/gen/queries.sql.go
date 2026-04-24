@@ -187,30 +187,40 @@ func (q *Queries) GetRecipesUsingInput(ctx context.Context, itemID string) ([]Re
 }
 
 const getTechUnlocksForRecipe = `-- name: GetTechUnlocksForRecipe :many
-SELECT tn.id, tn.category, tn.name_zh, tn.name_en, tn.description_zh, tn.required_mask_level, tn.consume_points, tn.parent_id, tn.icon_path FROM tech_nodes tn
+SELECT tn.id, tn.name_en, tn.name_zh, tn.required_mask_level,
+       parent.name_en AS parent_name_en, parent.name_zh AS parent_name_zh
+FROM tech_nodes tn
 JOIN tech_node_unlocks_recipe u ON u.tech_node_id = tn.id
+LEFT JOIN tech_nodes parent ON parent.id = tn.parent_id
 WHERE u.recipe_id = ?
+  AND tn.category IN ('main', 'sub')
 `
 
-func (q *Queries) GetTechUnlocksForRecipe(ctx context.Context, recipeID string) ([]TechNode, error) {
+type GetTechUnlocksForRecipeRow struct {
+	ID                string
+	NameEn            sql.NullString
+	NameZh            sql.NullString
+	RequiredMaskLevel sql.NullInt64
+	ParentNameEn      sql.NullString
+	ParentNameZh      sql.NullString
+}
+
+func (q *Queries) GetTechUnlocksForRecipe(ctx context.Context, recipeID string) ([]GetTechUnlocksForRecipeRow, error) {
 	rows, err := q.db.QueryContext(ctx, getTechUnlocksForRecipe, recipeID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	items := []TechNode{}
+	items := []GetTechUnlocksForRecipeRow{}
 	for rows.Next() {
-		var i TechNode
+		var i GetTechUnlocksForRecipeRow
 		if err := rows.Scan(
 			&i.ID,
-			&i.Category,
-			&i.NameZh,
 			&i.NameEn,
-			&i.DescriptionZh,
+			&i.NameZh,
 			&i.RequiredMaskLevel,
-			&i.ConsumePoints,
-			&i.ParentID,
-			&i.IconPath,
+			&i.ParentNameEn,
+			&i.ParentNameZh,
 		); err != nil {
 			return nil, err
 		}

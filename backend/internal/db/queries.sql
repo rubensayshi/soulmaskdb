@@ -44,9 +44,13 @@ JOIN recipe_input_group_items rigi ON rigi.group_id = rig.id
 WHERE rigi.item_id = ?;
 
 -- name: GetTechUnlocksForRecipe :many
-SELECT tn.* FROM tech_nodes tn
+SELECT tn.id, tn.name_en, tn.name_zh, tn.required_mask_level,
+       parent.name_en AS parent_name_en, parent.name_zh AS parent_name_zh
+FROM tech_nodes tn
 JOIN tech_node_unlocks_recipe u ON u.tech_node_id = tn.id
-WHERE u.recipe_id = ?;
+LEFT JOIN tech_nodes parent ON parent.id = tn.parent_id
+WHERE u.recipe_id = ?
+  AND tn.category IN ('main', 'sub');
 
 -- name: ListBuffedItems :many
 SELECT id, name_en, name_zh, category, icon_path, slug, buffs_json

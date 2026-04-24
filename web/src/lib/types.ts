@@ -89,6 +89,8 @@ export interface TechUnlock {
   name_en: string | null
   name_zh: string | null
   required_mask_level: number | null
+  parent_name_en?: string | null
+  parent_name_zh?: string | null
 }
 
 export interface ItemDetail {
