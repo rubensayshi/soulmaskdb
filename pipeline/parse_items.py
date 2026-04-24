@@ -14,6 +14,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ITEMS_DIR = REPO_ROOT / "uasset_export" / "Blueprints" / "DaoJu"
+ADDITION_DIR = REPO_ROOT / "uasset_export" / "AdditionMap01" / "BluePrints" / "Item"
 OUTPUT_DIR = REPO_ROOT / "Game" / "Parsed"
 
 # Top-level DaoJu subfolder -> category label
@@ -34,6 +35,23 @@ CATEGORY_MAP = {
     "DaoJuShuJuKu": "data",
     "DaoJuZhaoMingMoKuai": "lighting",
     "Tips": "tip",
+}
+
+# AdditionMap01/BluePrints/Item subfolder -> category label
+ADDITION_CATEGORY_MAP = {
+    "AnimalHead": "material",
+    "Building": "building",
+    "Food": "food",
+    "Feed": "food",
+    "Key": "key",
+    "Material": "material",
+    "Ship": "building",
+    "SpecialFunction": "function",
+    "Specimen": "building",
+    "Statue": "building",
+    "Whip": "weapon",
+    "WuQi": "weapon",
+    "Tech": "function",
 }
 
 
@@ -101,16 +119,18 @@ def extract_stats(array_prop):
     return stats
 
 
-def category_from_path(rel_path):
-    """Derive category from first path segment under DaoJu/."""
+def category_from_path(rel_path, cat_map=None):
+    """Derive category from first path segment."""
+    if cat_map is None:
+        cat_map = CATEGORY_MAP
     parts = rel_path.parts
     if not parts:
         return None
     top = parts[0]
-    return CATEGORY_MAP.get(top, top)
+    return cat_map.get(top, top)
 
 
-def parse_item(filepath, rel_path):
+def parse_item(filepath, rel_path, cat_map=None):
     with gzip.open(filepath, "rt", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -163,7 +183,7 @@ def parse_item(filepath, rel_path):
             storage_level = v.split("::", 1)[1]
 
     # Category
-    category = category_from_path(rel_path.parent)
+    category = category_from_path(rel_path.parent, cat_map=cat_map)
     subcategory = None
     if len(rel_path.parent.parts) > 1:
         subcategory = rel_path.parent.parts[1]
@@ -191,16 +211,22 @@ def parse_item(filepath, rel_path):
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    files = sorted(ITEMS_DIR.rglob("*.json.gz"))
-    print(f"Found {len(files)} item files")
+    sources = [(ITEMS_DIR, CATEGORY_MAP)]
+    if ADDITION_DIR.exists():
+        sources.append((ADDITION_DIR, ADDITION_CATEGORY_MAP))
+
+    all_files = []
+    for base, cmap in sources:
+        for fp in sorted(base.rglob("*.json.gz")):
+            all_files.append((fp, fp.relative_to(base), cmap))
+    print(f"Found {len(all_files)} item files")
 
     items = []
     errors = []
 
-    for fp in files:
+    for fp, rel, cmap in all_files:
         try:
-            rel = fp.relative_to(ITEMS_DIR)
-            item = parse_item(fp, rel)
+            item = parse_item(fp, rel, cat_map=cmap)
             items.append(item)
         except Exception as e:
             errors.append({"file": str(fp), "error": str(e)})

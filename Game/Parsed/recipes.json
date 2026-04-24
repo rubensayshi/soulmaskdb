@@ -2700,6 +2700,1894 @@
     "quality_levels": null
   },
   {
+    "id": "BP_PeiFang_Challenge_Arena0_1",
+    "unique_id": "Challenge_Arena0_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena0_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena0_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena0_2",
+    "unique_id": "Challenge_Arena0_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena0_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena0_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena0_3",
+    "unique_id": "Challenge_Arena0_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena0_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena0_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena1_1",
+    "unique_id": "Challenge_Arena1_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena1_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena1_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena1_2",
+    "unique_id": "Challenge_Arena1_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena1_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena1_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena1_3",
+    "unique_id": "Challenge_Arena1_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena1_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena1_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena2_1",
+    "unique_id": "Challenge_Arena2_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena2_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena2_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena2_2",
+    "unique_id": "Challenge_Arena2_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena2_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena2_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena2_3",
+    "unique_id": "Challenge_Arena2_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena2_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena2_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena3_1",
+    "unique_id": "Challenge_Arena3_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena3_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena3_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena3_2",
+    "unique_id": "Challenge_Arena3_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena3_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena3_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena3_3",
+    "unique_id": "Challenge_Arena3_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena3_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena3_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena4_1",
+    "unique_id": "Challenge_Arena4_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena4_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena4_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena4_2",
+    "unique_id": "Challenge_Arena4_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena4_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena4_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_Arena4_3",
+    "unique_id": "Challenge_Arena4_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_Arena4_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_Arena4_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg0_1",
+    "unique_id": "Challenge_ArenaEg0_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg0_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg0_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg0_2",
+    "unique_id": "Challenge_ArenaEg0_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg0_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg0_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg0_3",
+    "unique_id": "Challenge_ArenaEg0_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg0_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg0_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg1_1",
+    "unique_id": "Challenge_ArenaEg1_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg1_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg1_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg1_2",
+    "unique_id": "Challenge_ArenaEg1_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg1_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg1_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg1_3",
+    "unique_id": "Challenge_ArenaEg1_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg1_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg1_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg2_1",
+    "unique_id": "Challenge_ArenaEg2_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg2_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg2_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg2_2",
+    "unique_id": "Challenge_ArenaEg2_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg2_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg2_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg2_3",
+    "unique_id": "Challenge_ArenaEg2_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg2_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg2_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg3_1",
+    "unique_id": "Challenge_ArenaEg3_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg3_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg3_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg3_2",
+    "unique_id": "Challenge_ArenaEg3_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg3_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg3_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg3_3",
+    "unique_id": "Challenge_ArenaEg3_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg3_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg3_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg4_1",
+    "unique_id": "Challenge_ArenaEg4_1",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg4_1",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg4_1"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg4_2",
+    "unique_id": "Challenge_ArenaEg4_2",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg4_2",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg4_2"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEg4_3",
+    "unique_id": "Challenge_ArenaEg4_3",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEg4_3",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEg4_3"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaEgNoName",
+    "unique_id": "Challenge_ArenaEgNoname",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaEgNoName",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaEgNoName"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Challenge_ArenaNoName",
+    "unique_id": "Challenge_ArenaNoname",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": {
+      "item_id": "DaoJu_Item_ArenaNoName",
+      "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/Challenge/DaoJu_Item_ArenaNoName"
+    },
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 2,
+        "items": [
+          {
+            "item_id": "Daoju_Item_PiGe_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_PiGe_2"
+          }
+        ]
+      },
+      {
+        "kind": "one_of",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_OilOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_OilOre"
+          },
+          {
+            "item_id": "Daoju_Item_ShiYongYou",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ShiYongYou"
+          }
+        ]
+      }
+    ],
+    "station_id": "BP_GongZuoTai_GongJiangTai",
+    "station_name": "Craftsman Table",
+    "station_paths": [
+      "/Game/Blueprints/JianZhu/GongZuoTai/BP_GongZuoTai_GongJiangTai",
+      "/Game/Blueprints/JianZhu/BuLuo/BP_GongZuoTai_GongJiangTai_BuLuo"
+    ],
+    "station_required_level": null,
+    "can_make_by_hand": true,
+    "craft_time_seconds": 5.0,
+    "proficiency": "Craftsman",
+    "proficiency_xp": 50.0,
+    "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
     "id": "BP_PeiFang_CheChuang",
     "unique_id": "CheChuang",
     "brief_zh": "建造动力工坊",
@@ -33833,6 +35721,398 @@
     "quality_levels": null
   },
   {
+    "id": "BP_PeiFang_Summon_RobberBoss_Forest",
+    "unique_id": "Summon_Boss_Forest",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_SpecialOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/DaoJu_Item_SpecialOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chalcedony",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Chalcedony"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShengMingJieJing",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShengMingJieJing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_LinDi",
+    "unique_id": "Summon_Boss_LinDi",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_GangDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_GangDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_GangJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_GangJiaPian"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShenMiCiShi",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShenMiCiShi"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_Mountain",
+    "unique_id": "Summon_Boss_Mountain",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_SpecialOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/DaoJu_Item_SpecialOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chalcedony",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Chalcedony"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShengMingJieJing",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShengMingJieJing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_Shadow",
+    "unique_id": "Summon_Boss_Shadow",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_SpecialOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/DaoJu_Item_SpecialOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chalcedony",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Chalcedony"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShengMingJieJing",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShengMingJieJing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_WangZhe",
+    "unique_id": "Summon_Boss_WangZhe",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShenMiCiShi",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShenMiCiShi"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_YingYu",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_YingYu"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_XueShi",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_XueShi"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_Wasteland",
+    "unique_id": "Summon_Boss_Wasteland",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_SpecialOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/DaoJu_Item_SpecialOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chalcedony",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Chalcedony"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShengMingJieJing",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShengMingJieJing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_YuLin",
+    "unique_id": "Summon_Boss_YuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_TieDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_TieDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_TieJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_TieJiaPian"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_RobberBoss_ZhanShen",
+    "unique_id": "Summon_Boss_ZhanShen",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShenMiJingTi",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShenMiJingTi"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_HuPo",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_HuPo"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShenMiXianWei",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_ShenMiXianWei"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
     "id": "BP_PeiFang_Summon_Scarab",
     "unique_id": "Summon_Scarab",
     "brief_zh": "合成毁灭圣甲虫控制印记",
@@ -33954,6 +36234,790 @@
     "proficiency": "Craftsman",
     "proficiency_xp": 100.0,
     "awareness_xp": 100,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_BeiBuYuLin",
+    "unique_id": "Summon_BeiBuYuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Raw_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/DongWu/Daoju_Item_Raw_2"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Corn",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/ZhiWu/Crop/Daoju_Item_Corn"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_GuoJiu",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_GuoJiu"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_DaCaoYuan",
+    "unique_id": "Summon_DaCaoYuan",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_TieDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_TieDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_TieJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_TieJiaPian"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ZhiWuJingCui",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_ZhiWuJingCui"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_GaoHanDi",
+    "unique_id": "Summon_GaoHanDi",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JiaoTan",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JiaoTan"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_TuGuoDunLaTang",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_TuGuoDunLaTang"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ShuYiTeXiaoTang",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_ShuYiTeXiaoTang"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_HanYeLin",
+    "unique_id": "Summon_HanYeLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_ReKeKe",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_ReKeKe"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_YouZhaXiYouLeiPai",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_YouZhaXiYouLeiPai"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_XingFenYaoJi",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_XingFenYaoJi"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_HeiSenLin",
+    "unique_id": "Summon_HeiSenLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_GangDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_GangDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_GangJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_GangJiaPian"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_HongShuLin",
+    "unique_id": "Summon_HongShuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chili",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/ZhiWu/Crop/Daoju_Item_Chili"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_LuHuiJingHua",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_LuHuiJingHua"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_QingTongDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_QingTongDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_HuAnSenLin",
+    "unique_id": "Summon_HuAnSenLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Mask_CaiLiao01",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuMask/DaoJu_Item_Mask_CaiLiao01"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_GangDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_GangDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_JuMuLin",
+    "unique_id": "Summon_JuMuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_XianRenZhangJingHua",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_XianRenZhangJingHua"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_MeiSiKaErJiu",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_MeiSiKaErJiu"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_KengDongQiuLin",
+    "unique_id": "Summon_KengDongQiuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_QingTongDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_QingTongDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_QingTongJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_QingTongJiaPian"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_YinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_YinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_KuHuangYuanYe",
+    "unique_id": "Summon_KuHuangYuanYe",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Ice",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Ice"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_FengMiJiu",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_FengMiJiu"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_BingKeKe",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_BingKeKe"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_NanBuHuangYuan",
+    "unique_id": "Summon_NanBuHuangYuan",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_KangDuYaoJi",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuYaoPin/DaoJu_Item_KangDuYaoJi"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_HunHeGuoJiang",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_HunHeGuoJiang"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_JinDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_JinDing"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_PingDingShan",
+    "unique_id": "Summon_PingDingShan",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_JuanYan",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuShiWu/DaoJu_Item_JuanYan"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_TieDing",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_TieDing"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_TieJiaPian",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/DaoJu_Item_TieJiaPian"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_XiBuYuLin",
+    "unique_id": "Summon_XiBuYuLin",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_CopperOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_CopperOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "Daoju_Item_TinOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_TinOre"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_SilverOre",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_SilverOre"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_ZhanShen_ShenMi",
+    "unique_id": "Summon_ZhanShen_ShenMi",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_FengLa",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_FengLa"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_Crystal_Titanium",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/DaoJu_Item_Crystal_Titanium"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Obsidian",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Obsidian"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_ZhanShen_YeMan",
+    "unique_id": "Summon_ZhanShen_YeMan",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "Daoju_Item_ZhaYao",
+            "item_path": "/Game/Blueprints/DaoJu/DaoJuJiaGong/Daoju_Item_ZhaYao"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_HuoOuPo",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_HuoOuPo"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "Daoju_Item_Chalcedony",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Kuangshi/Daoju_Item_Chalcedony"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
+    "quality_levels": null
+  },
+  {
+    "id": "BP_PeiFang_Summon_TribeBoss_ZhanShen_ZhiHui",
+    "unique_id": "Summon_ZhanShen_ZhiHui",
+    "brief_zh": null,
+    "recipe_level": 1,
+    "output": null,
+    "input_slots": [
+      {
+        "kind": "all",
+        "quantity": 20,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_MetalPart_1",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_MetalPart_1"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 10,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_MetalPart_2",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_MetalPart_2"
+          }
+        ]
+      },
+      {
+        "kind": "all",
+        "quantity": 5,
+        "items": [
+          {
+            "item_id": "DaoJu_Item_MetalPart_3",
+            "item_path": "/Game/Blueprints/DaoJu/DaojuCaiLiao/Special/DaoJu_Item_MetalPart_3"
+          }
+        ]
+      }
+    ],
+    "station_id": null,
+    "station_name": null,
+    "station_paths": null,
+    "station_required_level": null,
+    "can_make_by_hand": null,
+    "craft_time_seconds": 5.0,
+    "proficiency": "None",
+    "proficiency_xp": 5.0,
+    "awareness_xp": null,
     "quality_levels": null
   },
   {
