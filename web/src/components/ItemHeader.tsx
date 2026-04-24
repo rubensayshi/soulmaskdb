@@ -55,7 +55,7 @@ export default function ItemHeader({ item, recipe, station, quality = 0, trailin
            style={{ background: `linear-gradient(90deg, ${qColorDim}, transparent)` }} />
 
       <div className="flex-shrink-0">
-        <Diamond item={item} size={72} variant="green-lit" />
+        <Diamond item={item} size={72} variant="green-lit" borderColor={trailing ? qColor : undefined} />
       </div>
 
       <div className="flex-1 min-w-0">

@@ -17,13 +17,14 @@ interface Props {
   variant?: Variant
   onClick?: () => void
   className?: string
+  borderColor?: string
 }
 
 function initials(s: string): string {
   return s.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase()
 }
 
-export default function Diamond({ item, size = 42, variant = 'default', onClick, className = '' }: Props) {
+export default function Diamond({ item, size = 42, variant = 'default', onClick, className = '', borderColor }: Props) {
   const [err, setErr] = useState(false)
   if (!item) return null
   const label = item.n ?? item.nz ?? item.id
@@ -46,7 +47,7 @@ export default function Diamond({ item, size = 42, variant = 'default', onClick,
   return (
     <div
       className={`tile ${modifier} ${hover} ${cursor} ${className}`}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, ...(borderColor ? { borderColor } : {}) }}
       onClick={onClick}
     >
       {hasImg ? (
