@@ -104,7 +104,7 @@ export default function SpawnMap({ groups, mapType = 'base', compact }: Props) {
     <div className={compact ? '' : 'mb-4'}>
       <div
         ref={containerRef}
-        className="w-full border border-hair bg-panel"
+        className="w-full border border-hair-strong bg-panel"
         style={{ aspectRatio: compact ? '1 / 1' : '4 / 3', maxHeight: compact ? undefined : 600, cursor: 'default' }}
       />
       {!compact && (
