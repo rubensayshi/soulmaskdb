@@ -109,5 +109,6 @@ CREATE TABLE creature_spawns (
   lat           INTEGER NOT NULL,
   lon           INTEGER NOT NULL,
   level_desc    TEXT,
-  PRIMARY KEY (creature_type, lat, lon)
+  map           TEXT NOT NULL DEFAULT 'base',
+  PRIMARY KEY (creature_type, lat, lon, map)
 );

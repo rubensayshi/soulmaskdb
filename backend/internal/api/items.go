@@ -58,6 +58,11 @@ type SpawnGroup struct {
 	Spawns   []SpawnPoint `json:"spawns"`
 }
 
+type SpawnMap struct {
+	Map    string       `json:"map"`
+	Groups []SpawnGroup `json:"groups"`
+}
+
 type ItemDetail struct {
 	ID             string       `json:"id"`
 	NameEn         *string      `json:"name_en"`
@@ -76,7 +81,7 @@ type ItemDetail struct {
 	RecipesUsedIn  []string     `json:"recipes_used_in"`
 	DropSources    []DropSource `json:"drop_sources"`
 	SeedSource     *SeedSource  `json:"seed_source,omitempty"`
-	SpawnLocations []SpawnGroup `json:"spawn_locations,omitempty"`
+	SpawnLocations []SpawnMap `json:"spawn_locations,omitempty"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -168,26 +173,33 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	spawnRows, _ := q.GetSpawnLocationsForItem(ctx, item.ID)
-	var spawnLocations []SpawnGroup
+	var spawnLocations []SpawnMap
 	if len(spawnRows) > 0 {
-		groupMap := make(map[string]*SpawnGroup)
-		var groupOrder []string
+		mapIdx := make(map[string]int)
 		for _, r := range spawnRows {
-			key := r.CreatureType
-			g, ok := groupMap[key]
+			mi, ok := mapIdx[r.Map]
 			if !ok {
+				mi = len(spawnLocations)
+				mapIdx[r.Map] = mi
+				spawnLocations = append(spawnLocations, SpawnMap{Map: r.Map})
+			}
+			sm := &spawnLocations[mi]
+			var found *SpawnGroup
+			for i := range sm.Groups {
+				if sm.Groups[i].Creature == r.CreatureType {
+					found = &sm.Groups[i]
+					break
+				}
+			}
+			if found == nil {
 				level := ""
 				if r.LevelDesc.Valid {
 					level = r.LevelDesc.String
 				}
-				g = &SpawnGroup{Creature: key, Level: level}
-				groupMap[key] = g
-				groupOrder = append(groupOrder, key)
+				sm.Groups = append(sm.Groups, SpawnGroup{Creature: r.CreatureType, Level: level})
+				found = &sm.Groups[len(sm.Groups)-1]
 			}
-			g.Spawns = append(g.Spawns, SpawnPoint{Lat: r.Lat, Lon: r.Lon})
-		}
-		for _, key := range groupOrder {
-			spawnLocations = append(spawnLocations, *groupMap[key])
+			found.Spawns = append(found.Spawns, SpawnPoint{Lat: r.Lat, Lon: r.Lon})
 		}
 	}
 

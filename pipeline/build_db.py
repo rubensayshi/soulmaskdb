@@ -426,6 +426,11 @@ def main():
         "Elite Wild Lion": "Lion (Elite)",
         "Wolf": "Grey Wolf",
         "Elite Wolf": "Grey Wolf (Elite)",
+        "Rhino": "Rhinoceros",
+        "Elite Rhino": "Rhinoceros (Elite)",
+        "Large Boar": "Boar",
+        "Lioness": "Lion",
+        "Elite Scorpion": "Scorpion (Elite)",
     }
 
     # Names that pass through unchanged (auto-match: same name, or "Elite X" → "X (Elite)")
@@ -433,8 +438,10 @@ def main():
         "(Multiple)", "Alligator (Ruins)", "Arctic Wolf (Ruins)",
         "Bear (Ruins)", "Monitor Lizard (Ruins)", "Snow Leopard (Ruins)",
         "Wasteland Wolf (Ruins)", "Wolf (Ruins)",
+        "Hound (Ruins)", "Hyena (Ruins)", "Jackal (Ruins)",
         "Horned Eagle Egg", "Ostrich Egg", "Tortoise Egg",
         "Tapir (Insane)", "Fireflies",
+        "Sand Bandit Patrol Fleet", "Tribe Transport Boat",
     }
 
     spawn_path = PARSED / "spawn_locations.json"
@@ -452,9 +459,9 @@ def main():
             else:
                 creature_type = raw_name
             db.execute(
-                "INSERT OR IGNORE INTO creature_spawns (creature_type, lat, lon, level_desc) "
-                "VALUES (?,?,?,?)",
-                (creature_type, s["lat"], s["lon"], s.get("level") or None),
+                "INSERT OR IGNORE INTO creature_spawns (creature_type, lat, lon, level_desc, map) "
+                "VALUES (?,?,?,?,?)",
+                (creature_type, s["lat"], s["lon"], s.get("level") or None, s.get("map", "base")),
             )
             spawn_count += 1
 

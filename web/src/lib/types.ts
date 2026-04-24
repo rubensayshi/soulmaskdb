@@ -127,10 +127,15 @@ export interface SpawnGroup {
   spawns: SpawnPoint[]
 }
 
+export interface SpawnMapData {
+  map: 'base' | 'dlc'
+  groups: SpawnGroup[]
+}
+
 export interface ItemDetail {
   id: string
   drop_sources: DropSource[]
   tech_unlocked_by: TechUnlock[]
   seed_source?: SeedSource
-  spawn_locations?: SpawnGroup[]
+  spawn_locations?: SpawnMapData[]
 }

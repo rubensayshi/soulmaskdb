@@ -147,8 +147,10 @@ export default function Item() {
               </div>
             )}
           </div>
-          <div className="w-[50%] flex-shrink-0">
-            <SpawnMap groups={detail.spawn_locations} compact />
+          <div className="w-[50%] flex-shrink-0 space-y-3">
+            {detail.spawn_locations.map(sm => (
+              <SpawnMap key={sm.map} groups={sm.groups} mapType={sm.map} compact />
+            ))}
           </div>
         </div>
       ) : (

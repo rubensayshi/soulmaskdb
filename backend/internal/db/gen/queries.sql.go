@@ -222,7 +222,7 @@ func (q *Queries) GetSeedSourceForItem(ctx context.Context, itemID string) (GetS
 }
 
 const getSpawnLocationsForItem = `-- name: GetSpawnLocationsForItem :many
-SELECT cs.creature_type, cs.lat, cs.lon, cs.level_desc
+SELECT cs.creature_type, cs.lat, cs.lon, cs.level_desc, cs.map
 FROM creature_spawns cs
 WHERE cs.creature_type IN (
   SELECT DISTINCT
@@ -236,7 +236,7 @@ WHERE cs.creature_type IN (
   JOIN drop_sources ds ON ds.id = dsi.source_id
   WHERE dsi.item_id = ? AND ds.source_type = 'creature_body'
 )
-ORDER BY cs.creature_type, cs.lat, cs.lon
+ORDER BY cs.map, cs.creature_type, cs.lat, cs.lon
 `
 
 func (q *Queries) GetSpawnLocationsForItem(ctx context.Context, itemID string) ([]CreatureSpawn, error) {
@@ -253,6 +253,7 @@ func (q *Queries) GetSpawnLocationsForItem(ctx context.Context, itemID string) (
 			&i.Lat,
 			&i.Lon,
 			&i.LevelDesc,
+			&i.Map,
 		); err != nil {
 			return nil, err
 		}

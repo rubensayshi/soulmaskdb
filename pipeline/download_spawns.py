@@ -1,9 +1,7 @@
 """
 Download creature spawn locations from saraserenity.net and strip to minimal JSON.
 
-Input:  https://saraserenity.net/soulmask/map/data.php?map=Level01_Main  (52MB)
-Output: Game/Parsed/spawn_locations.json  (~200-500KB)
-
+Fetches both the base map (Level01_Main) and DLC map (DLC_Level01_Main).
 Only keeps creature/animal spawn groups. Drops loot tables, icons, UE4 world
 coords, respawn timers, proximity ranges.
 """
@@ -14,14 +12,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "Game" / "Parsed" / "spawn_locations.json"
 
-DATA_URL = "https://saraserenity.net/soulmask/map/data.php?map=Level01_Main"
+MAPS = {
+    "base": "https://saraserenity.net/soulmask/map/data.php?map=Level01_Main",
+    "dlc":  "https://saraserenity.net/soulmask/map/data.php?map=DLC_Level01_Main",
+}
 
 SPAWN_GROUPS = {"Animal Spawn"}
 
 
-def main():
-    print(f"Fetching {DATA_URL} ...")
-    req = urllib.request.Request(DATA_URL, headers={"User-Agent": "SoulmaskCodex/1.0"})
+def fetch_map(map_key, url):
+    print(f"Fetching {map_key}: {url} ...")
+    req = urllib.request.Request(url, headers={"User-Agent": "SoulmaskCodex/1.0"})
     with urllib.request.urlopen(req, timeout=120) as resp:
         raw = json.loads(resp.read())
     print(f"  Got {len(raw)} categories")
@@ -51,18 +52,29 @@ def main():
                 "level": level,
                 "lat": lat,
                 "lon": lon,
+                "map": map_key,
             })
+    return spawns
 
-    OUT.write_text(json.dumps(spawns, indent=2), encoding="utf-8")
 
-    creatures = sorted(set(s["creature"] for s in spawns))
-    groups = sorted(set(s["group"] for s in spawns))
-    print(f"  Wrote {len(spawns)} spawn points for {len(creatures)} creature types")
-    print(f"  Groups: {', '.join(groups)}")
-    print(f"  Sample creatures: {', '.join(creatures[:20])}")
-    if len(creatures) > 20:
-        print(f"  ... and {len(creatures) - 20} more")
-    print(f"  Output: {OUT}")
+def main():
+    all_spawns = []
+    for map_key, url in MAPS.items():
+        spawns = fetch_map(map_key, url)
+        all_spawns.extend(spawns)
+        creatures = sorted(set(s["creature"] for s in spawns))
+        print(f"  {map_key}: {len(spawns)} spawns, {len(creatures)} creature types")
+
+    OUT.write_text(json.dumps(all_spawns, indent=2), encoding="utf-8")
+
+    creatures = sorted(set(s["creature"] for s in all_spawns))
+    by_map = {}
+    for s in all_spawns:
+        by_map.setdefault(s["map"], []).append(s)
+    print(f"\nTotal: {len(all_spawns)} spawn points, {len(creatures)} creature types")
+    for m, ss in by_map.items():
+        print(f"  {m}: {len(ss)} spawns")
+    print(f"Output: {OUT}")
 
 
 if __name__ == "__main__":

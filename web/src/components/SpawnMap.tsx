@@ -16,12 +16,23 @@ const COLORS = [
 
 const MAP_BOUNDS: L.LatLngBoundsExpression = [[-4096, 0], [0, 4096]]
 
+const MAP_IMAGES: Record<string, string> = {
+  base: '/map-cloud-mist.jpg',
+  dlc: '/map-shifting-sands.jpg',
+}
+
+const MAP_LABELS: Record<string, string> = {
+  base: 'Cloud & Mist',
+  dlc: 'Shifting Sands',
+}
+
 interface Props {
   groups: SpawnGroup[]
+  mapType?: 'base' | 'dlc'
   compact?: boolean
 }
 
-export default function SpawnMap({ groups, compact }: Props) {
+export default function SpawnMap({ groups, mapType = 'base', compact }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
 
@@ -42,7 +53,7 @@ export default function SpawnMap({ groups, compact }: Props) {
       minZoom: -5,
     })
 
-    L.imageOverlay('/map-cloud-mist.jpg', MAP_BOUNDS).addTo(map)
+    L.imageOverlay(MAP_IMAGES[mapType] ?? MAP_IMAGES.base, MAP_BOUNDS).addTo(map)
 
     map.fitBounds(MAP_BOUNDS)
 
@@ -87,7 +98,7 @@ export default function SpawnMap({ groups, compact }: Props) {
       map.remove()
       mapRef.current = null
     }
-  }, [groups])
+  }, [groups, mapType])
 
   return (
     <div className={compact ? '' : 'mb-4'}>
@@ -97,7 +108,8 @@ export default function SpawnMap({ groups, compact }: Props) {
         style={{ aspectRatio: compact ? '1 / 1' : '4 / 3', maxHeight: compact ? undefined : 600, cursor: 'default' }}
       />
       {!compact && (
-        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
+          <span className="text-[10px] tracking-[.1em] uppercase text-text-dim font-medium">{MAP_LABELS[mapType] ?? mapType}</span>
           {groups.map((g, i) => (
             <div key={g.creature} className="flex items-center gap-1.5 text-[11px]">
               <span

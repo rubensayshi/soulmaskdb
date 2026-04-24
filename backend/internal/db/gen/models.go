@@ -13,6 +13,7 @@ type CreatureSpawn struct {
 	Lat          int64
 	Lon          int64
 	LevelDesc    sql.NullString
+	Map          string
 }
 
 type DropSource struct {
