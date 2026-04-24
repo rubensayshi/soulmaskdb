@@ -8,7 +8,6 @@ import ItemHeader from '../components/ItemHeader'
 import FlowView from '../components/FlowView'
 import RawMatsCollapsible from '../components/RawMats'
 import UsedIn from '../components/UsedIn'
-import ItemStats from '../components/ItemStats'
 import ObtainedFrom from '../components/ObtainedFrom'
 import TechUnlock from '../components/TechUnlock'
 
@@ -92,13 +91,6 @@ export default function Item() {
   return (
     <div>
       <ItemHeader item={item} recipe={recipe} station={station} />
-
-      {item.stats && item.stats.length > 0 && (
-        <>
-          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" />
-          <ItemStats stats={item.stats} />
-        </>
-      )}
 
       {detail?.tech_unlocked_by && detail.tech_unlocked_by.length > 0 && (
         <>
