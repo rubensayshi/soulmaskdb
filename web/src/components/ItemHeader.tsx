@@ -9,7 +9,6 @@ interface Props {
   recipe?: Recipe
   station?: Station
   quality?: number
-  trailing?: React.ReactNode
 }
 
 function Stat({ label, value, accent }: { label: string; value: string; accent?: 'green' | 'gold' | 'rust' }) {
@@ -27,7 +26,7 @@ function Stat({ label, value, accent }: { label: string; value: string; accent?:
   )
 }
 
-export default function ItemHeader({ item, recipe, station, quality = 0, trailing }: Props) {
+export default function ItemHeader({ item, recipe, station, quality = 0 }: Props) {
   const title = item.n ?? item.nz ?? item.id
   const classification =
     item.role === 'raw' ? 'Raw Material'
@@ -55,7 +54,7 @@ export default function ItemHeader({ item, recipe, station, quality = 0, trailin
            style={{ background: `linear-gradient(90deg, ${qColorDim}, transparent)` }} />
 
       <div className="flex-shrink-0">
-        <Diamond item={item} size={72} variant="green-lit" borderColor={trailing ? qColor : undefined} />
+        <Diamond item={item} size={72} variant="green-lit" borderColor={quality > 0 ? qColor : undefined} />
       </div>
 
       <div className="flex-1 min-w-0">
@@ -84,11 +83,6 @@ export default function ItemHeader({ item, recipe, station, quality = 0, trailin
         </div>
       </div>
 
-      {trailing && (
-        <div className="absolute top-[22px] right-[26px]">
-          {trailing}
-        </div>
-      )}
     </div>
   )
 }

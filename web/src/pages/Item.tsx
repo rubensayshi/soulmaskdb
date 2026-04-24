@@ -132,9 +132,7 @@ export default function Item() {
       {detail?.spawn_locations && detail.spawn_locations.length > 0 ? (
         <div className="flex gap-5 items-start mb-[26px]">
           <div className="flex-1 min-w-0 [&>div:first-child]:mb-0">
-            <ItemHeader item={item} recipe={recipe} station={station} quality={quality}
-              trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
-            />
+            <ItemHeader item={item} recipe={recipe} station={station} quality={quality} />
             {detail.tech_unlocked_by && detail.tech_unlocked_by.length > 0 && (
               <div className="mt-4">
                 <SectionHeader title="Unlocked By" sub="Tech Tree" accent="gold" />
@@ -179,9 +177,7 @@ export default function Item() {
         </div>
       ) : (
         <>
-          <ItemHeader item={item} recipe={recipe} station={station} quality={quality}
-            trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
-          />
+          <ItemHeader item={item} recipe={recipe} station={station} quality={quality} />
           {detail?.tech_unlocked_by && detail.tech_unlocked_by.length > 0 && (
             <>
               <SectionHeader title="Unlocked By" sub="Tech Tree" accent="gold" />
@@ -200,7 +196,9 @@ export default function Item() {
 
       {hasStats && (
         <>
-          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" qualityColor={quality > 0 ? QUALITY_TIERS[quality]?.color : undefined} />
+          <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" qualityColor={quality > 0 ? QUALITY_TIERS[quality]?.color : undefined}
+            trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
+          />
           <ItemStats stats={item.stats!} quality={quality} />
         </>
       )}
