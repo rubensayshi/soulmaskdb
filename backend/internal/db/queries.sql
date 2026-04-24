@@ -71,5 +71,10 @@ JOIN drop_sources ds ON ds.id = dsi.source_id
 WHERE dsi.item_id = ?
 ORDER BY ds.source_type, dsi.probability DESC;
 
+-- name: GetSeedSourceForItem :one
+SELECT name_en, map, grindable, grinder_input, fertilizer, temp_growth, temp_optimal, sources_json
+FROM seed_sources
+WHERE item_id = ?;
+
 -- name: ListItemSlugs :many
 SELECT id, slug FROM items;

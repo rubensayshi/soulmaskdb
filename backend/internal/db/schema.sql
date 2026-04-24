@@ -91,3 +91,15 @@ CREATE TABLE drop_source_items (
   weight      INTEGER NOT NULL DEFAULT 1
 );
 CREATE INDEX idx_dsi_item ON drop_source_items(item_id);
+
+CREATE TABLE seed_sources (
+  item_id       TEXT PRIMARY KEY REFERENCES items(id),
+  name_en       TEXT NOT NULL,
+  map           TEXT NOT NULL CHECK (map IN ('base','dlc','both')),
+  grindable     INTEGER NOT NULL DEFAULT 0,
+  grinder_input TEXT,
+  fertilizer    TEXT,
+  temp_growth   TEXT,
+  temp_optimal  TEXT,
+  sources_json  TEXT NOT NULL
+);

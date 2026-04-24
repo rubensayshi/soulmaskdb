@@ -68,6 +68,18 @@ type RecipeInputGroupItem struct {
 	Quantity int64
 }
 
+type SeedSource struct {
+	ItemID       string
+	NameEn       string
+	Map          string
+	Grindable    int64
+	GrinderInput sql.NullString
+	Fertilizer   sql.NullString
+	TempGrowth   sql.NullString
+	TempOptimal  sql.NullString
+	SourcesJson  string
+}
+
 type Station struct {
 	ID     string
 	NameZh sql.NullString

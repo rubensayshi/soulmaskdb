@@ -96,8 +96,29 @@ export interface TechUnlock {
   parent_name_zh?: string | null
 }
 
+export interface SeedSourceEntry {
+  type: string
+  description: string
+  locations?: string[]
+  notes?: string
+  qty?: string
+  recommended?: boolean
+}
+
+export interface SeedSource {
+  name_en: string
+  map: 'base' | 'dlc' | 'both'
+  grindable: boolean
+  grinder_input?: string
+  fertilizer?: string
+  temp_growth?: string
+  temp_optimal?: string
+  sources: SeedSourceEntry[]
+}
+
 export interface ItemDetail {
   id: string
   drop_sources: DropSource[]
   tech_unlocked_by: TechUnlock[]
+  seed_source?: SeedSource
 }

@@ -27,6 +27,26 @@ type TechUnlock struct {
 	ParentNameZh      *string `json:"parent_name_zh,omitempty"`
 }
 
+type SeedSourceEntry struct {
+	Type        string   `json:"type"`
+	Description string   `json:"description"`
+	Locations   []string `json:"locations,omitempty"`
+	Notes       string   `json:"notes,omitempty"`
+	Qty         string   `json:"qty,omitempty"`
+	Recommended bool     `json:"recommended,omitempty"`
+}
+
+type SeedSource struct {
+	NameEn       string            `json:"name_en"`
+	Map          string            `json:"map"`
+	Grindable    bool              `json:"grindable"`
+	GrinderInput *string           `json:"grinder_input,omitempty"`
+	Fertilizer   *string           `json:"fertilizer,omitempty"`
+	TempGrowth   *string           `json:"temp_growth,omitempty"`
+	TempOptimal  *string           `json:"temp_optimal,omitempty"`
+	Sources      []SeedSourceEntry `json:"sources"`
+}
+
 type ItemDetail struct {
 	ID             string       `json:"id"`
 	NameEn         *string      `json:"name_en"`
@@ -44,6 +64,7 @@ type ItemDetail struct {
 	RecipesToCraft []string     `json:"recipes_to_craft"`
 	RecipesUsedIn  []string     `json:"recipes_used_in"`
 	DropSources    []DropSource `json:"drop_sources"`
+	SeedSource     *SeedSource  `json:"seed_source,omitempty"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -115,6 +136,25 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
+	var seedSource *SeedSource
+	seedRow, seedErr := q.GetSeedSourceForItem(ctx, item.ID)
+	if seedErr == nil {
+		var entries []SeedSourceEntry
+		_ = json.Unmarshal([]byte(seedRow.SourcesJson), &entries)
+		seedSource = &SeedSource{
+			NameEn:      seedRow.NameEn,
+			Map:         seedRow.Map,
+			Grindable:   seedRow.Grindable != 0,
+			Fertilizer:  nullStr(seedRow.Fertilizer),
+			TempGrowth:  nullStr(seedRow.TempGrowth),
+			TempOptimal: nullStr(seedRow.TempOptimal),
+			Sources:     entries,
+		}
+		if seedRow.GrinderInput.Valid {
+			seedSource.GrinderInput = &seedRow.GrinderInput.String
+		}
+	}
+
 	var stats interface{}
 	if item.StatsJson.Valid {
 		_ = json.Unmarshal([]byte(item.StatsJson.String), &stats)
@@ -137,6 +177,7 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		RecipesToCraft: toCraftIDs,
 		RecipesUsedIn:  usedInIDs,
 		DropSources:    dropSources,
+		SeedSource:     seedSource,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
