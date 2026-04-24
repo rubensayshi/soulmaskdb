@@ -15,12 +15,13 @@ if ! command -v reflex >/dev/null 2>&1; then
     exit 1
 fi
 
-BACKEND_PID=""
-WEB_PID=""
+PIDS=()
 
 cleanup() {
-    [[ -n "$BACKEND_PID" ]] && kill "$BACKEND_PID" 2>/dev/null || true
-    [[ -n "$WEB_PID"     ]] && kill "$WEB_PID"     2>/dev/null || true
+    for pid in "${PIDS[@]}"; do
+        pkill -P "$pid" 2>/dev/null || true
+        kill "$pid" 2>/dev/null || true
+    done
     wait 2>/dev/null || true
 }
 trap cleanup INT TERM EXIT
@@ -30,12 +31,12 @@ trap cleanup INT TERM EXIT
     exec reflex -d none -s -r '\.go$' \
         -- go run ./cmd/server -dev -db "$ROOT/data/app.db" "$@"
 ) 2>&1 | sed 's/^/[be] /' &
-BACKEND_PID=$!
+PIDS+=($!)
 
 (
     cd "$ROOT/web"
     exec pnpm dev
 ) 2>&1 | sed 's/^/[fe] /' &
-WEB_PID=$!
+PIDS+=($!)
 
 wait
