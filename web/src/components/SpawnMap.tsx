@@ -4,14 +4,14 @@ import 'leaflet/dist/leaflet.css'
 import type { SpawnGroup } from '../lib/types'
 
 const COLORS = [
-  '#a4ba8c', // green-hi
+  '#7ec8e3', // light blue
   '#e8a87c', // warm salmon
-  '#89c4c0', // teal
+  '#a8d8d0', // mint
   '#c4a4d4', // lavender
   '#d4a04a', // gold
   '#d47070', // coral
-  '#70b0d4', // sky
-  '#b4d470', // lime
+  '#b0d4e8', // powder
+  '#a4c8e0', // steel
 ]
 
 const MAP_BOUNDS: L.LatLngBoundsExpression = [[-4096, 0], [0, 4096]]
