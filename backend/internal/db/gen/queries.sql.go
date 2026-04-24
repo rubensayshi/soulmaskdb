@@ -284,6 +284,38 @@ func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, er
 	return items, nil
 }
 
+const listItemSlugs = `-- name: ListItemSlugs :many
+SELECT id, slug FROM items
+`
+
+type ListItemSlugsRow struct {
+	ID   string
+	Slug sql.NullString
+}
+
+func (q *Queries) ListItemSlugs(ctx context.Context) ([]ListItemSlugsRow, error) {
+	rows, err := q.db.QueryContext(ctx, listItemSlugs)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []ListItemSlugsRow{}
+	for rows.Next() {
+		var i ListItemSlugsRow
+		if err := rows.Scan(&i.ID, &i.Slug); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listItemsForGraph = `-- name: ListItemsForGraph :many
 SELECT id, name_en, name_zh, category, role, icon_path, slug,
        description_en, description_zh, weight, durability, stats_json

@@ -48,6 +48,7 @@ func main() {
 
 	root := chi.NewRouter()
 	root.Mount("/api", apiServer.Router())
+	root.Get("/sitemap.xml", apiServer.HandleSitemap)
 	root.Handle("/icons/*", http.StripPrefix("/icons/", http.FileServer(http.Dir(*iconsDir))))
 	root.Handle("/*", spaHandler)
 

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useStore } from '../store'
 import type { Recipe, Item } from '../lib/types'
@@ -87,6 +88,14 @@ export default function AwarenessXp() {
 
   return (
     <div className="p-6 max-w-4xl">
+      <Helmet>
+        <title>Awareness XP per Minute — Soulmask Codex</title>
+        <meta name="description" content="Soulmask recipes ranked by awareness XP gained per minute of craft time. Filter by tier, skill, and item type." />
+        <link rel="canonical" href="https://soulmask-codex.fly.dev/awareness-xp" />
+        <meta property="og:title" content="Awareness XP per Minute — Soulmask Codex" />
+        <meta property="og:description" content="Soulmask recipes ranked by awareness XP gained per minute of craft time." />
+        <meta property="og:url" content="https://soulmask-codex.fly.dev/awareness-xp" />
+      </Helmet>
       <h1 className="font-heading text-[28px] font-bold text-text tracking-[.03em] mb-1">
         Awareness <span className="font-display italic text-green font-semibold">XP</span>
       </h1>

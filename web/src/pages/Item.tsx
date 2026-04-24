@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useStore } from '../store'
 import { primaryRecipeFor, buildUsedInIndex, resolveItem, hasMatchingFinal, indexItems } from '../lib/graph'
 import { fetchItemDetail } from '../lib/api'
@@ -90,11 +91,41 @@ export default function Item() {
     [intermediateIds, selectedCats, graph, byId, usedInIdx]
   )
 
+  const itemName = item?.n ?? item?.nz ?? slugOrId ?? ''
+  const itemDesc = item?.de ?? item?.dz ?? null
+  const canonicalPath = item?.s ? `/item/${item.s}` : `/item/${item?.id ?? slugOrId}`
+  const pageTitle = itemName ? `${itemName} — Soulmask Codex` : 'Soulmask Codex'
+  const metaDesc = itemDesc
+    ? `${itemName} — ${itemDesc.slice(0, 140)}`
+    : `${itemName} — crafting recipe, materials, drop sources, and tech tree in Soulmask.`
+  const canonicalUrl = `https://soulmask-codex.fly.dev${canonicalPath}`
+
+  const jsonLd = item ? {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: itemName,
+    ...(itemDesc && { description: itemDesc }),
+    url: canonicalUrl,
+    category: item.cat ?? undefined,
+  } : null
+
   if (!graph) return <div className="p-8 text-text-dim">Loading…</div>
   if (!item) return <div className="p-8 text-text-dim">Item not found: {slugOrId}</div>
 
   return (
     <div>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDesc} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        {jsonLd && (
+          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+        )}
+      </Helmet>
       <ItemHeader item={item} recipe={recipe} station={station} quality={quality}
         trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
       />

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useStore } from '../store'
 import { itemPath } from '../lib/graph'
@@ -67,6 +68,11 @@ export default function Home() {
 
   return (
     <div className="-mx-9 -mt-7">
+      <Helmet>
+        <title>Soulmask Codex — Atlas of the Crafted World</title>
+        <meta name="description" content={`Browse ${graph.items.length.toLocaleString()} items and ${graph.recipes.length.toLocaleString()} recipes — crafting chains, drop sources, tech tree, and food buffs for Soulmask.`} />
+        <link rel="canonical" href="https://soulmask-codex.fly.dev/" />
+      </Helmet>
       {/* Hero */}
       <div className="m-6 border border-hair relative overflow-hidden"
            style={{

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { fetchFoodBuffs } from '../lib/api'
 import type { BuffedItem, BuffModifier } from '../lib/types'
@@ -189,6 +190,14 @@ export default function FoodAlmanac() {
 
   return (
     <div>
+      <Helmet>
+        <title>Food Almanac — Soulmask Codex</title>
+        <meta name="description" content="Compare every Soulmask food, drink, and potion side by side — buffs, durations, and companion preferences." />
+        <link rel="canonical" href="https://soulmask-codex.fly.dev/food-almanac" />
+        <meta property="og:title" content="Food Almanac — Soulmask Codex" />
+        <meta property="og:description" content="Compare every Soulmask food, drink, and potion side by side — buffs, durations, and companion preferences." />
+        <meta property="og:url" content="https://soulmask-codex.fly.dev/food-almanac" />
+      </Helmet>
       {/* Header */}
       <div className="mb-5">
         <h1 className="font-heading text-[28px] font-bold text-text tracking-[.03em] mb-1">

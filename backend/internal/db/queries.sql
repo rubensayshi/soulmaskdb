@@ -70,3 +70,6 @@ FROM drop_source_items dsi
 JOIN drop_sources ds ON ds.id = dsi.source_id
 WHERE dsi.item_id = ?
 ORDER BY ds.source_type, dsi.probability DESC;
+
+-- name: ListItemSlugs :many
+SELECT id, slug FROM items;
