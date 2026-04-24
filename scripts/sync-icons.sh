@@ -12,6 +12,15 @@ aws s3 sync "$ICONS_DIR" "s3://$BUCKET/" \
   --profile "$PROFILE" \
   --content-type "image/webp" \
   --cache-control "public, max-age=31536000, immutable" \
-  --size-only
+  --size-only \
+  --exclude "*.jpg"
+
+aws s3 sync "$ICONS_DIR" "s3://$BUCKET/" \
+  --endpoint-url "$ENDPOINT" \
+  --profile "$PROFILE" \
+  --content-type "image/jpeg" \
+  --cache-control "public, max-age=31536000, immutable" \
+  --size-only \
+  --exclude "*" --include "*.jpg"
 
 echo "Done. Icons available at https://$BUCKET.fly.storage.tigris.dev/"

@@ -16,14 +16,11 @@ const COLORS = [
 
 const MAP_BOUNDS: L.LatLngBoundsExpression = [[-4096, 0], [0, 4096]]
 
-const MAP_IMAGES: Record<string, string> = {
-  base: '/map-cloud-mist.jpg',
-  dlc: '/map-shifting-sands.jpg',
-}
+const CDN_BASE = import.meta.env.VITE_ICON_BASE || '/icons'
 
-const MAP_LABELS: Record<string, string> = {
-  base: 'Cloud & Mist',
-  dlc: 'Shifting Sands',
+const MAP_IMAGES: Record<string, string> = {
+  base: `${CDN_BASE}/map-cloud-mist.jpg`,
+  dlc: `${CDN_BASE}/map-shifting-sands.jpg`,
 }
 
 interface Props {
