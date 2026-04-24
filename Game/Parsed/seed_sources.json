@@ -1,0 +1,490 @@
+[
+  {
+    "item_id": "Daoju_Item_Cotto_Seed",
+    "name_en": "Cotton Seed",
+    "map": "base",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest cotton plants with a scythe at barracks farms",
+        "locations": ["Western Rainforest (Flint Tribe)", "Mangrove Swamp (Flint Tribe)"]
+      },
+      {
+        "type": "container",
+        "description": "Chests and pots at barracks and fortresses",
+        "locations": ["Western Rainforest", "Mangrove", "Pit Hill", "Flat Top Mountain", "Frostleaf Grove"],
+        "notes": "Very common drop"
+      },
+      {
+        "type": "container",
+        "description": "Wooden crates in Ancient Ruins",
+        "locations": ["Ruins (Lv20–60)"]
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Corn_Seed",
+    "name_en": "Corn Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Corn",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest corn with a scythe at barracks farms — also yields corn to grind into more seeds",
+        "locations": ["Western Rainforest (Flint Tribe)", "Mangrove Swamp (Flint Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Corn at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Chests and pots at barracks and fortresses",
+        "locations": ["Western Rainforest", "Mangrove", "Pit Hill", "Flat Top Mountain", "Frostleaf Grove", "Great Grassland"],
+        "notes": "Extremely common drop"
+      },
+      {
+        "type": "npc",
+        "description": "Dropped by Intrusion Scouts",
+        "qty": "1–3"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Pumpkin_Seed",
+    "name_en": "Pumpkin Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Pumpkin",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest pumpkins with a scythe at barracks farms",
+        "locations": ["Western Rainforest (Flint Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Pumpkin at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Chests and pots at barracks and fortresses",
+        "locations": ["Western Rainforest", "Pit Hill", "Flat Top Mountain", "Frostleaf Grove", "Great Grassland"],
+        "notes": "Very common drop"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Chili_Seed",
+    "name_en": "Chili Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Chili",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest chili plants with a scythe at barracks farms",
+        "locations": ["Western Rainforest (Flint Tribe)", "Flat Top Mountain (Fang Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Chili at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Chests and pots at barracks and fortresses",
+        "locations": ["Western Rainforest", "Mangrove", "Pit Hill", "Flat Top Mountain", "Frostleaf Grove"],
+        "notes": "Very common drop"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Tomatoes_Seed",
+    "name_en": "Tomato Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Tomato",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest tomato plants with a scythe at barracks farms",
+        "locations": ["Western Rainforest (Flint Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Tomato at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Chests at fortresses and Western Rainforest barracks",
+        "locations": ["Western Rainforest", "Fortress"],
+        "notes": "Less common than other base seeds"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_CashewNuts_Seed",
+    "name_en": "Cashew Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Cashew",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest cashew plants with a scythe at barracks farms",
+        "locations": ["Mangrove Swamp (Flint Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Cashew at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Large Tribe fortress chests and pots only",
+        "locations": ["Fortress"],
+        "notes": "Fortress-level loot only"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Peanut_Seed",
+    "name_en": "Peanut Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Peanut",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest peanut plants with a scythe at barracks farms",
+        "locations": ["Pit Hill (Fang Tribe)", "Flat Top Mountain (Fang Tribe)", "Frostleaf Grove (Flint Tribe)"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Peanut at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Chests at mid-level barracks and fortresses",
+        "locations": ["Pit Hill", "Flat Top Mountain", "Frostleaf Grove"]
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Pawpaw_Seed",
+    "name_en": "Papaya Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Papaya",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest papaya plants with a scythe at barracks farms",
+        "locations": ["Mangrove Swamp (Flint Tribe)", "Great Grassland"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Papaya at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Barracks chests in the Great Grassland (Savanna)",
+        "locations": ["Great Grassland"],
+        "notes": "Relatively rare in loot tables"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Pomegranate_Seed",
+    "name_en": "Guava Seed",
+    "map": "base",
+    "grindable": true,
+    "grinder_input": "Guava",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest guava plants with a scythe at barracks farms",
+        "locations": ["Pit Hill (Fang Tribe)", "Great Grassland", "Highlands"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Guava at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "Barracks chests in high-level regions",
+        "locations": ["Great Grassland", "Highlands"]
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Tobacco_Seed",
+    "name_en": "Tobacco Seed",
+    "map": "base",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest tobacco plants with a scythe at barracks farms",
+        "locations": ["Pit Hill (Fang Tribe)", "Great Grassland"]
+      },
+      {
+        "type": "container",
+        "description": "Barracks chests",
+        "locations": ["Pit Hill", "Great Grassland"],
+        "notes": "Cannot be crafted at Grinder — must find directly"
+      }
+    ]
+  },
+  {
+    "item_id": "Daoju_Item_Aloe_Seed",
+    "name_en": "Aloe Seed",
+    "map": "both",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest aloe at barracks farms",
+        "locations": ["Pit Hill (Fang Tribe)", "Flat Top Mountain (Fang Tribe)"]
+      },
+      {
+        "type": "wild_plant",
+        "description": "Harvest wild aloe plants in the jungle",
+        "locations": ["South of Northern Barracks", "Southeast of Claw Tribe", "Near Ancient Ruins east of Flint Barracks"],
+        "notes": "Hard to spot — lower Foliage Quality in settings to find them"
+      },
+      {
+        "type": "container",
+        "description": "Clay pots at barracks and fortresses",
+        "locations": ["Pit Hill", "Flat Top Mountain"],
+        "notes": "Cannot be crafted at Grinder — must find directly"
+      }
+    ]
+  },
+  {
+    "item_id": "Daoju_Item_Agave_Seed",
+    "name_en": "Agave Seed",
+    "map": "both",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest agave at barracks farms",
+        "locations": ["Pit Hill (Fang Tribe)"]
+      },
+      {
+        "type": "wild_plant",
+        "description": "Harvest wild agave plants and agave trees",
+        "locations": ["Various jungle and highland areas"]
+      },
+      {
+        "type": "container",
+        "description": "Barracks chests in mid-to-high level regions",
+        "locations": ["Pit Hill", "Flat Top Mountain", "Frostleaf Grove", "Highlands"],
+        "notes": "Cannot be crafted at Grinder — must find directly"
+      }
+    ]
+  },
+  {
+    "item_id": "Daoju_Item_Rubber_Seed",
+    "name_en": "Rubber Seed",
+    "map": "base",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "description": "Harvest farmed rubber plants (1 seed per harvest)",
+        "locations": ["Mangrove Swamp"],
+        "notes": "Seed exists in game files but cannot be planted — rubber is obtained via the Distiller (Serum + Acidic Fluid) or looted from barracks"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Flax_Seed",
+    "name_en": "Flax Seed",
+    "map": "dlc",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest flax plants with a scythe at barracks farms",
+        "locations": ["Savage Horn Barracks (River Delta)"],
+        "notes": "DLC cotton replacement — must grow it yourself"
+      },
+      {
+        "type": "container",
+        "description": "Tribe boxes, pots, and relic chests throughout the DLC map",
+        "locations": ["DLC tribe barracks", "DLC relics (Lv20)"],
+        "notes": "Very common drop. Break jars and barrels in barracks."
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Chufa_Seed",
+    "name_en": "Chufa Seed",
+    "map": "dlc",
+    "grindable": true,
+    "grinder_input": "Chufa",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest chufa at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Chufa at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests and tribe boxes",
+        "locations": ["DLC relics (Lv10–20)", "DLC tribe barracks"]
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Date_Seed",
+    "name_en": "Date Seed",
+    "map": "dlc",
+    "grindable": true,
+    "grinder_input": "Date",
+    "sources": [
+      {
+        "type": "grinder",
+        "recommended": true,
+        "description": "Grind 1× Date at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests only",
+        "locations": ["DLC relics (Lv30–60)"],
+        "notes": "Relatively rare"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Fig_Seed",
+    "name_en": "Fig Seed",
+    "map": "dlc",
+    "grindable": true,
+    "grinder_input": "Fig",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest fig trees at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Fig at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests and tribe boxes",
+        "locations": ["DLC relics (Lv40–70)", "DLC Huge Tribe barracks"]
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Garlic_Seed",
+    "name_en": "Garlic Seed",
+    "map": "dlc",
+    "grindable": true,
+    "grinder_input": "Garlic",
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest garlic at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Garlic at a Grinder (requires Seed Selection tech)"
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests and barracks boxes",
+        "locations": ["DLC relics (Lv30–70)", "DLC tribe barracks"],
+        "notes": "Very common in DLC"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Grape_Seed",
+    "name_en": "Grape Seed",
+    "map": "dlc",
+    "grindable": true,
+    "grinder_input": "Grape",
+    "sources": [
+      {
+        "type": "container",
+        "recommended": true,
+        "description": "DLC relic chests only",
+        "locations": ["DLC relics (Lv40–60)"],
+        "notes": "Fairly common in those chests — no barracks farm source"
+      },
+      {
+        "type": "grinder",
+        "description": "Grind 1× Grape at a Grinder (requires Seed Selection tech)"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Mint_Seed",
+    "name_en": "Mint Seed",
+    "map": "dlc",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest mint plants with a scythe at barracks farms",
+        "locations": ["Moon Bay Barracks"],
+        "notes": "DLC cocoa replacement — used for Mint Water (heat management)"
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests and barracks boxes",
+        "locations": ["DLC relics (Lv55–60)", "DLC tribe barracks"],
+        "notes": "Cannot be crafted at Grinder — must find directly"
+      }
+    ]
+  },
+  {
+    "item_id": "DaoJu_Item_Onion_Seed",
+    "name_en": "Onion Seed",
+    "map": "dlc",
+    "grindable": false,
+    "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest onion plants at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
+      {
+        "type": "container",
+        "description": "DLC relic chests, tribe boxes, and barracks boxes",
+        "locations": ["DLC relics (Lv60–70)", "DLC tribe barracks"],
+        "notes": "Cannot be crafted at Grinder — must find directly"
+      }
+    ]
+  }
+]

@@ -188,6 +188,39 @@ func (q *Queries) GetRecipesUsingInput(ctx context.Context, itemID string) ([]Re
 	return items, nil
 }
 
+const getSeedSourceForItem = `-- name: GetSeedSourceForItem :one
+SELECT name_en, map, grindable, grinder_input, fertilizer, temp_growth, temp_optimal, sources_json
+FROM seed_sources
+WHERE item_id = ?
+`
+
+type GetSeedSourceForItemRow struct {
+	NameEn       string
+	Map          string
+	Grindable    int64
+	GrinderInput sql.NullString
+	Fertilizer   sql.NullString
+	TempGrowth   sql.NullString
+	TempOptimal  sql.NullString
+	SourcesJson  string
+}
+
+func (q *Queries) GetSeedSourceForItem(ctx context.Context, itemID string) (GetSeedSourceForItemRow, error) {
+	row := q.db.QueryRowContext(ctx, getSeedSourceForItem, itemID)
+	var i GetSeedSourceForItemRow
+	err := row.Scan(
+		&i.NameEn,
+		&i.Map,
+		&i.Grindable,
+		&i.GrinderInput,
+		&i.Fertilizer,
+		&i.TempGrowth,
+		&i.TempOptimal,
+		&i.SourcesJson,
+	)
+	return i, err
+}
+
 const getTechUnlocksForRecipe = `-- name: GetTechUnlocksForRecipe :many
 SELECT tn.id, tn.name_en, tn.name_zh, tn.required_mask_level,
        parent.name_en AS parent_name_en, parent.name_zh AS parent_name_zh

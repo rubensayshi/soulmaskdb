@@ -354,6 +354,41 @@ def main():
                     )
                     drop_item_count += 1
 
+    # --- seed sources ---
+    FERT_MAP = {
+        "骨肥": "Bone Powder", "石粉肥": "Stone Powder",
+        "灰肥": "Ash", "堆肥": "Compost",
+    }
+    items_by_id = {it["id"]: it for it in items}
+
+    seed_src_path = PARSED / "seed_sources.json"
+    seed_source_count = 0
+    if seed_src_path.exists():
+        seed_sources = load_json(seed_src_path)
+        for s in seed_sources:
+            if s["item_id"] not in item_ids:
+                continue
+            desc = (items_by_id.get(s["item_id"]) or {}).get("description_zh") or ""
+            fert_m = re.search(r"需要(.+?)作为肥料", desc)
+            fert = FERT_MAP.get(fert_m.group(1)) if fert_m else None
+            growth_m = re.search(r"成长温度(-?\d+)-(\d+)度", desc)
+            growth = f"{growth_m.group(1)}-{growth_m.group(2)}" if growth_m else None
+            opt_m = re.search(r"适宜温度(\d+)-(\d+)度", desc)
+            optimal = f"{opt_m.group(1)}-{opt_m.group(2)}" if opt_m else None
+            db.execute(
+                "INSERT INTO seed_sources (item_id, name_en, map, grindable, grinder_input, "
+                "fertilizer, temp_growth, temp_optimal, sources_json) "
+                "VALUES (?,?,?,?,?,?,?,?,?)",
+                (
+                    s["item_id"], s["name_en"], s["map"],
+                    1 if s.get("grindable") else 0,
+                    s.get("grinder_input"),
+                    fert, growth, optimal,
+                    json.dumps(s["sources"]),
+                ),
+            )
+            seed_source_count += 1
+
     db.commit()
     db.execute("VACUUM")
     db.close()
@@ -365,6 +400,7 @@ def main():
     print(f"  tech_nodes:        {len(tech_nodes)}")
     print(f"  drop_sources:      {drop_source_count}")
     print(f"  drop_items:        {drop_item_count}")
+    print(f"  seed_sources:      {seed_source_count}")
 
 
 if __name__ == "__main__":

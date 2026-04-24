@@ -10,6 +10,7 @@ import FlowView from '../components/FlowView'
 import RawMatsCollapsible from '../components/RawMats'
 import UsedIn from '../components/UsedIn'
 import ObtainedFrom from '../components/ObtainedFrom'
+import SeedSources, { SeedFarmingStats } from '../components/SeedSources'
 import TechUnlock from '../components/TechUnlock'
 import ItemStats from '../components/ItemStats'
 import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
@@ -130,6 +131,10 @@ export default function Item() {
         trailing={<QualitySelector value={quality} onChange={setQuality} hasStats={hasStats} />}
       />
 
+      {detail?.seed_source && (
+        <SeedFarmingStats seed={detail.seed_source} />
+      )}
+
       {hasStats && (
         <>
           <SectionHeader title="Stats" sub="Equipment Attributes" accent="green" qualityColor={quality > 0 ? QUALITY_TIERS[quality]?.color : undefined} />
@@ -144,7 +149,7 @@ export default function Item() {
         </>
       )}
 
-      {recipe && (
+      {recipe && !detail?.seed_source && (
         <>
           <SectionHeader title="Materials Required" sub="Direct Ingredients" accent="green"
             trailing={!tweaks.showRaw ? (
@@ -166,38 +171,49 @@ export default function Item() {
         </>
       )}
 
-      <SectionHeader title="Used in Final Items" sub="Weapons · Tools · Structures" accent="final" count={selectedCats.size > 0 ? filteredFinalIds.length : finalIds.length} />
-      {finalIds.length > 0 && finalCats.length > 1 && (
-        <div className="flex flex-wrap gap-1.5 mb-3">
-          {finalCats.map(([cat, count]) => {
-            const active = selectedCats.has(cat)
-            return (
-              <button key={cat}
-                onClick={() => setSelectedCats(prev => {
-                  const next = new Set(prev)
-                  if (next.has(cat)) next.delete(cat); else next.add(cat)
-                  return next
-                })}
-                className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
-                  active
-                    ? 'bg-green-dim/30 border-green-dim text-green-hi'
-                    : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
-                }`}
-              >
-                {cat} <span className="tabular-nums opacity-60">{count}</span>
-              </button>
-            )
-          })}
-        </div>
+      {finalIds.length > 0 && (
+        <>
+          <SectionHeader title="Used in Final Items" sub="Weapons · Tools · Structures" accent="final" count={selectedCats.size > 0 ? filteredFinalIds.length : finalIds.length} />
+          {finalCats.length > 1 && (
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {finalCats.map(([cat, count]) => {
+                const active = selectedCats.has(cat)
+                return (
+                  <button key={cat}
+                    onClick={() => setSelectedCats(prev => {
+                      const next = new Set(prev)
+                      if (next.has(cat)) next.delete(cat); else next.add(cat)
+                      return next
+                    })}
+                    className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+                      active
+                        ? 'bg-green-dim/30 border-green-dim text-green-hi'
+                        : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
+                    }`}
+                  >
+                    {cat} <span className="tabular-nums opacity-60">{count}</span>
+                  </button>
+                )
+              })}
+            </div>
+          )}
+          <UsedIn graph={graph} rootId={item.id} filterIds={filteredFinalIds} />
+        </>
       )}
-      {finalIds.length > 0
-        ? <UsedIn graph={graph} rootId={item.id} filterIds={filteredFinalIds} />
-        : <div className="p-8 text-center text-[12px] text-text-dim italic border border-dashed border-hair bg-panel">Not used in any final item</div>}
 
-      <SectionHeader title="Used in Intermediate Components" sub="Ingredients feeding other recipes" accent="intermediate" count={filteredIntermediateIds.length} />
-      {filteredIntermediateIds.length > 0
-        ? <UsedIn graph={graph} rootId={item.id} filterIds={filteredIntermediateIds} catFilter={selectedCats} />
-        : <div className="p-8 text-center text-[12px] text-text-dim italic border border-dashed border-hair bg-panel">Not used in any intermediate component</div>}
+      {filteredIntermediateIds.length > 0 && (
+        <>
+          <SectionHeader title="Used in Intermediate Components" sub="Ingredients feeding other recipes" accent="intermediate" count={filteredIntermediateIds.length} />
+          <UsedIn graph={graph} rootId={item.id} filterIds={filteredIntermediateIds} catFilter={selectedCats} />
+        </>
+      )}
+
+      {detail?.seed_source && (
+        <>
+          <SectionHeader title="How to Get Seeds" sub="Acquisition Sources" accent="rust" />
+          <SeedSources seed={detail.seed_source} />
+        </>
+      )}
 
       {detail?.drop_sources && detail.drop_sources.length > 0 && (
         <>
