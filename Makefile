@@ -1,4 +1,4 @@
-.PHONY: help dev dev-stop dev-status dev-logs build parse db sqlc tidy test translate clean deploy icons-sync
+.PHONY: help dev dev-stop dev-status dev-logs build parse parse-spawns db sqlc tidy test translate clean deploy icons-sync
 
 help:
 	@echo "Usage: make <target>"
@@ -9,7 +9,8 @@ help:
 	@echo "  dev-logs     Tail dev server logs"
 	@echo "  build        Build SPA + embed into single Go binary at backend/bin/server"
 	@echo "  parse        Run all Stage 2 parsers (items, recipes, tech, drops, classify, food buffs)"
-	@echo "  db           parse + rebuild data/app.db"
+	@echo "  parse-spawns Parse spawn data from .umap extraction + spawner blueprints"
+	@echo "  db           parse + parse-spawns + rebuild data/app.db"
 	@echo "  sqlc         Regenerate backend/internal/db/gen/ from queries.sql"
 	@echo "  tidy         go mod tidy"
 	@echo "  test         Run go + web + python test suites"
@@ -42,7 +43,10 @@ parse:
 	python3 pipeline/classify_items.py
 	python3 pipeline/parse_food_buffs.py
 
-db: parse
+parse-spawns:
+	python3 pipeline/parse_spawns.py
+
+db: parse parse-spawns
 	python3 pipeline/build_db.py
 
 sqlc:
