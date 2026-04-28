@@ -156,6 +156,7 @@ export interface TechSubNode {
   slug?: string | null
   awareness_level?: number | null
   points?: number | null
+  depends_on?: string[]
   recipes: TechRecipeLink[]
 }
 

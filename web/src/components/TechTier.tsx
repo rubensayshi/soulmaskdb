@@ -19,9 +19,14 @@ interface Props {
   onHoverNode: (id: string | null) => void
   highlightedNodes?: Set<string>
   initialOpenSubId?: string | null
+  plannerMode?: boolean
+  selectedIds?: Set<string>
+  mainPrereqsMet?: Map<string, boolean>
+  onPlannerToggleSub?: (subId: string) => void
+  onPlannerSelectAll?: (mainNodeId: string) => void
 }
 
-export default function TechTier({ tier, tierIndex, expandedNodeId, onToggleNode, hoveredNodeId, onHoverNode, highlightedNodes, initialOpenSubId }: Props) {
+export default function TechTier({ tier, tierIndex, expandedNodeId, onToggleNode, hoveredNodeId, onHoverNode, highlightedNodes, initialOpenSubId, plannerMode, selectedIds, mainPrereqsMet, onPlannerToggleSub, onPlannerSelectAll }: Props) {
   const isHighlighted = (id: string) => highlightedNodes?.has(id) ?? false
   const isDimmed = (id: string) => !!hoveredNodeId && !isHighlighted(id)
   const color = TIER_COLORS[tierIndex] ?? TIER_COLORS[0]
@@ -59,6 +64,11 @@ export default function TechTier({ tier, tierIndex, expandedNodeId, onToggleNode
                   highlighted={isHighlighted(node.id)}
                   dimmed={isDimmed(node.id)}
                   initialOpenSubId={expandedNodeId === node.id ? initialOpenSubId : undefined}
+                  plannerMode={plannerMode}
+                  selectedIds={selectedIds}
+                  mainPrereqsMet={mainPrereqsMet?.get(node.id)}
+                  onPlannerToggleSub={onPlannerToggleSub}
+                  onPlannerSelectAll={onPlannerSelectAll}
                 />
               </div>
             ))}

@@ -16,6 +16,7 @@ type TechSubNode struct {
 	Slug           *string          `json:"slug,omitempty"`
 	AwarenessLevel *int64           `json:"awareness_level,omitempty"`
 	Points         *int64           `json:"points,omitempty"`
+	DependsOn      []string         `json:"depends_on,omitempty"`
 	Recipes        []TechRecipeLink `json:"recipes"`
 }
 
@@ -223,6 +224,11 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 				AwarenessLevel: nullInt(sn.RequiredMaskLevel),
 				Points:         nullInt(sn.ConsumePoints),
 				Recipes:        recipeMap[sid],
+			}
+			for _, pid := range prereqMap[sid] {
+				if _, isSub := subNodes[pid]; isSub {
+					sub.DependsOn = append(sub.DependsOn, pid)
+				}
 			}
 			if sub.Recipes == nil {
 				sub.Recipes = []TechRecipeLink{}

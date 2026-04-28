@@ -2,9 +2,18 @@ import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { fetchTechTree } from '../lib/api'
-import type { TechTreeResponse, TechMode, TechMainNode } from '../lib/types'
+import type { TechTreeResponse, TechMode, TechMainNode, TechSubNode } from '../lib/types'
+import {
+  buildPlannerIndex, isAutoLearned, isMainNodeAutoSatisfied,
+  resolveSelect, resolveDeselect,
+  encodeBuild, decodeBuild,
+  type PlannerIndex,
+} from '../lib/planner'
 import TechTier from '../components/TechTier'
 import TechNode from '../components/TechNode'
+import PlannerBudgetBar from '../components/PlannerBudgetBar'
+import PlannerRecipePanel from '../components/PlannerRecipePanel'
+import PlannerConfirmDialog from '../components/PlannerConfirmDialog'
 
 const MODES: { key: TechMode; label: string }[] = [
   { key: 'survival', label: 'Survival' },
@@ -21,6 +30,14 @@ interface DepLine {
   y2: number
 }
 
+interface ConfirmState {
+  type: 'select' | 'deselect'
+  subId: string
+  nodes: TechSubNode[]
+  totalPoints: number
+  ids: string[]
+}
+
 export default function TechTree() {
   const { slug } = useParams<{ slug?: string }>()
 
@@ -34,8 +51,21 @@ export default function TechTree() {
   const [deepLinkedSubId, setDeepLinkedSubId] = useState<string | null>(null)
   const [lines, setLines] = useState<DepLine[]>([])
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  // Planner state
+  const [plannerMode, setPlannerMode] = useState(false)
+  const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set())
+  const [confirmDialog, setConfirmDialog] = useState<ConfirmState | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const hashConsumedRef = useRef(false)
+
+  const idx = useMemo<PlannerIndex | null>(() => {
+    if (!data) return null
+    return buildPlannerIndex(data)
+  }, [data])
+
+  // Load data
   useEffect(() => {
     setLoading(true)
     setError(null)
@@ -44,9 +74,40 @@ export default function TechTree() {
       .catch(e => { setError(e.message); setLoading(false) })
   }, [mode])
 
+  // Decode URL hash on data load
+  useEffect(() => {
+    if (!data || !idx || hashConsumedRef.current) return
+    const raw = window.location.hash
+    if (!raw.startsWith('#build=')) return
+    hashConsumedRef.current = true
+    const hash = raw.slice(7)
+    const decoded = decodeBuild(hash, idx.allSubIds)
+    if (decoded) {
+      if (decoded.mode !== mode) {
+        setMode(decoded.mode)
+        return
+      }
+      setSelectedNodeIds(decoded.selected)
+      setPlannerMode(true)
+    }
+  }, [data, idx, mode])
+
+  // Sync selections to URL hash (skip until initial decode is done)
+  useEffect(() => {
+    if (!hashConsumedRef.current && window.location.hash.startsWith('#build=')) return
+    if (!plannerMode || !idx || selectedNodeIds.size === 0) {
+      if (window.location.hash.startsWith('#build=')) {
+        history.replaceState(null, '', window.location.pathname + window.location.search)
+      }
+      return
+    }
+    const encoded = encodeBuild(mode, selectedNodeIds, idx.allSubIds)
+    history.replaceState(null, '', `#build=${encoded}`)
+  }, [plannerMode, selectedNodeIds, mode, idx])
+
+  // Deep link
   useEffect(() => {
     if (!slug || !data) return
-
     for (const tier of data.tiers) {
       const allNodes = tier.columns.flat()
       for (const node of allNodes) {
@@ -73,6 +134,7 @@ export default function TechTree() {
     }
   }, [slug, data])
 
+  // Dependency lines
   const allDeps = useMemo(() => {
     if (!data) return []
     const deps: { fromId: string; toId: string }[] = []
@@ -89,18 +151,14 @@ export default function TechTree() {
   const computeLines = useCallback(() => {
     const container = scrollContainerRef.current
     if (!container || allDeps.length === 0) { setLines([]); return }
-
     const rect = container.getBoundingClientRect()
     const newLines: DepLine[] = []
-
     for (const dep of allDeps) {
       const fromEl = container.querySelector(`[data-node-id="${dep.fromId}"]`) as HTMLElement | null
       const toEl = container.querySelector(`[data-node-id="${dep.toId}"]`) as HTMLElement | null
       if (!fromEl || !toEl) continue
-
       const fromRect = fromEl.getBoundingClientRect()
       const toRect = toEl.getBoundingClientRect()
-
       newLines.push({
         fromId: dep.fromId,
         toId: dep.toId,
@@ -115,7 +173,7 @@ export default function TechTree() {
 
   useEffect(() => {
     requestAnimationFrame(computeLines)
-  }, [computeLines, expandedNodeId, data, searchQuery])
+  }, [computeLines, expandedNodeId, data, searchQuery, plannerMode])
 
   useEffect(() => {
     const container = scrollContainerRef.current
@@ -152,6 +210,158 @@ export default function TechTree() {
     return set
   }, [hoveredNodeId, lines])
 
+  // Planner: computed values
+  const pointsSpent = useMemo(() => {
+    if (!idx) return 0
+    let total = 0
+    for (const sid of selectedNodeIds) {
+      const sub = idx.subNodes.get(sid)
+      if (sub) total += sub.points ?? 0
+    }
+    return total
+  }, [selectedNodeIds, idx])
+
+  const mainPrereqsMet = useMemo(() => {
+    if (!idx) return new Map<string, boolean>()
+    const result = new Map<string, boolean>()
+    for (const [mainId] of idx.mainNodes) {
+      if (isMainNodeAutoSatisfied(mainId, idx)) {
+        result.set(mainId, true)
+        continue
+      }
+      const deps = idx.mainDeps.get(mainId) || []
+      const allDepsMet = deps.every(depId => {
+        if (isMainNodeAutoSatisfied(depId, idx)) return true
+        const depSubs = idx.mainToSubs.get(depId) || []
+        return depSubs.some(s => selectedNodeIds.has(s))
+      })
+      result.set(mainId, allDepsMet)
+    }
+    return result
+  }, [selectedNodeIds, idx])
+
+  // Planner: toggle sub-node
+  const handlePlannerToggleSub = useCallback((subId: string) => {
+    if (!idx) return
+    const sub = idx.subNodes.get(subId)
+    if (!sub || isAutoLearned(sub)) return
+
+    if (selectedNodeIds.has(subId)) {
+      const result = resolveDeselect(subId, selectedNodeIds, idx)
+      if (result.removals.length > 1) {
+        const nodes = result.removals
+          .filter(id => id !== subId)
+          .map(id => idx.subNodes.get(id)!)
+          .filter(Boolean)
+        setConfirmDialog({
+          type: 'deselect',
+          subId,
+          nodes,
+          totalPoints: result.pointsRecovered,
+          ids: result.removals,
+        })
+      } else {
+        setSelectedNodeIds(prev => {
+          const next = new Set(prev)
+          next.delete(subId)
+          return next
+        })
+      }
+    } else {
+      const result = resolveSelect(subId, selectedNodeIds, idx)
+      if (result.additions.length > 1) {
+        const nodes = result.additions
+          .filter(id => id !== subId)
+          .map(id => idx.subNodes.get(id)!)
+          .filter(Boolean)
+        setConfirmDialog({
+          type: 'select',
+          subId,
+          nodes,
+          totalPoints: result.totalCost,
+          ids: result.additions,
+        })
+      } else {
+        setSelectedNodeIds(prev => {
+          const next = new Set(prev)
+          for (const id of result.additions) next.add(id)
+          return next
+        })
+      }
+    }
+  }, [selectedNodeIds, idx])
+
+  const handleConfirm = useCallback(() => {
+    if (!confirmDialog) return
+    if (confirmDialog.type === 'select') {
+      setSelectedNodeIds(prev => {
+        const next = new Set(prev)
+        for (const id of confirmDialog.ids) next.add(id)
+        return next
+      })
+    } else {
+      setSelectedNodeIds(prev => {
+        const next = new Set(prev)
+        for (const id of confirmDialog.ids) next.delete(id)
+        return next
+      })
+    }
+    setConfirmDialog(null)
+  }, [confirmDialog])
+
+  const handleShare = useCallback(() => {
+    const url = window.location.href
+    navigator.clipboard.writeText(url).then(() => {
+      setToast('Build URL copied!')
+      setTimeout(() => setToast(null), 2000)
+    })
+  }, [])
+
+  const handleClear = useCallback(() => {
+    setSelectedNodeIds(new Set())
+  }, [])
+
+  const handlePlannerSelectAll = useCallback((mainNodeId: string) => {
+    if (!idx) return
+    const subs = idx.mainToSubs.get(mainNodeId) || []
+    const unselected = subs.filter(sid => {
+      const sub = idx.subNodes.get(sid)
+      return sub && !isAutoLearned(sub) && !selectedNodeIds.has(sid)
+    })
+    if (unselected.length === 0) return
+
+    let allAdditions: string[] = []
+    for (const sid of unselected) {
+      const result = resolveSelect(sid, new Set([...selectedNodeIds, ...allAdditions]), idx)
+      allAdditions = [...allAdditions, ...result.additions.filter(id => !allAdditions.includes(id))]
+    }
+
+    const uniqueAdditions = [...new Set(allAdditions)]
+    const extraPrereqs = uniqueAdditions.filter(id => !unselected.includes(id))
+    const totalCost = uniqueAdditions.reduce((sum, sid) => sum + (idx.subNodes.get(sid)?.points ?? 0), 0)
+
+    if (extraPrereqs.length > 0) {
+      const nodes = extraPrereqs.map(id => idx.subNodes.get(id)!).filter(Boolean)
+      setConfirmDialog({
+        type: 'select',
+        subId: mainNodeId,
+        nodes,
+        totalPoints: totalCost,
+        ids: uniqueAdditions,
+      })
+    } else {
+      setSelectedNodeIds(prev => {
+        const next = new Set(prev)
+        for (const id of uniqueAdditions) next.add(id)
+        return next
+      })
+    }
+  }, [selectedNodeIds, idx])
+
+  const handleTogglePlanner = useCallback(() => {
+    setPlannerMode(prev => !prev)
+  }, [])
+
   return (
     <>
       <Helmet>
@@ -166,6 +376,7 @@ export default function TechTree() {
       </Helmet>
 
       <div className="-mx-9 -mt-7">
+        {/* Top bar */}
         <div className="sticky top-0 z-20 flex items-center gap-3 border-b border-hair bg-bg/95 backdrop-blur px-5 py-2.5">
           <h1 className="font-heading text-[16px] font-bold text-text tracking-[.06em] mr-2">Tech Tree</h1>
 
@@ -187,6 +398,17 @@ export default function TechTree() {
 
           <div className="flex-1" />
 
+          <button
+            onClick={handleTogglePlanner}
+            className={`px-3 py-1 text-[11px] font-semibold uppercase tracking-[.1em] transition-colors ${
+              plannerMode
+                ? 'bg-green/20 text-green border border-green-dim'
+                : 'bg-panel text-text-dim border border-hair hover:text-text-mute'
+            }`}
+          >
+            Planner {plannerMode ? 'ON' : 'OFF'}
+          </button>
+
           <input
             type="text"
             placeholder="Search tech nodes..."
@@ -195,6 +417,25 @@ export default function TechTree() {
             className="w-52 border border-hair bg-panel px-3 py-1 text-[11px] text-text placeholder-text-dim outline-none focus:border-green-dim"
           />
         </div>
+
+        {/* Budget bar */}
+        {plannerMode && (
+          <div className="sticky top-[41px] z-20 border-b border-hair bg-bg/95 backdrop-blur px-5 py-2">
+            <PlannerBudgetBar
+              pointsSpent={pointsSpent}
+              nodeCount={selectedNodeIds.size}
+              onShare={handleShare}
+              onClear={handleClear}
+            />
+          </div>
+        )}
+
+        {/* Toast */}
+        {toast && (
+          <div className="fixed top-4 right-4 z-50 bg-green-dim text-text text-[11px] px-3 py-1.5 rounded shadow-lg">
+            {toast}
+          </div>
+        )}
 
         {loading && (
           <div className="flex items-center justify-center py-20 text-text-dim text-sm">Loading...</div>
@@ -251,6 +492,11 @@ export default function TechTree() {
                     onHoverNode={setHoveredNodeId}
                     highlightedNodes={highlightedNodes}
                     initialOpenSubId={deepLinkedSubId}
+                    plannerMode={plannerMode}
+                    selectedIds={selectedNodeIds}
+                    mainPrereqsMet={mainPrereqsMet}
+                    onPlannerToggleSub={handlePlannerToggleSub}
+                    onPlannerSelectAll={handlePlannerSelectAll}
                   />
                 </div>
               )
@@ -277,13 +523,38 @@ export default function TechTree() {
                     node={node}
                     isExpanded={expandedNodeId === node.id}
                     onToggle={() => handleToggleNode(node.id)}
+                    plannerMode={plannerMode}
+                    selectedIds={selectedNodeIds}
+                    mainPrereqsMet={mainPrereqsMet.get(node.id)}
+                    onPlannerToggleSub={handlePlannerToggleSub}
+                    onPlannerSelectAll={handlePlannerSelectAll}
                   />
                 ))}
               </div>
             </div>
           </div>
         )}
+
+        {/* Recipe summary panel */}
+        {plannerMode && data && idx && (
+          <PlannerRecipePanel
+            selected={selectedNodeIds}
+            idx={idx}
+            data={data}
+          />
+        )}
       </div>
+
+      {/* Confirmation dialog */}
+      {confirmDialog && (
+        <PlannerConfirmDialog
+          type={confirmDialog.type}
+          nodes={confirmDialog.nodes}
+          totalPoints={confirmDialog.totalPoints}
+          onConfirm={handleConfirm}
+          onCancel={() => setConfirmDialog(null)}
+        />
+      )}
     </>
   )
 }

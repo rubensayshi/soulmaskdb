@@ -210,9 +210,16 @@ def main():
                 (parent, n["id"]),
             )
 
-    # tech node prerequisites (full list)
+    # tech node prerequisites (full list — main→main and sub→sub)
     for n in tech_nodes:
         for prereq_id in (n.get("prerequisite_main_nodes") or []):
+            if prereq_id in existing_node_ids:
+                db.execute(
+                    "INSERT OR IGNORE INTO tech_node_prerequisites "
+                    "(tech_node_id, prerequisite_id) VALUES (?,?)",
+                    (n["id"], prereq_id),
+                )
+        for prereq_id in (n.get("prerequisite_sub_nodes") or []):
             if prereq_id in existing_node_ids:
                 db.execute(
                     "INSERT OR IGNORE INTO tech_node_prerequisites "

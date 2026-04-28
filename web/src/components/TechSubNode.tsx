@@ -5,28 +5,56 @@ interface Props {
   node: TechSubNodeType
   isOpen: boolean
   onToggle: () => void
+  plannerMode?: boolean
+  isSelected?: boolean
+  isAutoLearned?: boolean
+  prereqsMet?: boolean
+  onPlannerToggle?: () => void
 }
 
-export default function TechSubNode({ node, isOpen, onToggle }: Props) {
+export default function TechSubNode({ node, isOpen, onToggle, plannerMode, isSelected, isAutoLearned, prereqsMet, onPlannerToggle }: Props) {
   const name = node.name || node.name_zh || node.id
+
+  const handleClick = () => {
+    if (plannerMode && !isAutoLearned && onPlannerToggle) {
+      onPlannerToggle()
+    } else {
+      onToggle()
+    }
+  }
 
   return (
     <div>
       <button
-        onClick={onToggle}
+        onClick={handleClick}
         className={`w-full flex items-center gap-1.5 rounded px-2 py-1 text-left text-[11px] transition-colors ${
-          isOpen
-            ? 'bg-green-500/10 text-white border border-green-500/30'
-            : 'bg-green-500/[0.06] text-neutral-300 hover:bg-green-500/10'
+          plannerMode && isAutoLearned
+            ? 'bg-panel text-text-dim cursor-default'
+            : plannerMode && isSelected
+              ? 'bg-green/20 text-green-hi border border-green-dim'
+              : plannerMode && !prereqsMet
+                ? 'bg-panel text-text-dim opacity-50 hover:opacity-80'
+                : isOpen
+                  ? 'bg-green-500/10 text-white border border-green-500/30'
+                  : 'bg-green-500/[0.06] text-neutral-300 hover:bg-green-500/10'
         }`}
+        title={plannerMode && isAutoLearned ? 'Auto-learned (no cost)' : plannerMode && !prereqsMet ? 'Prerequisites not met — click to auto-select chain' : undefined}
       >
+        {plannerMode && !isAutoLearned && (
+          <span className={`text-[10px] shrink-0 w-3.5 text-center ${isSelected ? 'text-green' : 'text-text-dim'}`}>
+            {isSelected ? '✓' : '○'}
+          </span>
+        )}
         <span className="flex-1 truncate">{name}</span>
-        {node.points != null && (
-          <span className="text-neutral-500 text-[10px] shrink-0">{node.points}pt</span>
+        {node.points != null && node.points > 0 && (
+          <span className={`text-[10px] shrink-0 ${plannerMode && isSelected ? 'text-green-dim' : 'text-neutral-500'}`}>{node.points}pt</span>
+        )}
+        {plannerMode && isAutoLearned && (
+          <span className="text-[9px] text-text-dim shrink-0 italic">auto</span>
         )}
       </button>
 
-      {isOpen && (
+      {isOpen && !plannerMode && (
         <div className="mt-1 mb-1 rounded border border-teal-700 bg-[#1e2d38] p-2">
           <div className="text-xs font-semibold text-white mb-0.5">{name}</div>
           <div className="text-[10px] text-neutral-400 mb-2">
