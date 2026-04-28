@@ -131,6 +131,7 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 	mainNodes := map[string]dbgen.TechNode{}
 	subNodes := map[string]dbgen.TechNode{}
 	childMap := map[string][]string{}
+	bonfireNodes := map[string]dbgen.TechNode{}
 
 	for _, n := range allNodes {
 		cat := ""
@@ -144,6 +145,9 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 			if n.ParentID.Valid {
 				childMap[n.ParentID.String] = append(childMap[n.ParentID.String], n.ID)
 			}
+		}
+		if cat == "main" {
+			bonfireNodes[n.ID] = n
 		}
 	}
 
@@ -251,7 +255,7 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 
 	var tiers []TechTier
 	for _, bfID := range bonfireChain {
-		bfNode, hasBf := mainNodes[bfID]
+		bfNode, hasBf := bonfireNodes[bfID]
 		if !hasBf {
 			continue
 		}
@@ -289,7 +293,7 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		sortByLevel(left)
-		sortByLevel(right)
+		sortRightByLeftPosition(left, right)
 		if left == nil {
 			left = []TechMainNode{}
 		}
@@ -320,6 +324,27 @@ func (s *Server) handleTechTree(w http.ResponseWriter, r *http.Request) {
 	resp := TechTreeResponse{Tiers: tiers, Untiered: untiered}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp)
+}
+
+func sortRightByLeftPosition(left, right []TechMainNode) {
+	leftPos := map[string]int{}
+	for i, n := range left {
+		leftPos[n.ID] = i
+	}
+	sort.SliceStable(right, func(i, j int) bool {
+		pi, pj := len(left), len(left)
+		for _, dep := range right[i].DependsOn {
+			if p, ok := leftPos[dep]; ok && p < pi {
+				pi = p
+			}
+		}
+		for _, dep := range right[j].DependsOn {
+			if p, ok := leftPos[dep]; ok && p < pj {
+				pj = p
+			}
+		}
+		return pi < pj
+	})
 }
 
 func stringOrEmpty(ns sql.NullString) string {

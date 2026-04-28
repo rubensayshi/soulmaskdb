@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { fetchTechTree } from '../lib/api'
@@ -12,6 +12,15 @@ const MODES: { key: TechMode; label: string }[] = [
   { key: 'management', label: 'Management' },
 ]
 
+interface DepLine {
+  fromId: string
+  toId: string
+  x1: number
+  y1: number
+  x2: number
+  y2: number
+}
+
 export default function TechTree() {
   const { slug } = useParams<{ slug?: string }>()
 
@@ -22,6 +31,7 @@ export default function TechTree() {
   const [expandedNodeId, setExpandedNodeId] = useState<string | null>(null)
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [lines, setLines] = useState<DepLine[]>([])
 
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
@@ -61,6 +71,59 @@ export default function TechTree() {
     }
   }, [slug, data])
 
+  const allDeps = useMemo(() => {
+    if (!data) return []
+    const deps: { fromId: string; toId: string }[] = []
+    for (const tier of data.tiers) {
+      for (const node of [...tier.nodes.left, ...tier.nodes.right]) {
+        for (const depId of (node.depends_on || [])) {
+          deps.push({ fromId: depId, toId: node.id })
+        }
+      }
+    }
+    return deps
+  }, [data])
+
+  const computeLines = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container || allDeps.length === 0) { setLines([]); return }
+
+    const rect = container.getBoundingClientRect()
+    const newLines: DepLine[] = []
+
+    for (const dep of allDeps) {
+      const fromEl = container.querySelector(`[data-node-id="${dep.fromId}"]`) as HTMLElement | null
+      const toEl = container.querySelector(`[data-node-id="${dep.toId}"]`) as HTMLElement | null
+      if (!fromEl || !toEl) continue
+
+      const fromRect = fromEl.getBoundingClientRect()
+      const toRect = toEl.getBoundingClientRect()
+
+      newLines.push({
+        fromId: dep.fromId,
+        toId: dep.toId,
+        x1: fromRect.right - rect.left + container.scrollLeft,
+        y1: fromRect.top + fromRect.height / 2 - rect.top + container.scrollTop,
+        x2: toRect.left - rect.left + container.scrollLeft,
+        y2: toRect.top + toRect.height / 2 - rect.top + container.scrollTop,
+      })
+    }
+    setLines(newLines)
+  }, [allDeps])
+
+  useEffect(() => {
+    requestAnimationFrame(computeLines)
+  }, [computeLines, expandedNodeId, data, searchQuery])
+
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+    const observer = new ResizeObserver(() => requestAnimationFrame(computeLines))
+    observer.observe(container)
+    container.addEventListener('scroll', computeLines)
+    return () => { observer.disconnect(); container.removeEventListener('scroll', computeLines) }
+  }, [computeLines])
+
   const handleToggleNode = useCallback((id: string) => {
     setExpandedNodeId(prev => prev === id ? null : id)
   }, [])
@@ -74,6 +137,18 @@ export default function TechTree() {
       s => (s.name || '').toLowerCase().includes(q) || (s.name_zh || '').includes(searchQuery)
     )
   }, [searchQuery])
+
+  const highlightedNodes = useMemo(() => {
+    if (!hoveredNodeId) return undefined
+    const set = new Set<string>([hoveredNodeId])
+    for (const line of lines) {
+      if (line.fromId === hoveredNodeId || line.toId === hoveredNodeId) {
+        set.add(line.fromId)
+        set.add(line.toId)
+      }
+    }
+    return set
+  }, [hoveredNodeId, lines])
 
   return (
     <>
@@ -89,18 +164,18 @@ export default function TechTree() {
       </Helmet>
 
       <div className="-mx-9 -mt-7">
-        <div className="sticky top-0 z-20 flex items-center gap-3 border-b border-neutral-800 bg-[#16212B]/95 backdrop-blur px-4 py-2.5">
-          <h1 className="text-sm font-bold text-white mr-2">Tech Tree</h1>
+        <div className="sticky top-0 z-20 flex items-center gap-3 border-b border-hair bg-bg/95 backdrop-blur px-5 py-2.5">
+          <h1 className="font-heading text-[16px] font-bold text-text tracking-[.06em] mr-2">Tech Tree</h1>
 
           <div className="flex gap-1">
             {MODES.map(m => (
               <button
                 key={m.key}
                 onClick={() => setMode(m.key)}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                className={`px-3 py-1 text-[11px] font-semibold uppercase tracking-[.1em] transition-colors ${
                   mode === m.key
-                    ? 'bg-teal-700 text-white'
-                    : 'bg-white/[0.05] text-neutral-500 border border-neutral-700 hover:text-neutral-300'
+                    ? 'bg-green/15 text-green border border-green-dim'
+                    : 'bg-panel text-text-dim border border-hair hover:text-text-mute'
                 }`}
               >
                 {m.label}
@@ -115,22 +190,45 @@ export default function TechTree() {
             placeholder="Search tech nodes..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-52 rounded border border-neutral-700 bg-white/[0.05] px-3 py-1 text-xs text-neutral-300 placeholder-neutral-600 outline-none focus:border-teal-600"
+            className="w-52 border border-hair bg-panel px-3 py-1 text-[11px] text-text placeholder-text-dim outline-none focus:border-green-dim"
           />
         </div>
 
         {loading && (
-          <div className="flex items-center justify-center py-20 text-neutral-500 text-sm">Loading...</div>
+          <div className="flex items-center justify-center py-20 text-text-dim text-sm">Loading...</div>
         )}
         {error && (
-          <div className="flex items-center justify-center py-20 text-red-400 text-sm">{error}</div>
+          <div className="flex items-center justify-center py-20 text-rust text-sm">{error}</div>
         )}
 
         {data && (
           <div
             ref={scrollContainerRef}
-            className="flex gap-0.5 p-3 overflow-x-auto items-start"
+            className="relative flex gap-1 p-3 overflow-x-auto items-start"
           >
+            <svg
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{ width: scrollContainerRef.current?.scrollWidth || '100%', height: scrollContainerRef.current?.scrollHeight || '100%' }}
+            >
+              {lines.map((line, i) => {
+                const active = highlightedNodes?.has(line.fromId) && highlightedNodes?.has(line.toId)
+                const dimmed = hoveredNodeId && !active
+                const dx = Math.abs(line.x2 - line.x1)
+                const cp = Math.min(dx * 0.4, 40)
+                return (
+                  <path
+                    key={i}
+                    d={`M ${line.x1} ${line.y1} C ${line.x1 + cp} ${line.y1}, ${line.x2 - cp} ${line.y2}, ${line.x2} ${line.y2}`}
+                    stroke="#5a6e48"
+                    strokeWidth={active ? 2 : 1}
+                    fill="none"
+                    opacity={dimmed ? 0.06 : active ? 0.7 : 0.25}
+                    className="transition-opacity duration-150"
+                  />
+                )
+              })}
+            </svg>
+
             {data.tiers.map(tier => {
               const hasMatch = !searchQuery || [...tier.nodes.left, ...tier.nodes.right].some(matchesSearch)
               return (
@@ -150,6 +248,7 @@ export default function TechTree() {
                     onToggleNode={handleToggleNode}
                     hoveredNodeId={hoveredNodeId}
                     onHoverNode={setHoveredNodeId}
+                    highlightedNodes={highlightedNodes}
                   />
                 </div>
               )
@@ -159,10 +258,15 @@ export default function TechTree() {
 
         {data && data.untiered.length > 0 && (
           <div className="px-3 pb-6">
-            <div className="rounded-lg border border-neutral-800 bg-white/[0.01] overflow-hidden" style={{ maxWidth: 400 }}>
-              <div className="bg-neutral-800 text-neutral-300 px-4 py-2 text-center text-sm font-semibold">
-                Guardian Armor Sets
-                <div className="text-[10px] text-neutral-500 font-normal">No tier prerequisite</div>
+            <div className="border border-hair bg-panel overflow-hidden" style={{ maxWidth: 400 }}>
+              <div className="flex items-center gap-3 px-4 py-2.5 border-b border-hair">
+                <svg viewBox="0 0 14 14" className="w-[14px] h-[14px] flex-shrink-0" fill="none" stroke="#b8a060" strokeWidth="1" strokeLinecap="square">
+                  <path d="M7 1 L13 7 L7 13 L1 7 Z" />
+                  <path d="M7 4 L10 7 L7 10 L4 7 Z" fill="#b8a060" stroke="none" opacity=".6" />
+                </svg>
+                <span className="font-display text-[15px] font-semibold text-gold tracking-[.04em]">Untiered</span>
+                <span className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium">No prerequisite</span>
+                <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, #7a6830 0%, transparent 100%)' }} />
               </div>
               <div className="p-2 flex flex-col gap-1">
                 {data.untiered.map(node => (
