@@ -1,59 +1,49 @@
-# Loot drop rate browser
+# Loot & drop enhancements
 
-## Summary
+## What we already have
 
-Expose actual drop probabilities from game data so players can see exactly how likely each item is to drop from each source, with quantity ranges.
+Item detail pages show drop sources with probabilities, quantity ranges, and source creature names via the "Obtained From" section. Filterable by source type, sorted by probability. This is already more than any competitor shows.
 
-## Demand evidence
+## What's still missing
 
-**Reddit (r/SoulmaskGame)** — "where do I find X?" is one of the most common post types:
-- "Best place to farm Bloodstone?"
-- "Where do rare mount saddle blueprints drop?"
-- "Is X boss worth farming or should I farm Y instead?"
-- Players sharing anecdotal drop rates ("I killed 50 of X and got 3 of Y") because no authoritative source exists
+### 1. Reverse lookup — "what does creature X drop?"
 
-**Steam Community** — loot-related questions are a top category:
-- Drop rate comparisons between creature types
-- Whether difficulty/area affects drop quality
-- Chest vs creature vs gathering node probabilities
+We show "item Y drops from creature X" but not the other direction. Players frequently want to know the full loot table for a specific creature or boss before deciding to farm it.
 
-**Fandom/Fextralife wikis** — list drop sources but without probabilities. Typical entry: "Drops from: Wolf, Bear, Chest" with no percentages or quantity info. Players in comments asking "but what's the actual drop rate?"
+**Demand:** Steam thread "Enemy drops" asking for comprehensive creature→loot lists. YouTube videos titled "what does [boss] drop?" with 10K+ views.
 
-**Key insight:** players make farming decisions (which creature to grind, which area to explore) based on incomplete information. Actual probabilities would directly improve their gameplay efficiency.
+### 2. Quality tier drop mechanics
+
+Players ask how to get higher quality gear — "How to unlock uncommon loot?" and "Adjust chance at higher quality gear?" are active Steam threads. This is about the RNG system that determines item rarity, not which creature drops what.
+
+**Demand:** Steam threads specifically about quality chances. 2026 meta guides mention "Scavenger's Luck" stat boosting rare drop rates by 15-20%.
+
+### 3. Loot-only items (mods, blueprints)
+
+Mod 3 items can't be crafted — they only drop from specific bosses, elites, and ruins chests. Players need to know exactly which sources drop them. Steam thread "Where to find Mod 3 items" asks this directly.
+
+**Demand:** recurring questions about which items are loot-only and where specifically they come from.
+
+### 4. Farming efficiency comparison
+
+"Is it better to farm A or B for material X?" — players want to compare sources by expected yield (probability x quantity) per kill/run, not just see raw percentages.
+
+**Demand:** guides like "Best place to farm Bloodstone," "Red crystal farming guide," and "Early 30s farm spot" are among the most popular Soulmask content. Players are optimizing farming routes.
 
 ## Competitor gap
 
-| Tool                  | Lists drop sources? | Shows probabilities? | Shows quantities? |
-| --------------------- | ------------------- | -------------------- | ----------------- |
-| soulmaskdatabase.com  | Yes                 | No                   | No                |
-| saraserenity.net      | Partial             | No                   | No                |
-| Fextralife wiki       | Yes                 | No                   | No                |
-| Fandom wiki           | Partial             | No                   | No                |
+| Tool                 | Drop probabilities? | Reverse lookup? | Quality mechanics? | Farming comparison? |
+| -------------------- | ------------------- | --------------- | ------------------ | ------------------- |
+| Us (current)         | Yes                 | No              | No                 | No                  |
+| soulmaskdatabase.com | No                  | No              | No                 | No                  |
+| saraserenity.net     | No                  | No              | No                 | No                  |
+| Fextralife wiki      | No                  | No              | Some guides        | No                  |
 
-We would be the only tool showing actual game-data probabilities.
+## Effort estimates
 
-## What we have
-
-- `drops.json` — 206K entries with:
-  - Source creature/container
-  - Item dropped
-  - Probability groups (weighted random selection)
-  - Quantity ranges (min/max per drop)
-  - Drop table hierarchy (which table feeds which)
-- Already partially surfaced on item detail pages via "Obtained From" section
-
-## Feature ideas
-
-**Core browser:**
-- On item detail pages: expand "Obtained From" to show actual % chance and quantity range
-- Sortable by probability (best farming spot first)
-- Filter by source type (creature, chest, gathering, boss)
-
-**Standalone page:**
-- "What does X creature drop?" — reverse lookup, see full loot table for a creature
-- Drop table comparison — compare two farming sources side by side
-- "Best source for X material" — ranked by expected items per kill
-
-## Effort estimate
-
-Low-medium (1-3 days). Data is complete and already partially integrated. Main work is UI enhancement on item detail pages and optionally a standalone loot table browser page.
+| Enhancement              | Effort     | Notes                                                      |
+| ------------------------ | ---------- | ---------------------------------------------------------- |
+| Reverse lookup (creature loot tables) | Low (1-2 days) | Data exists, need creature detail page or modal |
+| Farming efficiency ranking | Low (1 day) | Compute expected yield, sort by it                |
+| Loot-only item tagging   | Low (1 day) | Flag items with no recipe, surface on item pages           |
+| Quality tier mechanics   | Unknown    | May not be in extracted data — needs investigation         |
