@@ -139,3 +139,52 @@ export interface ItemDetail {
   seed_source?: SeedSource
   spawn_locations?: SpawnMapData[]
 }
+
+export interface TechRecipeLink {
+  recipe_id: string
+  item_id: string
+  item_name: string
+  item_name_zh?: string | null
+  item_slug?: string | null
+  item_icon?: string | null
+}
+
+export interface TechSubNode {
+  id: string
+  name: string
+  name_zh?: string | null
+  slug?: string | null
+  awareness_level?: number | null
+  points?: number | null
+  recipes: TechRecipeLink[]
+}
+
+export interface TechMainNode {
+  id: string
+  name: string
+  name_zh?: string | null
+  slug?: string | null
+  awareness_level?: number | null
+  icon_path?: string | null
+  depends_on?: string[]
+  sub_nodes: TechSubNode[]
+}
+
+export interface TechTierNodes {
+  left: TechMainNode[]
+  right: TechMainNode[]
+}
+
+export interface TechTier {
+  id: string
+  name: string
+  awareness_level: number
+  nodes: TechTierNodes
+}
+
+export interface TechTreeResponse {
+  tiers: TechTier[]
+  untiered: TechMainNode[]
+}
+
+export type TechMode = 'survival' | 'soldier' | 'management'

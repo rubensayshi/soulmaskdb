@@ -189,14 +189,16 @@ def main():
     for n in tech_nodes:
         db.execute(
             "INSERT INTO tech_nodes (id, category, name_zh, name_en, description_zh, "
-            "required_mask_level, consume_points, parent_id, icon_path) "
-            "VALUES (?,?,?,?,?,?,?,?,?)",
+            "required_mask_level, consume_points, parent_id, icon_path, is_sub, slug) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
             (
                 n["id"], n.get("category"), n.get("name_zh"), None,
                 n.get("description_zh"), n.get("required_mask_level"),
                 n.get("consume_points"),
                 None,
                 n.get("icon_path"),
+                1 if n.get("is_sub") else 0,
+                None,
             ),
         )
     existing_node_ids = {n["id"] for n in tech_nodes}
@@ -207,6 +209,16 @@ def main():
                 "UPDATE tech_nodes SET parent_id=? WHERE id=?",
                 (parent, n["id"]),
             )
+
+    # tech node prerequisites (full list)
+    for n in tech_nodes:
+        for prereq_id in (n.get("prerequisite_main_nodes") or []):
+            if prereq_id in existing_node_ids:
+                db.execute(
+                    "INSERT OR IGNORE INTO tech_node_prerequisites "
+                    "(tech_node_id, prerequisite_id) VALUES (?,?)",
+                    (n["id"], prereq_id),
+                )
 
     # tech unlocks — only link recipes that we actually inserted
     for n in tech_nodes:
@@ -232,6 +244,15 @@ def main():
             "INSERT OR IGNORE INTO translations (key, en, source) VALUES (?,?,?)",
             (key, en, "manual"),
         )
+
+    tech_names_path = TRANSLATIONS / "tech_tree_names.json"
+    if tech_names_path.exists():
+        tech_names = load_json(tech_names_path).get("entries", {})
+        for key, en in tech_names.items():
+            db.execute(
+                "INSERT OR REPLACE INTO translations (key, en, source) VALUES (?,?,?)",
+                (key, en, "tech_tree_names"),
+            )
 
     def ensure(prefix: str, raw_id: str):
         key = f"{prefix}:{raw_id}"
@@ -271,6 +292,12 @@ def main():
           SELECT en FROM translations WHERE key = 'tech_node:' || tech_nodes.id
         )
     """)
+
+    # Compute tech node slugs from name_en
+    tn_rows = db.execute("SELECT id, name_en, name_zh FROM tech_nodes").fetchall()
+    for tn_id, tn_en, tn_zh in tn_rows:
+        name = tn_en or tn_zh or tn_id
+        db.execute("UPDATE tech_nodes SET slug=? WHERE id=?", (slugify(name), tn_id))
 
     # Compute unique slugs from name_en (already populated via translations).
     rows = db.execute("SELECT id, name_en FROM items").fetchall()

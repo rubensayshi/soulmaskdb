@@ -620,6 +620,127 @@ func (q *Queries) ListStationsForGraph(ctx context.Context) ([]ListStationsForGr
 	return items, nil
 }
 
+const listTechNodePrerequisites = `-- name: ListTechNodePrerequisites :many
+SELECT tech_node_id, prerequisite_id
+FROM tech_node_prerequisites
+`
+
+func (q *Queries) ListTechNodePrerequisites(ctx context.Context) ([]TechNodePrerequisite, error) {
+	rows, err := q.db.QueryContext(ctx, listTechNodePrerequisites)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []TechNodePrerequisite{}
+	for rows.Next() {
+		var i TechNodePrerequisite
+		if err := rows.Scan(&i.TechNodeID, &i.PrerequisiteID); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listTechNodeRecipeUnlocks = `-- name: ListTechNodeRecipeUnlocks :many
+SELECT u.tech_node_id, u.recipe_id,
+       i.name_en AS item_name_en, i.name_zh AS item_name_zh,
+       i.id AS item_id, i.slug AS item_slug, i.icon_path AS item_icon
+FROM tech_node_unlocks_recipe u
+JOIN recipes r ON r.id = u.recipe_id
+JOIN items i ON i.id = r.output_item_id
+`
+
+type ListTechNodeRecipeUnlocksRow struct {
+	TechNodeID string
+	RecipeID   string
+	ItemNameEn sql.NullString
+	ItemNameZh sql.NullString
+	ItemID     string
+	ItemSlug   sql.NullString
+	ItemIcon   sql.NullString
+}
+
+func (q *Queries) ListTechNodeRecipeUnlocks(ctx context.Context) ([]ListTechNodeRecipeUnlocksRow, error) {
+	rows, err := q.db.QueryContext(ctx, listTechNodeRecipeUnlocks)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []ListTechNodeRecipeUnlocksRow{}
+	for rows.Next() {
+		var i ListTechNodeRecipeUnlocksRow
+		if err := rows.Scan(
+			&i.TechNodeID,
+			&i.RecipeID,
+			&i.ItemNameEn,
+			&i.ItemNameZh,
+			&i.ItemID,
+			&i.ItemSlug,
+			&i.ItemIcon,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listTechNodes = `-- name: ListTechNodes :many
+SELECT id, category, name_zh, name_en, description_zh,
+       required_mask_level, consume_points, parent_id,
+       icon_path, is_sub, slug
+FROM tech_nodes
+ORDER BY required_mask_level, id
+`
+
+func (q *Queries) ListTechNodes(ctx context.Context) ([]TechNode, error) {
+	rows, err := q.db.QueryContext(ctx, listTechNodes)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []TechNode{}
+	for rows.Next() {
+		var i TechNode
+		if err := rows.Scan(
+			&i.ID,
+			&i.Category,
+			&i.NameZh,
+			&i.NameEn,
+			&i.DescriptionZh,
+			&i.RequiredMaskLevel,
+			&i.ConsumePoints,
+			&i.ParentID,
+			&i.IconPath,
+			&i.IsSub,
+			&i.Slug,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const searchItems = `-- name: SearchItems :many
 SELECT id, name_en, name_zh, category
 FROM items

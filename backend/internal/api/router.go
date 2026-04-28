@@ -30,5 +30,6 @@ func (s *Server) Router() chi.Router {
 	r.Get("/items/{id}", s.handleItem)
 	r.Get("/search", s.handleSearch)
 	r.Get("/food-buffs", s.handleFoodBuffs)
+	r.Get("/tech-tree", s.handleTechTree)
 	return r
 }

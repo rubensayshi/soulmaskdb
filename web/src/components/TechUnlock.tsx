@@ -1,4 +1,9 @@
+import { Link } from 'react-router-dom'
 import type { TechUnlock as TechUnlockType } from '../lib/types'
+
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
 
 interface Props {
   unlocks: TechUnlockType[]
@@ -12,8 +17,9 @@ export default function TechUnlock({ unlocks }: Props) {
       {unlocks.map(u => {
         const name = u.name_en ?? u.name_zh ?? u.id
         const parentName = u.parent_name_en ?? u.parent_name_zh
+        const techSlug = slugify(name)
         return (
-          <div key={u.id} className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] border border-hair bg-panel">
+          <Link key={u.id} to={`/tech-tree/${techSlug}`} className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] border border-hair bg-panel hover:border-green-dim transition-colors">
             <svg viewBox="0 0 12 12" className="w-3 h-3 text-gold flex-shrink-0" fill="currentColor">
               <path d="M6 0L7.5 4.5L12 6L7.5 7.5L6 12L4.5 7.5L0 6L4.5 4.5Z" />
             </svg>
@@ -27,7 +33,7 @@ export default function TechUnlock({ unlocks }: Props) {
             {u.required_mask_level != null && (
               <span className="text-text-dim">(Mask Lv.{u.required_mask_level})</span>
             )}
-          </div>
+          </Link>
         )
       })}
     </div>

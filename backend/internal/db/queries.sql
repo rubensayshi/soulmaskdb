@@ -95,3 +95,22 @@ ORDER BY cs.map, cs.creature_type, cs.lat, cs.lon;
 
 -- name: ListItemSlugs :many
 SELECT id, slug FROM items;
+
+-- name: ListTechNodes :many
+SELECT id, category, name_zh, name_en, description_zh,
+       required_mask_level, consume_points, parent_id,
+       icon_path, is_sub, slug
+FROM tech_nodes
+ORDER BY required_mask_level, id;
+
+-- name: ListTechNodePrerequisites :many
+SELECT tech_node_id, prerequisite_id
+FROM tech_node_prerequisites;
+
+-- name: ListTechNodeRecipeUnlocks :many
+SELECT u.tech_node_id, u.recipe_id,
+       i.name_en AS item_name_en, i.name_zh AS item_name_zh,
+       i.id AS item_id, i.slug AS item_slug, i.icon_path AS item_icon
+FROM tech_node_unlocks_recipe u
+JOIN recipes r ON r.id = u.recipe_id
+JOIN items i ON i.id = r.output_item_id;

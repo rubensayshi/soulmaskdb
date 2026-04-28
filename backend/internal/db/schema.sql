@@ -60,7 +60,16 @@ CREATE TABLE tech_nodes (
   required_mask_level  INTEGER,
   consume_points       INTEGER,
   parent_id            TEXT REFERENCES tech_nodes(id),
-  icon_path            TEXT
+  icon_path            TEXT,
+  is_sub               INTEGER NOT NULL DEFAULT 0,
+  slug                 TEXT
+);
+CREATE INDEX idx_tech_nodes_slug ON tech_nodes(slug);
+
+CREATE TABLE tech_node_prerequisites (
+  tech_node_id      TEXT NOT NULL REFERENCES tech_nodes(id),
+  prerequisite_id   TEXT NOT NULL REFERENCES tech_nodes(id),
+  PRIMARY KEY (tech_node_id, prerequisite_id)
 );
 
 CREATE TABLE tech_node_unlocks_recipe (

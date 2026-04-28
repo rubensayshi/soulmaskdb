@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Item from './pages/Item'
 import AwarenessXp from './pages/AwarenessXp'
 import FoodAlmanac from './pages/FoodAlmanac'
+import TechTree from './pages/TechTree'
 
 export default function App() {
   const loadGraph = useStore(s => s.loadGraph)
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/item/:id" element={<Item />} />
         <Route path="/awareness-xp" element={<AwarenessXp />} />
         <Route path="/food-almanac" element={<FoodAlmanac />} />
+        <Route path="/tech-tree" element={<TechTree />} />
+        <Route path="/tech-tree/:slug" element={<TechTree />} />
       </Routes>
     </Layout>
   )

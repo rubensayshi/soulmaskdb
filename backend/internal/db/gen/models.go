@@ -104,6 +104,13 @@ type TechNode struct {
 	ConsumePoints     sql.NullInt64
 	ParentID          sql.NullString
 	IconPath          sql.NullString
+	IsSub             int64
+	Slug              sql.NullString
+}
+
+type TechNodePrerequisite struct {
+	TechNodeID     string
+	PrerequisiteID string
 }
 
 type TechNodeUnlocksRecipe struct {

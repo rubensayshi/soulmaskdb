@@ -22,6 +22,7 @@ export default function TopNav() {
 
   const tabs = [
     { to: recipesTo, label: 'Recipes', match: (p: string) => p.startsWith('/item/') },
+    { to: '/tech-tree', label: 'Tech Tree', match: (p: string) => p.startsWith('/tech-tree') },
     { to: '/awareness-xp', label: 'Awareness XP', match: (p: string) => p === '/awareness-xp' },
     { to: '/food-almanac', label: 'Food Almanac', match: (p: string) => p === '/food-almanac' },
   ]

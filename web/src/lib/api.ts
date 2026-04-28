@@ -1,4 +1,4 @@
-import type { Graph, BuffedItem, ItemDetail } from './types'
+import type { Graph, BuffedItem, ItemDetail, TechTreeResponse, TechMode } from './types'
 
 export async function fetchGraph(etag: string | null): Promise<
   { status: 'notModified' } | { status: 'loaded'; graph: Graph; etag: string }
@@ -38,4 +38,10 @@ export async function search(q: string, limit = 50): Promise<SearchHit[]> {
   if (!res.ok) throw new Error(`search: ${res.status}`)
   const hits: SearchHit[] = await res.json()
   return hits.filter(h => h.category !== 'tip')
+}
+
+export async function fetchTechTree(mode: TechMode = 'survival'): Promise<TechTreeResponse> {
+  const res = await fetch(`/api/tech-tree?mode=${mode}`)
+  if (!res.ok) throw new Error(`tech-tree: ${res.status}`)
+  return res.json()
 }
