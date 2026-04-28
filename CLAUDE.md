@@ -96,6 +96,20 @@ This helper (and `find_props` / `get_prop` / `text_zh`) is copy-pasted into each
 - Cross-references (`recipe.output.item_id` → `items[].id`, `tech_node.unlocks_recipes[]` → `recipes[].id`, etc.) are documented with current coverage in `docs/DATA.md`. Changes that drop coverage are regressions even though there are no tests.
 - `Game/Parsed/*.json` is committed; `Game/Exports/*.json` is committed; `uasset_export/` is gitignored (too big).
 
+## Features overview
+
+The app has five pages plus a persistent sidebar. Detailed feature inventory in `docs/FEATURES.md`.
+
+| Page                | Route              | What it does                                                     |
+| ------------------- | ------------------ | ---------------------------------------------------------------- |
+| Home                | `/`                | Hero, stats strip, featured crafting chains, changelog           |
+| Item detail         | `/item/:id`        | Crafting flow tree, stats, quality tiers, drops, spawns, seeds   |
+| Tech tree           | `/tech-tree`       | Tiered node viewer with dependency lines, 3 modes, search        |
+| Awareness XP        | `/awareness-xp`    | Recipes ranked by XP/min, filterable by tier/skill/role          |
+| Food almanac        | `/food-almanac`    | Tabbed comparison table of food/drink/potion buffs               |
+
+Global: sidebar search (debounced API call) + recent visits history. Tweaks panel (bottom-right gear) controls raw-materials display. SEO: per-page meta, JSON-LD on items, XML sitemap.
+
 ## Changelog
 
 The home page (`web/src/pages/Home.tsx`) has a `CHANGELOG` array shown to visitors. Update it when a change is user-visible (new data, new UI feature, meaningful fix). Skip internal refactors, parser tweaks, or pipeline changes.
