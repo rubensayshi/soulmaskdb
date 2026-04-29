@@ -41,7 +41,10 @@ interface ConfirmState {
 export default function TechTree() {
   const { slug } = useParams<{ slug?: string }>()
 
-  const [mode, setMode] = useState<TechMode>('survival')
+  const [mode, setMode] = useState<TechMode>(() => {
+    const saved = localStorage.getItem('techTree.mode')
+    return saved === 'soldier' || saved === 'management' ? saved : 'survival'
+  })
   const [data, setData] = useState<TechTreeResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -74,23 +77,48 @@ export default function TechTree() {
       .catch(e => { setError(e.message); setLoading(false) })
   }, [mode])
 
-  // Decode URL hash on data load
+  // Decode URL hash on data load, fall back to localStorage
   useEffect(() => {
     if (!data || !idx || hashConsumedRef.current) return
     const raw = window.location.hash
-    if (!raw.startsWith('#build=')) return
-    hashConsumedRef.current = true
-    const hash = raw.slice(7)
-    const decoded = decodeBuild(hash, idx.allSubIds)
-    if (decoded) {
-      if (decoded.mode !== mode) {
-        setMode(decoded.mode)
-        return
+    if (raw.startsWith('#build=')) {
+      hashConsumedRef.current = true
+      const hash = raw.slice(7)
+      const decoded = decodeBuild(hash, idx.allSubIds)
+      if (decoded) {
+        if (decoded.mode !== mode) {
+          setMode(decoded.mode)
+          return
+        }
+        setSelectedNodeIds(decoded.selected)
+        setPlannerMode(true)
       }
-      setSelectedNodeIds(decoded.selected)
-      setPlannerMode(true)
+      return
+    }
+    hashConsumedRef.current = true
+    const saved = localStorage.getItem(`techTree.build.${mode}`)
+    if (saved) {
+      try {
+        const ids: string[] = JSON.parse(saved)
+        const valid = ids.filter(id => idx.subNodes.has(id))
+        if (valid.length > 0) {
+          setSelectedNodeIds(new Set(valid))
+          setPlannerMode(true)
+        }
+      } catch { /* ignore corrupt data */ }
     }
   }, [data, idx, mode])
+
+  // Persist mode and build to localStorage
+  useEffect(() => { localStorage.setItem('techTree.mode', mode) }, [mode])
+  useEffect(() => {
+    if (!hashConsumedRef.current) return
+    if (selectedNodeIds.size > 0) {
+      localStorage.setItem(`techTree.build.${mode}`, JSON.stringify([...selectedNodeIds]))
+    } else {
+      localStorage.removeItem(`techTree.build.${mode}`)
+    }
+  }, [selectedNodeIds, mode])
 
   // Sync selections to URL hash (skip until initial decode is done)
   useEffect(() => {

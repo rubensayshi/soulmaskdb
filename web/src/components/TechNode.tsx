@@ -44,14 +44,14 @@ export default function TechNode({ node, isExpanded, onToggle, highlighted, dimm
               : 'border border-hair'
         }`}
       >
-        <div className={`flex items-center ${
+        <div className={`flex items-center overflow-hidden ${
           effectiveExpanded
             ? 'bg-green/10'
             : 'bg-panel'
         }`}>
           <button
             onClick={onToggle}
-            className={`flex-1 flex items-center gap-1.5 px-2 py-1.5 text-left text-[11px] transition-colors ${
+            className={`flex-1 min-w-0 flex items-center gap-1.5 px-2 py-1.5 text-left text-[11px] transition-colors ${
               effectiveExpanded
                 ? 'text-green font-semibold'
                 : 'text-text-mute hover:bg-panel-hi'
