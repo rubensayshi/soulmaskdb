@@ -69,6 +69,7 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - -50% to -60% damage taken when fighting as a companion follower
 - > Multiple players stated this is "non-negotiable for deployed followers"
 - > Called a "must have" for any NPC sent out to dungeons
+- > "Pretty much a must for any character that you are going to deploy as a follower." -- YouTube: These Talents Are Insane
 
 **Getting Braver** (Claw Tribe exclusive)
 - 15% chance per melee hit: +4% crit chance, crit damage, crit resist, move speed; stacks 5x (= 20% each at max stacks)
@@ -78,6 +79,14 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - Successfully dodging grants immunity to next incoming damage for 2/3/4 seconds (5s cooldown)
 
 ### A-tier (highly valued)
+
+**Static Recovery**
+- Stand still 15s: regen HP = 20% of DEF per second
+- Works in down state — combined with Torch of Eternity mask (enemies ignore you when downed), effectively immortal
+- Also triggers while shield-blocking in place (not moving)
+- > "You have no idea how strong this perk is... you're literally immortal. When you are blocking with a shield and not moving you will just start to regen HP." -- YouTube: These Talents Are Insane
+- > "The most OP talent I have found so far." -- YouTube: These Talents Are Insane
+- Note: reportedly buggy — sometimes triggers in <5s, occasionally while moving (see Unclear/bugged section)
 
 **Bloodbath Recovery**
 - HP recovery on kills
@@ -91,14 +100,17 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 **Trick Force**
 - -30% stamina usage
 - Enables more attacks/dodges per stamina bar
+- > "Essentially gives you 30% more [stamina] because when you're doing actions you're using 30% less. Sweet, simple and effective." -- YouTube: These Talents Are Insane
 
 **Last Radiance**
-- Recover 20% HP over 5s when HP drops below 30%
+- Recover 20% HP over 5s when HP drops below 30% (40s cooldown)
 - Emergency survival / clutch trait
+- > "This keeps you from dying. Plain and simple. It activates at 30% HP so it's not too terribly low... and it can happen every 40 seconds which is pretty often in combat." -- YouTube: These Talents Are Insane
 
-**Pen Def** (Penetration Defense)
-- Ignore defense after parry
+**Pen Def / Insight Death** (Penetration Defense, Flint exclusive)
+- Ignore enemy defense for 7s after a perfect block/parry (30s cooldown)
 - Extremely rare; user Bonedog reported finding it only once after taming "hundreds" of tribesmen
+- > "You attack them as though they are not wearing armor. You do massive amounts of damage... it is a killer of a talent." -- YouTube: These Talents Are Insane
 
 **Fierce Attack**
 - +3/6/9% ATK (scales with tier)
@@ -127,6 +139,21 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - > "Quick Bandaging is my #1. I pretty much won't play a body without it as a main. Half use time on Bandaging is literally game changing what you can get away with." -- u/KodiakmH
 - > "It always helps to be able to heal when I have 2 secs during a fight." -- u/lammaer
 
+**Rapid Growth**
+- +80% character XP gained
+- Pure leveling speed trait — faster access to new talent slots
+- > "The faster you can level your character the better and this helps you do that by adding 80% additional experience." -- YouTube: These Talents Are Insane
+
+**Unnoticeable**
+- -60% vigilance (detection bar fill rate)
+- Must-have for stealth builds
+- > "This is a must for anybody who is playing a stealth character... it's going to allow you to sneak up on people and take them out before they realize what is going on." -- YouTube: These Talents Are Insane
+
+**Marksman Footsteps** (Hunter exclusive)
+- +95% movement speed while aiming with bows (10s duration, no cooldown)
+- Essential for bow kiting — fire, notch another arrow, buff reactivates immediately
+- > "If you like playing archers this is definitely one to keep an eye out for because often the enemy will run up on you and you will have to kite them. This makes kiting them significantly easier." -- YouTube: These Talents Are Insane
+
 **Rapid Fire** (Hunter exclusive)
 - -15/35/55% bow full-charge time
 
@@ -143,8 +170,15 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 **Slaughter Fervency / Enemy Down Fervency**
 - Stacking buffs on kills (+4% crit/crit resist/move speed per stack)
 
-**Endurance / Endurance Burst**
-- Defense stacking with damage multipliers
+**Endurance**
+- On any block: +80% DEF for 6s, +30 resilience (20s cooldown)
+- Solves the resilience-depletion problem when holding block
+- > "In certain situations your stamina can actually hold out longer than your resilience... this essentially makes that not a problem. Resilience is essentially never a problem." -- YouTube: These Talents Are Insane
+
+**Endurance Burst** (Flint exclusive)
+- On block (stamina >60%): +30 resilience (no cooldown), stacking +10% DEF per stack. At 6 stacks: +100% damage for 6s (no cooldown on cycle)
+- Strictly better than Endurance — same resilience recovery but without the cooldown, plus offensive payoff
+- > "You can just go back into a block and let the enemy whale on you again... you'll just start building stacks again. It is nutty strong, like crazy strong. If you're playing a tank style character this is definitely one to keep an eye out for." -- YouTube: These Talents Are Insane
 
 **Acceleration at Stress**
 - 20% chance for +30% movement speed when attacked
@@ -640,9 +674,9 @@ After Boss 3 (Vajra Ape), the mysterious stone table lets you copy an entire tri
 - [Fextralife Beginner Guide](https://fextralife.com/soulmask-beginner-guide-mastering-10-launch-and-shifting-sands/)
 - [TheGamer Best Combat Skills](https://www.thegamer.com/soulmask-best-combat-skills/)
 
-### YouTube (identified but content not extractable)
+### YouTube
 
-- ["These Talents Are Insane In SoulMask"](https://www.youtube.com/watch?v=l10XZOV4sq4)
+- ["These Talents Are Insane In SoulMask"](https://www.youtube.com/watch?v=l10XZOV4sq4) — transcript extracted. Covers: Trick Force, Rapid Growth, Battle Tested, Unnoticeable, Endurance, Last Radiance, Static Recovery, Insight Death (Flint), Marksman Footsteps (Hunter), Endurance Burst (Flint)
 - ["SOULMASK: NPCs Skills, Talents, Qualities, Abilities"](https://www.youtube.com/watch?v=b9M4ZgldtcI)
 - ["SOULMASK Tribesmen Guide | Perks/Stats & Skills"](https://www.youtube.com/watch?v=V0BxG8_iLbE)
 - ["Soulmask PvP Meta 2025 -- Full Build Guide"](https://www.youtube.com/watch?v=kltXsObUttw)
