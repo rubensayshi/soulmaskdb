@@ -252,6 +252,15 @@ def main():
             (key, en, "manual"),
         )
 
+    trait_trans_path = TRANSLATIONS / "traits.json"
+    if trait_trans_path.exists():
+        trait_trans = load_json(trait_trans_path).get("entries", {})
+        for key, en in trait_trans.items():
+            db.execute(
+                "INSERT OR IGNORE INTO translations (key, en, source) VALUES (?,?,?)",
+                (key, en, "claude-generated"),
+            )
+
     tech_names_path = TRANSLATIONS / "tech_tree_names.json"
     if tech_names_path.exists():
         tech_names = load_json(tech_names_path).get("entries", {})
@@ -433,6 +442,44 @@ def main():
             )
             seed_source_count += 1
 
+    # --- traits ---
+    traits_path = PARSED / "traits.json"
+    trait_count = 0
+    if traits_path.exists():
+        traits_data = load_json(traits_path)
+        for t in traits_data:
+            db.execute(
+                "INSERT INTO traits (id, star, name_zh, description_zh, description_vague_zh, "
+                "source, effect, effect_attr, effect_value, effect_is_percentage, "
+                "effect_probability, effect_cooldown, learned_id, upgrade_id, base_weight, "
+                "is_dlc, proficiencies_json, conditions_json, weapons_json) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (
+                    t["id"], t["star"], t.get("name_zh"), t.get("description_zh"),
+                    t.get("description_vague_zh"), t.get("source"), t.get("effect"),
+                    t.get("effect_attr"), t.get("effect_value"),
+                    1 if t.get("effect_is_percentage") else 0,
+                    t.get("effect_probability"), t.get("effect_cooldown"),
+                    t.get("learned_id"), t.get("upgrade_id"), t.get("base_weight"),
+                    1 if t.get("is_dlc") else 0,
+                    json.dumps(t["proficiency_requirements"]) if t.get("proficiency_requirements") else None,
+                    json.dumps(t["conditions"]) if t.get("conditions") else None,
+                    json.dumps(t["weapon_requirements"]) if t.get("weapon_requirements") else None,
+                ),
+            )
+            trait_count += 1
+
+    db.execute("""
+        UPDATE traits SET name_en = (
+          SELECT en FROM translations WHERE key = 'trait:' || traits.id
+        )
+    """)
+    db.execute("""
+        UPDATE traits SET description_en = (
+          SELECT en FROM translations WHERE key = 'trait_desc:' || traits.id
+        )
+    """)
+
     # --- creature spawns ---
     # Base map: pre-normalized from parse_spawns.py (Pinyin → English via creature_names.json).
     # DLC map: from download_dlc_spawns.py (saraserenity.net, temporary until own extraction).
@@ -464,6 +511,7 @@ def main():
     print(f"  tech_nodes:        {len(tech_nodes)}")
     print(f"  drop_sources:      {drop_source_count}")
     print(f"  drop_items:        {drop_item_count}")
+    print(f"  traits:            {trait_count}")
     print(f"  seed_sources:      {seed_source_count}")
     print(f"  creature_spawns:   {spawn_count}")
 
