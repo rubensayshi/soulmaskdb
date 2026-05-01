@@ -1,5 +1,5 @@
 {
-  "_comment": "Community-driven trait rankings. Keyed by learned_id. Tier: S/A/B. Tags: combat, crafting, survival, utility, gathering. Source: docs/TRAITS-COMMUNITY.md",
+  "_comment": "Community-driven trait rankings. Keyed by learned_id or 'name:XYZ' for traits without learned_id. Tier: S/A/B/F. Unranked = C. Source: docs/TRAITS-COMMUNITY.md",
   "entries": {
     "160081": { "tier": "S", "tags": ["combat"],             "note": "Battle Hardened (Claw exclusive) — stacking crit/speed per melee hit, up to 5x" },
     "160611": { "tier": "S", "tags": ["combat"],             "note": "Iron Body — immune to stagger when tenacity above 50%" },
@@ -81,6 +81,16 @@
 
     "160391": { "tier": "B", "tags": ["gathering"],          "note": "Skilled Lumberjack (Fang exclusive) — tree respawn -40%" },
     "160401": { "tier": "B", "tags": ["gathering"],          "note": "Ore Vein Guardian (Fang exclusive) — ore respawn -40%" },
-    "160411": { "tier": "B", "tags": ["gathering"],          "note": "Skilled Planter (Fang exclusive) — plant yield +20%" }
+    "160411": { "tier": "B", "tags": ["gathering"],          "note": "Skilled Planter (Fang exclusive) — plant yield +20%" },
+
+    "name:Slow Growth":      { "tier": "F", "tags": ["utility"],   "note": "Universally terrible — -20/60% XP gain, dramatically slows leveling" },
+    "name:Born Unlucky":     { "tier": "F", "tags": ["combat"],    "note": "Universally terrible — -10/20/30% trigger chance for ALL other positive traits" },
+    "name:Attack Weaken":    { "tier": "F", "tags": ["combat"],    "note": "Universally terrible — -3/6/9% ATK, direct combat nerf" },
+    "name:Weak Assault":     { "tier": "F", "tags": ["combat"],    "note": "Universally terrible — -5/10/15% ATK speed" },
+    "name:Worsen Wounds":    { "tier": "F", "tags": ["combat"],    "note": "Universally terrible — +3/6/9% damage taken" },
+    "name:Qi Deficiency":    { "tier": "F", "tags": ["combat"],    "note": "Universally terrible — -3/6/9% max HP" },
+    "name:Poor Load Bearer": { "tier": "F", "tags": ["utility"],   "note": "Universally terrible — -20/40/60% carry weight" },
+    "name:Dull Witted":      { "tier": "F", "tags": ["combat"],    "note": "Bad — -3/6/9% crit rate" },
+    "name:Weaken Defense":   { "tier": "F", "tags": ["combat"],    "note": "Bad — -3/6/9% DEF" }
   }
 }

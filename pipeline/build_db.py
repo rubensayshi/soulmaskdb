@@ -487,13 +487,22 @@ def main():
     ranking_count = 0
     if rankings_path.exists():
         rankings = load_json(rankings_path).get("entries", {})
-        for learned_id, r in rankings.items():
+        for key, r in rankings.items():
             tags_json = json.dumps(r["tags"]) if r.get("tags") else None
-            cnt = db.execute(
-                "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
-                "WHERE learned_id = ?",
-                (r.get("tier"), tags_json, r.get("note"), learned_id),
-            ).rowcount
+            vals = (r.get("tier"), tags_json, r.get("note"))
+            if key.startswith("name:"):
+                name_en = key[5:]
+                cnt = db.execute(
+                    "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
+                    "WHERE name_en = ?",
+                    vals + (name_en,),
+                ).rowcount
+            else:
+                cnt = db.execute(
+                    "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
+                    "WHERE learned_id = ?",
+                    vals + (key,),
+                ).rowcount
             ranking_count += cnt
         print(f"  trait rankings: {ranking_count} rows tagged from {len(rankings)} entries")
 

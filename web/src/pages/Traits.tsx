@@ -37,9 +37,12 @@ const PROFICIENCY_LABELS: Record<string, string> = {
 }
 
 const TIER_META: Record<string, { label: string; color: string; bg: string }> = {
-  S: { label: 'S', color: '#e8c34a', bg: 'rgba(232,195,74,.12)' },
-  A: { label: 'A', color: '#5bb8d0', bg: 'rgba(91,184,208,.10)' },
-  B: { label: 'B', color: '#8aa074', bg: 'rgba(138,160,116,.10)' },
+  S: { label: 'S-tier', color: '#e74c3c', bg: 'rgba(231,76,60,.12)' },
+  A: { label: 'A-tier', color: '#e67e22', bg: 'rgba(230,126,34,.10)' },
+  B: { label: 'B-tier', color: '#9b59b6', bg: 'rgba(155,89,182,.10)' },
+  C: { label: 'C-tier', color: '#9a9a9a', bg: 'rgba(154,154,154,.08)' },
+  D: { label: 'D-tier', color: '#7a6a5a', bg: 'rgba(122,106,90,.10)' },
+  F: { label: 'F-tier', color: '#8a4444', bg: 'rgba(138,68,68,.10)' },
 }
 
 interface TraitFamily {
@@ -52,6 +55,18 @@ interface TraitFamily {
   clan: string | null
   communityTier: string | null
   communityNote: string | null
+  effectiveTier: string
+  isBorn: boolean
+}
+
+const BORN_TOOLTIPS: Record<string, string> = {
+  BornBuLuoCiTiao: 'Tribal trait — determined at birth by the tribesman\'s tribe',
+  BornChuShen: 'Origin trait — determined at birth by the tribesman\'s class',
+  XiHao: 'Preference — innate like or dislike, cannot be learned',
+  XingGe: 'Personality type — innate, cannot be changed',
+  ChengHao: 'Title — earned through gameplay achievements',
+  JingLi: 'Experience trait — acquired through specific events',
+  Normal: 'Birth trait — innate, cannot be learned by other tribesmen',
 }
 
 const ATTR_LABELS: Record<string, string> = {
@@ -91,6 +106,15 @@ function Ornament({ color }: { color: string }) {
     <svg viewBox="0 0 14 14" className="w-[14px] h-[14px] flex-shrink-0" fill="none" stroke={color} strokeWidth="1" strokeLinecap="square">
       <path d="M7 1 L13 7 L7 13 L1 7 Z" />
       <path d="M7 4 L10 7 L7 10 L4 7 Z" fill={color} stroke="none" opacity=".6" />
+    </svg>
+  )
+}
+
+function TierDiamond({ color, size = 10 }: { color: string; size?: number }) {
+  return (
+    <svg viewBox="0 0 20 20" width={size} height={size} className="flex-shrink-0">
+      <path d="M10 1 L19 10 L10 19 L1 10 Z" fill={color} fillOpacity={0.3} stroke={color} strokeWidth={2} />
+      <path d="M10 6 L14 10 L10 14 L6 10 Z" fill={color} fillOpacity={0.8} stroke="none" />
     </svg>
   )
 }
@@ -136,16 +160,20 @@ export default function Traits() {
         ? t.learned_id
         : `name:${t.name_en || t.name_zh || t.id}:${t.source || ''}`
       if (!map.has(key)) {
+        const src = t.source || 'Normal'
+        const hasLearnedId = !!(t.learned_id && t.learned_id !== '0')
         map.set(key, {
           learnedId: key,
           name: t.name_en || t.name_zh || t.id,
           tiers: [],
-          source: t.source || 'Normal',
+          source: src,
           isDlc: t.is_dlc,
           isNegative: t.is_negative,
           clan: t.clan,
           communityTier: t.community_tier,
           communityNote: t.community_note,
+          effectiveTier: t.community_tier || (t.is_negative ? 'D' : 'C'),
+          isBorn: (src !== 'Normal' && src !== 'ChengHao' && src !== 'JingLi') || (src === 'Normal' && !hasLearnedId),
         })
       }
       const fam = map.get(key)!
@@ -153,16 +181,17 @@ export default function Traits() {
       if (t.community_tier && !fam.communityTier) {
         fam.communityTier = t.community_tier
         fam.communityNote = t.community_note
+        fam.effectiveTier = t.community_tier
       }
     }
     for (const fam of map.values()) {
       fam.tiers.sort((a, b) => a.star - b.star)
     }
     const arr = Array.from(map.values())
-    const tierOrder: Record<string, number> = { S: 0, A: 1, B: 2 }
+    const tierOrder: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4, F: 5 }
     arr.sort((a, b) => {
-      const aT = a.communityTier ? tierOrder[a.communityTier] ?? 9 : 9
-      const bT = b.communityTier ? tierOrder[b.communityTier] ?? 9 : 9
+      const aT = tierOrder[a.effectiveTier] ?? 3
+      const bT = tierOrder[b.effectiveTier] ?? 3
       if (aT !== bT) return aT - bT
       const aMax = Math.max(...a.tiers.map(t => t.star))
       const bMax = Math.max(...b.tiers.map(t => t.star))
@@ -191,11 +220,7 @@ export default function Traits() {
       result = result.filter(f => f.clan === clanFilter)
     }
     if (tierFilter !== 'all') {
-      if (tierFilter === 'ranked') {
-        result = result.filter(f => f.communityTier != null)
-      } else {
-        result = result.filter(f => f.communityTier === tierFilter)
-      }
+      result = result.filter(f => f.communityTier === tierFilter)
     }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
@@ -339,20 +364,21 @@ export default function Traits() {
               ))}
             </div>
             <div className="flex gap-1">
-              {(['all', 'ranked', 'S', 'A', 'B'] as const).map(v => {
-                const meta = v !== 'all' && v !== 'ranked' ? TIER_META[v] : null
+              {(['all', 'S', 'A', 'B'] as const).map(v => {
+                const meta = v !== 'all' ? TIER_META[v] : null
                 const active = tierFilter === v
                 return (
                   <button
                     key={v}
                     onClick={() => setTierFilter(v)}
-                    className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                    className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1"
                     style={active
                       ? { borderColor: meta ? `rgba(${hexToRgb(meta.color)},.5)` : '#4a5040', color: meta?.color ?? '#d8dcc8', backgroundColor: meta?.bg ?? '#363c33' }
                       : { borderColor: '#373c32', color: meta?.color ?? '#6b7163', opacity: 0.7 }
                     }
                   >
-                    {v === 'all' ? 'All' : v === 'ranked' ? 'Ranked' : `Tier ${v}`}
+                    {meta && <TierDiamond color={meta.color} size={8} />}
+                    {v === 'all' ? 'All' : v}
                   </button>
                 )
               })}
@@ -401,7 +427,6 @@ export default function Traits() {
           {filtered.map(fam => {
             const isExpanded = expandedId === fam.learnedId
             const topTier = fam.tiers[fam.tiers.length - 1]
-            const effectStr = formatEffect(topTier)
             const neg = fam.isNegative
             const sourceTab = SOURCE_TABS.find(t => t.key === fam.source)
             const famColor = sourceTab?.color ?? activeCat.color
@@ -430,30 +455,15 @@ export default function Traits() {
                   className="w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-panel-2 transition-colors"
                 >
                   <StarPips star={topTier.star} />
-                  <span className={`font-display text-[15px] font-semibold tracking-[.02em] flex-1 min-w-0 truncate ${neg ? '' : 'text-text'}`} style={neg ? { color: '#c47070' } : undefined}>
+                  <span className={`font-display text-[15px] font-semibold tracking-[.02em] min-w-0 truncate ${neg ? '' : 'text-text'}`} style={neg ? { color: '#c47070' } : undefined}>
                     {fam.name}
                   </span>
-                  {effectStr && (
-                    <span
-                      className="text-[11px] tabular-nums tracking-[.02em] flex-shrink-0"
-                      style={{ color: neg ? '#b85050' : '#8aa074' }}
-                    >
-                      {effectStr}
+                  {fam.tiers.length > 1 && (
+                    <span className="text-[10px] tabular-nums text-text-dim flex-shrink-0">
+                      {fam.tiers.length} tiers
                     </span>
                   )}
-                  {fam.communityTier && TIER_META[fam.communityTier] && (
-                    <span
-                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-bold border flex-shrink-0"
-                      style={{
-                        borderColor: `rgba(${hexToRgb(TIER_META[fam.communityTier].color)},.4)`,
-                        color: TIER_META[fam.communityTier].color,
-                        backgroundColor: TIER_META[fam.communityTier].bg,
-                      }}
-                      title={fam.communityNote || undefined}
-                    >
-                      {TIER_META[fam.communityTier].label}
-                    </span>
-                  )}
+                  <span className="flex-1" />
                   {neg && (
                     <span
                       className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
@@ -478,11 +488,38 @@ export default function Traits() {
                       DLC
                     </span>
                   )}
-                  {fam.tiers.length > 1 && (
-                    <span className="text-[10px] tabular-nums text-text-dim flex-shrink-0">
-                      {fam.tiers.length} tiers
-                    </span>
-                  )}
+                  <span
+                    className="text-[9px] w-[52px] text-center py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                    style={fam.isBorn
+                      ? { borderColor: 'rgba(184,160,96,.35)', color: '#b8a060' }
+                      : { borderColor: 'rgba(138,160,116,.35)', color: '#8aa074' }
+                    }
+                    title={fam.isBorn
+                      ? (BORN_TOOLTIPS[fam.source] || 'Innate trait — cannot be learned')
+                      : 'Learnable trait — tribesmen can acquire this through gameplay'
+                    }
+                  >
+                    {fam.isBorn ? 'Born' : 'Learned'}
+                  </span>
+                  {(() => {
+                    const tier = fam.effectiveTier
+                    const meta = TIER_META[tier]
+                    if (!meta) return null
+                    return (
+                      <span
+                        className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-bold border flex-shrink-0 inline-flex items-center gap-1"
+                        style={{
+                          borderColor: `rgba(${hexToRgb(meta.color)},.4)`,
+                          color: meta.color,
+                          backgroundColor: meta.bg,
+                        }}
+                        title={fam.communityNote || undefined}
+                      >
+                        <TierDiamond color={meta.color} size={8} />
+                        {meta.label}
+                      </span>
+                    )
+                  })()}
                   <svg
                     className={`w-3 h-3 text-text-dim flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
                     viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"
@@ -493,12 +530,7 @@ export default function Traits() {
 
                 {isExpanded && (
                   <div className="border-t border-hair">
-                    {fam.communityNote && (
-                      <div className="px-4 py-2 text-[11px] text-text-dim italic border-b border-hair" style={{ background: fam.communityTier && TIER_META[fam.communityTier] ? TIER_META[fam.communityTier].bg : undefined }}>
-                        <span className="text-[9px] uppercase tracking-[.1em] text-text-faint font-semibold not-italic mr-2">Community</span>
-                        {fam.communityNote}
-                      </div>
-                    )}
+
                     {fam.tiers.map((t, i) => {
                       const tierEffect = formatEffect(t)
                       const tierNeg = t.is_negative
