@@ -94,6 +94,48 @@ function formatEffect(t: Trait): string {
   return ''
 }
 
+type DescSegment = { type: 'text'; value: string } | { type: 'variable'; values: string[] }
+
+function mergeDescriptions(descriptions: string[]): DescSegment[] {
+  if (descriptions.length <= 1) {
+    return [{ type: 'text', value: descriptions[0] || '' }]
+  }
+  const numPattern = /(-?\d+\.?\d*%?x?)/g
+  const tokenize = (s: string) => {
+    const tokens: { text: boolean; value: string }[] = []
+    let last = 0
+    for (const m of s.matchAll(numPattern)) {
+      if (m.index! > last) tokens.push({ text: true, value: s.slice(last, m.index!) })
+      tokens.push({ text: false, value: m[0] })
+      last = m.index! + m[0].length
+    }
+    if (last < s.length) tokens.push({ text: true, value: s.slice(last) })
+    return tokens
+  }
+  const allTokens = descriptions.map(tokenize)
+  const baseLen = allTokens[0].length
+  const sameLength = allTokens.every(t => t.length === baseLen)
+  if (!sameLength) {
+    return [{ type: 'text', value: descriptions[0] || '' }]
+  }
+  const segments: DescSegment[] = []
+  for (let i = 0; i < baseLen; i++) {
+    const base = allTokens[0][i]
+    if (base.text) {
+      segments.push({ type: 'text', value: base.value })
+    } else {
+      const values = allTokens.map(t => t[i].value)
+      const allSame = values.every(v => v === values[0])
+      if (allSame) {
+        segments.push({ type: 'text', value: values[0] })
+      } else {
+        segments.push({ type: 'variable', values })
+      }
+    }
+  }
+  return segments
+}
+
 function hexToRgb(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16)
   const g = parseInt(hex.slice(3, 5), 16)
@@ -528,107 +570,87 @@ export default function Traits() {
                   </svg>
                 </button>
 
-                {isExpanded && (
-                  <div className="border-t border-hair">
-
-                    {fam.tiers.map((t, i) => {
-                      const tierEffect = formatEffect(t)
-                      const tierNeg = t.is_negative
-                      return (
-                        <div
-                          key={t.id}
-                          className={`px-4 py-3 ${i > 0 ? 'border-t border-hair' : ''}`}
-                          style={{ background: `linear-gradient(90deg, rgba(${tierNeg ? '184,80,80' : rgb},.04) 0%, transparent 60%)` }}
-                        >
-                          <div className="flex items-center gap-3 mb-2">
-                            <StarPips star={t.star} />
-                            <span className="font-display text-[14px] font-semibold text-text tracking-[.02em]">
-                              {t.name_en || t.name_zh || t.id}
+                {isExpanded && (() => {
+                  const descs = fam.tiers.map(t => t.description_en || t.description_zh || '')
+                  const segments = mergeDescriptions(descs)
+                  return (
+                    <div className="border-t border-hair px-4 py-3"
+                      style={{ background: `linear-gradient(90deg, rgba(${neg ? '184,80,80' : rgb},.04) 0%, transparent 60%)` }}
+                    >
+                      <p className="text-[13px] text-text-mute leading-relaxed mb-2">
+                        {segments.map((seg, i) =>
+                          seg.type === 'text' ? (
+                            <span key={i}>{seg.value}</span>
+                          ) : (
+                            <span
+                              key={i}
+                              className="font-semibold tabular-nums"
+                              style={{ color: neg ? '#c47070' : '#d8dcc8' }}
+                            >
+                              {seg.values.join(' / ')}
                             </span>
-                            {tierEffect && (
-                              <span
-                                className="text-[11px] tabular-nums px-2 py-[2px] border"
-                                style={{
-                                  borderColor: tierNeg ? 'rgba(184,80,80,.3)' : 'rgba(138,160,116,.3)',
-                                  color: tierNeg ? '#b85050' : '#8aa074',
-                                }}
-                              >
-                                {tierEffect}
-                              </span>
-                            )}
-                            <span className="text-[10px] text-text-faint tracking-[.06em]">
-                              #{t.id}
-                            </span>
-                          </div>
+                          )
+                        )}
+                      </p>
 
-                          <p className="text-[13px] text-text-mute leading-relaxed mb-2 ml-[33px]">
-                            {t.description_en || t.description_zh}
-                          </p>
-
-                          {/* Meta row */}
-                          <div className="flex flex-wrap gap-x-5 gap-y-1 ml-[33px] text-[11px] text-text-dim">
-                            {t.effect_cooldown != null && t.effect_cooldown > 0 && (
-                              <span>
-                                <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">CD</span>
-                                <span className="tabular-nums">{t.effect_cooldown}s</span>
-                              </span>
-                            )}
-                            {t.effect_probability != null && t.effect_probability < 1 && (
-                              <span>
-                                <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">PROB</span>
-                                <span className="tabular-nums">{(t.effect_probability * 100).toFixed(0)}%</span>
-                              </span>
-                            )}
-                          </div>
-
-                          {/* Proficiency badges */}
-                          {t.proficiencies && t.proficiencies.length > 0 && (
-                            <div className="flex flex-wrap gap-1 mt-2 ml-[33px]">
-                              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Requires</span>
-                              {t.proficiencies.map(p => (
-                                <span
-                                  key={p}
-                                  className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
-                                  style={{ borderColor: 'rgba(122,157,181,.3)', color: '#7a9db5' }}
-                                >
-                                  {PROFICIENCY_LABELS[p] || p}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
-                          {/* Weapon badges */}
-                          {t.weapons && t.weapons.length > 0 && (
-                            <div className="flex flex-wrap gap-1 mt-2 ml-[33px]">
-                              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Weapon</span>
-                              {t.weapons.map(w => (
-                                <span
-                                  key={w}
-                                  className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
-                                  style={{ borderColor: 'rgba(166,122,82,.3)', color: '#a67a52' }}
-                                >
-                                  {w}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      )
-                    })}
-
-                    {/* Conditions footer */}
-                    {topTier.conditions && topTier.conditions.length > 0 && (
-                      <div className="px-4 py-2.5 border-t border-hair bg-panel-2">
-                        <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-2">Conditions</span>
-                        <span className="text-[11px] text-text-dim">
-                          {topTier.conditions.map(c =>
-                            c.replace(/^BP_Gift_/, '').replace(/_C$/, '').replace(/_/g, ' ')
-                          ).join(', ')}
-                        </span>
+                      <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-text-dim mt-2">
+                        {topTier.effect_cooldown != null && topTier.effect_cooldown > 0 && (
+                          <span>
+                            <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">CD</span>
+                            <span className="tabular-nums">{topTier.effect_cooldown}s</span>
+                          </span>
+                        )}
+                        {topTier.effect_probability != null && topTier.effect_probability < 1 && (
+                          <span>
+                            <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">PROB</span>
+                            <span className="tabular-nums">{(topTier.effect_probability * 100).toFixed(0)}%</span>
+                          </span>
+                        )}
                       </div>
-                    )}
-                  </div>
-                )}
+
+                      {topTier.proficiencies && topTier.proficiencies.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Requires</span>
+                          {topTier.proficiencies.map(p => (
+                            <span
+                              key={p}
+                              className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                              style={{ borderColor: 'rgba(122,157,181,.3)', color: '#7a9db5' }}
+                            >
+                              {PROFICIENCY_LABELS[p] || p}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {topTier.weapons && topTier.weapons.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Weapon</span>
+                          {topTier.weapons.map(w => (
+                            <span
+                              key={w}
+                              className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                              style={{ borderColor: 'rgba(166,122,82,.3)', color: '#a67a52' }}
+                            >
+                              {w}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {topTier.conditions && topTier.conditions.length > 0 && (
+                        <div className="mt-2 pt-2 border-t border-hair">
+                          <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-2">Conditions</span>
+                          <span className="text-[11px] text-text-dim">
+                            {topTier.conditions.map(c =>
+                              c.replace(/^BP_Gift_/, '').replace(/_C$/, '').replace(/_/g, ' ')
+                            ).join(', ')}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })()}
               </div>
             )
           })}
