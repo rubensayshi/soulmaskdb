@@ -746,7 +746,9 @@ SELECT id, star, name_zh, name_en, description_zh, description_en,
        description_vague_zh,
        source, effect, effect_attr, effect_value, effect_is_percentage,
        effect_probability, effect_cooldown, learned_id, upgrade_id,
-       base_weight, is_dlc, is_negative, proficiencies_json, conditions_json, weapons_json
+       base_weight, is_dlc, is_negative, clan,
+       community_tier, community_tags_json, community_note,
+       proficiencies_json, conditions_json, weapons_json
 FROM traits
 ORDER BY learned_id, star
 `
@@ -780,6 +782,10 @@ func (q *Queries) ListTraits(ctx context.Context) ([]Trait, error) {
 			&i.BaseWeight,
 			&i.IsDlc,
 			&i.IsNegative,
+			&i.Clan,
+			&i.CommunityTier,
+			&i.CommunityTagsJson,
+			&i.CommunityNote,
 			&i.ProficienciesJson,
 			&i.ConditionsJson,
 			&i.WeaponsJson,

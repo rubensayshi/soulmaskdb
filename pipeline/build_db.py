@@ -452,8 +452,8 @@ def main():
                 "INSERT INTO traits (id, star, name_zh, description_zh, description_vague_zh, "
                 "source, effect, effect_attr, effect_value, effect_is_percentage, "
                 "effect_probability, effect_cooldown, learned_id, upgrade_id, base_weight, "
-                "is_dlc, is_negative, proficiencies_json, conditions_json, weapons_json) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "is_dlc, is_negative, clan, proficiencies_json, conditions_json, weapons_json) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (
                     t["id"], t["star"], t.get("name_zh"), t.get("description_zh"),
                     t.get("description_vague_zh"), t.get("source"), t.get("effect"),
@@ -463,6 +463,7 @@ def main():
                     t.get("learned_id"), t.get("upgrade_id"), t.get("base_weight"),
                     1 if t.get("is_dlc") else 0,
                     1 if t.get("is_negative") else 0,
+                    t.get("clan"),
                     json.dumps(t["proficiency_requirements"]) if t.get("proficiency_requirements") else None,
                     json.dumps(t["conditions"]) if t.get("conditions") else None,
                     json.dumps(t["weapon_requirements"]) if t.get("weapon_requirements") else None,
@@ -480,6 +481,21 @@ def main():
           SELECT en FROM translations WHERE key = 'trait_desc:' || traits.id
         )
     """)
+
+    # --- trait community rankings ---
+    rankings_path = ROOT / "data" / "trait_rankings.json"
+    ranking_count = 0
+    if rankings_path.exists():
+        rankings = load_json(rankings_path).get("entries", {})
+        for learned_id, r in rankings.items():
+            tags_json = json.dumps(r["tags"]) if r.get("tags") else None
+            cnt = db.execute(
+                "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
+                "WHERE learned_id = ?",
+                (r.get("tier"), tags_json, r.get("note"), learned_id),
+            ).rowcount
+            ranking_count += cnt
+        print(f"  trait rankings: {ranking_count} rows tagged from {len(rankings)} entries")
 
     # --- creature spawns ---
     # Base map: pre-normalized from parse_spawns.py (Pinyin → English via creature_names.json).

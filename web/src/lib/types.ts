@@ -205,6 +205,7 @@ export interface Trait {
   base_weight: number | null
   is_dlc: boolean
   is_negative: boolean
+  clan: string | null
   proficiencies: string[] | null
   conditions: string[] | null
   weapons: string[] | null

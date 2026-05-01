@@ -138,6 +138,10 @@ type Trait struct {
 	BaseWeight         sql.NullInt64
 	IsDlc              int64
 	IsNegative         int64
+	Clan               sql.NullString
+	CommunityTier      sql.NullString
+	CommunityTagsJson  sql.NullString
+	CommunityNote      sql.NullString
 	ProficienciesJson  sql.NullString
 	ConditionsJson     sql.NullString
 	WeaponsJson        sql.NullString

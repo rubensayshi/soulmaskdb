@@ -142,6 +142,10 @@ CREATE TABLE traits (
   base_weight           INTEGER,
   is_dlc                INTEGER NOT NULL DEFAULT 0,
   is_negative           INTEGER NOT NULL DEFAULT 0,
+  clan                  TEXT,
+  community_tier        TEXT,
+  community_tags_json   TEXT,
+  community_note        TEXT,
   proficiencies_json    TEXT,
   conditions_json       TEXT,
   weapons_json          TEXT

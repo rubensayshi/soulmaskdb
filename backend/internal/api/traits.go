@@ -27,6 +27,10 @@ type TraitResponse struct {
 	BaseWeight         *int64      `json:"base_weight"`
 	IsDlc              bool        `json:"is_dlc"`
 	IsNegative         bool        `json:"is_negative"`
+	Clan               *string     `json:"clan"`
+	CommunityTier      *string     `json:"community_tier"`
+	CommunityTags      interface{} `json:"community_tags"`
+	CommunityNote      *string     `json:"community_note"`
 	Proficiencies      interface{} `json:"proficiencies"`
 	Conditions         interface{} `json:"conditions"`
 	Weapons            interface{} `json:"weapons"`
@@ -60,6 +64,12 @@ func (s *Server) handleTraits(w http.ResponseWriter, r *http.Request) {
 			BaseWeight:         nullInt(row.BaseWeight),
 			IsDlc:              row.IsDlc != 0,
 			IsNegative:         row.IsNegative != 0,
+			Clan:               nullStr(row.Clan),
+			CommunityTier:      nullStr(row.CommunityTier),
+			CommunityNote:      nullStr(row.CommunityNote),
+		}
+		if row.CommunityTagsJson.Valid {
+			_ = json.Unmarshal([]byte(row.CommunityTagsJson.String), &t.CommunityTags)
 		}
 		if row.ProficienciesJson.Valid {
 			_ = json.Unmarshal([]byte(row.ProficienciesJson.String), &t.Proficiencies)

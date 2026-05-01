@@ -10,11 +10,19 @@ upgrade chains, DLC flag, proficiency/weapon restrictions, activation conditions
 
 import gzip
 import json
+import os
+from collections import defaultdict
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-TRAITS_FILE = REPO_ROOT / "uasset_export" / "Blueprints" / "DataTable" / "NaturalGift" / "DT_GiftZongBiao.json.gz"
+GIFT_DIR = REPO_ROOT / "uasset_export" / "Blueprints" / "DataTable" / "NaturalGift"
+TRAITS_FILE = GIFT_DIR / "DT_GiftZongBiao.json.gz"
 OUTPUT_DIR = REPO_ROOT / "Game" / "Parsed"
+
+WOLF_CONDS = {"BP_Gift_IsWolf_ZD_C", "BP_Gift_IsWolf_JR_C"}
+HORN_CONDS = {"BP_Gift_IsHorn_ZD_C", "BP_Gift_IsHorn_JR_C"}
+DLC_POOL_CONDS = {"BP_Gift_IsDLCNpc_ZD_C", "BP_Gift_IsDLCNpc_C", "BP_Gift_IsDLC_JR_C",
+                  "BP_Gift_IsDLC_ZS_C", "BP_Gift_IsDLC_WS_C", "BP_Gift_IsDLC_LS_C"}
 
 
 def resolve_import_path(imports, ref):
@@ -54,6 +62,93 @@ def get_field(props, name):
     for p in props:
         if p.get("Name") == name:
             return p
+    return None
+
+
+def parse_pool_file(path):
+    """Extract (trait_id, condition_set) pairs from a trait pool file."""
+    with gzip.open(path, "rt", encoding="utf-8") as f:
+        raw = json.load(f)
+    imports = raw.get("Imports") or []
+    data = None
+    for exp in raw.get("Exports", []):
+        if "Table" in exp and "Data" in exp["Table"]:
+            data = exp["Table"]["Data"]
+            break
+    if not data:
+        return []
+    results = []
+    for row in data:
+        props = row.get("Value", [])
+        cond_field = get_field(props, "TiaoJianBaoList")
+        conds = set()
+        if cond_field:
+            for c in cond_field.get("Value", []):
+                ref = c.get("Value", 0) if isinstance(c, dict) else c
+                name = resolve_import_name(imports, ref)
+                if name:
+                    conds.add(name)
+        detail_field = get_field(props, "NGDetailList")
+        if detail_field:
+            for detail in detail_field.get("Value", []):
+                detail_props = detail.get("Value", [])
+                id_field = get_field(detail_props, "ID")
+                if id_field:
+                    tid = str(id_field.get("Value", ""))
+                    if tid and tid != "0":
+                        results.append((tid, conds))
+    return results
+
+
+def build_clan_map():
+    """Parse all trait pool tables and return trait_id → clan string."""
+    trait_conds = defaultdict(set)
+    trait_files = defaultdict(set)
+
+    pool_files = [f for f in sorted(os.listdir(GIFT_DIR))
+                  if f.startswith("DT_Gift") and f.endswith(".json.gz")
+                  and f != "DT_GiftZongBiao.json.gz"
+                  and f != "DT_GiftLengLuoBiao.json.gz"]
+
+    for fname in pool_files:
+        try:
+            for tid, conds in parse_pool_file(GIFT_DIR / fname):
+                trait_conds[tid].update(conds)
+                trait_files[tid].add(fname)
+        except Exception:
+            pass
+
+    clan_map = {}
+    for tid, conds in trait_conds.items():
+        if conds & WOLF_CONDS:
+            clan_map[tid] = "wolf"
+        elif conds & HORN_CONDS:
+            clan_map[tid] = "horn"
+        elif conds & DLC_POOL_CONDS:
+            clan_map[tid] = "dlc"
+
+    # Boss file names encode tribe type
+    for tid, files in trait_files.items():
+        if tid in clan_map:
+            continue
+        for f in files:
+            if "XieDuZhe" in f:
+                clan_map[tid] = "heretic"
+                break
+
+    return clan_map
+
+
+def derive_clan_from_name(name_zh, source):
+    """Derive clan from Chinese name patterns for BornBuLuoCiTiao traits."""
+    if source != "BornBuLuoCiTiao" or not name_zh:
+        return None
+    if "荒狼" in name_zh:
+        return "wolf"
+    if "蛮角" in name_zh:
+        return "horn"
+    if name_zh.startswith("流放者"):
+        return "exile"
     return None
 
 
@@ -175,10 +270,29 @@ def parse_traits():
     return traits
 
 
+def enrich_clans(traits):
+    """Add clan field from pool table conditions + name patterns."""
+    clan_map = build_clan_map()
+    name_derived = 0
+    pool_derived = 0
+    for t in traits:
+        # Name pattern takes priority (more specific)
+        clan = derive_clan_from_name(t.get("name_zh"), t.get("source"))
+        if clan:
+            name_derived += 1
+        else:
+            clan = clan_map.get(t["id"])
+            if clan:
+                pool_derived += 1
+        t["clan"] = clan
+    print(f"  Clan tags: {name_derived} from name, {pool_derived} from pool tables")
+
+
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     traits = parse_traits()
+    enrich_clans(traits)
 
     out_path = OUTPUT_DIR / "traits.json"
     with open(out_path, "w", encoding="utf-8") as f:
@@ -215,6 +329,15 @@ def main():
     # With conditions
     with_cond = sum(1 for t in traits if t["conditions"])
     print(f"With activation conditions: {with_cond}")
+
+    # Clan breakdown
+    clans = {}
+    for t in traits:
+        c = t.get("clan") or "(none)"
+        clans[c] = clans.get(c, 0) + 1
+    print(f"\nBy clan:")
+    for c, n in sorted(clans.items(), key=lambda x: -x[1]):
+        print(f"  {c}: {n}")
 
     # Sample
     print(f"\nSample traits:")

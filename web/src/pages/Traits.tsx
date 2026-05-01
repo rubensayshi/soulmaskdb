@@ -14,6 +14,14 @@ const SOURCE_TABS = [
 
 type SourceKey = typeof SOURCE_TABS[number]['key']
 
+const CLAN_META: Record<string, { label: string; color: string }> = {
+  wolf: { label: 'Wolf Tribe', color: '#7a9db5' },
+  horn: { label: 'Horn Tribe', color: '#b8a060' },
+  exile: { label: 'Exile', color: '#a67a52' },
+  dlc: { label: 'DLC', color: '#9b7db8' },
+  heretic: { label: 'Heretic', color: '#b85050' },
+}
+
 const PROFICIENCY_LABELS: Record<string, string> = {
   DaJian: 'Greatsword', Dao: 'Sword', Mao: 'Spear', Gong: 'Bow',
   DunPai: 'Shield', Chui: 'Hammer', QuanTao: 'Gauntlet', ShuangDao: 'Dual Blade',
@@ -32,6 +40,7 @@ interface TraitFamily {
   source: string
   isDlc: boolean
   isNegative: boolean
+  clan: string | null
 }
 
 const ATTR_LABELS: Record<string, string> = {
@@ -99,6 +108,7 @@ export default function Traits() {
   const [searchQuery, setSearchQuery] = useState('')
   const [dlcFilter, setDlcFilter] = useState<'all' | 'base' | 'dlc'>('all')
   const [signFilter, setSignFilter] = useState<'all' | 'buff' | 'debuff'>('all')
+  const [clanFilter, setClanFilter] = useState<string>('all')
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   useEffect(() => {
@@ -121,6 +131,7 @@ export default function Traits() {
           source: t.source || 'Normal',
           isDlc: t.is_dlc,
           isNegative: t.is_negative,
+          clan: t.clan,
         })
       }
       map.get(key)!.tiers.push(t)
@@ -153,6 +164,9 @@ export default function Traits() {
     } else if (signFilter === 'debuff') {
       result = result.filter(f => f.isNegative)
     }
+    if (clanFilter !== 'all') {
+      result = result.filter(f => f.clan === clanFilter)
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
       result = result.filter(f => {
@@ -165,7 +179,16 @@ export default function Traits() {
       })
     }
     return result
-  }, [families, activeTab, dlcFilter, signFilter, searchQuery])
+  }, [families, activeTab, dlcFilter, signFilter, clanFilter, searchQuery])
+
+  const availableClans = useMemo(() => {
+    const tabFamilies = activeTab === 'all' ? families : families.filter(f => f.source === activeTab)
+    const clans = new Set<string>()
+    for (const f of tabFamilies) {
+      if (f.clan) clans.add(f.clan)
+    }
+    return Array.from(clans).sort()
+  }, [families, activeTab])
 
   const activeCat = SOURCE_TABS.find(t => t.key === activeTab)!
   const rgb = hexToRgb(activeCat.color)
@@ -288,6 +311,42 @@ export default function Traits() {
           </div>
         </div>
 
+        {/* Clan filter */}
+        {availableClans.length > 0 && (
+          <div className="flex items-center gap-2 py-2 border-b border-hair">
+            <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1">Clan</span>
+            <button
+              onClick={() => setClanFilter('all')}
+              className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+              style={clanFilter === 'all'
+                ? { borderColor: '#4a5040', color: '#d8dcc8', backgroundColor: '#363c33' }
+                : { borderColor: '#373c32', color: '#6b7163' }
+              }
+            >
+              All
+            </button>
+            {availableClans.map(c => {
+              const meta = CLAN_META[c]
+              if (!meta) return null
+              const active = clanFilter === c
+              return (
+                <button
+                  key={c}
+                  onClick={() => setClanFilter(active ? 'all' : c)}
+                  className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1.5"
+                  style={active
+                    ? { borderColor: `rgba(${hexToRgb(meta.color)},.5)`, color: meta.color, backgroundColor: `rgba(${hexToRgb(meta.color)},.1)` }
+                    : { borderColor: '#373c32', color: '#6b7163' }
+                  }
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: meta.color, opacity: active ? 1 : 0.4 }} />
+                  {meta.label}
+                </button>
+              )
+            })}
+          </div>
+        )}
+
         {/* Trait list */}
         <div className="mt-4 space-y-[2px]">
           {filtered.map(fam => {
@@ -339,6 +398,14 @@ export default function Traits() {
                       style={{ borderColor: 'rgba(184,80,80,.35)', color: '#b85050' }}
                     >
                       Debuff
+                    </span>
+                  )}
+                  {fam.clan && CLAN_META[fam.clan] && fam.clan !== 'dlc' && (
+                    <span
+                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      style={{ borderColor: `rgba(${hexToRgb(CLAN_META[fam.clan].color)},.4)`, color: CLAN_META[fam.clan].color }}
+                    >
+                      {CLAN_META[fam.clan].label}
                     </span>
                   )}
                   {fam.isDlc && (
