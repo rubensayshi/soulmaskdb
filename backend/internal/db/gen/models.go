@@ -118,6 +118,31 @@ type TechNodeUnlocksRecipe struct {
 	RecipeID   string
 }
 
+type Trait struct {
+	ID                 string
+	Star               int64
+	NameZh             sql.NullString
+	NameEn             sql.NullString
+	DescriptionZh      sql.NullString
+	DescriptionEn      sql.NullString
+	DescriptionVagueZh sql.NullString
+	Source             sql.NullString
+	Effect             sql.NullString
+	EffectAttr         sql.NullString
+	EffectValue        sql.NullFloat64
+	EffectIsPercentage sql.NullInt64
+	EffectProbability  sql.NullFloat64
+	EffectCooldown     sql.NullFloat64
+	LearnedID          sql.NullString
+	UpgradeID          sql.NullString
+	BaseWeight         sql.NullInt64
+	IsDlc              int64
+	IsNegative         int64
+	ProficienciesJson  sql.NullString
+	ConditionsJson     sql.NullString
+	WeaponsJson        sql.NullString
+}
+
 type Translation struct {
 	Key    string
 	En     string

@@ -43,6 +43,7 @@ parse:
 	python3 pipeline/parse_exports.py
 	python3 pipeline/classify_items.py
 	python3 pipeline/parse_food_buffs.py
+	python3 pipeline/parse_traits.py
 
 parse-spawns:
 	python3 pipeline/parse_spawns.py

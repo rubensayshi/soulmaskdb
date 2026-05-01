@@ -1,0 +1,228 @@
+"""
+Parse tribesmen trait (NaturalGift/天赋) data from UAssetGUI JSON exports.
+
+Input:  uasset_export/Blueprints/DataTable/NaturalGift/DT_GiftZongBiao.json.gz
+Output: Game/Parsed/traits.json
+
+Extracts trait properties: name, description, star level, effect type/value,
+upgrade chains, DLC flag, proficiency/weapon restrictions, activation conditions.
+"""
+
+import gzip
+import json
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+TRAITS_FILE = REPO_ROOT / "uasset_export" / "Blueprints" / "DataTable" / "NaturalGift" / "DT_GiftZongBiao.json.gz"
+OUTPUT_DIR = REPO_ROOT / "Game" / "Parsed"
+
+
+def resolve_import_path(imports, ref):
+    if ref is None or ref >= 0:
+        return None
+    idx = -ref - 1
+    if idx >= len(imports):
+        return None
+    imp = imports[idx]
+    outer = imp.get("OuterIndex", 0)
+    if outer == 0:
+        return imp.get("ObjectName")
+    pkg_idx = -outer - 1
+    if pkg_idx < 0 or pkg_idx >= len(imports):
+        return None
+    return imports[pkg_idx].get("ObjectName")
+
+
+def resolve_import_name(imports, ref):
+    """Resolve a negative import ref to the import's ObjectName."""
+    if ref is None or ref >= 0:
+        return None
+    idx = -ref - 1
+    if idx >= len(imports):
+        return None
+    return imports[idx].get("ObjectName")
+
+
+def strip_enum(val):
+    """'ENaturalGiftEffect::AttrInc' → 'AttrInc'"""
+    if isinstance(val, str) and "::" in val:
+        return val.split("::", 1)[1]
+    return val
+
+
+def get_field(props, name):
+    for p in props:
+        if p.get("Name") == name:
+            return p
+    return None
+
+
+def parse_traits():
+    with gzip.open(TRAITS_FILE, "rt", encoding="utf-8") as f:
+        data = json.load(f)
+
+    imports = data.get("Imports") or []
+
+    dt_export = None
+    for exp in data.get("Exports", []):
+        if "DataTable" in exp.get("$type", ""):
+            dt_export = exp
+            break
+    if not dt_export:
+        raise SystemExit("No DataTableExport found in DT_GiftZongBiao")
+
+    rows = dt_export["Table"]["Data"]
+    traits = []
+
+    for row in rows:
+        tid = row.get("Name", "")
+        props = row.get("Value", [])
+
+        star = (get_field(props, "Star") or {}).get("Value")
+        name_zh = (get_field(props, "Title") or {}).get("CultureInvariantString")
+        desc_zh = (get_field(props, "Desc") or {}).get("CultureInvariantString")
+        vague_zh = (get_field(props, "MoHuDesc") or {}).get("CultureInvariantString")
+
+        source_raw = (get_field(props, "NGEffectSource") or {}).get("EnumValue")
+        effect_raw = (get_field(props, "NGEffect") or {}).get("EnumValue")
+        attr_raw = (get_field(props, "NGEffectAttrType") or {}).get("Value")
+        effect_val = (get_field(props, "NGEffectVal") or {}).get("Value")
+        is_pct = (get_field(props, "NGEffectAttrValOrPer") or {}).get("Value")
+        prob = (get_field(props, "NGEffectPr") or {}).get("Value")
+        cooldown = (get_field(props, "NGEffectCD") or {}).get("Value")
+
+        learned = (get_field(props, "LearnedNGID") or {}).get("Value", 0)
+        upgrade = (get_field(props, "UpgradeNGID") or {}).get("Value", 0)
+        weight = (get_field(props, "BaseWeight") or {}).get("Value")
+        icon_ref = (get_field(props, "Pic") or {}).get("Value")
+
+        # Negative trait detection: game uses "_2" suffix on icon textures for negative traits
+        icon_name = resolve_import_name(imports, icon_ref) if icon_ref else None
+        is_negative = bool(icon_name and icon_name.endswith("_2"))
+
+        # DLC detection: check if any GE class name contains "DLC"
+        ge_list = (get_field(props, "NGGEClassList") or {}).get("Value", [])
+        is_dlc = False
+        for ge in ge_list:
+            ref = ge.get("Value", 0)
+            if ref < 0:
+                name = resolve_import_name(imports, ref)
+                if name and "DLC" in name:
+                    is_dlc = True
+                    break
+
+        # Proficiency restrictions
+        prof_list = (get_field(props, "NGProfTypeList") or {}).get("Value", [])
+        profs = []
+        for p in prof_list:
+            ev = p.get("EnumValue")
+            if ev:
+                profs.append(strip_enum(ev))
+
+        # Weapon restrictions (MapProperty: list of [key, value] pairs)
+        weapon_field = get_field(props, "WeaponDemand")
+        weapons = []
+        if weapon_field:
+            for pair in weapon_field.get("Value", []):
+                if isinstance(pair, list) and len(pair) >= 1:
+                    ev = pair[0].get("Value")
+                    if ev:
+                        weapons.append(strip_enum(ev))
+
+        # Activation conditions
+        cond_list = (get_field(props, "TiaoJianBaoList") or {}).get("Value", [])
+        conditions = []
+        for c in cond_list:
+            ref = c.get("Value", 0)
+            if ref < 0:
+                name = resolve_import_name(imports, ref)
+                if name:
+                    conditions.append(name)
+
+        # Normalize cooldown: "+0" string → 0.0
+        if isinstance(cooldown, str):
+            try:
+                cooldown = float(cooldown)
+            except ValueError:
+                cooldown = 0.0
+
+        trait = {
+            "id": tid,
+            "star": star,
+            "name_zh": name_zh,
+            "description_zh": desc_zh,
+            "description_vague_zh": vague_zh,
+            "source": strip_enum(source_raw),
+            "effect": strip_enum(effect_raw),
+            "effect_attr": strip_enum(attr_raw) if attr_raw else None,
+            "effect_value": effect_val,
+            "effect_is_percentage": is_pct if is_pct is not None else False,
+            "effect_probability": prob,
+            "effect_cooldown": cooldown if cooldown else None,
+            "learned_id": str(learned) if learned else None,
+            "upgrade_id": str(upgrade) if upgrade else None,
+            "base_weight": weight,
+            "is_dlc": is_dlc,
+            "is_negative": is_negative,
+            "proficiency_requirements": profs if profs else None,
+            "weapon_requirements": weapons if weapons else None,
+            "conditions": conditions if conditions else None,
+            "icon_ref": icon_ref,
+        }
+        traits.append(trait)
+
+    traits.sort(key=lambda t: (t.get("learned_id") or t["id"], t["star"]))
+    return traits
+
+
+def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    traits = parse_traits()
+
+    out_path = OUTPUT_DIR / "traits.json"
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(traits, f, ensure_ascii=False, indent=2)
+
+    # Stats
+    print(f"Results:")
+    print(f"  Parsed: {len(traits)}")
+
+    # Unique trait families (by learned_id)
+    families = set()
+    for t in traits:
+        families.add(t.get("learned_id") or t["id"])
+    print(f"  Unique families: {len(families)}")
+
+    # By source
+    sources = {}
+    for t in traits:
+        s = t["source"] or "unknown"
+        sources[s] = sources.get(s, 0) + 1
+    print(f"\nBy source:")
+    for s, n in sorted(sources.items(), key=lambda x: -x[1]):
+        print(f"  {s}: {n}")
+
+    # DLC count
+    dlc = sum(1 for t in traits if t["is_dlc"])
+    print(f"\nDLC traits: {dlc}")
+    print(f"Base traits: {len(traits) - dlc}")
+
+    # With proficiency restrictions
+    with_prof = sum(1 for t in traits if t["proficiency_requirements"])
+    print(f"With proficiency restrictions: {with_prof}")
+
+    # With conditions
+    with_cond = sum(1 for t in traits if t["conditions"])
+    print(f"With activation conditions: {with_cond}")
+
+    # Sample
+    print(f"\nSample traits:")
+    for t in traits[:3]:
+        print(f"  {t['id']} star={t['star']} \"{t['name_zh']}\" ({t['source']})")
+
+    print(f"\nOutput: {out_path}")
+
+
+if __name__ == "__main__":
+    main()

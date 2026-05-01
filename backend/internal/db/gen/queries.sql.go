@@ -741,6 +741,62 @@ func (q *Queries) ListTechNodes(ctx context.Context) ([]TechNode, error) {
 	return items, nil
 }
 
+const listTraits = `-- name: ListTraits :many
+SELECT id, star, name_zh, name_en, description_zh, description_en,
+       description_vague_zh,
+       source, effect, effect_attr, effect_value, effect_is_percentage,
+       effect_probability, effect_cooldown, learned_id, upgrade_id,
+       base_weight, is_dlc, is_negative, proficiencies_json, conditions_json, weapons_json
+FROM traits
+ORDER BY learned_id, star
+`
+
+func (q *Queries) ListTraits(ctx context.Context) ([]Trait, error) {
+	rows, err := q.db.QueryContext(ctx, listTraits)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []Trait{}
+	for rows.Next() {
+		var i Trait
+		if err := rows.Scan(
+			&i.ID,
+			&i.Star,
+			&i.NameZh,
+			&i.NameEn,
+			&i.DescriptionZh,
+			&i.DescriptionEn,
+			&i.DescriptionVagueZh,
+			&i.Source,
+			&i.Effect,
+			&i.EffectAttr,
+			&i.EffectValue,
+			&i.EffectIsPercentage,
+			&i.EffectProbability,
+			&i.EffectCooldown,
+			&i.LearnedID,
+			&i.UpgradeID,
+			&i.BaseWeight,
+			&i.IsDlc,
+			&i.IsNegative,
+			&i.ProficienciesJson,
+			&i.ConditionsJson,
+			&i.WeaponsJson,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const searchItems = `-- name: SearchItems :many
 SELECT id, name_en, name_zh, category
 FROM items

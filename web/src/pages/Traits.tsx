@@ -4,14 +4,12 @@ import { fetchTraits } from '../lib/api'
 import type { Trait } from '../lib/types'
 
 const SOURCE_TABS = [
-  { key: 'all',              label: 'All' },
-  { key: 'Normal',           label: 'Combat' },
-  { key: 'BornBuLuoCiTiao',  label: 'Tribe born' },
-  { key: 'BornChuShen',      label: 'Origin' },
-  { key: 'ChengHao',         label: 'Title' },
-  { key: 'XiHao',            label: 'Preference' },
-  { key: 'XingGe',           label: 'Personality' },
-  { key: 'JingLi',           label: 'Experience' },
+  { key: 'all',              label: 'All',         subtitle: 'Every trait',             color: '#8aa074' },
+  { key: 'Normal',           label: 'Combat',      subtitle: 'Battle & survival',       color: '#b85050' },
+  { key: 'BornBuLuoCiTiao',  label: 'Tribe Born',  subtitle: 'Tribal conditions',       color: '#b8a060' },
+  { key: 'BornChuShen',      label: 'Origin',      subtitle: 'Birth traits',            color: '#9b7db8' },
+  { key: 'ChengHao',         label: 'Title',       subtitle: 'Achievement awards',      color: '#7a9db5' },
+  { key: 'XiHao',            label: 'Preference',  subtitle: 'Likes & affinities',      color: '#6ea09a' },
 ] as const
 
 type SourceKey = typeof SOURCE_TABS[number]['key']
@@ -33,10 +31,7 @@ interface TraitFamily {
   tiers: Trait[]
   source: string
   isDlc: boolean
-}
-
-function starDisplay(star: number): string {
-  return '★'.repeat(star) + '☆'.repeat(3 - star)
+  isNegative: boolean
 }
 
 const ATTR_LABELS: Record<string, string> = {
@@ -64,12 +59,46 @@ function formatEffect(t: Trait): string {
   return ''
 }
 
+function hexToRgb(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `${r},${g},${b}`
+}
+
+function Ornament({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 14 14" className="w-[14px] h-[14px] flex-shrink-0" fill="none" stroke={color} strokeWidth="1" strokeLinecap="square">
+      <path d="M7 1 L13 7 L7 13 L1 7 Z" />
+      <path d="M7 4 L10 7 L7 10 L4 7 Z" fill={color} stroke="none" opacity=".6" />
+    </svg>
+  )
+}
+
+function StarPips({ star, max = 3 }: { star: number; max?: number }) {
+  return (
+    <span className="flex gap-[3px] items-center">
+      {Array.from({ length: max }, (_, i) => (
+        <span
+          key={i}
+          className="w-[7px] h-[7px] rotate-45 border"
+          style={{
+            backgroundColor: i < star ? '#b8a060' : 'transparent',
+            borderColor: i < star ? '#b8a060' : '#4a5040',
+          }}
+        />
+      ))}
+    </span>
+  )
+}
+
 export default function Traits() {
   const [traits, setTraits] = useState<Trait[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<SourceKey>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [dlcFilter, setDlcFilter] = useState<'all' | 'base' | 'dlc'>('all')
+  const [signFilter, setSignFilter] = useState<'all' | 'buff' | 'debuff'>('all')
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   useEffect(() => {
@@ -81,7 +110,9 @@ export default function Traits() {
   const families = useMemo(() => {
     const map = new Map<string, TraitFamily>()
     for (const t of traits) {
-      const key = (t.learned_id && t.learned_id !== '0') ? t.learned_id : t.id
+      const key = (t.learned_id && t.learned_id !== '0')
+        ? t.learned_id
+        : `name:${t.name_en || t.name_zh || t.id}:${t.source || ''}`
       if (!map.has(key)) {
         map.set(key, {
           learnedId: key,
@@ -89,6 +120,7 @@ export default function Traits() {
           tiers: [],
           source: t.source || 'Normal',
           isDlc: t.is_dlc,
+          isNegative: t.is_negative,
         })
       }
       map.get(key)!.tiers.push(t)
@@ -116,6 +148,11 @@ export default function Traits() {
     } else if (dlcFilter === 'dlc') {
       result = result.filter(f => f.isDlc)
     }
+    if (signFilter === 'buff') {
+      result = result.filter(f => !f.isNegative)
+    } else if (signFilter === 'debuff') {
+      result = result.filter(f => f.isNegative)
+    }
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase()
       result = result.filter(f => {
@@ -128,7 +165,10 @@ export default function Traits() {
       })
     }
     return result
-  }, [families, activeTab, dlcFilter, searchQuery])
+  }, [families, activeTab, dlcFilter, signFilter, searchQuery])
+
+  const activeCat = SOURCE_TABS.find(t => t.key === activeTab)!
+  const rgb = hexToRgb(activeCat.color)
 
   if (loading) return <div className="p-8 text-text-dim">Loading traits...</div>
 
@@ -139,142 +179,285 @@ export default function Traits() {
         <meta name="description" content="Complete reference of all tribesman traits (NaturalGifts) in Soulmask, including combat, tribe-born, DLC, and preference traits." />
       </Helmet>
 
-      <div className="p-2 md:p-6 max-w-5xl">
-        <h1 className="text-2xl font-bold mb-1">Tribesman traits</h1>
-        <p className="text-text-dim text-sm mb-4">
-          {traits.length} traits across {families.length} families
-        </p>
-
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-3">
-          {SOURCE_TABS.map(tab => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`px-3 py-1 rounded text-sm transition-colors ${
-                activeTab === tab.key
-                  ? 'bg-accent text-white'
-                  : 'bg-surface text-text-dim hover:bg-surface-hover'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+      <div className="max-w-5xl">
+        {/* Page header */}
+        <div className="mb-5">
+          <h1 className="font-heading text-[28px] font-bold text-text tracking-[.03em] mb-1">
+            Tribesman{' '}
+            <span className="font-display italic font-semibold" style={{ color: activeCat.color }}>
+              Traits
+            </span>
+          </h1>
+          <p className="text-[12px] text-text-mute italic font-display">
+            {traits.length} traits across {families.length} families — combat, personality, origin, and more.
+          </p>
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-4 items-center">
-          <input
-            type="text"
-            placeholder="Search traits..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            className="px-3 py-1.5 rounded bg-surface border border-border text-sm w-56"
-          />
-          <div className="flex gap-1">
-            {(['all', 'base', 'dlc'] as const).map(v => (
+        {/* Category tabs */}
+        <div className="grid grid-cols-2 md:flex border-b border-hair mb-0">
+          {SOURCE_TABS.map(tab => {
+            const count = tab.key === 'all'
+              ? families.length
+              : families.filter(f => f.source === tab.key).length
+            const active = tab.key === activeTab
+            return (
               <button
-                key={v}
-                onClick={() => setDlcFilter(v)}
-                className={`px-2 py-1 rounded text-xs transition-colors ${
-                  dlcFilter === v
-                    ? 'bg-accent text-white'
-                    : 'bg-surface text-text-dim hover:bg-surface-hover'
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`relative md:flex-1 flex items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-3 text-left transition-colors border-b border-hair md:border-b-0 ${
+                  active ? 'bg-panel' : 'hover:bg-panel/50'
                 }`}
+                style={active ? {
+                  borderTop: `2px solid ${tab.color}`,
+                  borderLeft: '1px solid var(--color-hair, #373c32)',
+                  borderRight: '1px solid var(--color-hair, #373c32)',
+                  marginBottom: -1,
+                } : undefined}
               >
-                {v === 'all' ? 'All' : v === 'base' ? 'Base game' : 'DLC'}
+                <span
+                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: tab.color, opacity: active ? 1 : 0.35 }}
+                />
+                <div className="min-w-0 flex-1">
+                  <div
+                    className={`text-[12px] font-semibold uppercase tracking-wider2 ${active ? '' : 'text-text-mute'}`}
+                    style={active ? { color: tab.color } : undefined}
+                  >
+                    {tab.label}
+                  </div>
+                  <div className="text-[10px] text-text-dim truncate hidden md:block">{tab.subtitle}</div>
+                </div>
+                <span
+                  className="text-[11px] tabular-nums px-1.5 py-0.5 border"
+                  style={active
+                    ? { borderColor: `rgba(${hexToRgb(tab.color)},.4)`, color: tab.color }
+                    : { borderColor: 'var(--color-hair, #373c32)', color: 'var(--color-text-dim, #6b7163)' }
+                  }
+                >
+                  {count}
+                </span>
               </button>
-            ))}
+            )
+          })}
+        </div>
+
+        {/* Sub-header row */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 py-3 border-b border-hair">
+          <div className="text-[11px] text-text-mute uppercase tracking-wider2">
+            <span style={{ color: activeCat.color }}>{'◆'}</span>
+            {' '}{activeCat.label} — {activeCat.subtitle} · {filtered.length} traits
           </div>
-          <span className="text-text-dim text-xs">
-            {filtered.length} {filtered.length === 1 ? 'trait' : 'traits'}
-          </span>
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              placeholder="Search traits..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="px-3 py-1 rounded bg-panel border border-hair text-[12px] text-text w-48 placeholder:text-text-faint focus:border-hair-strong focus:outline-none transition-colors"
+            />
+            <div className="flex gap-1">
+              {(['all', 'buff', 'debuff'] as const).map(v => (
+                <button
+                  key={v}
+                  onClick={() => setSignFilter(v)}
+                  className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                  style={signFilter === v
+                    ? { borderColor: v === 'debuff' ? 'rgba(184,80,80,.5)' : v === 'buff' ? 'rgba(138,160,116,.5)' : '#4a5040', color: v === 'debuff' ? '#b85050' : v === 'buff' ? '#8aa074' : '#d8dcc8', backgroundColor: v === 'debuff' ? 'rgba(184,80,80,.1)' : v === 'buff' ? 'rgba(138,160,116,.1)' : '#363c33' }
+                    : { borderColor: '#373c32', color: '#6b7163' }
+                  }
+                >
+                  {v === 'all' ? 'All' : v === 'buff' ? 'Buff' : 'Debuff'}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-1">
+              {(['all', 'base', 'dlc'] as const).map(v => (
+                <button
+                  key={v}
+                  onClick={() => setDlcFilter(v)}
+                  className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+                    dlcFilter === v
+                      ? 'border-hair-strong text-text bg-panel-lift'
+                      : 'border-hair text-text-dim hover:text-text hover:border-hair-strong'
+                  }`}
+                >
+                  {v === 'all' ? 'All' : v === 'base' ? 'Base' : 'DLC'}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Trait list */}
-        <div className="space-y-1">
+        <div className="mt-4 space-y-[2px]">
           {filtered.map(fam => {
             const isExpanded = expandedId === fam.learnedId
             const topTier = fam.tiers[fam.tiers.length - 1]
             const effectStr = formatEffect(topTier)
+            const neg = fam.isNegative
+            const sourceTab = SOURCE_TABS.find(t => t.key === fam.source)
+            const famColor = sourceTab?.color ?? activeCat.color
+            const accentColor = neg ? '#b85050' : famColor
 
             return (
               <div
                 key={fam.learnedId}
-                className="border border-border rounded bg-surface"
+                className="relative border border-hair bg-panel transition-colors"
+                style={{
+                  borderLeftWidth: 2,
+                  borderLeftColor: neg ? 'rgba(184,80,80,.5)' : 'transparent',
+                  ...(isExpanded ? { borderColor: `rgba(${hexToRgb(accentColor)},.3)`, borderLeftWidth: 2, borderLeftColor: neg ? 'rgba(184,80,80,.5)' : `rgba(${hexToRgb(famColor)},.3)` } : {}),
+                }}
               >
+                {/* Top accent line when expanded */}
+                {isExpanded && (
+                  <div
+                    className="absolute -top-px -left-px -right-px h-[2px]"
+                    style={{ background: `linear-gradient(90deg, ${accentColor} 0%, transparent 100%)` }}
+                  />
+                )}
+
                 <button
                   onClick={() => setExpandedId(isExpanded ? null : fam.learnedId)}
-                  className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-surface-hover transition-colors"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-panel-2 transition-colors"
                 >
-                  <span className="text-yellow-400 text-xs w-16 shrink-0 font-mono">
-                    {starDisplay(topTier.star)}
-                  </span>
-                  <span className="font-medium text-sm flex-1 min-w-0">
+                  <StarPips star={topTier.star} />
+                  <span className={`font-display text-[15px] font-semibold tracking-[.02em] flex-1 min-w-0 truncate ${neg ? '' : 'text-text'}`} style={neg ? { color: '#c47070' } : undefined}>
                     {fam.name}
                   </span>
                   {effectStr && (
-                    <span className="text-xs text-text-dim shrink-0">{effectStr}</span>
+                    <span
+                      className="text-[11px] tabular-nums tracking-[.02em] flex-shrink-0"
+                      style={{ color: neg ? '#b85050' : '#8aa074' }}
+                    >
+                      {effectStr}
+                    </span>
+                  )}
+                  {neg && (
+                    <span
+                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      style={{ borderColor: 'rgba(184,80,80,.35)', color: '#b85050' }}
+                    >
+                      Debuff
+                    </span>
                   )}
                   {fam.isDlc && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 shrink-0">
+                    <span
+                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      style={{ borderColor: 'rgba(155,125,184,.4)', color: '#9b7db8' }}
+                    >
                       DLC
                     </span>
                   )}
-                  <span className="text-text-dim text-xs shrink-0">
-                    {isExpanded ? '▲' : '▼'}
-                  </span>
+                  {fam.tiers.length > 1 && (
+                    <span className="text-[10px] tabular-nums text-text-dim flex-shrink-0">
+                      {fam.tiers.length} tiers
+                    </span>
+                  )}
+                  <svg
+                    className={`w-3 h-3 text-text-dim flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                    viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"
+                  >
+                    <path d="M3 5 L6 8 L9 5" />
+                  </svg>
                 </button>
 
                 {isExpanded && (
-                  <div className="px-3 pb-3 border-t border-border">
-                    {fam.tiers.map(t => (
-                      <div key={t.id} className="mt-2">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-yellow-400 text-xs font-mono">
-                            {starDisplay(t.star)}
-                          </span>
-                          <span className="text-xs text-text-dim">ID: {t.id}</span>
-                        </div>
-                        <p className="text-sm mb-1">{t.description_en || t.description_zh}</p>
-
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-dim">
-                          {formatEffect(t) && <span>Effect: {formatEffect(t)}</span>}
-                          {t.effect_cooldown != null && t.effect_cooldown > 0 && (
-                            <span>CD: {t.effect_cooldown}s</span>
-                          )}
-                          {t.effect_probability != null && t.effect_probability < 1 && (
-                            <span>Prob: {(t.effect_probability * 100).toFixed(0)}%</span>
-                          )}
-                        </div>
-
-                        {t.proficiencies && t.proficiencies.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
-                            {t.proficiencies.map(p => (
-                              <span key={p} className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">
-                                {PROFICIENCY_LABELS[p] || p}
+                  <div className="border-t border-hair">
+                    {fam.tiers.map((t, i) => {
+                      const tierEffect = formatEffect(t)
+                      const tierNeg = t.is_negative
+                      return (
+                        <div
+                          key={t.id}
+                          className={`px-4 py-3 ${i > 0 ? 'border-t border-hair' : ''}`}
+                          style={{ background: `linear-gradient(90deg, rgba(${tierNeg ? '184,80,80' : rgb},.04) 0%, transparent 60%)` }}
+                        >
+                          <div className="flex items-center gap-3 mb-2">
+                            <StarPips star={t.star} />
+                            <span className="font-display text-[14px] font-semibold text-text tracking-[.02em]">
+                              {t.name_en || t.name_zh || t.id}
+                            </span>
+                            {tierEffect && (
+                              <span
+                                className="text-[11px] tabular-nums px-2 py-[2px] border"
+                                style={{
+                                  borderColor: tierNeg ? 'rgba(184,80,80,.3)' : 'rgba(138,160,116,.3)',
+                                  color: tierNeg ? '#b85050' : '#8aa074',
+                                }}
+                              >
+                                {tierEffect}
                               </span>
-                            ))}
+                            )}
+                            <span className="text-[10px] text-text-faint tracking-[.06em]">
+                              #{t.id}
+                            </span>
                           </div>
-                        )}
 
-                        {t.weapons && t.weapons.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
-                            {t.weapons.map(w => (
-                              <span key={w} className="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-300">
-                                {w}
+                          <p className="text-[13px] text-text-mute leading-relaxed mb-2 ml-[33px]">
+                            {t.description_en || t.description_zh}
+                          </p>
+
+                          {/* Meta row */}
+                          <div className="flex flex-wrap gap-x-5 gap-y-1 ml-[33px] text-[11px] text-text-dim">
+                            {t.effect_cooldown != null && t.effect_cooldown > 0 && (
+                              <span>
+                                <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">CD</span>
+                                <span className="tabular-nums">{t.effect_cooldown}s</span>
                               </span>
-                            ))}
+                            )}
+                            {t.effect_probability != null && t.effect_probability < 1 && (
+                              <span>
+                                <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">PROB</span>
+                                <span className="tabular-nums">{(t.effect_probability * 100).toFixed(0)}%</span>
+                              </span>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    ))}
 
+                          {/* Proficiency badges */}
+                          {t.proficiencies && t.proficiencies.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-2 ml-[33px]">
+                              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Requires</span>
+                              {t.proficiencies.map(p => (
+                                <span
+                                  key={p}
+                                  className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                                  style={{ borderColor: 'rgba(122,157,181,.3)', color: '#7a9db5' }}
+                                >
+                                  {PROFICIENCY_LABELS[p] || p}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Weapon badges */}
+                          {t.weapons && t.weapons.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-2 ml-[33px]">
+                              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Weapon</span>
+                              {t.weapons.map(w => (
+                                <span
+                                  key={w}
+                                  className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                                  style={{ borderColor: 'rgba(166,122,82,.3)', color: '#a67a52' }}
+                                >
+                                  {w}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+
+                    {/* Conditions footer */}
                     {topTier.conditions && topTier.conditions.length > 0 && (
-                      <div className="mt-2 text-xs text-text-dim">
-                        <span className="font-medium">Conditions: </span>
-                        {topTier.conditions.map(c =>
-                          c.replace(/^BP_Gift_/, '').replace(/_C$/, '').replace(/_/g, ' ')
-                        ).join(', ')}
+                      <div className="px-4 py-2.5 border-t border-hair bg-panel-2">
+                        <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-2">Conditions</span>
+                        <span className="text-[11px] text-text-dim">
+                          {topTier.conditions.map(c =>
+                            c.replace(/^BP_Gift_/, '').replace(/_C$/, '').replace(/_/g, ' ')
+                          ).join(', ')}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -285,7 +468,11 @@ export default function Traits() {
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-text-dim text-sm mt-8 text-center">No traits match your filters.</p>
+          <div className="flex items-center justify-center gap-3 py-16">
+            <Ornament color="#4a5040" />
+            <span className="text-text-dim text-[13px] italic font-display">No traits match your filters.</span>
+            <Ornament color="#4a5040" />
+          </div>
         )}
       </div>
     </>

@@ -184,3 +184,28 @@ export interface TechTreeResponse {
 }
 
 export type TechMode = 'survival' | 'soldier' | 'management'
+
+export interface Trait {
+  id: string
+  star: number
+  name_zh: string | null
+  name_en: string | null
+  description_zh: string | null
+  description_en: string | null
+  description_vague_zh: string | null
+  source: string | null
+  effect: string | null
+  effect_attr: string | null
+  effect_value: number | null
+  effect_is_percentage: boolean
+  effect_probability: number | null
+  effect_cooldown: number | null
+  learned_id: string | null
+  upgrade_id: string | null
+  base_weight: number | null
+  is_dlc: boolean
+  is_negative: boolean
+  proficiencies: string[] | null
+  conditions: string[] | null
+  weapons: string[] | null
+}

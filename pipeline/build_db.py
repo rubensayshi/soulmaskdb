@@ -452,8 +452,8 @@ def main():
                 "INSERT INTO traits (id, star, name_zh, description_zh, description_vague_zh, "
                 "source, effect, effect_attr, effect_value, effect_is_percentage, "
                 "effect_probability, effect_cooldown, learned_id, upgrade_id, base_weight, "
-                "is_dlc, proficiencies_json, conditions_json, weapons_json) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "is_dlc, is_negative, proficiencies_json, conditions_json, weapons_json) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (
                     t["id"], t["star"], t.get("name_zh"), t.get("description_zh"),
                     t.get("description_vague_zh"), t.get("source"), t.get("effect"),
@@ -462,6 +462,7 @@ def main():
                     t.get("effect_probability"), t.get("effect_cooldown"),
                     t.get("learned_id"), t.get("upgrade_id"), t.get("base_weight"),
                     1 if t.get("is_dlc") else 0,
+                    1 if t.get("is_negative") else 0,
                     json.dumps(t["proficiency_requirements"]) if t.get("proficiency_requirements") else None,
                     json.dumps(t["conditions"]) if t.get("conditions") else None,
                     json.dumps(t["weapon_requirements"]) if t.get("weapon_requirements") else None,

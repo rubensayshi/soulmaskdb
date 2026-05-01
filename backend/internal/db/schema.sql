@@ -121,3 +121,28 @@ CREATE TABLE creature_spawns (
   map           TEXT NOT NULL DEFAULT 'base',
   PRIMARY KEY (creature_type, lat, lon, map)
 );
+
+CREATE TABLE traits (
+  id                    TEXT PRIMARY KEY,
+  star                  INTEGER NOT NULL,
+  name_zh               TEXT,
+  name_en               TEXT,
+  description_zh        TEXT,
+  description_en        TEXT,
+  description_vague_zh  TEXT,
+  source                TEXT,
+  effect                TEXT,
+  effect_attr           TEXT,
+  effect_value          REAL,
+  effect_is_percentage  INTEGER,
+  effect_probability    REAL,
+  effect_cooldown       REAL,
+  learned_id            TEXT,
+  upgrade_id            TEXT,
+  base_weight           INTEGER,
+  is_dlc                INTEGER NOT NULL DEFAULT 0,
+  is_negative           INTEGER NOT NULL DEFAULT 0,
+  proficiencies_json    TEXT,
+  conditions_json       TEXT,
+  weapons_json          TEXT
+);

@@ -114,3 +114,12 @@ SELECT u.tech_node_id, u.recipe_id,
 FROM tech_node_unlocks_recipe u
 JOIN recipes r ON r.id = u.recipe_id
 JOIN items i ON i.id = r.output_item_id;
+
+-- name: ListTraits :many
+SELECT id, star, name_zh, name_en, description_zh, description_en,
+       description_vague_zh,
+       source, effect, effect_attr, effect_value, effect_is_percentage,
+       effect_probability, effect_cooldown, learned_id, upgrade_id,
+       base_weight, is_dlc, is_negative, proficiencies_json, conditions_json, weapons_json
+FROM traits
+ORDER BY learned_id, star;
