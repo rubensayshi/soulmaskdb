@@ -39,6 +39,8 @@ TABLES = [
      r"AdditionMap01\BluePrints\DataTable\Drop\DT_Relic.uasset"),
     ("/Game/AdditionMap01/BluePrints/DataTable/Drop/DT_Tribe",
      r"AdditionMap01\BluePrints\DataTable\Drop\DT_Tribe.uasset"),
+    ("/Game/Blueprints/DataTable/NaturalGift/DT_GiftZongBiao",
+     r"Blueprints\DataTable\NaturalGift\DT_GiftZongBiao.uasset"),
 ]
 
 

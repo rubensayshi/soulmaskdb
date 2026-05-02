@@ -65,7 +65,7 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - > Listed alongside Weapon Master as top-priority by experienced players
 - > "Absolute must for gauntlet builds" and critical for tanks
 
-**Battle Tested** (Experience trait)
+**Experience - Battle-tested** (Experience trait)
 - -50% to -60% damage taken when fighting as a companion follower
 - > Multiple players stated this is "non-negotiable for deployed followers"
 - > Called a "must have" for any NPC sent out to dungeons
@@ -107,7 +107,7 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - Emergency survival / clutch trait
 - > "This keeps you from dying. Plain and simple. It activates at 30% HP so it's not too terribly low... and it can happen every 40 seconds which is pretty often in combat." -- YouTube: These Talents Are Insane
 
-**Pen Def / Insight Death** (Penetration Defense, Flint exclusive)
+**PEN DEF / Insight DEF** (Penetration Defense, Flint exclusive)
 - Ignore enemy defense for 7s after a perfect block/parry (30s cooldown)
 - Extremely rare; user Bonedog reported finding it only once after taming "hundreds" of tribesmen
 - > "You attack them as though they are not wearing armor. You do massive amounts of damage... it is a killer of a talent." -- YouTube: These Talents Are Insane
@@ -149,7 +149,7 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - Must-have for stealth builds
 - > "This is a must for anybody who is playing a stealth character... it's going to allow you to sneak up on people and take them out before they realize what is going on." -- YouTube: These Talents Are Insane
 
-**Marksman Footsteps** (Hunter exclusive)
+**Marksman Footstep** (Hunter exclusive)
 - +95% movement speed while aiming with bows (10s duration, no cooldown)
 - Essential for bow kiting — fire, notch another arrow, buff reactivates immediately
 - > "If you like playing archers this is definitely one to keep an eye out for because often the enemy will run up on you and you will have to kite them. This makes kiting them significantly easier." -- YouTube: These Talents Are Insane
@@ -184,7 +184,7 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - 20% chance for +30% movement speed when attacked
 - Situational escape
 
-**Backpack Extension**
+**Backpack Expansion**
 - +10/20/30 inventory slots
 - Quality of life for porters/gatherers
 
@@ -205,9 +205,9 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 - **Chest Breaker** -- 80% box opening speed (speedrunning)
 - **Nightwalker** -- +5% move speed/crit at night (community says needs buff to compete)
 - **Archery Master** -- 20% weak spot tagging (bow users)
-- **Born Labourer / Farming Expert** -- +50% proficiency growth (essential for crafters)
+- **Born Laborer / Farming Expert** -- +50% proficiency growth (essential for crafters)
 - **Death Bringer** -- +20% ATK/move speed on kill (snowball trait)
-- **Drunken Sense** -- Auto-dodge 3 attacks after drinking alcohol (30s cooldown)
+- **Drunken Senses** -- Auto-dodge 3 attacks after drinking alcohol (30s cooldown)
 
 ---
 
@@ -264,8 +264,8 @@ Allows tribesmen to inherit/transfer talents between each other. Makes "borderli
 ### Crafting quality traits
 
 - **Refined Armor** (Flint exclusive) -- +10% high-quality armor output
-- **Weapon Forging** (Flint exclusive) -- +10% high-quality weapon output
-- **Refined Tools** (Artisan exclusive) -- +10% high-quality tool output
+- **Weapon Enhancement** (Flint exclusive) -- +10% high-quality weapon output
+- **Refined Tool** (Artisan exclusive) -- +10% high-quality tool output
 - **Weapon Enhancement III** -- Adds ~15 levels of effective crafting power; a 118-level crafter with this is comparable to 132 without
 
 ### Proficiency priorities (community consensus for 120+ targets)
@@ -377,7 +377,7 @@ Key traits: Crave for Blood, Static Recovery, Blood Absorption, Last Radiance, S
 3. Weak Spot Defense
 4. Crit Steal
 5. Extraordinary Talent
-6. Pen Defense (main) / Breezy Downpour (follower)
+6. PEN DEF (main) / Breezy Downpour (follower)
 
 Uses Wildwolf tribe with bleed perks.
 
@@ -396,7 +396,7 @@ Uses Wildwolf tribe with bleed perks.
 1. Powerful Attack
 2. Blood Absorption
 3. Damage Boost Blessing
-4. Pen Def
+4. PEN DEF
 5. Bloodbath Recovery / Resilient Healing
 6. Steel Body / Chain Dodge
 
@@ -419,7 +419,7 @@ Uses Wildwolf tribe with bleed perks.
 
 **For AI followers/defenders:**
 - > "Def, DMG bonus after parry/Def, bonuses to shields/spears/bows, health regen while standing still" -- u/Darius_Terryn
-- Steel Body + Dauntless valued since AI doesn't dodge well
+- Steel Body + The Dauntless valued since AI doesn't dodge well
 
 **For archers:**
 - Rapid Shooting + Multiple Shooting (both Hunter exclusive) + movement while drawing bow trait
@@ -552,7 +552,7 @@ Community frustration that a "Master Archer" can spawn with anti-archery traits.
 - **Weak Spot Enhance** -- "Damage taken when hit -60%" is ambiguous (all damage or only weak spot?)
 - **Tail Destruction** -- "20% to increase DMG by 25%" unclear if animals-only
 - **Skill Recovery** -- claims to recover HP from shield reflects but reportedly doesn't work
-- **Resourceful / Slow-Witted** -- affect "the chance of taking damage when being attacked," NOT the same as Extraordinary Talent
+- **Resourceful / Slow-witted** -- affect "the chance of taking damage when being attacked," NOT the same as Extraordinary Talent
 - **Static Recovery** -- sometimes triggers in <5s instead of 15, occasionally activates while moving (likely bug)
 - Many traits state "has a chance" without specifying the actual percentage
 - "Resil Down Dmg" and "Sta Down Dmg" calculations are unexplained
@@ -676,7 +676,7 @@ After Boss 3 (Vajra Ape), the mysterious stone table lets you copy an entire tri
 
 ### YouTube
 
-- ["These Talents Are Insane In SoulMask"](https://www.youtube.com/watch?v=l10XZOV4sq4) — transcript extracted. Covers: Trick Force, Rapid Growth, Battle Tested, Unnoticeable, Endurance, Last Radiance, Static Recovery, Insight Death (Flint), Marksman Footsteps (Hunter), Endurance Burst (Flint)
+- ["These Talents Are Insane In SoulMask"](https://www.youtube.com/watch?v=l10XZOV4sq4) — transcript extracted. Covers: Trick Force, Rapid Growth, Experience - Battle-tested, Unnoticeable, Endurance, Last Radiance, Static Recovery, Insight DEF (Flint), Marksman Footstep (Hunter), Endurance Burst (Flint)
 - ["SOULMASK: NPCs Skills, Talents, Qualities, Abilities"](https://www.youtube.com/watch?v=b9M4ZgldtcI)
 - ["SOULMASK Tribesmen Guide | Perks/Stats & Skills"](https://www.youtube.com/watch?v=V0BxG8_iLbE)
 - ["Soulmask PvP Meta 2025 -- Full Build Guide"](https://www.youtube.com/watch?v=kltXsObUttw)
