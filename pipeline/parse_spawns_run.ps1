@@ -1,46 +1,70 @@
 # Runs parse_spawns.ps1 with the pre-scanned list of matching .umap files
 # (skips the slow binary scan phase)
 
-$MapsDir   = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\Maps"
-$UassetGui = "D:\UAssetGUI.exe"
-$EngineVer = "VER_UE4_27"
-$ScriptDir = Split-Path $MyInvocation.MyCommand.Path
-$OutFile   = [System.IO.Path]::GetFullPath((Join-Path $ScriptDir "..\Game\Parsed\spawns.json"))
+$MapsDir    = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\Maps"
+$DLCMapsDir = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\AdditionMap01\Maps"
+$UassetGui  = "D:\UAssetGUI.exe"
+$EngineVer  = "VER_UE4_27"
+$ScriptDir  = Split-Path $MyInvocation.MyCommand.Path
+$OutFile    = [System.IO.Path]::GetFullPath((Join-Path $ScriptDir "..\Game\Parsed\spawns.json"))
 
 $SpawnerClassPatterns = @("ShuaGuaiQi", "SGQ", "ShuaGuai")
 
 # Pre-scanned list — all .umap files confirmed to contain spawner refs
 # Excludes DemoMap/TestMap/Level01_Main (OOM on export, dev-only content)
+# Each entry is @(baseDir, relativePath)
+# Each entry: @{ Base = $dir; Rel = "relative\path.umap" }
 $KnownSpawnerMaps = @(
-    "DiXiaCheng\BossFang\FuBen_GuanQia_YiJi_Boss_333.umap",
-    "DiXiaCheng\BossFang\FuBen_GuanQia_YiJi_JingYing_332.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_232.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_332.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_333.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Treasure_111.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_111.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_112.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_121.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_122.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_133.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_221.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_222.umap",
-    "DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_231.umap",
-    "DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Heng_111.umap",
-    "DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Heng_131.umap",
-    "DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Xie_133.umap",
-    "Level01\Level01_Hub\Level01_GamePlay.umap",
-    "Level01\Level01_Hub\Level01_GamePlay2.umap",
-    "Level01\Level01_Hub\Level01_GamePlay3.umap",
-    "Level01\Level01_YiJi\Level01_DiXiaYiJi04.umap",
-    "Level01\Level01_YiJi\Level01_YeWaiYiJi01.umap",
-    "Level01\Level01_YiJi\Level01_YJ_ShengYiJi03.umap",
-    "ZhanChang01\MonsterRoom\Lv_Battlefield_BossRoom_333.umap",
-    "ZhanChang01\MonsterRoom\Lv_Battlefield_CommonRoom_222_New.umap",
-    "ZhanChang01\MonsterRoom\Lv_Battlefield_EliteRoom_222_New.umap",
-    "ZhanChang01\MonsterRoom\Lv_Battlefield_EliteRoom_332.umap",
-    "ZhanChang01\MonsterRoom\Test_Lv_Battlefield_CommonRoom_331.umap",
-    "ZhanChang01\MonsterRoom\Test_Lv_Battlefield_EliteRoom_223.umap"
+    # --- Base game maps (under $MapsDir) ---
+    @{ Base=$MapsDir; Rel="DiXiaCheng\BossFang\FuBen_GuanQia_YiJi_Boss_333.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\BossFang\FuBen_GuanQia_YiJi_JingYing_332.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_232.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_332.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Da_333.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Treasure_111.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_111.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_112.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_121.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Xiao_122.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_133.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_221.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_222.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\GuanQia\FuBen_GuanQia_YiJi_FangJian_Zhong_231.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Heng_111.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Heng_131.umap" },
+    @{ Base=$MapsDir; Rel="DiXiaCheng\TongDao\FuBen_GuanQia_YiJi_TongDao_Xie_133.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_Hub\Level01_GamePlay.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_Hub\Level01_GamePlay2.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_Hub\Level01_GamePlay3.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_YiJi\Level01_DiXiaYiJi04.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_YiJi\Level01_YeWaiYiJi01.umap" },
+    @{ Base=$MapsDir; Rel="Level01\Level01_YiJi\Level01_YJ_ShengYiJi03.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Lv_Battlefield_BossRoom_333.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Lv_Battlefield_CommonRoom_222_New.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Lv_Battlefield_EliteRoom_222_New.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Lv_Battlefield_EliteRoom_332.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Test_Lv_Battlefield_CommonRoom_331.umap" },
+    @{ Base=$MapsDir; Rel="ZhanChang01\MonsterRoom\Test_Lv_Battlefield_EliteRoom_223.umap" },
+    # --- DLC maps (under $DLCMapsDir / AdditionMap01) ---
+    @{ Base=$DLCMapsDir; Rel="DLC_Level01\DLC_Level01_Hub\DLC_Level01_GamePlay.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Level01\DLC_Level01_Hub\DLC_Level01_GamePlay2.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Level01\DLC_Level01_Hub\DLC_Level01_GamePlay3.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Level01\DLC_Level01_Ruins\DLC_Level01_HolyRuins_01.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Level01\DLC_Level01_Ruins\DLC_Level01_UndergroundRuins_03.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\BossRoom\EG_Level_Relic_Boss_364.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\BossRoom\EG_Level_Relic_Elite_343.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\Corridor\EG_Level_Relic_Corridor_131.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_L_232.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_L_332.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_L_333.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_M_133.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_M_221.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_M_222.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_M_231.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_S_111.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_S_112.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_S_121.umap" },
+    @{ Base=$DLCMapsDir; Rel="DLC_Egypt_Dungeons\Level\MonsterRoom\EG_Level_Relic_Room_S_122.umap" }
 )
 
 function Get-Prop($dataArray, $name) {
@@ -67,14 +91,28 @@ function Resolve-Import($imports, $idx) {
     return $null
 }
 
+function Resolve-SCGClass($imports, $idx) {
+    # SCGClass is an ObjectProperty whose Value is a negative import index.
+    # The import's ObjectName is the _C class name; OuterIndex points to the package path.
+    $imp = Resolve-Import $imports $idx
+    if (-not $imp) { return $null }
+    $name  = $imp.ObjectName  # e.g. "BP_SGQ_YeZhu_BuLuo_50_C"
+    $outer = if ($imp.OuterIndex -ne 0) { Resolve-Import $imports $imp.OuterIndex } else { $null }
+    if ($outer -and $outer.ObjectName) {
+        return "$($outer.ObjectName).$name"   # e.g. "/Game/Blueprints/.../BP_SGQ_YeZhu_BuLuo_50.BP_SGQ_YeZhu_BuLuo_50_C"
+    }
+    return $name
+}
+
 $allSpawns = [System.Collections.Generic.List[hashtable]]::new()
 $errors    = @()
 $tmpDir    = [System.IO.Path]::GetTempPath()
 $fileIdx   = 0
 
-foreach ($rel in $KnownSpawnerMaps) {
+foreach ($entry in $KnownSpawnerMaps) {
     $fileIdx++
-    $umapPath = Join-Path $MapsDir $rel
+    $rel      = $entry.Rel
+    $umapPath = Join-Path $entry.Base $rel
     $mapName  = [System.IO.Path]::GetFileNameWithoutExtension($rel)
     $sizeMB   = [math]::Round((Get-Item $umapPath).Length / 1MB, 1)
     $jsonOut  = Join-Path $tmpDir "spawns_$mapName.json"
@@ -109,7 +147,13 @@ foreach ($rel in $KnownSpawnerMaps) {
             foreach ($pat in $SpawnerClassPatterns) { if ($cls -match $pat) { $isSpawner = $true; break } }
             if (-not $isSpawner) { continue }
 
-            $posX = $posY = $posZ = $null; $yaw = $null
+            $posX = $posY = $posZ = $null; $yaw = $null; $scgClass = $null
+
+            # SCGClass: which creature blueprint this spawner spawns
+            $scgProp = Get-Prop $exp.Data "SCGClass"
+            if ($scgProp -and $scgProp.Value -and $scgProp.Value -ne 0) {
+                $scgClass = Resolve-SCGClass $imports $scgProp.Value
+            }
 
             # Strategy A: RootComponent -> SceneComponent.RelativeLocation
             $rootProp = Get-Prop $exp.Data "RootComponent"
@@ -146,6 +190,7 @@ foreach ($rel in $KnownSpawnerMaps) {
                 map           = $mapName
                 map_path      = $rel
                 spawner_class = $cls
+                scg_class     = $scgClass
                 actor_name    = $exp.ObjectName
                 pos_x         = $posX
                 pos_y         = $posY
