@@ -171,7 +171,7 @@ export default function TraitBuilderPanel({
                 <span className="text-[10px] uppercase tracking-wider2 text-text-dim font-medium">
                   {cat.label}
                 </span>
-                <span className="text-[10px] tabular-nums text-text-faint">
+                <span className="text-[10px] tabular-nums text-text-dim">
                   {filled.length} / {cat.max}
                 </span>
               </div>
@@ -192,7 +192,7 @@ export default function TraitBuilderPanel({
                       className="flex items-center gap-2 px-2 py-1.5 bg-panel-2 border border-hair rounded-sm group"
                     >
                       <StarPips star={trait.star} />
-                      <span className="text-[12px] font-display font-semibold text-text truncate flex-1">
+                      <span className="text-[12px] font-display font-semibold tracking-[.02em] text-text truncate flex-1">
                         {trait.name_en || trait.name_zh || trait.id}
                       </span>
                       {tierMeta && (
