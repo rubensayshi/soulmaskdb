@@ -69,31 +69,6 @@ const BORN_TOOLTIPS: Record<string, string> = {
   Normal: 'Birth trait — innate, cannot be learned by other tribesmen',
 }
 
-const ATTR_LABELS: Record<string, string> = {
-  SpeedRate: 'move speed', AttackSpeed: 'atk speed', Attack: 'attack',
-  Defense: 'defense', DamageDec: 'dmg reduction', MaxHealth: 'max HP',
-  MaxFuZhong: 'carry weight', MaxFood: 'max food', MaxWater: 'max water',
-  Crit: 'crit rate', CritDamageInc: 'crit damage', CritDef: 'crit defense',
-  HealthRecover: 'HP regen', TiLiRecover: 'stam regen', MaxTiLi: 'max stamina',
-  MaxJingShen: 'max focus', MaxTenacity: 'max tenacity',
-  DuDamageDec: 'poison resistance', DuKang: 'poison resist',
-  FuKang: 'rot resist', HanKang: 'cold resist', YanKang: 'heat resist',
-  DaoJuBaoProbInc: 'tool repair chance',
-}
-
-function formatEffect(t: Trait): string {
-  if (t.effect === 'AttrInc' && t.effect_attr && t.effect_value != null) {
-    const abs = Math.abs(t.effect_value)
-    const sign = t.effect_value >= 0 ? '+' : ''
-    const val = abs < 1
-      ? `${sign}${(t.effect_value * 100).toFixed(1)}%`
-      : `${sign}${Number.isInteger(t.effect_value) ? t.effect_value : t.effect_value.toFixed(1)}`
-    const label = ATTR_LABELS[t.effect_attr] || t.effect_attr
-    return `${val} ${label}`
-  }
-  return ''
-}
-
 type DescSegment = { type: 'text'; value: string } | { type: 'variable'; values: string[] }
 
 function mergeDescriptions(descriptions: string[]): DescSegment[] {

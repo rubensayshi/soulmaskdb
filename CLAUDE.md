@@ -151,6 +151,10 @@ Backend auto-restarts on `.go` file changes (pm2 watch). Frontend uses Vite HMR.
 | `make deploy`  | icons-sync + `fly deploy`                                       |
 | `make test`    | Go + web + Python test suites                                   |
 
+## Frontend type-checking
+
+After any frontend change, run `pnpm --dir web typecheck` to catch TypeScript errors before building. This is faster than a full `make build` and catches issues like unused variables, type mismatches, etc.
+
 ## Conventions
 
 - Python 3.x, no external dependencies, no virtualenv needed for stage 2. `.venv/` exists in the repo but isn't required.
