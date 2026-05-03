@@ -1,1325 +1,1472 @@
 ﻿[
     {
-        "pos_y":  -25521.95,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal12_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  53400.11,
-        "pos_x":  30426.6523
+        "ore_category":  "vein",
+        "pos_x":  30426.6523,
+        "pos_y":  -25521.95,
+        "pos_z":  53400.11
     },
     {
-        "pos_y":  -6846.94,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal16_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  48507.67,
-        "pos_x":  -20235.0781
+        "ore_category":  "vein",
+        "pos_x":  -20235.0781,
+        "pos_y":  -6846.94,
+        "pos_z":  48507.67
     },
     {
-        "pos_y":  23055.0176,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal18_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  49245.9336,
-        "pos_x":  -34600.332
+        "ore_category":  "vein",
+        "pos_x":  -34600.332,
+        "pos_y":  23055.0176,
+        "pos_z":  49245.9336
     },
     {
-        "pos_y":  49741.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal19_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  58114.6758,
-        "pos_x":  -26627.1348
+        "ore_category":  "vein",
+        "pos_x":  -26627.1348,
+        "pos_y":  49741.625,
+        "pos_z":  58114.6758
     },
     {
-        "pos_y":  -12888.6055,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal1_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  49234.9258,
-        "pos_x":  -15931.1367
+        "ore_category":  "vein",
+        "pos_x":  -15931.1367,
+        "pos_y":  -12888.6055,
+        "pos_z":  49234.9258
     },
     {
-        "pos_y":  66635.05,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal21_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  57676.7773,
-        "pos_x":  -32134.3633
+        "ore_category":  "vein",
+        "pos_x":  -32134.3633,
+        "pos_y":  66635.05,
+        "pos_z":  57676.7773
     },
     {
-        "pos_y":  73876.8359,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal24_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  47873.68,
-        "pos_x":  25898.5547
+        "ore_category":  "vein",
+        "pos_x":  25898.5547,
+        "pos_y":  73876.8359,
+        "pos_z":  47873.68
     },
     {
-        "pos_y":  50504.5742,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal25_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  55997.5977,
-        "pos_x":  9444.201
+        "ore_category":  "vein",
+        "pos_x":  9444.201,
+        "pos_y":  50504.5742,
+        "pos_z":  55997.5977
     },
     {
-        "pos_y":  61732.19,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal26_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  55847.78,
-        "pos_x":  6362.515
+        "ore_category":  "vein",
+        "pos_x":  6362.515,
+        "pos_y":  61732.19,
+        "pos_z":  55847.78
     },
     {
-        "pos_y":  87644.35,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal27_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  49641.63,
-        "pos_x":  10180.377
+        "ore_category":  "vein",
+        "pos_x":  10180.377,
+        "pos_y":  87644.35,
+        "pos_z":  49641.63
     },
     {
-        "pos_y":  -24531.3379,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal29_26",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  54016.86,
-        "pos_x":  22696.3066
+        "ore_category":  "vein",
+        "pos_x":  22696.3066,
+        "pos_y":  -24531.3379,
+        "pos_z":  54016.86
     },
     {
-        "pos_y":  -28999.7129,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal30_29",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  53639.55,
-        "pos_x":  31699.5332
+        "ore_category":  "vein",
+        "pos_x":  31699.5332,
+        "pos_y":  -28999.7129,
+        "pos_z":  53639.55
     },
     {
-        "pos_y":  -27597.54,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal31_32",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  52368.42,
-        "pos_x":  70597.86
+        "ore_category":  "vein",
+        "pos_x":  70597.86,
+        "pos_y":  -27597.54,
+        "pos_z":  52368.42
     },
     {
-        "pos_y":  70658.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal5_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  58070.4,
-        "pos_x":  -28232.05
+        "ore_category":  "vein",
+        "pos_x":  -28232.05,
+        "pos_y":  70658.625,
+        "pos_z":  58070.4
     },
     {
-        "pos_y":  78790.18,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal6_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  46817.625,
-        "pos_x":  28002.98
+        "ore_category":  "vein",
+        "pos_x":  28002.98,
+        "pos_y":  78790.18,
+        "pos_z":  46817.625
     },
     {
-        "pos_y":  72430.44,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal7_11",
-        "ore_type":  "Coal",
-        "pos_z":  48630.02,
-        "pos_x":  21363.6855
-    },
-    {
-        "pos_y":  52122.9336,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
+        "ore_type":  "Coal",
+        "ore_category":  "vein",
+        "pos_x":  21363.6855,
+        "pos_y":  72430.44,
+        "pos_z":  48630.02
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Coal8_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal1_C",
         "ore_type":  "Coal",
-        "pos_z":  55979.2031,
-        "pos_x":  4659.29443
+        "ore_category":  "vein",
+        "pos_x":  4659.29443,
+        "pos_y":  52122.9336,
+        "pos_z":  55979.2031
     },
     {
-        "pos_y":  -22364.8789,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal2_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal13_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal2_C",
         "ore_type":  "Coal",
-        "pos_z":  53269.7461,
-        "pos_x":  28845.4648
+        "ore_category":  "vein",
+        "pos_x":  28845.4648,
+        "pos_y":  -22364.8789,
+        "pos_z":  53269.7461
     },
     {
-        "pos_y":  91419.36,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal10_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  49830.45,
-        "pos_x":  8074.83838
+        "ore_category":  "vein",
+        "pos_x":  8074.83838,
+        "pos_y":  91419.36,
+        "pos_z":  49830.45
     },
     {
-        "pos_y":  -25100.9824,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal11_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  53632.29,
-        "pos_x":  26201.5254
+        "ore_category":  "vein",
+        "pos_x":  26201.5254,
+        "pos_y":  -25100.9824,
+        "pos_z":  53632.29
     },
     {
-        "pos_y":  -26984.92,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal14_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  51699.2656,
-        "pos_x":  64558.168
+        "ore_category":  "vein",
+        "pos_x":  64558.168,
+        "pos_y":  -26984.92,
+        "pos_z":  51699.2656
     },
     {
-        "pos_y":  -16777.17,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal15_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  49336.2852,
-        "pos_x":  -15628.1123
+        "ore_category":  "vein",
+        "pos_x":  -15628.1123,
+        "pos_y":  -16777.17,
+        "pos_z":  49336.2852
     },
     {
-        "pos_y":  26572.1289,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal17_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  48506.4,
-        "pos_x":  -36562.87
+        "ore_category":  "vein",
+        "pos_x":  -36562.87,
+        "pos_y":  26572.1289,
+        "pos_z":  48506.4
     },
     {
-        "pos_y":  51674.3828,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal20_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  57258.03,
-        "pos_x":  -31386.39
+        "ore_category":  "vein",
+        "pos_x":  -31386.39,
+        "pos_y":  51674.3828,
+        "pos_z":  57258.03
     },
     {
-        "pos_y":  71600.6,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal22_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  57827.2227,
-        "pos_x":  -32799.51
+        "ore_category":  "vein",
+        "pos_x":  -32799.51,
+        "pos_y":  71600.6,
+        "pos_z":  57827.2227
     },
     {
-        "pos_y":  76156.17,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal23_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  48677.92,
-        "pos_x":  20363.002
+        "ore_category":  "vein",
+        "pos_x":  20363.002,
+        "pos_y":  76156.17,
+        "pos_z":  48677.92
     },
     {
-        "pos_y":  83784.62,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal28_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  50046.1367,
-        "pos_x":  7427.76758
+        "ore_category":  "vein",
+        "pos_x":  7427.76758,
+        "pos_y":  83784.62,
+        "pos_z":  50046.1367
     },
     {
-        "pos_y":  19465.1172,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal2_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  49153.3672,
-        "pos_x":  -33987.22
+        "ore_category":  "vein",
+        "pos_x":  -33987.22,
+        "pos_y":  19465.1172,
+        "pos_z":  49153.3672
     },
     {
-        "pos_y":  -28894.3555,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal32_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  51962.3047,
-        "pos_x":  75228.76
+        "ore_category":  "vein",
+        "pos_x":  75228.76,
+        "pos_y":  -28894.3555,
+        "pos_z":  51962.3047
     },
     {
-        "pos_y":  53417.1758,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal3_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  58141.6953,
-        "pos_x":  -26807.5059
+        "ore_category":  "vein",
+        "pos_x":  -26807.5059,
+        "pos_y":  53417.1758,
+        "pos_z":  58141.6953
     },
     {
-        "pos_y":  64569.4063,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal4_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "ore_type":  "Coal",
-        "pos_z":  58080.7852,
-        "pos_x":  -28571.4941
+        "ore_category":  "vein",
+        "pos_x":  -28571.4941,
+        "pos_y":  64569.4063,
+        "pos_z":  58080.7852
     },
     {
-        "pos_y":  57536.95,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
         "actor_name":  "BP_JianZhu_KuangMai_Coal9_14",
-        "ore_type":  "Coal",
-        "pos_z":  56014.8477,
-        "pos_x":  4464.523
-    },
-    {
-        "pos_y":  -9209.42,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
-        "actor_name":  "BP_JianZhu_KuangMai_Coal_2",
         "ore_type":  "Coal",
-        "pos_z":  48982.0547,
-        "pos_x":  -16981.9512
+        "ore_category":  "vein",
+        "pos_x":  4464.523,
+        "pos_y":  57536.95,
+        "pos_z":  56014.8477
     },
     {
-        "pos_y":  141167.438,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
+        "actor_name":  "BP_JianZhu_KuangMai_Coal_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Coal_C",
+        "ore_type":  "Coal",
+        "ore_category":  "vein",
+        "pos_x":  -16981.9512,
+        "pos_y":  -9209.42,
+        "pos_z":  48982.0547
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Copper10_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  36532.6,
-        "pos_x":  -34205.3242
+        "ore_category":  "vein",
+        "pos_x":  -34205.3242,
+        "pos_y":  141167.438,
+        "pos_z":  36532.6
     },
     {
-        "pos_y":  182161.422,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper14_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  37348.9922,
-        "pos_x":  -42617.1641
+        "ore_category":  "vein",
+        "pos_x":  -42617.1641,
+        "pos_y":  182161.422,
+        "pos_z":  37348.9922
     },
     {
-        "pos_y":  192985.984,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper15_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  36093.86,
-        "pos_x":  -37549.89
+        "ore_category":  "vein",
+        "pos_x":  -37549.89,
+        "pos_y":  192985.984,
+        "pos_z":  36093.86
     },
     {
-        "pos_y":  -71020.32,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper18",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  30990.0723,
-        "pos_x":  218979.516
+        "ore_category":  "vein",
+        "pos_x":  218979.516,
+        "pos_y":  -71020.32,
+        "pos_z":  30990.0723
     },
     {
-        "pos_y":  -69619.6953,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper1_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31064.2363,
-        "pos_x":  226263.734
+        "ore_category":  "vein",
+        "pos_x":  226263.734,
+        "pos_y":  -69619.6953,
+        "pos_z":  31064.2363
     },
     {
-        "pos_y":  -33092.2148,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper20_6",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31826.0039,
-        "pos_x":  191698.313
+        "ore_category":  "vein",
+        "pos_x":  191698.313,
+        "pos_y":  -33092.2148,
+        "pos_z":  31826.0039
     },
     {
-        "pos_y":  -33347.4375,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper22_9",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  32019.0117,
-        "pos_x":  141197.281
+        "ore_category":  "vein",
+        "pos_x":  141197.281,
+        "pos_y":  -33347.4375,
+        "pos_z":  32019.0117
     },
     {
-        "pos_y":  -16279.0576,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper23_12",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31642.8418,
-        "pos_x":  126566.4
+        "ore_category":  "vein",
+        "pos_x":  126566.4,
+        "pos_y":  -16279.0576,
+        "pos_z":  31642.8418
     },
     {
-        "pos_y":  -3828.72339,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper24_15",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  34655.7148,
-        "pos_x":  94336.0547
+        "ore_category":  "vein",
+        "pos_x":  94336.0547,
+        "pos_y":  -3828.72339,
+        "pos_z":  34655.7148
     },
     {
-        "pos_y":  47048.4844,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper26_18",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  32829.65,
-        "pos_x":  130076.055
+        "ore_category":  "vein",
+        "pos_x":  130076.055,
+        "pos_y":  47048.4844,
+        "pos_z":  32829.65
     },
     {
-        "pos_y":  148262.266,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper28_21",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35894.1,
-        "pos_x":  -36864.2461
+        "ore_category":  "vein",
+        "pos_x":  -36864.2461,
+        "pos_y":  148262.266,
+        "pos_z":  35894.1
     },
     {
-        "pos_y":  177354.266,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper29_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35831.83,
-        "pos_x":  -36549.29
+        "ore_category":  "vein",
+        "pos_x":  -36549.29,
+        "pos_y":  177354.266,
+        "pos_z":  35831.83
     },
     {
-        "pos_y":  -44801.41,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper2_3",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  30798.4531,
-        "pos_x":  214950.4
+        "ore_category":  "vein",
+        "pos_x":  214950.4,
+        "pos_y":  -44801.41,
+        "pos_z":  30798.4531
     },
     {
-        "pos_y":  187149.234,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper31_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  36286.09,
-        "pos_x":  -37316.95
+        "ore_category":  "vein",
+        "pos_x":  -37316.95,
+        "pos_y":  187149.234,
+        "pos_z":  36286.09
     },
     {
-        "pos_y":  196780.188,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper33_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  40723.2,
-        "pos_x":  -68705.45
+        "ore_category":  "vein",
+        "pos_x":  -68705.45,
+        "pos_y":  196780.188,
+        "pos_z":  40723.2
     },
     {
-        "pos_y":  -36242.0352,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper5_5",
-        "ore_type":  "Copper Ore",
-        "pos_z":  31821.0488,
-        "pos_x":  148297.563
-    },
-    {
-        "pos_y":  38088.61,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
+        "ore_type":  "Copper Ore",
+        "ore_category":  "vein",
+        "pos_x":  148297.563,
+        "pos_y":  -36242.0352,
+        "pos_z":  31821.0488
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Copper9_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper1_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  32208.7773,
-        "pos_x":  135573.609
+        "ore_category":  "vein",
+        "pos_x":  135573.609,
+        "pos_y":  38088.61,
+        "pos_z":  32208.7773
     },
     {
-        "pos_y":  189112.156,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper2_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper13_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper2_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  36909.62,
-        "pos_x":  -41375.99
+        "ore_category":  "vein",
+        "pos_x":  -41375.99,
+        "pos_y":  189112.156,
+        "pos_z":  36909.62
     },
     {
-        "pos_y":  142873.141,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper11_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  37032.375,
-        "pos_x":  -39228.4258
+        "ore_category":  "vein",
+        "pos_x":  -39228.4258,
+        "pos_y":  142873.141,
+        "pos_z":  37032.375
     },
     {
-        "pos_y":  173581.641,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper12_26",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35234.16,
-        "pos_x":  -34521.55
+        "ore_category":  "vein",
+        "pos_x":  -34521.55,
+        "pos_y":  173581.641,
+        "pos_z":  35234.16
     },
     {
-        "pos_y":  195054.266,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper16_32",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  40982.2266,
-        "pos_x":  -64499.19
+        "ore_category":  "vein",
+        "pos_x":  -64499.19,
+        "pos_y":  195054.266,
+        "pos_z":  40982.2266
     },
     {
-        "pos_y":  -35276.1523,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper17_3",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31851.0742,
-        "pos_x":  194619.047
+        "ore_category":  "vein",
+        "pos_x":  194619.047,
+        "pos_y":  -35276.1523,
+        "pos_z":  31851.0742
     },
     {
-        "pos_y":  -44311.2031,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper19",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31640.2813,
-        "pos_x":  221141.922
+        "ore_category":  "vein",
+        "pos_x":  221141.922,
+        "pos_y":  -44311.2031,
+        "pos_z":  31640.2813
     },
     {
-        "pos_y":  -39662.5078,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper21_4",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31937.3613,
-        "pos_x":  151052.438
+        "ore_category":  "vein",
+        "pos_x":  151052.438,
+        "pos_y":  -39662.5078,
+        "pos_z":  31937.3613
     },
     {
-        "pos_y":  -6571.186,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper25_7",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35638.7148,
-        "pos_x":  89907.36
+        "ore_category":  "vein",
+        "pos_x":  89907.36,
+        "pos_y":  -6571.186,
+        "pos_z":  35638.7148
     },
     {
-        "pos_y":  136986.609,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper27_10",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  36986.9961,
-        "pos_x":  -33875.17
+        "ore_category":  "vein",
+        "pos_x":  -33875.17,
+        "pos_y":  136986.609,
+        "pos_z":  36986.9961
     },
     {
-        "pos_y":  166078.031,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper30_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35040.5156,
-        "pos_x":  -34355.56
+        "ore_category":  "vein",
+        "pos_x":  -34355.56,
+        "pos_y":  166078.031,
+        "pos_z":  35040.5156
     },
     {
-        "pos_y":  198770.547,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper34_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  40545.6445,
-        "pos_x":  -59461.1445
+        "ore_category":  "vein",
+        "pos_x":  -59461.1445,
+        "pos_y":  198770.547,
+        "pos_z":  40545.6445
     },
     {
-        "pos_y":  -31706.2754,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper3_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31698.416,
-        "pos_x":  197308.953
+        "ore_category":  "vein",
+        "pos_x":  197308.953,
+        "pos_y":  -31706.2754,
+        "pos_z":  31698.416
     },
     {
-        "pos_y":  -38149.1641,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper4_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31795.9,
-        "pos_x":  143701.063
+        "ore_category":  "vein",
+        "pos_x":  143701.063,
+        "pos_y":  -38149.1641,
+        "pos_z":  31795.9
     },
     {
-        "pos_y":  -11951.9727,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper6_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  31747.8867,
-        "pos_x":  122193.375
+        "ore_category":  "vein",
+        "pos_x":  122193.375,
+        "pos_y":  -11951.9727,
+        "pos_z":  31747.8867
     },
     {
-        "pos_y":  -9377.449,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper7_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "ore_type":  "Copper Ore",
-        "pos_z":  35180.8438,
-        "pos_x":  95138.56
+        "ore_category":  "vein",
+        "pos_x":  95138.56,
+        "pos_y":  -9377.449,
+        "pos_z":  35180.8438
     },
     {
-        "pos_y":  40613.92,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
         "actor_name":  "BP_JianZhu_KuangMai_Copper8_20",
-        "ore_type":  "Copper Ore",
-        "pos_z":  31981.1113,
-        "pos_x":  131191.609
-    },
-    {
-        "pos_y":  -67076.35,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
-        "actor_name":  "BP_JianZhu_KuangMai_Copper_2",
         "ore_type":  "Copper Ore",
-        "pos_z":  30912.16,
-        "pos_x":  221023.359
+        "ore_category":  "vein",
+        "pos_x":  131191.609,
+        "pos_y":  40613.92,
+        "pos_z":  31981.1113
     },
     {
-        "pos_y":  -301796.4,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
+        "actor_name":  "BP_JianZhu_KuangMai_Copper_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Copper_C",
+        "ore_type":  "Copper Ore",
+        "ore_category":  "vein",
+        "pos_x":  221023.359,
+        "pos_y":  -67076.35,
+        "pos_z":  30912.16
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Iron10_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  60429,
-        "pos_x":  188260.625
+        "ore_category":  "vein",
+        "pos_x":  188260.625,
+        "pos_y":  -301796.4,
+        "pos_z":  60429
     },
     {
-        "pos_y":  -328114.531,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron13_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  73815.76,
-        "pos_x":  189543.984
+        "ore_category":  "vein",
+        "pos_x":  189543.984,
+        "pos_y":  -328114.531,
+        "pos_z":  73815.76
     },
     {
-        "pos_y":  -256782.422,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron14_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  78549.92,
-        "pos_x":  90279.14
+        "ore_category":  "vein",
+        "pos_x":  90279.14,
+        "pos_y":  -256782.422,
+        "pos_z":  78549.92
     },
     {
-        "pos_y":  268053.969,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron16_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64531.07,
-        "pos_x":  -324061.031
+        "ore_category":  "vein",
+        "pos_x":  -324061.031,
+        "pos_y":  268053.969,
+        "pos_z":  64531.07
     },
     {
-        "pos_y":  147117.531,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron1_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  46896.8164,
-        "pos_x":  -146503.344
+        "ore_category":  "vein",
+        "pos_x":  -146503.344,
+        "pos_y":  147117.531,
+        "pos_z":  46896.8164
     },
     {
-        "pos_y":  337804.8,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron21_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  34390.62,
-        "pos_x":  -320260.938
+        "ore_category":  "vein",
+        "pos_x":  -320260.938,
+        "pos_y":  337804.8,
+        "pos_z":  34390.62
     },
     {
-        "pos_y":  377599.438,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron23_26",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  35456.37,
-        "pos_x":  -262210.7
+        "ore_category":  "vein",
+        "pos_x":  -262210.7,
+        "pos_y":  377599.438,
+        "pos_z":  35456.37
     },
     {
-        "pos_y":  115793.992,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron25_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  45840.2031,
-        "pos_x":  -112172.93
+        "ore_category":  "vein",
+        "pos_x":  -112172.93,
+        "pos_y":  115793.992,
+        "pos_z":  45840.2031
     },
     {
-        "pos_y":  147581.25,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron26_4",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  45690.625,
-        "pos_x":  -142787.2
+        "ore_category":  "vein",
+        "pos_x":  -142787.2,
+        "pos_y":  147581.25,
+        "pos_z":  45690.625
     },
     {
-        "pos_y":  -205628.953,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron28_7",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  49444.4141,
-        "pos_x":  115817.242
+        "ore_category":  "vein",
+        "pos_x":  115817.242,
+        "pos_y":  -205628.953,
+        "pos_z":  49444.4141
     },
     {
-        "pos_y":  -280937.3,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron29_10",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  59653.3867,
-        "pos_x":  178772.063
+        "ore_category":  "vein",
+        "pos_x":  178772.063,
+        "pos_y":  -280937.3,
+        "pos_z":  59653.3867
     },
     {
-        "pos_y":  118443.094,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron2_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  46285.78,
-        "pos_x":  -109650.2
+        "ore_category":  "vein",
+        "pos_x":  -109650.2,
+        "pos_y":  118443.094,
+        "pos_z":  46285.78
     },
     {
-        "pos_y":  -313660.781,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron30_13",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  70807.84,
-        "pos_x":  209555.172
+        "ore_category":  "vein",
+        "pos_x":  209555.172,
+        "pos_y":  -313660.781,
+        "pos_z":  70807.84
     },
     {
-        "pos_y":  -276998.531,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron31_16",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  70213.59,
-        "pos_x":  115105.922
+        "ore_category":  "vein",
+        "pos_x":  115105.922,
+        "pos_y":  -276998.531,
+        "pos_z":  70213.59
     },
     {
-        "pos_y":  -228272.172,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron32_19",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  52473.9453,
-        "pos_x":  128503.539
+        "ore_category":  "vein",
+        "pos_x":  128503.539,
+        "pos_y":  -228272.172,
+        "pos_z":  52473.9453
     },
     {
-        "pos_y":  -297382.469,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron33_22",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  59930.38,
-        "pos_x":  188631.172
+        "ore_category":  "vein",
+        "pos_x":  188631.172,
+        "pos_y":  -297382.469,
+        "pos_z":  59930.38
     },
     {
-        "pos_y":  -327705.281,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron35_25",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  73892.2,
-        "pos_x":  194044.547
+        "ore_category":  "vein",
+        "pos_x":  194044.547,
+        "pos_y":  -327705.281,
+        "pos_z":  73892.2
     },
     {
-        "pos_y":  -274113.031,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron37_28",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  77154.73,
-        "pos_x":  96292.07
+        "ore_category":  "vein",
+        "pos_x":  96292.07,
+        "pos_y":  -274113.031,
+        "pos_z":  77154.73
     },
     {
-        "pos_y":  263278.719,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron40_31",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64535.86,
-        "pos_x":  -327699.781
+        "ore_category":  "vein",
+        "pos_x":  -327699.781,
+        "pos_y":  263278.719,
+        "pos_z":  64535.86
     },
     {
-        "pos_y":  275812.156,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron42_34",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64611.96,
-        "pos_x":  -322643.969
+        "ore_category":  "vein",
+        "pos_x":  -322643.969,
+        "pos_y":  275812.156,
+        "pos_z":  64611.96
     },
     {
-        "pos_y":  332427.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron44_37",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  38380.67,
-        "pos_x":  -352835.031
+        "ore_category":  "vein",
+        "pos_x":  -352835.031,
+        "pos_y":  332427.625,
+        "pos_z":  38380.67
     },
     {
-        "pos_y":  342590.25,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron48_40",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  33850.2852,
-        "pos_x":  -322392.75
+        "ore_category":  "vein",
+        "pos_x":  -322392.75,
+        "pos_y":  342590.25,
+        "pos_z":  33850.2852
     },
     {
-        "pos_y":  317137.8,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron49_43",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  58803.832,
-        "pos_x":  -264357.438
+        "ore_category":  "vein",
+        "pos_x":  -264357.438,
+        "pos_y":  317137.8,
+        "pos_z":  58803.832
     },
     {
-        "pos_y":  375106.5,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron53_46",
-        "ore_type":  "Iron Ore",
-        "pos_z":  35539.97,
-        "pos_x":  -253748.8
-    },
-    {
-        "pos_y":  -232209.656,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
+        "ore_type":  "Iron Ore",
+        "ore_category":  "vein",
+        "pos_x":  -253748.8,
+        "pos_y":  375106.5,
+        "pos_z":  35539.97
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Iron9_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron1_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  52160.21,
-        "pos_x":  127765.688
+        "ore_category":  "vein",
+        "pos_x":  127765.688,
+        "pos_y":  -232209.656,
+        "pos_z":  52160.21
     },
     {
-        "pos_y":  258178.156,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron2_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron39_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron2_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64381.8828,
-        "pos_x":  -330788.125
+        "ore_category":  "vein",
+        "pos_x":  -330788.125,
+        "pos_y":  258178.156,
+        "pos_z":  64381.8828
     },
     {
-        "pos_y":  335065.781,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron2_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron46_5",
-        "ore_type":  "Iron Ore",
-        "pos_z":  38006.4531,
-        "pos_x":  -328416.531
-    },
-    {
-        "pos_y":  372947.6,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Iron2_C",
+        "ore_type":  "Iron Ore",
+        "ore_category":  "vein",
+        "pos_x":  -328416.531,
+        "pos_y":  335065.781,
+        "pos_z":  38006.4531
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Iron51_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron2_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  35802.1,
-        "pos_x":  -263490.563
+        "ore_category":  "vein",
+        "pos_x":  -263490.563,
+        "pos_y":  372947.6,
+        "pos_z":  35802.1
     },
     {
-        "pos_y":  -296536,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron11_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  60478.73,
-        "pos_x":  193069.688
+        "ore_category":  "vein",
+        "pos_x":  193069.688,
+        "pos_y":  -296536,
+        "pos_z":  60478.73
     },
     {
-        "pos_y":  -332363.219,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron12_26",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  75431.65,
-        "pos_x":  196878.234
+        "ore_category":  "vein",
+        "pos_x":  196878.234,
+        "pos_y":  -332363.219,
+        "pos_z":  75431.65
     },
     {
-        "pos_y":  -254852.9,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron15_29",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  77285.01,
-        "pos_x":  94706.27
+        "ore_category":  "vein",
+        "pos_x":  94706.27,
+        "pos_y":  -254852.9,
+        "pos_z":  77285.01
     },
     {
-        "pos_y":  253097.438,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron17_32",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64591.41,
-        "pos_x":  -328605.1
+        "ore_category":  "vein",
+        "pos_x":  -328605.1,
+        "pos_y":  253097.438,
+        "pos_z":  64591.41
     },
     {
-        "pos_y":  278030.156,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron18_35",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  62750.793,
-        "pos_x":  -324744.125
+        "ore_category":  "vein",
+        "pos_x":  -324744.125,
+        "pos_y":  278030.156,
+        "pos_z":  62750.793
     },
     {
-        "pos_y":  328842.781,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron19_38",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  37973.168,
-        "pos_x":  -351929.6
+        "ore_category":  "vein",
+        "pos_x":  -351929.6,
+        "pos_y":  328842.781,
+        "pos_z":  37973.168
     },
     {
-        "pos_y":  340770.563,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron20_41",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  37961.38,
-        "pos_x":  -332482.75
+        "ore_category":  "vein",
+        "pos_x":  -332482.75,
+        "pos_y":  340770.563,
+        "pos_z":  37961.38
     },
     {
-        "pos_y":  317310.5,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron22_44",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  56387.25,
-        "pos_x":  -256672.969
+        "ore_category":  "vein",
+        "pos_x":  -256672.969,
+        "pos_y":  317310.5,
+        "pos_z":  56387.25
     },
     {
-        "pos_y":  374839.25,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron24_47",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  35670.875,
-        "pos_x":  -258059.266
+        "ore_category":  "vein",
+        "pos_x":  -258059.266,
+        "pos_y":  374839.25,
+        "pos_z":  35670.875
     },
     {
-        "pos_y":  143126.984,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron27_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  47117.72,
-        "pos_x":  -147954.422
+        "ore_category":  "vein",
+        "pos_x":  -147954.422,
+        "pos_y":  143126.984,
+        "pos_z":  47117.72
     },
     {
-        "pos_y":  -300054.75,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron34_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  60249.1055,
-        "pos_x":  185632.734
+        "ore_category":  "vein",
+        "pos_x":  185632.734,
+        "pos_y":  -300054.75,
+        "pos_z":  60249.1055
     },
     {
-        "pos_y":  -333404.281,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron36_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  75317.41,
-        "pos_x":  201234.469
+        "ore_category":  "vein",
+        "pos_x":  201234.469,
+        "pos_y":  -333404.281,
+        "pos_z":  75317.41
     },
     {
-        "pos_y":  -270775.3,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron38_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  77213.23,
-        "pos_x":  99219.31
+        "ore_category":  "vein",
+        "pos_x":  99219.31,
+        "pos_y":  -270775.3,
+        "pos_z":  77213.23
     },
     {
-        "pos_y":  123232.906,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron3_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  45979.4766,
-        "pos_x":  -110046.6
+        "ore_category":  "vein",
+        "pos_x":  -110046.6,
+        "pos_y":  123232.906,
+        "pos_z":  45979.4766
     },
     {
-        "pos_y":  268059.3,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron41_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  64367.5742,
-        "pos_x":  -328227.4
+        "ore_category":  "vein",
+        "pos_x":  -328227.4,
+        "pos_y":  268059.3,
+        "pos_z":  64367.5742
     },
     {
-        "pos_y":  282488.375,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron43_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  61373.75,
-        "pos_x":  -319938.219
+        "ore_category":  "vein",
+        "pos_x":  -319938.219,
+        "pos_y":  282488.375,
+        "pos_z":  61373.75
     },
     {
-        "pos_y":  331890.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron45_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  37634.1523,
-        "pos_x":  -347927.344
+        "ore_category":  "vein",
+        "pos_x":  -347927.344,
+        "pos_y":  331890.625,
+        "pos_z":  37634.1523
     },
     {
-        "pos_y":  -209818.359,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron4_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  49544.57,
-        "pos_x":  112140.688
+        "ore_category":  "vein",
+        "pos_x":  112140.688,
+        "pos_y":  -209818.359,
+        "pos_z":  49544.57
     },
     {
-        "pos_y":  321257.1,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron50_29",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  56067.55,
-        "pos_x":  -257724.7
+        "ore_category":  "vein",
+        "pos_x":  -257724.7,
+        "pos_y":  321257.1,
+        "pos_z":  56067.55
     },
     {
-        "pos_y":  375601.719,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron52_32",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  35657.07,
-        "pos_x":  -266816.625
+        "ore_category":  "vein",
+        "pos_x":  -266816.625,
+        "pos_y":  375601.719,
+        "pos_z":  35657.07
     },
     {
-        "pos_y":  -282849.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron5_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  59878.2773,
-        "pos_x":  181961.984
+        "ore_category":  "vein",
+        "pos_x":  181961.984,
+        "pos_y":  -282849.625,
+        "pos_z":  59878.2773
     },
     {
-        "pos_y":  -318036.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron6_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  71147.5156,
-        "pos_x":  209178.469
+        "ore_category":  "vein",
+        "pos_x":  209178.469,
+        "pos_y":  -318036.625,
+        "pos_z":  71147.5156
     },
     {
-        "pos_y":  -278775.531,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron7_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "ore_type":  "Iron Ore",
-        "pos_z":  70750.7,
-        "pos_x":  119972.281
+        "ore_category":  "vein",
+        "pos_x":  119972.281,
+        "pos_y":  -278775.531,
+        "pos_z":  70750.7
     },
     {
-        "pos_y":  -232558.359,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
         "actor_name":  "BP_JianZhu_KuangMai_Iron8_20",
-        "ore_type":  "Iron Ore",
-        "pos_z":  52176.3,
-        "pos_x":  134116.484
-    },
-    {
-        "pos_y":  -231812.969,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
-        "actor_name":  "BP_JianZhu_KuangMai_Iron_5",
         "ore_type":  "Iron Ore",
-        "pos_z":  52072.6328,
-        "pos_x":  123180.336
+        "ore_category":  "vein",
+        "pos_x":  134116.484,
+        "pos_y":  -232558.359,
+        "pos_z":  52176.3
     },
     {
-        "pos_y":  67036.53,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
+        "actor_name":  "BP_JianZhu_KuangMai_Iron_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Iron_C",
+        "ore_type":  "Iron Ore",
+        "ore_category":  "vein",
+        "pos_x":  123180.336,
+        "pos_y":  -231812.969,
+        "pos_z":  52072.6328
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Tin13_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  32505.5938,
-        "pos_x":  122922.109
+        "ore_category":  "vein",
+        "pos_x":  122922.109,
+        "pos_y":  67036.53,
+        "pos_z":  32505.5938
     },
     {
-        "pos_y":  85471.88,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin14_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  32706.32,
-        "pos_x":  120966
+        "ore_category":  "vein",
+        "pos_x":  120966,
+        "pos_y":  85471.88,
+        "pos_z":  32706.32
     },
     {
-        "pos_y":  123000.07,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin17_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  34275.4453,
-        "pos_x":  145591.2
+        "ore_category":  "vein",
+        "pos_x":  145591.2,
+        "pos_y":  123000.07,
+        "pos_z":  34275.4453
     },
     {
-        "pos_y":  143189.516,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin18_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31865.7578,
-        "pos_x":  144959.625
+        "ore_category":  "vein",
+        "pos_x":  144959.625,
+        "pos_y":  143189.516,
+        "pos_z":  31865.7578
     },
     {
-        "pos_y":  310307.5,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin19_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  40423.9375,
-        "pos_x":  -39408.1875
+        "ore_category":  "vein",
+        "pos_x":  -39408.1875,
+        "pos_y":  310307.5,
+        "pos_z":  40423.9375
     },
     {
-        "pos_y":  94435.49,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin1_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31817.25,
-        "pos_x":  115974.133
+        "ore_category":  "vein",
+        "pos_x":  115974.133,
+        "pos_y":  94435.49,
+        "pos_z":  31817.25
     },
     {
-        "pos_y":  329026.875,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin21_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  39053.6055,
-        "pos_x":  -3121.18335
+        "ore_category":  "vein",
+        "pos_x":  -3121.18335,
+        "pos_y":  329026.875,
+        "pos_z":  39053.6055
     },
     {
-        "pos_y":  344417.8,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin23_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  36261.23,
-        "pos_x":  -50066.8945
+        "ore_category":  "vein",
+        "pos_x":  -50066.8945,
+        "pos_y":  344417.8,
+        "pos_z":  36261.23
     },
     {
-        "pos_y":  361637.6,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin25_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  38724.9453,
-        "pos_x":  -65090.957
+        "ore_category":  "vein",
+        "pos_x":  -65090.957,
+        "pos_y":  361637.6,
+        "pos_z":  38724.9453
     },
     {
-        "pos_y":  119473.148,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin4_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  33720.63,
-        "pos_x":  145021.641
+        "ore_category":  "vein",
+        "pos_x":  145021.641,
+        "pos_y":  119473.148,
+        "pos_z":  33720.63
     },
     {
-        "pos_y":  323862,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin6_8",
-        "ore_type":  "Tin Ore",
-        "pos_z":  39398.47,
-        "pos_x":  -1909.04138
-    },
-    {
-        "pos_y":  359276.219,
-        "map":  "Level01_GamePlay",
         "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
+        "ore_type":  "Tin Ore",
+        "ore_category":  "vein",
+        "pos_x":  -1909.04138,
+        "pos_y":  323862,
+        "pos_z":  39398.47
+    },
+    {
+        "map":  "Level01_GamePlay",
         "actor_name":  "BP_JianZhu_KuangMai_Tin9_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin1_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  36720.332,
-        "pos_x":  -75739.42
+        "ore_category":  "vein",
+        "pos_x":  -75739.42,
+        "pos_y":  359276.219,
+        "pos_z":  36720.332
     },
     {
-        "pos_y":  363463.031,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin2_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin8_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin2_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  35670.54,
-        "pos_x":  -73239.02
+        "ore_category":  "vein",
+        "pos_x":  -73239.02,
+        "pos_y":  363463.031,
+        "pos_z":  35670.54
     },
     {
-        "pos_y":  362260.875,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin10_17",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  34477.01,
-        "pos_x":  -66443.38
+        "ore_category":  "vein",
+        "pos_x":  -66443.38,
+        "pos_y":  362260.875,
+        "pos_z":  34477.01
     },
     {
-        "pos_y":  347636.4,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin11_20",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  36009.4727,
-        "pos_x":  -51317.4063
+        "ore_category":  "vein",
+        "pos_x":  -51317.4063,
+        "pos_y":  347636.4,
+        "pos_z":  36009.4727
     },
     {
-        "pos_y":  310893.3,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin12_23",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  40608.14,
-        "pos_x":  -35427.9961
+        "ore_category":  "vein",
+        "pos_x":  -35427.9961,
+        "pos_y":  310893.3,
+        "pos_z":  40608.14
     },
     {
-        "pos_y":  90269.3047,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin15_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31093.6016,
-        "pos_x":  112549.492
+        "ore_category":  "vein",
+        "pos_x":  112549.492,
+        "pos_y":  90269.3047,
+        "pos_z":  31093.6016
     },
     {
-        "pos_y":  119894.742,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin16_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  33848.5234,
-        "pos_x":  139924.531
+        "ore_category":  "vein",
+        "pos_x":  139924.531,
+        "pos_y":  119894.742,
+        "pos_z":  33848.5234
     },
     {
-        "pos_y":  313198.531,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin20_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  41991.6836,
-        "pos_x":  -37163.13
+        "ore_category":  "vein",
+        "pos_x":  -37163.13,
+        "pos_y":  313198.531,
+        "pos_z":  41991.6836
     },
     {
-        "pos_y":  327100.25,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin22_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  39582.14,
-        "pos_x":  -7747.156
+        "ore_category":  "vein",
+        "pos_x":  -7747.156,
+        "pos_y":  327100.25,
+        "pos_z":  39582.14
     },
     {
-        "pos_y":  344643.5,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin24_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  35690.332,
-        "pos_x":  -52478.9727
+        "ore_category":  "vein",
+        "pos_x":  -52478.9727,
+        "pos_y":  344643.5,
+        "pos_z":  35690.332
     },
     {
-        "pos_y":  357227.625,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin26_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  35805.34,
-        "pos_x":  -70837.42
+        "ore_category":  "vein",
+        "pos_x":  -70837.42,
+        "pos_y":  357227.625,
+        "pos_z":  35805.34
     },
     {
-        "pos_y":  88638.39,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin2_5",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31939.7129,
-        "pos_x":  117692.852
+        "ore_category":  "vein",
+        "pos_x":  117692.852,
+        "pos_y":  88638.39,
+        "pos_z":  31939.7129
     },
     {
-        "pos_y":  118025.672,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin3_8",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  33684.8125,
-        "pos_x":  141753.031
+        "ore_category":  "vein",
+        "pos_x":  141753.031,
+        "pos_y":  118025.672,
+        "pos_z":  33684.8125
     },
     {
-        "pos_y":  147763.063,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin5_11",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31474.43,
-        "pos_x":  144776.3
+        "ore_category":  "vein",
+        "pos_x":  144776.3,
+        "pos_y":  147763.063,
+        "pos_z":  31474.43
     },
     {
-        "pos_y":  330669.6,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin7_14",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  39741.56,
-        "pos_x":  894.7114
+        "ore_category":  "vein",
+        "pos_x":  894.7114,
+        "pos_y":  330669.6,
+        "pos_z":  39741.56
     },
     {
-        "pos_y":  65511.2266,
         "map":  "Level01_GamePlay",
-        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "actor_name":  "BP_JianZhu_KuangMai_Tin_2",
+        "ore_class":  "BP_JianZhu_KuangMai_Tin_C",
         "ore_type":  "Tin Ore",
-        "pos_z":  31251.1035,
-        "pos_x":  119764.414
+        "ore_category":  "vein",
+        "pos_x":  119764.414,
+        "pos_y":  65511.2266,
+        "pos_z":  31251.1035
     }
 ]
