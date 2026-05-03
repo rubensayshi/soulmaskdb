@@ -841,3 +841,228 @@ If you cannot find ore nodes through any of these approaches, commit a summary o
 - Screenshots of the Content Browser if useful
 
 This information will help us figure out the next approach.
+
+## 8. Phase 2: ore deposits (smaller harvestable rocks)
+
+The extraction in phase 1 found all **Mineral Veins** (`BP_JianZhu_KuangMai_*`) — the large mineable rock formations. But cross-referencing with saraserenity.net reveals a **second, much larger system** of ore deposits that we're missing entirely.
+
+### 8.1 What saraserenity shows vs what we have
+
+Saraserenity splits ore into two groups: "Mineral Veins" and "Ore Deposits".
+
+**Mineral Veins (DONE — our extraction matches exactly):**
+
+| Type         | Ours | Saraserenity |
+| ------------ | ---- | ------------ |
+| Iron Vein    | 53   | 53           |
+| Copper Vein  | 34   | 34           |
+| Coal Vein    | 33   | 33           |
+| Tin Vein     | 27   | 27           |
+
+**Ore Deposits (MISSING — different actor class, 1,226 nodes):**
+
+| Type          | Count |
+| ------------- | ----- |
+| Clay          | 328   |
+| Obsidian      | 301   |
+| Iron Ore      | 200   |
+| Copper Ore    | 105   |
+| Tin Ore       | 75    |
+| Ice           | 49    |
+| Coal Ore      | 33    |
+| Sulfur Ore    | 30    |
+| Crystal       | 28    |
+| Phosphate Ore | 21    |
+| Nitrate Ore   | 21    |
+| Salt Mine     | 16    |
+| Meteorite Ore | 14    |
+| Crude Salt    | 5     |
+
+These are the smaller harvestable rocks scattered around the world — a completely different actor class from `BP_JianZhu_KuangMai`.
+
+### 8.2 Discovery: find the ore deposit actor class
+
+Use the same discovery approaches from section 2, but this time you're looking for a **different** class. The veins are `BP_JianZhu_KuangMai_*` (建筑矿脉). The deposits likely use a different naming convention.
+
+**Approach A: proximity search near known veins.**
+
+You already know where veins are (they're in `ore_spawns.json`). Ore deposits for the same type should be nearby. Pick an iron vein coordinate and search for non-vein actors nearby:
+
+```powershell
+# Reuse the JSON export from Level01_GamePlay.umap (same one used for veins)
+# Find actors near a known iron vein that are NOT KuangMai and NOT ShuaGuaiQi
+
+$ironVein = $exports | Where-Object {
+    $imp = Resolve-Import $imports $_.ClassIndex
+    $cls = if ($imp) { $imp.ObjectName } else { "" }
+    $cls -match "KuangMai_Iron"
+} | Select-Object -First 1
+
+# Get its position, then search nearby (same code as section 2.4)
+# In the results, EXCLUDE classes you already know:
+#   - KuangMai (veins, already extracted)
+#   - ShuaGuaiQi / SGQ (creature spawners)
+#   - SceneComponent, StaticMeshComponent (structural)
+# What remains should include the ore deposit class.
+```
+
+**Approach B: brute-force class scan with high-count filter.**
+
+There are 1,226 ore deposits on the base map. That's a large number of actors — look for classes with 100+ instances:
+
+```powershell
+# From the full class count list (section 2.5), look for classes with counts
+# that match the expected total (~1,226) or individual ore type counts.
+# The deposit class likely appears 200+ times (iron alone is 200).
+
+$classCounts.GetEnumerator() | Where-Object { $_.Value -ge 20 } |
+    Sort-Object Value -Descending | ForEach-Object {
+    Write-Host ("  {0,6}  {1}" -f $_.Value, $_.Key)
+}
+```
+
+Cross-reference the counts: if you see a class with ~328 instances, that's probably clay. ~301 is obsidian. ~200 is iron ore deposits.
+
+**Approach C: search by Chinese keywords for deposits.**
+
+Ore deposits might use different Chinese terminology than veins:
+
+| Pattern      | Chinese | Meaning             |
+| ------------ | ------- | ------------------- |
+| `KuangChuang`| 矿床    | ore deposit/bed     |
+| `KuangDian`  | 矿点    | ore point/spot      |
+| `KuangKuai`  | 矿块    | ore chunk/block     |
+| `CaiJiWu`    | 采集物   | gatherable object   |
+| `CaiJiDian`  | 采集点   | gathering point     |
+| `YanShi`     | 岩石    | rock                |
+| `KuangShi`   | 矿石    | ore/mineral stone   |
+| `NianTu`     | 黏土    | clay                |
+| `HeiYaoShi`  | 黑曜石   | obsidian            |
+| `LiuHuang`   | 硫磺    | sulfur              |
+| `ShuiJing`   | 水晶    | crystal             |
+| `Bing`       | 冰     | ice                  |
+| `YunShi`     | 陨石    | meteorite           |
+| `XiaoShi`    | 硝石    | nitrate             |
+
+```powershell
+$depositPatterns = @("KuangChuang", "KuangDian", "KuangKuai", "CaiJiWu",
+                     "CaiJiDian", "YanShi", "KuangShi", "NianTu",
+                     "HeiYaoShi", "LiuHuang", "ShuiJing", "YunShi",
+                     "XiaoShi", "Bing", "Deposit", "Gather", "Harvest")
+
+foreach ($pat in $depositPatterns) {
+    $matches = $classCounts.GetEnumerator() | Where-Object { $_.Key -match $pat }
+    if ($matches) {
+        Write-Host "`nClass matches for '$pat':"
+        $matches | ForEach-Object { Write-Host ("  {0,6}  {1}" -f $_.Value, $_.Key) }
+    }
+}
+
+# Also search actor names
+foreach ($pat in $depositPatterns) {
+    $matched = $exports | Where-Object { $_.ObjectName -match $pat }
+    if ($matched) {
+        $byClass = @{}
+        foreach ($m in $matched) {
+            $imp = Resolve-Import $imports $m.ClassIndex
+            $cls = if ($imp) { $imp.ObjectName } else { "UNKNOWN" }
+            if (-not $byClass.ContainsKey($cls)) { $byClass[$cls] = 0 }
+            $byClass[$cls]++
+        }
+        Write-Host "`nActor name matches for '$pat' ($(($matched).Count) total):"
+        $byClass.GetEnumerator() | Sort-Object Value -Descending | ForEach-Object {
+            Write-Host ("  {0,6}  {1}" -f $_.Value, $_.Key)
+        }
+    }
+}
+```
+
+### 8.3 Extraction script update
+
+Once you identify the deposit class, add it to `parse_ore_spawns_run.ps1`:
+
+```powershell
+# Change the single pattern to an array that covers both systems:
+$OreClassPatterns = @(
+    "KuangMai",           # Mineral Veins (already working)
+    "YOUR_DEPOSIT_CLASS"  # Ore Deposits (fill in after discovery)
+)
+
+# Update the class matching to use the array:
+$isOre = $false
+foreach ($pat in $OreClassPatterns) {
+    if ($cls -match $pat) { $isOre = $true; break }
+}
+```
+
+Also expand the `$OreTypeNames` mapping for the new deposit types:
+
+```powershell
+$OreTypeNames = @{
+    # Existing vein types
+    "Iron"      = "Iron Ore"
+    "Copper"    = "Copper Ore"
+    "Tin"       = "Tin Ore"
+    "Coal"      = "Coal"
+    # New deposit types (adjust keys based on what's in actor/class names)
+    "NianTu"    = "Clay"
+    "HeiYaoShi" = "Obsidian"
+    "LiuHuang"  = "Sulfur Ore"
+    "ShuiJing"  = "Crystal"
+    "Bing"      = "Ice"
+    "LinKuang"  = "Phosphate Ore"
+    "XiaoShi"   = "Nitrate Ore"
+    "YanKuang"  = "Salt Mine"
+    "YunShi"    = "Meteorite Ore"
+    "CuYan"     = "Crude Salt"
+    "Clay"      = "Clay"
+    "Obsidian"  = "Obsidian"
+    "Sulfur"    = "Sulfur Ore"
+    "Crystal"   = "Crystal"
+    "Ice"       = "Ice"
+    "Salt"      = "Salt Mine"
+    "Meteorite" = "Meteorite Ore"
+    "Nitrate"   = "Nitrate Ore"
+    "Phosphate" = "Phosphate Ore"
+}
+```
+
+### 8.4 Expected output
+
+After adding deposits, the combined `ore_spawns.json` should have roughly:
+
+| Category       | Expected count |
+| -------------- | -------------- |
+| Mineral Veins  | ~147 (current) |
+| Ore Deposits   | ~1,226         |
+| **Total**      | **~1,373**     |
+
+### 8.5 What to commit
+
+Same as section 5 — update the existing files:
+- `Game/Parsed/ore_spawns.json` — now includes both veins and deposits
+- `pipeline/parse_ore_spawns_run.ps1` — updated with deposit class pattern
+
+Commit message:
+```
+feat: add ore deposit extraction (1,226 nodes) alongside existing mineral veins
+```
+
+### 8.6 Distinguishing veins from deposits in the output
+
+Add an `ore_category` field to each entry so downstream processing can tell them apart:
+
+```json
+{
+    "map": "Level01_GamePlay",
+    "actor_name": "...",
+    "ore_class": "BP_JianZhu_KuangMai_Iron1_C",
+    "ore_type": "Iron Ore",
+    "ore_category": "vein",
+    "pos_x": 123456.0,
+    "pos_y": -789012.0,
+    "pos_z": 5000.0
+}
+```
+
+Use `"vein"` for `KuangMai` classes, `"deposit"` for the new deposit class. This lets the frontend display them differently (different icons, filter toggles, etc.).
