@@ -1,9 +1,16 @@
-# parse_ore_deposits_run.ps1 — Extract ore deposit locations from streaming _Near tile .umap files
+# parse_ore_deposits_run.ps1 — Extract ore deposit locations from all sublevel .umap files
 # Companion to parse_ore_spawns_run.ps1 (which handles large Mineral Veins)
 #
-# Ore deposits (BP_Collections_* actors) are spread across 64 Near streaming tiles each
-# for base game and DLC. This script exports each tile one at a time, scans for collection
-# actors, extracts positions, then deletes the temp JSON before moving to the next tile.
+# Scans ALL relevant sublevel types:
+#   - _Near streaming tiles (open world)
+#   - Level01_KuangDong mine caves (copper, sulfur, etc.)
+#   - Level_BuLuo tribe villages
+#   - Level01_YiJi ruins
+#   - DLC Ruins, Tribe, FloatingIslands, ShipCamp sublevels
+#
+# BP_Collections_* actors use SortedInstances: array of child StaticMeshComponent
+# export indices, each with a direct FVector RelativeLocation.
+# BoxComponent0 bounding-box markers are filtered out.
 #
 # Output: Game/Parsed/ore_deposits.json
 
@@ -13,36 +20,31 @@ $ScriptDir  = Split-Path $MyInvocation.MyCommand.Path
 $OutFile    = [System.IO.Path]::GetFullPath((Join-Path $ScriptDir "..\Game\Parsed\ore_deposits.json"))
 $tmpDir     = [System.IO.Path]::GetTempPath()
 
-$BaseNearDir = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\Maps\Level01\Level01_Hub"
-$DLCNearDir  = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\AdditionMap01\Maps\DLC_Level01\DLC_Level01_Hub"
+$BaseRoot = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\Maps\Level01"
+$DLCRoot  = "C:\Program Files\Epic Games\SoulMaskModkit\Projects\WS\Content\AdditionMap01\Maps\DLC_Level01"
 
-# Ore deposit type resolution from class name.
-# BP_Collections_<Key>[_Size]_C -> ore type.
-# Non-ore collections are excluded via $ExcludePatterns below.
 $OreTypeMap = @{
-    # Class name fragment -> display name
-    # Discovered by scanning all 128 Near tiles
     "Clay"        = "Clay"
-    "BlackStone"  = "Obsidian"         # BP_Collections_BlackStone_Medium_C
-    "Iron"        = "Iron Ore"         # BP_Collections_Iron_Medium_C
-    "Crystal"     = "Crystal"          # BP_Collections_Crystal_Medium_C
-    "Coal"        = "Coal Ore"         # BP_Collections_Coal_Medium_C
-    "Common_Ice"  = "Ice"              # BP_Collections_Common_Ice_Medium_C
-    "Meteorites"  = "Meteorite Ore"    # BP_Collections_Meteorites_Medium_C
-    "Cassiterite" = "Tin Ore"          # BP_Collections_Cassiterite_Medium_C (cassiterite = tin ore mineral)
-    "Nitre"       = "Nitrate Ore"      # BP_Collections_Nitre_Medium_C (nitre = potassium nitrate)
-    "Cuprite"     = "Copper Ore"       # BP_Collections_Cuprite_Medium_C (cuprite = copper ore mineral)
-    "Sulphur"     = "Sulfur Ore"       # BP_Collections_Sulphur_Medium_C
-    "SeaSalt"     = "Sea Salt"         # BP_Collections_SeaSalt_Medium_C
-    "Salt"        = "Salt Mine"        # BP_Collections_Salt_Medium_C
-    "Phosphate"   = "Phosphate Ore"    # BP_Collections_Phosphate_Medium_C
+    "BlackStone"  = "Obsidian"
+    "Iron"        = "Iron Ore"
+    "Crystal"     = "Crystal"
+    "Coal"        = "Coal Ore"
+    "Common_Ice"  = "Ice"
+    "Meteorites"  = "Meteorite Ore"
+    "Cassiterite" = "Tin Ore"
+    "Nitre"       = "Nitrate Ore"
+    "Cuprite"     = "Copper Ore"
+    "Sulphur"     = "Sulfur Ore"
+    "SeaSalt"     = "Sea Salt"
+    "Salt"        = "Salt Mine"
+    "Phosphate"   = "Phosphate Ore"
 }
 
-# Class name fragments that are definitely NOT ore deposits — skip these entirely
+# Exclude obvious non-ore Collections classes
 $ExcludePatterns = @(
     "Shrub", "Tree", "Branch", "Pine", "Mushroom", "Vine", "ThornShrub", "LuHui",
     "Bone", "Carcass", "Egg", "Herbs", "PickUp", "Water", "Thatch",
-    "Common_Rock_Small"  # generic stone rocks, not ore (19,000+ instances — too noisy for map)
+    "Common_Rock_Small"
 )
 
 function Get-Prop($dataArray, $name) {
@@ -50,11 +52,9 @@ function Get-Prop($dataArray, $name) {
     return $null
 }
 function Resolve-FVector($val) {
-    # Direct FVector object (BP_Collections_ instances use this format)
     if ($val -and $null -ne $val.X -and $null -ne $val.Y -and $null -ne $val.Z) {
         return @([float]$val.X, [float]$val.Y, [float]$val.Z)
     }
-    # Array-wrapped FVector (BP_JianZhu_KuangMai_ veins use this format)
     if ($val -is [System.Collections.IEnumerable] -and $val.Count -gt 0) {
         $inner = $val[0].Value
         if ($inner -and $null -ne $inner.X -and $null -ne $inner.Y -and $null -ne $inner.Z) {
@@ -69,12 +69,11 @@ function Resolve-Import($imports, $idx) {
     if ($pos -lt $imports.Count) { return $imports[$pos] }
     return $null
 }
-
 function Resolve-OreType($className) {
     foreach ($entry in $OreTypeMap.GetEnumerator()) {
         if ($className -match $entry.Key) { return $entry.Value }
     }
-    return $null  # null = unknown / non-ore
+    return $null
 }
 
 function Process-Tile($umapPath, $mapLabel) {
@@ -101,7 +100,6 @@ function Process-Tile($umapPath, $mapLabel) {
             if (-not $imp -or $imp.ObjectName -notmatch "^BP_Collections_") { continue }
             $cls = $imp.ObjectName
 
-            # Skip non-ore collections
             $skip = $false
             foreach ($pat in $ExcludePatterns) { if ($cls -match $pat) { $skip=$true; break } }
             if ($skip) { continue }
@@ -109,29 +107,48 @@ function Process-Tile($umapPath, $mapLabel) {
             $oreType = Resolve-OreType $cls
             if ($null -eq $oreType) { $oreType = "Unknown" }
 
-            # BP_Collections_ actors use SortedInstances: an array of export indices,
-            # each pointing to a StaticMeshComponent that holds RelativeLocation (direct FVector).
             $sortedProp = Get-Prop $exp.Data "SortedInstances"
-            if ($sortedProp -and $sortedProp.Value) {
-                foreach ($instRef in $sortedProp.Value) {
-                    $instIdx = [int]$instRef.Value
-                    $instExp = $expMap[$instIdx]
-                    if (-not $instExp) { continue }
-                    $loc = Get-Prop $instExp.Data "RelativeLocation"
-                    if (-not $loc) { continue }
-                    $vec = Resolve-FVector $loc.Value
-                    if (-not $vec) { continue }
-                    $nodes.Add(@{
-                        map          = $mapLabel
-                        actor_name   = $instExp.ObjectName
-                        ore_class    = $cls
-                        ore_type     = $oreType
-                        ore_category = "deposit"
-                        pos_x        = $vec[0]
-                        pos_y        = $vec[1]
-                        pos_z        = $vec[2]
-                    })
+            if (-not $sortedProp -or -not $sortedProp.Value) { continue }
+
+            foreach ($instRef in $sortedProp.Value) {
+                $instIdx = [int]$instRef.Value
+                $instExp = $expMap[$instIdx]
+                if (-not $instExp) { continue }
+
+                # Keep only StaticMeshComponent instances (ore mesh positions).
+                # SortedInstances also references LightComponent, ParticleSystemComponent,
+                # NiagaraComponent, GroupComponent, USplineComponent etc. — all discarded.
+                # DefaultSceneRoot / JianZhuRootComp are valid root components; keep them too.
+                $instCls = $null
+                if ($instExp.ClassIndex -lt 0) {
+                    $instImp = Resolve-Import $imports $instExp.ClassIndex
+                    if ($instImp) { $instCls = $instImp.ObjectName }
                 }
+                $nameOk = ($instExp.ObjectName -match "^DefaultSceneRoot$|^JianZhuRootComp$")
+                $clsOk  = ($instCls -eq "StaticMeshComponent")
+                if (-not $nameOk -and -not $clsOk) { continue }
+
+                $loc = Get-Prop $instExp.Data "RelativeLocation"
+                if (-not $loc) { continue }
+                $vec = Resolve-FVector $loc.Value
+                if (-not $vec) { continue }
+
+                # Bounds check: sentinel coords (-408000,-408000) and out-of-range values.
+                # lat must be <= 0 for all valid in-world locations.
+                $lon = $vec[0] * 0.0050178419 + 2048.206056
+                $lat = $vec[1] * -0.0050222678 + -2048.404771
+                if ($lon -lt -200 -or $lon -gt 4296 -or $lat -lt -4296 -or $lat -gt 0) { continue }
+
+                $nodes.Add(@{
+                    map          = $mapLabel
+                    actor_name   = $instExp.ObjectName
+                    ore_class    = $cls
+                    ore_type     = $oreType
+                    ore_category = "deposit"
+                    pos_x        = $vec[0]
+                    pos_y        = $vec[1]
+                    pos_z        = $vec[2]
+                })
             }
         }
         return @{ nodes=$nodes; error=$false }
@@ -145,16 +162,41 @@ function Process-Tile($umapPath, $mapLabel) {
 # --- Build tile list ---
 $tiles = [System.Collections.Generic.List[hashtable]]::new()
 
-foreach ($f in (Get-ChildItem $BaseNearDir -Filter "*_Near.umap" | Sort-Object Name)) {
-    $tiles.Add(@{ Path=$f.FullName; Label=$f.BaseName; DLC=$false })
-}
-foreach ($f in (Get-ChildItem $DLCNearDir -Filter "*_Near.umap" -ErrorAction SilentlyContinue | Sort-Object Name)) {
-    $tiles.Add(@{ Path=$f.FullName; Label=$f.BaseName; DLC=$true })
+function Add-Dir($dir, $filter) {
+    if (-not (Test-Path $dir)) { return }
+    Get-ChildItem $dir -Filter $filter | Sort-Object Name | ForEach-Object {
+        $script:tiles.Add(@{ Path=$_.FullName; Label=$_.BaseName })
+    }
 }
 
-Write-Host "Processing $($tiles.Count) Near tiles..."
-$allNodes  = [System.Collections.Generic.List[hashtable]]::new()
-$errors    = @()
+# Open-world Near streaming tiles (base + DLC)
+Add-Dir "$BaseRoot\Level01_Hub"        "*_Near.umap"
+Add-Dir "$DLCRoot\DLC_Level01_Hub"     "*_Near.umap"
+
+# Mine caves — most likely source of copper, sulfur, phosphate, salt
+Add-Dir "$BaseRoot\Level01_KuangDong"  "*.umap"
+
+# Tribe villages
+Add-Dir "$BaseRoot\Level_BuLuo"        "*.umap"
+Add-Dir "$DLCRoot\DLC_Level01_Tribe"   "*.umap"
+
+# Ruins / dungeons (base)
+Add-Dir "$BaseRoot\Level01_YiJi"       "*.umap"
+Add-Dir "$BaseRoot\Level_NieLian"      "*.umap"
+Add-Dir "$BaseRoot\Level01_Hub"        "Level01_Seabed*.umap"
+
+# Ruins / dungeons (DLC)
+Add-Dir "$DLCRoot\DLC_Level01_Ruins"   "*.umap"
+Add-Dir "$DLCRoot\DLC_Level01_FloatingIslands" "*.umap"
+Add-Dir "$DLCRoot\DLC_Level01_ShipCamp" "*.umap"
+Add-Dir "$DLCRoot\DLC_Level01_Hub"     "DLC_Level01_Seabed*.umap"
+
+# DLC Egypt dungeons
+Add-Dir "$DLCRoot\..\DLC_Egypt_Dungeons\Level\MonsterRoom" "*.umap"
+
+Write-Host "Processing $($tiles.Count) tiles..."
+$allNodes   = [System.Collections.Generic.List[hashtable]]::new()
+$errors     = @()
 $allClasses = @{}
 $idx = 0
 
@@ -167,8 +209,7 @@ foreach ($tile in $tiles) {
 
     if ($result.error) {
         Write-Host "ERROR$(if ($result.msg) { ': ' + $result.msg })"
-        $errors += $tile.Label
-        continue
+        $errors += $tile.Label; continue
     }
 
     $n = $result.nodes
@@ -202,7 +243,7 @@ $allClasses.GetEnumerator() | Sort-Object Value -Descending | ForEach-Object {
 
 $unknown = ($allNodes | Where-Object { $_["ore_type"] -eq "Unknown" }).Count
 if ($unknown -gt 0) {
-    Write-Host "`nWARNING: $unknown nodes classified as Unknown. Check class names above and update OreTypeMap."
+    Write-Host "`nWARNING: $unknown Unknown-type nodes. New classes found:"
     $allNodes | Where-Object { $_["ore_type"] -eq "Unknown" } |
         Group-Object { $_["ore_class"] } | Sort-Object Count -Descending |
         ForEach-Object { Write-Host ("  {0,5}  {1}" -f $_.Count, $_.Name) }
