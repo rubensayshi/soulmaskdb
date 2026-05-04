@@ -4,6 +4,7 @@ import { useStore } from '../store'
 import { itemPath } from '../lib/graph'
 
 const CHANGELOG: { type: 'feat' | 'fix'; text: string }[] = [
+  { type: 'feat', text: 'Ore deposit and mineral vein maps on resource item pages (Iron Ore, Coal, Crystal, and more)' },
   { type: 'feat', text: 'Plan your tech tree build — toggle nodes, see point costs, and share builds via URL' },
   { type: 'feat', text: 'Browse the full tech tree with tier groupings, dependency lines, and recipe previews' },
   { type: 'feat', text: 'Spawn maps show where creatures live on both Cloud & Mist and Shifting Sands' },
