@@ -15,6 +15,7 @@ import TechUnlock from '../components/TechUnlock'
 import ItemStats from '../components/ItemStats'
 import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
 import SpawnMap from '../components/SpawnMap'
+import ResourceNodeMap from '../components/ResourceNodeMap'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -275,6 +276,15 @@ export default function Item() {
         <>
           <SectionHeader title="Obtained From" sub="Drop Sources" accent="rust" />
           <ObtainedFrom sources={detail.drop_sources} />
+        </>
+      )}
+
+      {detail?.resource_nodes && detail.resource_nodes.length > 0 && (
+        <>
+          <SectionHeader title="Resource Locations" sub="Ore Deposits & Veins" accent="gold" />
+          <div className="border border-hair-strong p-2 bg-panel mb-4">
+            <ResourceNodeMap data={detail.resource_nodes} />
+          </div>
         </>
       )}
     </div>

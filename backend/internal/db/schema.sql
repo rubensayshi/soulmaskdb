@@ -122,6 +122,16 @@ CREATE TABLE creature_spawns (
   PRIMARY KEY (creature_type, lat, lon, map)
 );
 
+CREATE TABLE resource_nodes (
+  ore_type     TEXT NOT NULL,
+  lat          INTEGER NOT NULL,
+  lon          INTEGER NOT NULL,
+  ore_category TEXT NOT NULL CHECK (ore_category IN ('deposit','vein')),
+  map          TEXT NOT NULL DEFAULT 'base',
+  PRIMARY KEY (ore_type, lat, lon, ore_category, map)
+);
+CREATE INDEX idx_resource_nodes_ore_type ON resource_nodes(ore_type);
+
 CREATE TABLE traits (
   id                    TEXT PRIMARY KEY,
   star                  INTEGER NOT NULL,
