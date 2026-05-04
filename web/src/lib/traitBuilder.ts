@@ -15,6 +15,7 @@ export const SLOT_CATEGORIES: SlotCategory[] = [
   { key: 'title',         label: 'Title',        sourceKey: 'ChengHao',        max: 1 },
   { key: 'personality',   label: 'Personality',  sourceKey: 'XingGe',          max: 1 },
   { key: 'preferences',   label: 'Preferences',  sourceKey: 'XiHao',           max: 3 },
+  { key: 'debuffs',       label: 'Debuffs',      sourceKey: '*',               max: 6 },
 ]
 
 export interface TraitFamilyLike {
@@ -26,7 +27,7 @@ export interface TraitFamilyLike {
 }
 
 export function classifyFamily(fam: TraitFamilyLike): string | null {
-  if (fam.isNegative) return null
+  if (fam.isNegative) return 'debuffs'
   switch (fam.source) {
     case 'BornChuShen':     return 'origin'
     case 'XingGe':          return 'personality'
@@ -95,7 +96,6 @@ export function canAddTrait(
 ): ConstraintResult {
   const trait = traitsById.get(traitId)
   if (!trait) return { canAdd: false, reason: 'no_category' }
-  if (trait.is_negative) return { canAdd: false, reason: 'negative' }
 
   const fam = familyByTraitId.get(traitId)
   if (!fam) return { canAdd: false, reason: 'no_category' }
