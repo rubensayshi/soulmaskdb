@@ -111,85 +111,129 @@ function Process-Tile($umapPath, $mapLabel) {
             $oreType = Resolve-OreType $cls
             if ($null -eq $oreType) { $oreType = "Unknown" }
 
-            # --- Version A: per-component (placed BP actors) ---
-            # SortedInstances lists individual StaticMeshComponent exports, each with RelativeLocation.
-            $smCount = 0
-            $sortedProp = Get-Prop $exp.Data "SortedInstances"
-            if ($sortedProp -and $sortedProp.Value) {
-                foreach ($instRef in $sortedProp.Value) {
-                    $instIdx = [int]$instRef.Value
-                    $instExp = $expMap[$instIdx]
-                    if (-not $instExp) { continue }
+            # Decide extraction method:
+            # - Cave-style: BP_Collections_ actor IS the HISMC (has NumBuiltInstances property).
+            #   Positions are packed in the Extras binary field (64-byte header + 64-byte FMatrix each).
+            # - Surface-style: BP_Collections_ actor has child StaticMeshComponents listed in
+            #   SortedInstances, each carrying its own RelativeLocation.
+            $numBuiltInstProp = Get-Prop $exp.Data "NumBuiltInstances"
+            $isCaveHISMC = $numBuiltInstProp -ne $null
 
-                    # Keep only StaticMeshComponent / DefaultSceneRoot / JianZhuRootComp.
-                    $instCls = $null
-                    if ($instExp.ClassIndex -lt 0) {
-                        $instImp = Resolve-Import $imports $instExp.ClassIndex
-                        if ($instImp) { $instCls = $instImp.ObjectName }
-                    }
-                    $nameOk = ($instExp.ObjectName -match "^DefaultSceneRoot$|^JianZhuRootComp$")
-                    $clsOk  = ($instCls -eq "StaticMeshComponent")
-                    if (-not $nameOk -and -not $clsOk) { continue }
+            if ($isCaveHISMC) {
+                # --- Version B (cave): HISMC Extras binary ---
+                if ($exp.Extras) {
+                    try {
+                        $bytes     = [Convert]::FromBase64String($exp.Extras)
+                        if ($bytes.Length -lt 80) { continue }
+                        $instCount = [BitConverter]::ToInt32($bytes, 12)
+                        if ($instCount -le 0) { continue }
 
-                    $loc = Get-Prop $instExp.Data "RelativeLocation"
-                    if (-not $loc) { continue }
-                    $vec = Resolve-FVector $loc.Value
-                    if (-not $vec) { continue }
+                        $headerSize   = 64
+                        $instanceSize = 64
+                        for ($fi = 0; $fi -lt $instCount; $fi++) {
+                            $base = $headerSize + $fi * $instanceSize
+                            if ($base + 12 -gt $bytes.Length) { break }
+                            $posX = [BitConverter]::ToSingle($bytes, $base)
+                            $posY = [BitConverter]::ToSingle($bytes, $base + 4)
+                            $posZ = [BitConverter]::ToSingle($bytes, $base + 8)
 
-                    $lon = $vec[0] * 0.0050178419 + 2048.206056
-                    $lat = $vec[1] * -0.0050222678 + -2048.404771
-                    if ($lon -lt -200 -or $lon -gt 4296 -or $lat -lt -4296 -or $lat -gt 0) { continue }
+                            $lon = $posX * 0.0050178419 + 2048.206056
+                            $lat = $posY * -0.0050222678 + -2048.404771
+                            if ($lon -lt -200 -or $lon -gt 4296 -or $lat -lt -4296 -or $lat -gt 0) { continue }
 
-                    $smCount++
-                    $nodes.Add(@{
-                        map          = $mapLabel
-                        actor_name   = $instExp.ObjectName
-                        ore_class    = $cls
-                        ore_type     = $oreType
-                        ore_category = "deposit"
-                        pos_x        = $vec[0]
-                        pos_y        = $vec[1]
-                        pos_z        = $vec[2]
-                    })
+                            $nodes.Add(@{
+                                map          = $mapLabel
+                                actor_name   = "cave_${fi}"
+                                ore_class    = $cls
+                                ore_type     = $oreType
+                                ore_category = "deposit"
+                                pos_x        = $posX
+                                pos_y        = $posY
+                                pos_z        = $posZ
+                            })
+                        }
+                    } catch { <# binary parse failed silently #> }
                 }
-            }
+            } else {
+                # --- Version A: per-component (placed BP actors / surface style) ---
+                # SortedInstances lists individual StaticMeshComponent exports, each with RelativeLocation.
+                $smCount = 0
+                $sortedProp = Get-Prop $exp.Data "SortedInstances"
+                if ($sortedProp -and $sortedProp.Value) {
+                    foreach ($instRef in $sortedProp.Value) {
+                        $instIdx = [int]$instRef.Value
+                        $instExp = $expMap[$instIdx]
+                        if (-not $instExp) { continue }
 
-            # --- Version B: foliage HISMC (InstancedFoliageActor children) ---
-            # When SortedInstances has no mesh components, positions are in the Extras
-            # binary field as packed FMatrix instances (64 bytes each, header 64 bytes).
-            # Layout per instance: [pos_x(f32), pos_y(f32), pos_z(f32), W(f32), rot(48B)]
-            if ($smCount -eq 0 -and $exp.Extras) {
-                try {
-                    $bytes = [Convert]::FromBase64String($exp.Extras)
-                    if ($bytes.Length -lt 80) { continue }  # too small to have instances
-                    $instCount = [BitConverter]::ToInt32($bytes, 12)
-                    if ($instCount -le 0) { continue }
+                        # Keep only StaticMeshComponent / DefaultSceneRoot / JianZhuRootComp.
+                        $instCls = $null
+                        if ($instExp.ClassIndex -lt 0) {
+                            $instImp = Resolve-Import $imports $instExp.ClassIndex
+                            if ($instImp) { $instCls = $instImp.ObjectName }
+                        }
+                        $nameOk = ($instExp.ObjectName -match "^DefaultSceneRoot$|^JianZhuRootComp$")
+                        $clsOk  = ($instCls -eq "StaticMeshComponent")
+                        if (-not $nameOk -and -not $clsOk) { continue }
 
-                    $headerSize   = 64
-                    $instanceSize = 64
-                    for ($fi = 0; $fi -lt $instCount; $fi++) {
-                        $base = $headerSize + $fi * $instanceSize
-                        if ($base + 12 -gt $bytes.Length) { break }
-                        $posX = [BitConverter]::ToSingle($bytes, $base)
-                        $posY = [BitConverter]::ToSingle($bytes, $base + 4)
-                        $posZ = [BitConverter]::ToSingle($bytes, $base + 8)
+                        $loc = Get-Prop $instExp.Data "RelativeLocation"
+                        if (-not $loc) { continue }
+                        $vec = Resolve-FVector $loc.Value
+                        if (-not $vec) { continue }
 
-                        $lon = $posX * 0.0050178419 + 2048.206056
-                        $lat = $posY * -0.0050222678 + -2048.404771
+                        $lon = $vec[0] * 0.0050178419 + 2048.206056
+                        $lat = $vec[1] * -0.0050222678 + -2048.404771
                         if ($lon -lt -200 -or $lon -gt 4296 -or $lat -lt -4296 -or $lat -gt 0) { continue }
 
+                        $smCount++
                         $nodes.Add(@{
                             map          = $mapLabel
-                            actor_name   = "foliage_${fi}"
+                            actor_name   = $instExp.ObjectName
                             ore_class    = $cls
                             ore_type     = $oreType
                             ore_category = "deposit"
-                            pos_x        = $posX
-                            pos_y        = $posY
-                            pos_z        = $posZ
+                            pos_x        = $vec[0]
+                            pos_y        = $vec[1]
+                            pos_z        = $vec[2]
                         })
                     }
-                } catch { <# binary parse failed silently #> }
+                }
+
+                # --- Version B fallback: foliage-style HISMC with no child components ---
+                # Fires when the actor has Extras binary but no StaticMeshComponent children
+                # (e.g. open-world foliage instances of BP_Collections_ classes).
+                if ($smCount -eq 0 -and $exp.Extras) {
+                    try {
+                        $bytes = [Convert]::FromBase64String($exp.Extras)
+                        if ($bytes.Length -lt 80) { continue }
+                        $instCount = [BitConverter]::ToInt32($bytes, 12)
+                        if ($instCount -le 0) { continue }
+
+                        $headerSize   = 64
+                        $instanceSize = 64
+                        for ($fi = 0; $fi -lt $instCount; $fi++) {
+                            $base = $headerSize + $fi * $instanceSize
+                            if ($base + 12 -gt $bytes.Length) { break }
+                            $posX = [BitConverter]::ToSingle($bytes, $base)
+                            $posY = [BitConverter]::ToSingle($bytes, $base + 4)
+                            $posZ = [BitConverter]::ToSingle($bytes, $base + 8)
+
+                            $lon = $posX * 0.0050178419 + 2048.206056
+                            $lat = $posY * -0.0050222678 + -2048.404771
+                            if ($lon -lt -200 -or $lon -gt 4296 -or $lat -lt -4296 -or $lat -gt 0) { continue }
+
+                            $nodes.Add(@{
+                                map          = $mapLabel
+                                actor_name   = "foliage_${fi}"
+                                ore_class    = $cls
+                                ore_type     = $oreType
+                                ore_category = "deposit"
+                                pos_x        = $posX
+                                pos_y        = $posY
+                                pos_z        = $posZ
+                            })
+                        }
+                    } catch { <# binary parse failed silently #> }
+                }
             }
         }
         return @{ nodes=$nodes; error=$false }
