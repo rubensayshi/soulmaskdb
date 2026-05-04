@@ -161,3 +161,17 @@ Now covers all sublevel types for full map coverage (~2,064 target).
 ```
 
 Commit updated `pipeline/parse_ore_deposits_run.ps1` and `Game/Parsed/ore_deposits.json`.
+
+## Remaining gap: cave deposits in SE copper area
+
+After the foliage HISMC expansion (10k+ deposits), cross-referencing against SaraSerenity shows one remaining gap. In the south-central area around map coordinates `lat -3030, lon 1700-1750` there are 3 copper veins and only 1 deposit visible. SaraSerenity shows a cluster of additional copper deposits in this area which appear to be inside a cave/mine (KuangDong sublevel).
+
+The extraction script already scans `Level01_KuangDong/*.umap` but these specific cave deposits may be in a sublevel that was missed, or may use a different actor class inside the cave geometry.
+
+### To investigate
+
+1. Check which `Level01_KuangDong` sublevels contain `BP_Collections_Copper_Medium_C` actors
+2. Verify the extraction script is scanning all `.umap` files in that directory (not just `*_Near.umap`)
+3. The cave deposits may also appear in `Level_NieLian` (smelting area) sublevels
+
+This appears to be the only remaining coverage gap — all other ore types now have good coverage compared to SaraSerenity.
