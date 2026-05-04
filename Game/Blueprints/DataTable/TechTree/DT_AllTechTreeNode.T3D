@@ -1,0 +1,9 @@
+Begin Object Class=/Script/Engine.DataTable Name="DT_AllTechTreeNode"
+   Begin Object Class=/Script/Engine.AssetImportData Name="AssetImportData"
+   End Object
+   Begin Object Name="AssetImportData"
+   End Object
+   RowStruct=ScriptStruct'"/Script/WS.TechTreeRow"'
+   AssetImportData=AssetImportData'"AssetImportData"'
+   RowStructName="TechTreeRow"
+End Object

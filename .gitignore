@@ -27,3 +27,15 @@ Game/Maps/
 
 # TS incremental build info
 web/tsconfig.tsbuildinfo
+
+# FModel binary (download via download_fmodel.ps1)
+tools/FModel.zip
+tools/FModel/
+
+# Throwaway debug / probe scripts
+debug_spawner.ps1
+find_python.ps1
+find_python2.ps1
+find_python3.ps1
+test_*.ps1
+test_*.json

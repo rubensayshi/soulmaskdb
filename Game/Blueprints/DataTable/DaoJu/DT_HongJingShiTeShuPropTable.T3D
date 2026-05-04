@@ -1,0 +1,9 @@
+Begin Object Class=/Script/Engine.DataTable Name="DT_HongJingShiTeShuPropTable"
+   Begin Object Class=/Script/Engine.AssetImportData Name="AssetImportData"
+   End Object
+   Begin Object Name="AssetImportData"
+   End Object
+   RowStruct=ScriptStruct'"/Script/WS.HJSTSSXPeiZhiTableData"'
+   AssetImportData=AssetImportData'"AssetImportData"'
+   RowStructName="HJSTSSXPeiZhiTableData"
+End Object

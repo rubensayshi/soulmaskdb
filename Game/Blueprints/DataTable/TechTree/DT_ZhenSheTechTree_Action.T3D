@@ -1,0 +1,9 @@
+Begin Object Class=/Script/Engine.DataTable Name="DT_ZhenSheTechTree_Action"
+   Begin Object Class=/Script/Engine.AssetImportData Name="AssetImportData"
+   End Object
+   Begin Object Name="AssetImportData"
+   End Object
+   RowStruct=ScriptStruct'"/Script/WS.GetKeJiByClan"'
+   AssetImportData=AssetImportData'"AssetImportData"'
+   RowStructName="GetKeJiByClan"
+End Object

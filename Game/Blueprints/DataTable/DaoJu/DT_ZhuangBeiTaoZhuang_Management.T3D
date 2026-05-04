@@ -1,0 +1,9 @@
+Begin Object Class=/Script/Engine.DataTable Name="DT_ZhuangBeiTaoZhuang_Management"
+   Begin Object Class=/Script/Engine.AssetImportData Name="AssetImportData"
+   End Object
+   Begin Object Name="AssetImportData"
+   End Object
+   RowStruct=ScriptStruct'"/Script/WS.ZBTaoZhuangTableData"'
+   AssetImportData=AssetImportData'"AssetImportData"'
+   RowStructName="ZBTaoZhuangTableData"
+End Object
