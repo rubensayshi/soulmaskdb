@@ -726,14 +726,16 @@ export default function Traits() {
                     )
                   })()}
                   {builderMode && isSelected && (
-                    <span
-                      className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-sm"
+                    <button
+                      onClick={e => { e.stopPropagation(); removeTrait(builderTrait.id) }}
+                      className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-sm hover:opacity-60 transition-opacity"
                       style={{ backgroundColor: 'rgba(138,160,116,.15)', color: '#8aa074' }}
+                      title="Remove from build"
                     >
                       <svg viewBox="0 0 12 12" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M2.5 6 L5 8.5 L9.5 3.5" />
                       </svg>
-                    </span>
+                    </button>
                   )}
                   {builderMode && !isSelected && !isDisabled && classifyFamily(fam) && (
                     <button
