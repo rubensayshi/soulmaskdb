@@ -93,6 +93,12 @@ WHERE cs.creature_type IN (
 )
 ORDER BY cs.map, cs.creature_type, cs.lat, cs.lon;
 
+-- name: GetOreSpawnsForItem :many
+SELECT ore_type, ore_category, lat, lon, map
+FROM ore_spawns
+WHERE item_id = ?
+ORDER BY map, ore_category, ore_type, lat, lon;
+
 -- name: ListItemSlugs :many
 SELECT id, slug FROM items;
 

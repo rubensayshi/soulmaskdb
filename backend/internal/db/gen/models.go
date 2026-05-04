@@ -50,6 +50,15 @@ type Item struct {
 	Slug          sql.NullString
 }
 
+type OreSpawn struct {
+	ItemID      string
+	OreType     string
+	OreCategory string
+	Lat         int64
+	Lon         int64
+	Map         string
+}
+
 type Recipe struct {
 	ID               string
 	OutputItemID     string

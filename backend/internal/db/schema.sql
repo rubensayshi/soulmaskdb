@@ -122,6 +122,16 @@ CREATE TABLE creature_spawns (
   PRIMARY KEY (creature_type, lat, lon, map)
 );
 
+CREATE TABLE ore_spawns (
+    item_id      TEXT    NOT NULL,
+    ore_type     TEXT    NOT NULL,
+    ore_category TEXT    NOT NULL,
+    lat          INTEGER NOT NULL,
+    lon          INTEGER NOT NULL,
+    map          TEXT    NOT NULL DEFAULT 'base',
+    PRIMARY KEY (item_id, ore_category, lat, lon, map)
+);
+
 CREATE TABLE traits (
   id                    TEXT PRIMARY KEY,
   star                  INTEGER NOT NULL,

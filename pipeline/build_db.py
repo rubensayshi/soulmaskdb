@@ -21,7 +21,7 @@ SCHEMA = ROOT / "backend" / "internal" / "db" / "schema.sql"
 
 
 def load_json(p):
-    return json.loads(p.read_text(encoding="utf-8"))
+    return json.loads(p.read_text(encoding="utf-8-sig"))
 
 
 def prettify_bp_id(raw: str) -> str:
@@ -526,6 +526,69 @@ def main():
             )
             spawn_count += 1
 
+    # --- ore spawns ---
+    ORE_TYPE_TO_ITEM = {
+        "Iron Ore":      "Daoju_Item_IronOre",
+        "Copper Ore":    "Daoju_Item_CopperOre",
+        "Coal":          "Daoju_Item_CoalOre",
+        "Tin Ore":       "Daoju_Item_TinOre",
+        "Clay":          "Daoju_Item_Clay",
+        "Obsidian":      "Daoju_Item_HugeStone",
+        "Crystal":       "Daoju_Item_Crystal",
+        "Ice":           "Daoju_Item_Ice",
+        "Sulfur Ore":    "Daoju_Item_SulfurOre",
+        "Phosphate Ore": "Daoju_Item_PhosphateOre",
+        "Nitrate Ore":   "Daoju_Item_Nitre",
+        "Salt Mine":     "Daoju_Item_SaltOre",
+        "Meteorite Ore": "Daoju_Item_Meteorites",
+        "Crude Salt":    "Daoju_Item_CuYan",
+        "Sea Salt":      "Daoju_Item_CuYan",
+        "Coal Ore":      "Daoju_Item_CoalOre",
+    }
+    SCALE_LON = 0.0050178419
+    OFFSET_LON = 2048.206056
+    SCALE_LAT = -0.0050222678
+    OFFSET_LAT = -2048.404771
+
+    def ore_map_name(raw_map):
+        if raw_map.startswith("DLC_"):
+            return "dlc"
+        return "base"
+
+    ore_files = [
+        (PARSED / "ore_spawns.json", "vein"),
+        (PARSED / "ore_deposits.json", "deposit"),
+    ]
+    ore_count = 0
+    ore_skipped = set()
+    for ore_path, default_cat in ore_files:
+        if not ore_path.exists():
+            continue
+        ore_data = load_json(ore_path)
+        for o in ore_data:
+            if o.get("actor_name") == "BoxComponent0":
+                continue
+            ore_type = o["ore_type"]
+            item_id = ORE_TYPE_TO_ITEM.get(ore_type)
+            if not item_id:
+                ore_skipped.add(ore_type)
+                continue
+            lon = round(o["pos_x"] * SCALE_LON + OFFSET_LON)
+            lat = round(o["pos_y"] * SCALE_LAT + OFFSET_LAT)
+            # Skip coords outside the playable map area
+            if not (-4100 <= lat <= -200 and 175 <= lon <= 4000):
+                continue
+            cat = o.get("ore_category", default_cat)
+            map_name = ore_map_name(o["map"])
+            db.execute(
+                "INSERT OR IGNORE INTO ore_spawns (item_id, ore_type, ore_category, lat, lon, map) "
+                "VALUES (?,?,?,?,?,?)",
+                (item_id, ore_type, cat, lat, lon, map_name),
+            )
+            ore_count += 1
+    if ore_skipped:
+        print(f"  [ore_spawns] WARNING: unknown ore types: {ore_skipped}")
+
     db.commit()
     db.execute("VACUUM")
     db.close()
@@ -540,6 +603,7 @@ def main():
     print(f"  traits:            {trait_count}")
     print(f"  seed_sources:      {seed_source_count}")
     print(f"  creature_spawns:   {spawn_count}")
+    print(f"  ore_spawns:        {ore_count}")
 
 
 if __name__ == "__main__":

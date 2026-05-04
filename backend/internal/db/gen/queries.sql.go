@@ -109,6 +109,50 @@ func (q *Queries) GetItemBySlug(ctx context.Context, slug sql.NullString) (Item,
 	return i, err
 }
 
+const getOreSpawnsForItem = `-- name: GetOreSpawnsForItem :many
+SELECT ore_type, ore_category, lat, lon, map
+FROM ore_spawns
+WHERE item_id = ?
+ORDER BY map, ore_category, ore_type, lat, lon
+`
+
+type GetOreSpawnsForItemRow struct {
+	OreType     string
+	OreCategory string
+	Lat         int64
+	Lon         int64
+	Map         string
+}
+
+func (q *Queries) GetOreSpawnsForItem(ctx context.Context, itemID string) ([]GetOreSpawnsForItemRow, error) {
+	rows, err := q.db.QueryContext(ctx, getOreSpawnsForItem, itemID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetOreSpawnsForItemRow{}
+	for rows.Next() {
+		var i GetOreSpawnsForItemRow
+		if err := rows.Scan(
+			&i.OreType,
+			&i.OreCategory,
+			&i.Lat,
+			&i.Lon,
+			&i.Map,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getRecipesForOutput = `-- name: GetRecipesForOutput :many
 SELECT id, output_item_id, output_qty, station_id, can_make_by_hand, craft_time_seconds, proficiency, proficiency_xp, awareness_xp, recipe_level FROM recipes WHERE output_item_id = ?
 `

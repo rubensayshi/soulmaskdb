@@ -110,28 +110,14 @@ export default function SpawnMap({ groups, mapType = 'base', compact }: Props) {
     })
 
     if (allPts.length > 0) {
-      const spawnBounds = L.latLngBounds(allPts)
-      const padLat = Math.max((spawnBounds.getNorth() - spawnBounds.getSouth()) * 0.15, 80)
-      const padLng = Math.max((spawnBounds.getEast() - spawnBounds.getWest()) * 0.15, 80)
-      const paddedBounds = L.latLngBounds(
-        [spawnBounds.getSouth() - padLat, spawnBounds.getWest() - padLng],
-        [spawnBounds.getNorth() + padLat, spawnBounds.getEast() + padLng],
-      )
-      const baseZoom = map.getZoom()
-      const maxStep = compact ? 0.5 : 1
-      let bestZoom = baseZoom
-      for (let step = maxStep; step >= 0.1; step -= 0.1) {
-        map.setView(spawnBounds.getCenter(), baseZoom + step)
-        if (map.getBounds().contains(paddedBounds)) {
-          bestZoom = baseZoom + step
-          break
-        }
-      }
-      if (bestZoom > baseZoom) {
-        map.setView(spawnBounds.getCenter(), bestZoom)
-      } else {
-        map.fitBounds(MAP_BOUNDS)
-      }
+      const pad = compact ? 15 : 30
+      map.fitBounds(L.latLngBounds(allPts), { padding: [pad, pad] })
+      const mapB = L.latLngBounds(MAP_BOUNDS as L.LatLngBoundsLiteral)
+      const zoom = map.getZoom()
+      const center = map.getCenter()
+      const clampedLat = Math.max(mapB.getSouth(), Math.min(mapB.getNorth(), center.lat))
+      const clampedLng = Math.max(mapB.getWest(), Math.min(mapB.getEast(), center.lng))
+      map.setView([clampedLat, clampedLng], zoom)
     }
 
     mapRef.current = map

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
+	"strings"
 
 	"github.com/go-chi/chi/v5"
 
@@ -197,6 +198,45 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 			}
 			if found == nil {
 				sm.Groups = append(sm.Groups, SpawnGroup{Creature: r.CreatureType, Level: level})
+				found = &sm.Groups[len(sm.Groups)-1]
+			}
+			found.Spawns = append(found.Spawns, SpawnPoint{Lat: r.Lat, Lon: r.Lon})
+		}
+	}
+
+	// ore spawns — append to the same spawnLocations structure
+	oreRows, _ := q.GetOreSpawnsForItem(ctx, item.ID)
+	if len(oreRows) > 0 {
+		if spawnLocations == nil {
+			spawnLocations = []SpawnMap{}
+		}
+		mapIdx := make(map[string]int)
+		for i, sm := range spawnLocations {
+			mapIdx[sm.Map] = i
+		}
+		for _, r := range oreRows {
+			mi, ok := mapIdx[r.Map]
+			if !ok {
+				mi = len(spawnLocations)
+				mapIdx[r.Map] = mi
+				spawnLocations = append(spawnLocations, SpawnMap{Map: r.Map})
+			}
+			sm := &spawnLocations[mi]
+			label := r.OreType
+			if r.OreCategory == "vein" {
+				label = strings.Replace(label, " Ore", "", 1) + " Vein"
+			} else {
+				label = strings.Replace(label, " Ore", "", 1) + " Deposit"
+			}
+			var found *SpawnGroup
+			for i := range sm.Groups {
+				if sm.Groups[i].Creature == label {
+					found = &sm.Groups[i]
+					break
+				}
+			}
+			if found == nil {
+				sm.Groups = append(sm.Groups, SpawnGroup{Creature: label})
 				found = &sm.Groups[len(sm.Groups)-1]
 			}
 			found.Spawns = append(found.Spawns, SpawnPoint{Lat: r.Lat, Lon: r.Lon})
