@@ -46,7 +46,9 @@ $ExcludePatterns = @(
     "Bone", "Carcass", "Egg", "Herbs", "PickUp", "Water", "Thatch",
     "Common_Rock_Small",
     # DLC game objects that share the BP_Collections_ prefix but are not ore deposits
-    "ChuanSongMen", "XiuMianCang", "ZhuanHuaLu", "FangFuShe"
+    "ChuanSongMen", "XiuMianCang", "ZhuanHuaLu", "FangFuShe",
+    # Ancient tech structures (Mysterious Stone Table) in ruins — not ore deposits
+    "GaoKeJi"
 )
 
 function Get-Prop($dataArray, $name) {

@@ -132,12 +132,24 @@ export interface SpawnMapData {
   groups: SpawnGroup[]
 }
 
+export interface ResourceNodePoint {
+  lat: number
+  lon: number
+}
+
+export interface ResourceNodeMapData {
+  map: 'base' | 'dlc'
+  category: 'deposit' | 'vein'
+  nodes: ResourceNodePoint[]
+}
+
 export interface ItemDetail {
   id: string
   drop_sources: DropSource[]
   tech_unlocked_by: TechUnlock[]
   seed_source?: SeedSource
   spawn_locations?: SpawnMapData[]
+  resource_nodes?: ResourceNodeMapData[]
 }
 
 export interface TechRecipeLink {

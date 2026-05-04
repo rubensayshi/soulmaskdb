@@ -517,6 +517,42 @@ def main():
             )
             spawn_count += 1
 
+    # --- resource nodes (ore deposits + mineral veins) ---
+    # Coordinate transform: lon = pos_x * 0.0050178419 + 2048.206056
+    #                       lat = pos_y * -0.0050222678 + -2048.404771
+    # Map: tile names starting with "DLC_" are dlc, everything else is base.
+    _LON_SCALE = 0.0050178419
+    _LON_OFFSET = 2048.206056
+    _LAT_SCALE = -0.0050222678
+    _LAT_OFFSET = -2048.404771
+
+    resource_node_files = [
+        PARSED / "ore_deposits.json",
+        PARSED / "ore_spawns.json",
+    ]
+    resource_node_count = 0
+    for rn_path in resource_node_files:
+        if not rn_path.exists():
+            continue
+        rn_data = json.loads(rn_path.read_text(encoding="utf-8-sig"))
+        for node in rn_data:
+            pos_x = node.get("pos_x", 0)
+            pos_y = node.get("pos_y", 0)
+            lon = round(pos_x * _LON_SCALE + _LON_OFFSET)
+            lat = round(pos_y * _LAT_SCALE + _LAT_OFFSET)
+            map_name = node.get("map", "")
+            map_tag = "dlc" if map_name.startswith("DLC_") or map_name.startswith("DLC01_") else "base"
+            ore_type = node.get("ore_type", "")
+            ore_category = node.get("ore_category", "deposit")
+            if not ore_type:
+                continue
+            db.execute(
+                "INSERT OR IGNORE INTO resource_nodes (ore_type, lat, lon, ore_category, map) "
+                "VALUES (?,?,?,?,?)",
+                (ore_type, lat, lon, ore_category, map_tag),
+            )
+            resource_node_count += 1
+
     db.commit()
     db.execute("VACUUM")
     db.close()
@@ -531,6 +567,7 @@ def main():
     print(f"  traits:            {trait_count}")
     print(f"  seed_sources:      {seed_source_count}")
     print(f"  creature_spawns:   {spawn_count}")
+    print(f"  resource_nodes:    {resource_node_count}")
 
 
 if __name__ == "__main__":

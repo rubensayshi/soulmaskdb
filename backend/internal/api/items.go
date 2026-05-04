@@ -63,25 +63,37 @@ type SpawnMap struct {
 	Groups []SpawnGroup `json:"groups"`
 }
 
+type ResourceNodePoint struct {
+	Lat int64 `json:"lat"`
+	Lon int64 `json:"lon"`
+}
+
+type ResourceNodeMap struct {
+	Map      string              `json:"map"`
+	Category string              `json:"category"`
+	Nodes    []ResourceNodePoint `json:"nodes"`
+}
+
 type ItemDetail struct {
-	ID             string       `json:"id"`
-	NameEn         *string      `json:"name_en"`
-	NameZh         *string      `json:"name_zh"`
-	DescriptionZh  *string      `json:"description_zh"`
-	Category       *string      `json:"category"`
-	Subcategory    *string      `json:"subcategory"`
-	Weight         *float64     `json:"weight"`
-	MaxStack       *int64       `json:"max_stack"`
-	Durability     *int64       `json:"durability"`
-	Role           string       `json:"role"`
-	IconPath       *string      `json:"icon_path"`
-	Stats          interface{}  `json:"stats"`
-	TechUnlockedBy []TechUnlock `json:"tech_unlocked_by"`
-	RecipesToCraft []string     `json:"recipes_to_craft"`
-	RecipesUsedIn  []string     `json:"recipes_used_in"`
-	DropSources    []DropSource `json:"drop_sources"`
-	SeedSource     *SeedSource  `json:"seed_source,omitempty"`
-	SpawnLocations []SpawnMap `json:"spawn_locations,omitempty"`
+	ID             string            `json:"id"`
+	NameEn         *string           `json:"name_en"`
+	NameZh         *string           `json:"name_zh"`
+	DescriptionZh  *string           `json:"description_zh"`
+	Category       *string           `json:"category"`
+	Subcategory    *string           `json:"subcategory"`
+	Weight         *float64          `json:"weight"`
+	MaxStack       *int64            `json:"max_stack"`
+	Durability     *int64            `json:"durability"`
+	Role           string            `json:"role"`
+	IconPath       *string           `json:"icon_path"`
+	Stats          interface{}       `json:"stats"`
+	TechUnlockedBy []TechUnlock      `json:"tech_unlocked_by"`
+	RecipesToCraft []string          `json:"recipes_to_craft"`
+	RecipesUsedIn  []string          `json:"recipes_used_in"`
+	DropSources    []DropSource      `json:"drop_sources"`
+	SeedSource     *SeedSource       `json:"seed_source,omitempty"`
+	SpawnLocations []SpawnMap        `json:"spawn_locations,omitempty"`
+	ResourceNodes  []ResourceNodeMap `json:"resource_nodes,omitempty"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -172,6 +184,24 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Resource nodes (ore deposits / mineral veins) keyed by map+category
+	rnRows, _ := q.GetResourceNodesForItem(ctx, item.ID)
+	var resourceNodes []ResourceNodeMap
+	if len(rnRows) > 0 {
+		type rnKey struct{ Map, Category string }
+		rnIdx := make(map[rnKey]int)
+		for _, r := range rnRows {
+			k := rnKey{r.Map, r.OreCategory}
+			idx, ok := rnIdx[k]
+			if !ok {
+				idx = len(resourceNodes)
+				rnIdx[k] = idx
+				resourceNodes = append(resourceNodes, ResourceNodeMap{Map: r.Map, Category: r.OreCategory})
+			}
+			resourceNodes[idx].Nodes = append(resourceNodes[idx].Nodes, ResourceNodePoint{Lat: r.Lat, Lon: r.Lon})
+		}
+	}
+
 	spawnRows, _ := q.GetSpawnLocationsForItem(ctx, item.ID)
 	var spawnLocations []SpawnMap
 	if len(spawnRows) > 0 {
@@ -227,6 +257,7 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		DropSources:    dropSources,
 		SeedSource:     seedSource,
 		SpawnLocations: spawnLocations,
+		ResourceNodes:  resourceNodes,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
