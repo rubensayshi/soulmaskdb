@@ -71,7 +71,7 @@ const BORN_TOOLTIPS: Record<string, string> = {
   BornChuShen: 'Origin trait — determined at birth by the tribesman\'s class',
   XiHao: 'Preference — innate like or dislike, cannot be learned',
   XingGe: 'Personality type — innate, cannot be changed',
-  ChengHao: 'Title — earned through gameplay achievements',
+  ChengHao: 'Title — innate trait, determined at birth',
   JingLi: 'Experience trait — acquired through specific events',
   Normal: 'Birth trait — innate, cannot be learned by other tribesmen',
 }
@@ -214,7 +214,7 @@ export default function Traits() {
           communityTier: t.community_tier,
           communityNote: t.community_note,
           effectiveTier: t.community_tier || (t.is_negative ? 'D' : 'C'),
-          isBorn: (src !== 'Normal' && src !== 'ChengHao' && src !== 'JingLi') || (src === 'Normal' && !hasLearnedId),
+          isBorn: (src !== 'Normal' && src !== 'JingLi') || (src === 'Normal' && !hasLearnedId),
         })
       }
       const fam = map.get(key)!
@@ -391,6 +391,12 @@ export default function Traits() {
     }
     return Array.from(clans).sort()
   }, [families, activeTab])
+
+  useEffect(() => {
+    if (clanFilter !== 'all' && !availableClans.includes(clanFilter)) {
+      setClanFilter('all')
+    }
+  }, [availableClans, clanFilter])
 
   const activeCat = SOURCE_TABS.find(t => t.key === activeTab)!
   const rgb = hexToRgb(activeCat.color)
@@ -575,47 +581,49 @@ export default function Traits() {
         </div>
 
         {/* Clan filter + search */}
-        {availableClans.length > 0 && (
-          <div className="flex items-center gap-2 py-2 border-b border-hair">
-            <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1">Clan</span>
-            <button
-              onClick={() => setClanFilter('all')}
-              className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
-              style={clanFilter === 'all'
-                ? { borderColor: '#4a5040', color: '#d8dcc8', backgroundColor: '#363c33' }
-                : { borderColor: '#373c32', color: '#6b7163' }
-              }
-            >
-              All
-            </button>
-            {availableClans.map(c => {
-              const meta = CLAN_META[c]
-              if (!meta) return null
-              const active = clanFilter === c
-              return (
-                <button
-                  key={c}
-                  onClick={() => setClanFilter(active ? 'all' : c)}
-                  className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1.5"
-                  style={active
-                    ? { borderColor: `rgba(${hexToRgb(meta.color)},.5)`, color: meta.color, backgroundColor: `rgba(${hexToRgb(meta.color)},.1)` }
-                    : { borderColor: '#373c32', color: '#6b7163' }
-                  }
-                >
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: meta.color, opacity: active ? 1 : 0.4 }} />
-                  {meta.label}
-                </button>
-              )
-            })}
-            <input
-              type="text"
-              placeholder="Search traits..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="ml-auto px-3 py-1 rounded bg-panel border border-hair text-[12px] text-text w-48 placeholder:text-text-faint focus:border-hair-strong focus:outline-none transition-colors"
-            />
-          </div>
-        )}
+        <div className="flex items-center gap-2 py-2 border-b border-hair">
+          {availableClans.length > 0 && (
+            <>
+              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1">Clan</span>
+              <button
+                onClick={() => setClanFilter('all')}
+                className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                style={clanFilter === 'all'
+                  ? { borderColor: '#4a5040', color: '#d8dcc8', backgroundColor: '#363c33' }
+                  : { borderColor: '#373c32', color: '#6b7163' }
+                }
+              >
+                All
+              </button>
+              {availableClans.map(c => {
+                const meta = CLAN_META[c]
+                if (!meta) return null
+                const active = clanFilter === c
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setClanFilter(active ? 'all' : c)}
+                    className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1.5"
+                    style={active
+                      ? { borderColor: `rgba(${hexToRgb(meta.color)},.5)`, color: meta.color, backgroundColor: `rgba(${hexToRgb(meta.color)},.1)` }
+                      : { borderColor: '#373c32', color: '#6b7163' }
+                    }
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: meta.color, opacity: active ? 1 : 0.4 }} />
+                    {meta.label}
+                  </button>
+                )
+              })}
+            </>
+          )}
+          <input
+            type="text"
+            placeholder="Search traits..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="ml-auto px-3 py-1 rounded bg-panel border border-hair text-[12px] text-text w-48 placeholder:text-text-faint focus:border-hair-strong focus:outline-none transition-colors"
+          />
+        </div>
 
         {/* Trait list */}
         <div className="mt-4 space-y-[2px]">
