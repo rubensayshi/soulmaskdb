@@ -78,6 +78,7 @@ export interface BuffedItem {
   icon_path: string | null
   slug: string | null
   buffs: ItemBuffs
+  maps_available: 'base' | 'dlc' | 'both' | null
 }
 
 export interface DropSource {

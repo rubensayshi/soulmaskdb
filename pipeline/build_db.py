@@ -442,6 +442,68 @@ def main():
             )
             seed_source_count += 1
 
+    # --- compute maps_available for items with buffs ---
+    # Derive from seed_sources: crop_id (seed minus _Seed suffix) -> map.
+    # Walk recipe inputs up to 2 levels deep to tag buffed foods.
+    crop_to_map = {}
+    if seed_src_path.exists():
+        for s in load_json(seed_src_path):
+            crop_id = s["item_id"].replace("_Seed", "")
+            crop_to_map[crop_id.lower()] = s["map"]
+
+    recipes_by_output: dict[str, list] = {}
+    for r in recipes:
+        out = (r.get("output") or {}).get("item_id")
+        if out:
+            recipes_by_output.setdefault(out, []).append(r)
+
+    def item_map_availability(item_id: str, depth: int = 0) -> set[str] | None:
+        """Return {'base'}, {'dlc'}, or {'base','dlc'} based on seed-source
+        tracing through recipe inputs. None means no crop dependency found."""
+        if depth > 2:
+            return None
+        low = item_id.lower()
+        if low in crop_to_map:
+            m = crop_to_map[low]
+            return {"base", "dlc"} if m == "both" else {m}
+        if depth == 2:
+            return None
+        recs = recipes_by_output.get(item_id, [])
+        all_slot_maps = []
+        for rec in recs:
+            for slot in rec.get("input_slots") or []:
+                slot_maps: set[str] = set()
+                has_crop_input = False
+                for inp in slot.get("items") or []:
+                    child = item_map_availability(inp["item_id"], depth + 1)
+                    if child is not None:
+                        has_crop_input = True
+                        slot_maps |= child
+                if has_crop_input:
+                    all_slot_maps.append(slot_maps)
+        if not all_slot_maps:
+            return None
+        result = all_slot_maps[0]
+        for sm in all_slot_maps[1:]:
+            result = result & sm
+        return result or None
+
+    maps_count = {"base": 0, "dlc": 0, "both": 0}
+    for it in items:
+        if not it.get("buffs"):
+            continue
+        avail = item_map_availability(it["id"])
+        if avail is None or avail == {"base", "dlc"}:
+            val = "both"
+        elif avail == {"base"}:
+            val = "base"
+        else:
+            val = "dlc"
+        db.execute("UPDATE items SET maps_available=? WHERE id=?", (val, it["id"]))
+        maps_count[val] += 1
+    print(f"  maps_available:    {sum(maps_count.values())} buffed items "
+          f"(base={maps_count['base']}, dlc={maps_count['dlc']}, both={maps_count['both']})")
+
     # --- traits ---
     traits_path = PARSED / "traits.json"
     trait_count = 0

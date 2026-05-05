@@ -53,7 +53,7 @@ WHERE u.recipe_id = ?
   AND tn.category IN ('main', 'sub');
 
 -- name: ListBuffedItems :many
-SELECT id, name_en, name_zh, description_zh, category, icon_path, slug, buffs_json
+SELECT id, name_en, name_zh, description_zh, category, icon_path, slug, buffs_json, maps_available
 FROM items
 WHERE buffs_json IS NOT NULL;
 

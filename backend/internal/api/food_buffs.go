@@ -16,6 +16,7 @@ type BuffedItem struct {
 	IconPath      *string     `json:"icon_path"`
 	Slug          *string     `json:"slug"`
 	Buffs         interface{} `json:"buffs"`
+	MapsAvailable *string     `json:"maps_available"`
 }
 
 func (s *Server) handleFoodBuffs(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,7 @@ func (s *Server) handleFoodBuffs(w http.ResponseWriter, r *http.Request) {
 			IconPath:      nullStr(row.IconPath),
 			Slug:          nullStr(row.Slug),
 			Buffs:         buffs,
+			MapsAvailable: nullStr(row.MapsAvailable),
 		})
 	}
 	writeJSON(w, items)

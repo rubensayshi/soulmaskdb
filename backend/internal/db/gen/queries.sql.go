@@ -56,7 +56,7 @@ func (q *Queries) GetDropSourcesForItem(ctx context.Context, itemID string) ([]G
 }
 
 const getItem = `-- name: GetItem :one
-SELECT id, category, subcategory, name_zh, name_en, description_zh, description_en, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug FROM items WHERE id = ?
+SELECT id, category, subcategory, name_zh, name_en, description_zh, description_en, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug, maps_available FROM items WHERE id = ?
 `
 
 func (q *Queries) GetItem(ctx context.Context, id string) (Item, error) {
@@ -78,12 +78,13 @@ func (q *Queries) GetItem(ctx context.Context, id string) (Item, error) {
 		&i.StatsJson,
 		&i.BuffsJson,
 		&i.Slug,
+		&i.MapsAvailable,
 	)
 	return i, err
 }
 
 const getItemBySlug = `-- name: GetItemBySlug :one
-SELECT id, category, subcategory, name_zh, name_en, description_zh, description_en, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug FROM items WHERE slug = ?
+SELECT id, category, subcategory, name_zh, name_en, description_zh, description_en, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug, maps_available FROM items WHERE slug = ?
 `
 
 func (q *Queries) GetItemBySlug(ctx context.Context, slug sql.NullString) (Item, error) {
@@ -105,6 +106,7 @@ func (q *Queries) GetItemBySlug(ctx context.Context, slug sql.NullString) (Item,
 		&i.StatsJson,
 		&i.BuffsJson,
 		&i.Slug,
+		&i.MapsAvailable,
 	)
 	return i, err
 }
@@ -362,7 +364,7 @@ func (q *Queries) GetTechUnlocksForRecipe(ctx context.Context, recipeID string) 
 }
 
 const listBuffedItems = `-- name: ListBuffedItems :many
-SELECT id, name_en, name_zh, description_zh, category, icon_path, slug, buffs_json
+SELECT id, name_en, name_zh, description_zh, category, icon_path, slug, buffs_json, maps_available
 FROM items
 WHERE buffs_json IS NOT NULL
 `
@@ -376,6 +378,7 @@ type ListBuffedItemsRow struct {
 	IconPath      sql.NullString
 	Slug          sql.NullString
 	BuffsJson     sql.NullString
+	MapsAvailable sql.NullString
 }
 
 func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, error) {
@@ -396,6 +399,7 @@ func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, er
 			&i.IconPath,
 			&i.Slug,
 			&i.BuffsJson,
+			&i.MapsAvailable,
 		); err != nil {
 			return nil, err
 		}

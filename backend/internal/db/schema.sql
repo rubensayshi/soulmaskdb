@@ -13,7 +13,8 @@ CREATE TABLE items (
   role            TEXT NOT NULL CHECK (role IN ('final','intermediate','raw','standalone')),
   stats_json      TEXT,
   buffs_json      TEXT,
-  slug            TEXT UNIQUE
+  slug            TEXT UNIQUE,
+  maps_available  TEXT CHECK (maps_available IN ('base','dlc','both'))
 );
 
 CREATE TABLE stations (

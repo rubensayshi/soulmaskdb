@@ -48,6 +48,7 @@ type Item struct {
 	StatsJson     sql.NullString
 	BuffsJson     sql.NullString
 	Slug          sql.NullString
+	MapsAvailable sql.NullString
 }
 
 type OreSpawn struct {

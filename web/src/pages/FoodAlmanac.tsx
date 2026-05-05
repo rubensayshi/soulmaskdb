@@ -131,6 +131,7 @@ export default function FoodAlmanac() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<CategoryKey>('meat')
   const [sortBy, setSortBy] = useState<string>('tier')
+  const [mapFilter, setMapFilter] = useState<'all' | 'base' | 'dlc'>('all')
 
   useEffect(() => {
     fetchFoodBuffs()
@@ -148,7 +149,14 @@ export default function FoodAlmanac() {
     return map
   }, [items])
 
-  const categoryItems = grouped.get(activeTab) ?? []
+  const categoryItems = useMemo(() => {
+    const items = grouped.get(activeTab) ?? []
+    if (mapFilter === 'all') return items
+    return items.filter(item => {
+      const m = item.maps_available ?? 'both'
+      return m === 'both' || m === mapFilter
+    })
+  }, [grouped, activeTab, mapFilter])
   const columns = useMemo(() => getColumnsForItems(categoryItems, activeTab), [categoryItems, activeTab])
 
   const columnMaxes = useMemo(() => {
@@ -261,11 +269,29 @@ export default function FoodAlmanac() {
         })}
       </div>
 
-      {/* Sub-header: category label + sort controls */}
+      {/* Sub-header: category label + map filter + sort controls */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 py-3 border-b border-hair">
-        <div className="text-[11px] text-text-mute uppercase tracking-wider2">
-          <span style={{ color: activeCat.color }}>{'◆'}</span>
-          {' '}{activeCat.label} — {activeCat.subtitle} · {categoryItems.length} items
+        <div className="flex items-center gap-4">
+          <div className="text-[11px] text-text-mute uppercase tracking-wider2">
+            <span style={{ color: activeCat.color }}>{'◆'}</span>
+            {' '}{activeCat.label} — {activeCat.subtitle} · {categoryItems.length} items
+          </div>
+          <div className="flex items-center gap-1.5 text-[11px]">
+            <span className="text-text-dim">Map</span>
+            {(['all', 'base', 'dlc'] as const).map(v => (
+              <button
+                key={v}
+                onClick={() => setMapFilter(v)}
+                className={`px-2 py-[2px] border transition-colors ${
+                  mapFilter === v
+                    ? 'bg-accent/15 border-accent/40 text-accent'
+                    : 'bg-transparent border-hair text-text-dim hover:border-hair-strong'
+                }`}
+              >
+                {v === 'all' ? 'All' : v === 'base' ? 'Jungle' : 'Sands'}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="flex flex-nowrap overflow-x-auto items-center gap-2 text-[11px]">
           <span className="text-text-dim flex-shrink-0">Sort</span>
