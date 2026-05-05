@@ -490,7 +490,14 @@ def main():
         for key, r in rankings.items():
             tags_json = json.dumps(r["tags"]) if r.get("tags") else None
             vals = (r.get("tier"), tags_json, r.get("note"))
-            if key.startswith("name:"):
+            if key.startswith("name_zh:"):
+                name_zh = key[8:]
+                cnt = db.execute(
+                    "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
+                    "WHERE name_zh = ?",
+                    vals + (name_zh,),
+                ).rowcount
+            elif key.startswith("name:"):
                 name_en = key[5:]
                 cnt = db.execute(
                     "UPDATE traits SET community_tier = ?, community_tags_json = ?, community_note = ? "
