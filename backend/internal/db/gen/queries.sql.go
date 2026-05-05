@@ -362,19 +362,20 @@ func (q *Queries) GetTechUnlocksForRecipe(ctx context.Context, recipeID string) 
 }
 
 const listBuffedItems = `-- name: ListBuffedItems :many
-SELECT id, name_en, name_zh, category, icon_path, slug, buffs_json
+SELECT id, name_en, name_zh, description_zh, category, icon_path, slug, buffs_json
 FROM items
 WHERE buffs_json IS NOT NULL
 `
 
 type ListBuffedItemsRow struct {
-	ID        string
-	NameEn    sql.NullString
-	NameZh    sql.NullString
-	Category  sql.NullString
-	IconPath  sql.NullString
-	Slug      sql.NullString
-	BuffsJson sql.NullString
+	ID            string
+	NameEn        sql.NullString
+	NameZh        sql.NullString
+	DescriptionZh sql.NullString
+	Category      sql.NullString
+	IconPath      sql.NullString
+	Slug          sql.NullString
+	BuffsJson     sql.NullString
 }
 
 func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, error) {
@@ -390,6 +391,7 @@ func (q *Queries) ListBuffedItems(ctx context.Context) ([]ListBuffedItemsRow, er
 			&i.ID,
 			&i.NameEn,
 			&i.NameZh,
+			&i.DescriptionZh,
 			&i.Category,
 			&i.IconPath,
 			&i.Slug,

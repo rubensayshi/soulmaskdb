@@ -8,13 +8,14 @@ import (
 )
 
 type BuffedItem struct {
-	ID       string      `json:"id"`
-	NameEn   *string     `json:"name_en"`
-	NameZh   *string     `json:"name_zh"`
-	Category *string     `json:"category"`
-	IconPath *string     `json:"icon_path"`
-	Slug     *string     `json:"slug"`
-	Buffs    interface{} `json:"buffs"`
+	ID            string      `json:"id"`
+	NameEn        *string     `json:"name_en"`
+	NameZh        *string     `json:"name_zh"`
+	DescriptionZh *string     `json:"description_zh"`
+	Category      *string     `json:"category"`
+	IconPath      *string     `json:"icon_path"`
+	Slug          *string     `json:"slug"`
+	Buffs         interface{} `json:"buffs"`
 }
 
 func (s *Server) handleFoodBuffs(w http.ResponseWriter, r *http.Request) {
@@ -30,13 +31,14 @@ func (s *Server) handleFoodBuffs(w http.ResponseWriter, r *http.Request) {
 			_ = json.Unmarshal([]byte(row.BuffsJson.String), &buffs)
 		}
 		items = append(items, BuffedItem{
-			ID:       row.ID,
-			NameEn:   nullStr(row.NameEn),
-			NameZh:   nullStr(row.NameZh),
-			Category: nullStr(row.Category),
-			IconPath: nullStr(row.IconPath),
-			Slug:     nullStr(row.Slug),
-			Buffs:    buffs,
+			ID:            row.ID,
+			NameEn:        nullStr(row.NameEn),
+			NameZh:        nullStr(row.NameZh),
+			DescriptionZh: nullStr(row.DescriptionZh),
+			Category:      nullStr(row.Category),
+			IconPath:      nullStr(row.IconPath),
+			Slug:          nullStr(row.Slug),
+			Buffs:         buffs,
 		})
 	}
 	writeJSON(w, items)

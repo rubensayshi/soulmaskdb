@@ -46,6 +46,11 @@ function classifyItem(item: BuffedItem): CategoryKey {
   if (attrs.has('meat_preference')) return 'meat'
   if (attrs.has('fruit_preference')) return 'fruit'
   if (attrs.has('staple_preference')) return 'staple'
+  // Some items lack the preference modifier but declare their type in the description
+  const desc = item.description_zh ?? ''
+  if (desc.includes('【肉食】')) return 'meat'
+  if (desc.includes('【果蔬】')) return 'fruit'
+  if (desc.includes('【主食】')) return 'staple'
   return 'recreative'
 }
 

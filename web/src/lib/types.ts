@@ -73,6 +73,7 @@ export interface BuffedItem {
   id: string
   name_en: string | null
   name_zh: string | null
+  description_zh: string | null
   category: string | null
   icon_path: string | null
   slug: string | null
