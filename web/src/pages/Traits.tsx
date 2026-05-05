@@ -12,7 +12,7 @@ import TraitBuilderPanel from '../components/TraitBuilderPanel'
 
 const SOURCE_TABS = [
   { key: 'all',              label: 'All',         subtitle: 'Every trait',             color: '#8aa074' },
-  { key: 'Normal',           label: 'Talents',     subtitle: 'Learned abilities',       color: '#b85050' },
+  { key: 'Normal',           label: 'Talents',     subtitle: 'Learned abilities',       color: '#e56666' },
   { key: 'BornBuLuoCiTiao',  label: 'Tribe Born',  subtitle: 'Tribal conditions',       color: '#b8a060' },
   { key: 'BornChuShen',      label: 'Origin',      subtitle: 'Birth traits',            color: '#9b7db8' },
   { key: 'ChengHao',         label: 'Title',       subtitle: 'Achievement awards',      color: '#7a9db5' },
@@ -22,7 +22,7 @@ const SOURCE_TABS = [
 type SourceKey = typeof SOURCE_TABS[number]['key']
 
 const CLAN_META: Record<string, { label: string; color: string }> = {
-  claw: { label: 'Claw', color: '#b85050' },
+  claw: { label: 'Claw', color: '#e56666' },
   flint: { label: 'Flint', color: '#7a9db5' },
   fang: { label: 'Fang', color: '#6ea09a' },
   wolf: { label: 'Wolf', color: '#8a8ab5' },
@@ -421,7 +421,7 @@ export default function Traits() {
                 Traits
               </span>
             </h1>
-            <p className="text-[12px] text-text-mute italic font-display">
+            <p className="text-[13px] text-text-mute italic font-display">
               {traits.length} traits across {families.length} families — combat, personality, origin, and more.
             </p>
           </div>
@@ -430,10 +430,10 @@ export default function Traits() {
             className="flex items-center gap-2 px-3 py-1.5 border transition-colors flex-shrink-0 mt-1"
             style={builderMode
               ? { borderColor: 'rgba(138,160,116,.5)', color: '#8aa074', backgroundColor: 'rgba(138,160,116,.08)' }
-              : { borderColor: '#373c32', color: '#6b7163' }
+              : { borderColor: '#373c32', color: '#8b917e' }
             }
           >
-            <span className="text-[10px] uppercase tracking-wider2 font-semibold">Builder</span>
+            <span className="text-[12px] uppercase tracking-wider2 font-semibold">Builder</span>
             <span
               className="relative inline-block w-7 h-3.5 rounded-full transition-colors"
               style={{ backgroundColor: builderMode ? '#5a6e48' : '#373c32' }}
@@ -442,7 +442,7 @@ export default function Traits() {
                 className="absolute top-0.5 w-2.5 h-2.5 rounded-full transition-all"
                 style={{
                   left: builderMode ? 14 : 2,
-                  backgroundColor: builderMode ? '#8aa074' : '#6b7163',
+                  backgroundColor: builderMode ? '#8aa074' : '#8b917e',
                 }}
               />
             </span>
@@ -476,18 +476,18 @@ export default function Traits() {
                 />
                 <div className="min-w-0 flex-1">
                   <div
-                    className={`text-[12px] font-semibold uppercase tracking-wider2 ${active ? '' : 'text-text-mute'}`}
+                    className={`text-[13px] font-semibold uppercase tracking-wider2 ${active ? '' : 'text-text-mute'}`}
                     style={active ? { color: tab.color } : undefined}
                   >
                     {tab.label}
                   </div>
-                  <div className="text-[10px] text-text-dim truncate hidden md:block">{tab.subtitle}</div>
+                  <div className="text-[12px] text-text-dim truncate hidden md:block">{tab.subtitle}</div>
                 </div>
                 <span
-                  className="text-[11px] tabular-nums px-1.5 py-0.5 border"
+                  className="text-[13px] tabular-nums px-1.5 py-0.5 border"
                   style={active
                     ? { borderColor: `rgba(${hexToRgb(tab.color)},.4)`, color: tab.color }
-                    : { borderColor: 'var(--color-hair, #373c32)', color: 'var(--color-text-dim, #6b7163)' }
+                    : { borderColor: 'var(--color-hair, #373c32)', color: 'var(--color-text-dim, #8b917e)' }
                   }
                 >
                   {count}
@@ -505,7 +505,7 @@ export default function Traits() {
                 <button
                   key={v}
                   onClick={() => setDlcFilter(v)}
-                  className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+                  className={`px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors ${
                     dlcFilter === v
                       ? 'border-hair-strong text-text bg-panel-lift'
                       : 'border-hair text-text-dim hover:text-text hover:border-hair-strong'
@@ -520,10 +520,10 @@ export default function Traits() {
                 <button
                   key={v}
                   onClick={() => setSignFilter(v)}
-                  className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                  className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors"
                   style={signFilter === v
-                    ? { borderColor: v === 'debuff' ? 'rgba(184,80,80,.5)' : v === 'buff' ? 'rgba(138,160,116,.5)' : '#4a5040', color: v === 'debuff' ? '#b85050' : v === 'buff' ? '#8aa074' : '#d8dcc8', backgroundColor: v === 'debuff' ? 'rgba(184,80,80,.1)' : v === 'buff' ? 'rgba(138,160,116,.1)' : '#363c33' }
-                    : { borderColor: '#373c32', color: '#6b7163' }
+                    ? { borderColor: v === 'debuff' ? 'rgba(229,102,102,.5)' : v === 'buff' ? 'rgba(138,160,116,.5)' : '#4a5040', color: v === 'debuff' ? '#e56666' : v === 'buff' ? '#8aa074' : '#d8dcc8', backgroundColor: v === 'debuff' ? 'rgba(229,102,102,.1)' : v === 'buff' ? 'rgba(138,160,116,.1)' : '#363c33' }
+                    : { borderColor: '#373c32', color: '#8b917e' }
                   }
                 >
                   {v === 'all' ? 'All' : v === 'buff' ? 'Buff' : 'Debuff'}
@@ -535,10 +535,10 @@ export default function Traits() {
                 <button
                   key={v}
                   onClick={() => setTalentFilter(v)}
-                  className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                  className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors"
                   style={talentFilter === v
-                    ? { borderColor: v === 'combat' ? 'rgba(184,80,80,.5)' : v === 'utility' ? 'rgba(106,160,154,.5)' : '#4a5040', color: v === 'combat' ? '#b85050' : v === 'utility' ? '#6ea09a' : '#d8dcc8', backgroundColor: v === 'combat' ? 'rgba(184,80,80,.1)' : v === 'utility' ? 'rgba(106,160,154,.1)' : '#363c33' }
-                    : { borderColor: '#373c32', color: '#6b7163' }
+                    ? { borderColor: v === 'combat' ? 'rgba(229,102,102,.5)' : v === 'utility' ? 'rgba(106,160,154,.5)' : '#4a5040', color: v === 'combat' ? '#e56666' : v === 'utility' ? '#6ea09a' : '#d8dcc8', backgroundColor: v === 'combat' ? 'rgba(229,102,102,.1)' : v === 'utility' ? 'rgba(106,160,154,.1)' : '#363c33' }
+                    : { borderColor: '#373c32', color: '#8b917e' }
                   }
                 >
                   {v === 'all' ? 'All' : v === 'combat' ? 'Combat' : 'Utility'}
@@ -553,10 +553,10 @@ export default function Traits() {
                   <button
                     key={v}
                     onClick={() => setTierFilter(v)}
-                    className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1"
+                    className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1"
                     style={active
                       ? { borderColor: meta ? `rgba(${hexToRgb(meta.color)},.5)` : '#4a5040', color: meta?.color ?? '#d8dcc8', backgroundColor: meta?.bg ?? '#363c33' }
-                      : { borderColor: '#373c32', color: meta?.color ?? '#6b7163', opacity: 0.7 }
+                      : { borderColor: '#373c32', color: meta?.color ?? '#8b917e', opacity: 0.7 }
                     }
                   >
                     {meta && <TierDiamond color={meta.color} size={8} />}
@@ -568,10 +568,10 @@ export default function Traits() {
             {builderMode && (
               <button
                 onClick={() => setFitsFilter(v => !v)}
-                className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors"
                 style={fitsFilter
                   ? { borderColor: 'rgba(138,160,116,.5)', color: '#8aa074', backgroundColor: 'rgba(138,160,116,.1)' }
-                  : { borderColor: '#373c32', color: '#6b7163' }
+                  : { borderColor: '#373c32', color: '#8b917e' }
                 }
               >
                 Fits build
@@ -584,13 +584,13 @@ export default function Traits() {
         <div className="flex items-center gap-2 py-2 border-b border-hair">
           {availableClans.length > 0 && (
             <>
-              <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1">Clan</span>
+              <span className="text-[11px] uppercase tracking-[.1em] text-text-faint mr-1">Clan</span>
               <button
                 onClick={() => setClanFilter('all')}
-                className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors"
+                className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors"
                 style={clanFilter === 'all'
                   ? { borderColor: '#4a5040', color: '#d8dcc8', backgroundColor: '#363c33' }
-                  : { borderColor: '#373c32', color: '#6b7163' }
+                  : { borderColor: '#373c32', color: '#8b917e' }
                 }
               >
                 All
@@ -603,10 +603,10 @@ export default function Traits() {
                   <button
                     key={c}
                     onClick={() => setClanFilter(active ? 'all' : c)}
-                    className="px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1.5"
+                    className="px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors flex items-center gap-1.5"
                     style={active
                       ? { borderColor: `rgba(${hexToRgb(meta.color)},.5)`, color: meta.color, backgroundColor: `rgba(${hexToRgb(meta.color)},.1)` }
-                      : { borderColor: '#373c32', color: '#6b7163' }
+                      : { borderColor: '#373c32', color: '#8b917e' }
                     }
                   >
                     <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: meta.color, opacity: active ? 1 : 0.4 }} />
@@ -621,7 +621,7 @@ export default function Traits() {
             placeholder="Search traits..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="ml-auto px-3 py-1 rounded bg-panel border border-hair text-[12px] text-text w-48 placeholder:text-text-faint focus:border-hair-strong focus:outline-none transition-colors"
+            className="ml-auto px-3 py-1 rounded bg-panel border border-hair text-[13px] text-text w-48 placeholder:text-text-faint focus:border-hair-strong focus:outline-none transition-colors"
           />
         </div>
 
@@ -633,7 +633,7 @@ export default function Traits() {
             const neg = fam.isNegative
             const sourceTab = SOURCE_TABS.find(t => t.key === fam.source)
             const famColor = sourceTab?.color ?? activeCat.color
-            const accentColor = neg ? '#b85050' : famColor
+            const accentColor = neg ? '#e56666' : famColor
 
             const builderTrait = pickBuilderTrait(fam)
             const isSelected = builderMode && selectedIds.includes(builderTrait.id)
@@ -647,9 +647,9 @@ export default function Traits() {
                   borderWidth: 1,
                   borderLeftWidth: 2,
                   borderColor: isSelected ? 'rgba(138,160,116,.4)' : 'var(--color-hair, #373c32)',
-                  borderLeftColor: isSelected ? '#8aa074' : neg ? 'rgba(184,80,80,.5)' : 'transparent',
+                  borderLeftColor: isSelected ? '#8aa074' : neg ? 'rgba(229,102,102,.5)' : 'transparent',
                   opacity: isDisabled ? 0.35 : 1,
-                  ...(isExpanded && !isSelected ? { borderColor: `rgba(${hexToRgb(accentColor)},.3)`, borderLeftWidth: 2, borderLeftColor: neg ? 'rgba(184,80,80,.5)' : `rgba(${hexToRgb(famColor)},.3)` } : {}),
+                  ...(isExpanded && !isSelected ? { borderColor: `rgba(${hexToRgb(accentColor)},.3)`, borderLeftWidth: 2, borderLeftColor: neg ? 'rgba(229,102,102,.5)' : `rgba(${hexToRgb(famColor)},.3)` } : {}),
                 }}
               >
                 {/* Top accent line when expanded */}
@@ -672,22 +672,22 @@ export default function Traits() {
                     {fam.name}
                   </span>
                   {fam.tiers.length > 1 && (
-                    <span className="text-[10px] tabular-nums text-text-dim flex-shrink-0">
+                    <span className="text-[12px] tabular-nums text-text-dim flex-shrink-0">
                       {fam.tiers.length} tiers
                     </span>
                   )}
                   <span className="flex-1" />
                   {neg && (
                     <span
-                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
-                      style={{ borderColor: 'rgba(184,80,80,.35)', color: '#b85050' }}
+                      className="text-[11px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      style={{ borderColor: 'rgba(229,102,102,.35)', color: '#e56666' }}
                     >
                       Debuff
                     </span>
                   )}
                   {fam.clan && CLAN_META[fam.clan] && fam.clan !== 'dlc' && (
                     <span
-                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      className="text-[11px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
                       style={{ borderColor: `rgba(${hexToRgb(CLAN_META[fam.clan].color)},.4)`, color: CLAN_META[fam.clan].color }}
                     >
                       {CLAN_META[fam.clan].label}
@@ -695,14 +695,14 @@ export default function Traits() {
                   )}
                   {fam.isDlc && (
                     <span
-                      className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                      className="text-[11px] px-1.5 py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
                       style={{ borderColor: 'rgba(155,125,184,.4)', color: '#9b7db8' }}
                     >
                       DLC
                     </span>
                   )}
                   <span
-                    className="text-[9px] w-[52px] text-center py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                    className="text-[11px] w-[52px] text-center py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
                     style={fam.isBorn
                       ? { borderColor: 'rgba(184,160,96,.35)', color: '#b8a060' }
                       : { borderColor: 'rgba(138,160,116,.35)', color: '#8aa074' }
@@ -720,7 +720,7 @@ export default function Traits() {
                     if (!meta) return null
                     return (
                       <span
-                        className="text-[9px] px-1.5 py-[2px] uppercase tracking-[.1em] font-bold border flex-shrink-0 inline-flex items-center gap-1"
+                        className="text-[11px] px-1.5 py-[2px] uppercase tracking-[.1em] font-bold border flex-shrink-0 inline-flex items-center gap-1"
                         style={{
                           borderColor: `rgba(${hexToRgb(meta.color)},.4)`,
                           color: meta.color,
@@ -769,7 +769,7 @@ export default function Traits() {
                   const segments = mergeDescriptions(descs)
                   return (
                     <div className="border-t border-hair px-4 py-3"
-                      style={{ background: `linear-gradient(90deg, rgba(${neg ? '184,80,80' : rgb},.04) 0%, transparent 60%)` }}
+                      style={{ background: `linear-gradient(90deg, rgba(${neg ? '229,102,102' : rgb},.04) 0%, transparent 60%)` }}
                     >
                       <p className="text-[13px] text-text-mute leading-relaxed mb-2">
                         {segments.map((seg, i) =>
@@ -787,16 +787,16 @@ export default function Traits() {
                         )}
                       </p>
 
-                      <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-text-dim mt-2">
+                      <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-text-dim mt-2">
                         {topTier.effect_cooldown != null && topTier.effect_cooldown > 0 && (
                           <span>
-                            <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">CD</span>
+                            <span className="text-text-faint uppercase tracking-[.08em] text-[11px] mr-1">CD</span>
                             <span className="tabular-nums">{topTier.effect_cooldown}s</span>
                           </span>
                         )}
                         {topTier.effect_probability != null && topTier.effect_probability < 1 && (
                           <span>
-                            <span className="text-text-faint uppercase tracking-[.08em] text-[9px] mr-1">PROB</span>
+                            <span className="text-text-faint uppercase tracking-[.08em] text-[11px] mr-1">PROB</span>
                             <span className="tabular-nums">{(topTier.effect_probability * 100).toFixed(0)}%</span>
                           </span>
                         )}
@@ -804,11 +804,11 @@ export default function Traits() {
 
                       {topTier.proficiencies && topTier.proficiencies.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
-                          <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Requires</span>
+                          <span className="text-[11px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Requires</span>
                           {topTier.proficiencies.map(p => (
                             <span
                               key={p}
-                              className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                              className="text-[12px] tracking-[.06em] px-2 py-[2px] border"
                               style={{ borderColor: 'rgba(122,157,181,.3)', color: '#7a9db5' }}
                             >
                               {PROFICIENCY_LABELS[p] || p}
@@ -819,11 +819,11 @@ export default function Traits() {
 
                       {topTier.weapons && topTier.weapons.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
-                          <span className="text-[9px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Weapon</span>
+                          <span className="text-[11px] uppercase tracking-[.1em] text-text-faint mr-1 self-center">Weapon</span>
                           {topTier.weapons.map(w => (
                             <span
                               key={w}
-                              className="text-[10px] tracking-[.06em] px-2 py-[2px] border"
+                              className="text-[12px] tracking-[.06em] px-2 py-[2px] border"
                               style={{ borderColor: 'rgba(166,122,82,.3)', color: '#a67a52' }}
                             >
                               {w}
@@ -867,7 +867,7 @@ export default function Traits() {
       </div>
 
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 px-4 py-2 bg-panel border border-green-dim text-green text-[12px] font-medium rounded shadow-lg">
+        <div className="fixed bottom-6 right-6 z-50 px-4 py-2 bg-panel border border-green-dim text-green text-[13px] font-medium rounded shadow-lg">
           {toast}
         </div>
       )}

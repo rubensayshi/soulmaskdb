@@ -51,22 +51,22 @@ export default function TechNode({ node, isExpanded, onToggle, highlighted, dimm
         }`}>
           <button
             onClick={onToggle}
-            className={`flex-1 min-w-0 flex items-center gap-1.5 px-2 py-1.5 text-left text-[11px] transition-colors ${
+            className={`flex-1 min-w-0 flex items-center gap-1.5 px-2 py-1.5 text-left text-[13px] transition-colors ${
               effectiveExpanded
                 ? 'text-green font-semibold'
                 : 'text-text-mute hover:bg-panel-hi'
             }`}
           >
-            <span className={`text-[9px] ${effectiveExpanded ? 'text-green' : 'text-text-dim'}`}>
+            <span className={`text-[11px] ${effectiveExpanded ? 'text-green' : 'text-text-dim'}`}>
               {effectiveExpanded ? '▼' : '▶'}
             </span>
             <span className="flex-1 truncate">{name}</span>
             {plannerMode && selectableCount > 0 ? (
-              <span className={`text-[10px] shrink-0 ${selectedCount > 0 ? 'text-green' : 'text-text-dim'}`}>
+              <span className={`text-[12px] shrink-0 ${selectedCount > 0 ? 'text-green' : 'text-text-dim'}`}>
                 {selectedCount}/{selectableCount}
               </span>
             ) : (
-              <span className="text-text-dim text-[10px] shrink-0">
+              <span className="text-text-dim text-[12px] shrink-0">
                 {node.sub_nodes.length}
               </span>
             )}
@@ -74,7 +74,7 @@ export default function TechNode({ node, isExpanded, onToggle, highlighted, dimm
           {plannerMode && selectableCount > 0 && selectedCount < selectableCount && (
             <button
               onClick={() => onPlannerSelectAll?.(node.id)}
-              className="text-[9px] text-text-dim hover:text-green px-1.5 py-1.5 border-l border-hair hover:bg-green/10 transition-colors"
+              className="text-[11px] text-text-dim hover:text-green px-1.5 py-1.5 border-l border-hair hover:bg-green/10 transition-colors"
               title="Select all sub-nodes"
             >
               All

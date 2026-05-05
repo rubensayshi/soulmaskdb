@@ -41,14 +41,14 @@ export default function RawMatsCollapsible({ graph, rootId }: Props) {
         </svg>
         <div>
           <div className="font-display text-[14px] font-semibold text-text tracking-[.02em]">Total Raw Materials</div>
-          <div className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium">Gathering Checklist</div>
+          <div className="text-[12px] tracking-[.14em] uppercase text-text-dim font-medium">Gathering Checklist</div>
         </div>
         <div className="ml-auto flex items-center gap-1.5" onClick={e => e.stopPropagation()}>
           {QTY_PRESETS.map(p => (
             <button
               key={p}
               onClick={() => setQuantity(p)}
-              className={`px-2 py-0.5 border text-[10px] font-semibold transition-colors ${
+              className={`px-2 py-0.5 border text-[12px] font-semibold transition-colors ${
                 quantity === p
                   ? 'border-rust text-rust bg-[rgba(110,77,46,.12)]'
                   : 'border-hair text-text-dim hover:border-rust/40 hover:text-rust'
@@ -56,7 +56,7 @@ export default function RawMatsCollapsible({ graph, rootId }: Props) {
             >×{p}</button>
           ))}
         </div>
-        <span className="text-text-dim text-[11px]">▴</span>
+        <span className="text-text-dim text-[13px]">▴</span>
       </div>
 
       <div className="border-t border-hair p-1.5">
@@ -71,7 +71,7 @@ export default function RawMatsCollapsible({ graph, rootId }: Props) {
               <Icon item={it} size={26} />
               <div className="flex-1 min-w-0">
                 <div className="text-[12.5px] text-text truncate">{it?.n ?? it?.nz ?? id}</div>
-                <div className="text-[10px] text-text-dim tracking-[.04em]">{it?.cat ?? 'Gathered'}</div>
+                <div className="text-[12px] text-text-dim tracking-[.04em]">{it?.cat ?? 'Gathered'}</div>
               </div>
               <span className="text-[13px] font-bold text-rust tabular-nums min-w-[40px] text-right">×{qty}</span>
             </Link>
@@ -79,7 +79,7 @@ export default function RawMatsCollapsible({ graph, rootId }: Props) {
         })}
         <div className="flex gap-1.5 mx-1.5 mt-1.5 mb-1.5">
           <button
-            className={`flex-1 py-2 border text-[10px] tracking-[.18em] uppercase font-semibold transition-colors ${
+            className={`flex-1 py-2 border text-[12px] tracking-[.18em] uppercase font-semibold transition-colors ${
               copied
                 ? 'border-green text-green'
                 : 'border-hair text-text-mute hover:border-green-dim hover:text-green-hi'

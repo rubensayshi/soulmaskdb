@@ -27,7 +27,7 @@ export default function TechSubNode({ node, isOpen, onToggle, plannerMode, isSel
     <div>
       <button
         onClick={handleClick}
-        className={`w-full flex items-center gap-1.5 rounded px-2 py-1 text-left text-[11px] transition-colors ${
+        className={`w-full flex items-center gap-1.5 rounded px-2 py-1 text-left text-[13px] transition-colors ${
           plannerMode && isAutoLearned
             ? 'bg-panel text-text-dim cursor-default'
             : plannerMode && isSelected
@@ -41,30 +41,30 @@ export default function TechSubNode({ node, isOpen, onToggle, plannerMode, isSel
         title={plannerMode && isAutoLearned ? 'Auto-learned (no cost)' : plannerMode && !prereqsMet ? 'Prerequisites not met — click to auto-select chain' : undefined}
       >
         {plannerMode && !isAutoLearned && (
-          <span className={`text-[10px] shrink-0 w-3.5 text-center ${isSelected ? 'text-green' : 'text-text-dim'}`}>
+          <span className={`text-[12px] shrink-0 w-3.5 text-center ${isSelected ? 'text-green' : 'text-text-dim'}`}>
             {isSelected ? '✓' : '○'}
           </span>
         )}
         <span className="flex-1 truncate">{name}</span>
         {node.points != null && node.points > 0 && (
-          <span className={`text-[10px] shrink-0 ${plannerMode && isSelected ? 'text-green-dim' : 'text-neutral-500'}`}>{node.points}pt</span>
+          <span className={`text-[12px] shrink-0 ${plannerMode && isSelected ? 'text-green-dim' : 'text-neutral-500'}`}>{node.points}pt</span>
         )}
         {plannerMode && isAutoLearned && (
-          <span className="text-[9px] text-text-dim shrink-0 italic">auto</span>
+          <span className="text-[11px] text-text-dim shrink-0 italic">auto</span>
         )}
       </button>
 
       {isOpen && !plannerMode && (
         <div className="mt-1 mb-1 rounded border border-teal-700 bg-[#1e2d38] p-2">
           <div className="text-xs font-semibold text-white mb-0.5">{name}</div>
-          <div className="text-[10px] text-neutral-400 mb-2">
+          <div className="text-[12px] text-neutral-400 mb-2">
             {node.awareness_level != null && `Awareness ${node.awareness_level}`}
             {node.awareness_level != null && node.points != null && ' · '}
             {node.points != null && `${node.points} tech point${node.points !== 1 ? 's' : ''}`}
           </div>
           {node.recipes.length > 0 ? (
             <>
-              <div className="text-[10px] text-neutral-500 mb-1">
+              <div className="text-[12px] text-neutral-500 mb-1">
                 Unlocks {node.recipes.length} recipe{node.recipes.length !== 1 ? 's' : ''}:
               </div>
               <div className="flex flex-col gap-1">
@@ -74,7 +74,7 @@ export default function TechSubNode({ node, isOpen, onToggle, plannerMode, isSel
               </div>
             </>
           ) : (
-            <div className="text-[10px] text-neutral-500 italic">No linked recipes</div>
+            <div className="text-[12px] text-neutral-500 italic">No linked recipes</div>
           )}
         </div>
       )}

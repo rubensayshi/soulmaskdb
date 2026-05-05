@@ -10,7 +10,7 @@ function Seg({ options, value, onChange }: {
       {options.map(o => (
         <button
           key={o.value}
-          className={`flex-1 flex items-center justify-center text-[11px] tracking-[.08em] uppercase font-semibold border-r border-hair last:border-r-0 transition-colors ${
+          className={`flex-1 flex items-center justify-center text-[13px] tracking-[.08em] uppercase font-semibold border-r border-hair last:border-r-0 transition-colors ${
             value === o.value
               ? 'bg-panel-2 text-green-hi'
               : 'text-text-dim hover:text-text-mute'
@@ -64,8 +64,8 @@ export default function TweaksPanel() {
             {/* Show Raw Materials */}
             <div>
               <div className="flex justify-between items-baseline mb-2">
-                <span className="text-[10px] text-text-mute tracking-[.14em] uppercase">Raw Materials Block</span>
-                <span className="text-[11px] text-text font-medium">{tweaks.showRaw ? 'shown' : 'hidden'}</span>
+                <span className="text-[12px] text-text-mute tracking-[.14em] uppercase">Raw Materials Block</span>
+                <span className="text-[13px] text-text font-medium">{tweaks.showRaw ? 'shown' : 'hidden'}</span>
               </div>
               <Seg
                 options={[{ value: 'show', label: 'Show' }, { value: 'hide', label: 'Hide' }]}

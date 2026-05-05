@@ -101,7 +101,7 @@ export default function AwarenessXp() {
       <h1 className="font-heading text-[28px] font-bold text-text tracking-[.03em] mb-1">
         Awareness <span className="font-display italic text-green font-semibold">XP</span>
       </h1>
-      <p className="text-[12px] text-text-mute italic font-display mb-5">
+      <p className="text-[13px] text-text-mute italic font-display mb-5">
         Recipes ranked by awareness XP per minute of craft time.
       </p>
 
@@ -127,8 +127,8 @@ export default function AwarenessXp() {
       </div>
 
       {/* Table */}
-      <div className="text-[12px] overflow-x-auto">
-        <div className="grid grid-cols-[1fr_80px_70px_70px_80px_80px] gap-x-3 px-3 py-2 border-b border-hair-strong text-text-dim uppercase tracking-[.1em] text-[10px] font-medium">
+      <div className="text-[13px] overflow-x-auto">
+        <div className="grid grid-cols-[1fr_80px_70px_70px_80px_80px] gap-x-3 px-3 py-2 border-b border-hair-strong text-text-dim uppercase tracking-[.1em] text-[12px] font-medium">
           <span>Item</span>
           <span className="text-right">XP/min</span>
           <span className="text-right">XP</span>
@@ -154,7 +154,7 @@ export default function AwarenessXp() {
           </Link>
         ))}
       </div>
-      <div className="mt-3 text-[11px] text-text-dim">
+      <div className="mt-3 text-[13px] text-text-dim">
         Showing {filtered.length} of {rows.length} recipes
       </div>
     </div>
@@ -164,7 +164,7 @@ export default function AwarenessXp() {
 function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[10px] text-text-dim uppercase tracking-[.1em] font-medium w-12 flex-shrink-0">{label}</span>
+      <span className="text-[12px] text-text-dim uppercase tracking-[.1em] font-medium w-12 flex-shrink-0">{label}</span>
       <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
   )
@@ -174,7 +174,7 @@ function Toggle({ label, active, onClick }: { label: string; active: boolean; on
   return (
     <button
       onClick={onClick}
-      className={`px-2.5 py-[3px] text-[11px] border transition-colors ${
+      className={`px-2.5 py-[3px] text-[13px] border transition-colors ${
         active
           ? 'bg-green-soft border-green-dim text-green-hi'
           : 'bg-transparent border-hair text-text-dim hover:border-hair-strong'

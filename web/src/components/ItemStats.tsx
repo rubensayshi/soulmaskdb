@@ -127,7 +127,7 @@ export default function ItemStats({ stats, quality }: Props) {
   const rows = mergeStats(stats, quality)
 
   return (
-    <div className="grid grid-cols-2 gap-x-6 gap-y-0 text-[12px] mb-4">
+    <div className="grid grid-cols-2 gap-x-6 gap-y-0 text-[13px] mb-4">
       {rows.map((s, i) => {
         const isRange = Math.abs(s.valueLo - s.valueHi) > 0.001
         return (

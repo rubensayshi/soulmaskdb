@@ -43,7 +43,7 @@ export default function FlowView({ graph, rootId }: Props) {
 
   const root = byId.get(rootId)
   if (!root || noRecipe(root)) {
-    return <div className="p-8 text-center text-[12px] text-text-dim italic border border-dashed border-hair bg-panel">No recipe — gathered, dropped, or scavenged</div>
+    return <div className="p-8 text-center text-[13px] text-text-dim italic border border-dashed border-hair bg-panel">No recipe — gathered, dropped, or scavenged</div>
   }
 
   return (
@@ -105,13 +105,13 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
         {badge}
       </div>
       <div className="flex flex-col items-center gap-[2px] max-w-[110px] text-center">
-        <span className={`text-[11px] leading-[1.25] tracking-[.02em] ${
+        <span className={`text-[12px] leading-[1.25] tracking-[.02em] ${
           isRoot ? 'text-green-hi text-[12px] font-semibold' : terminal ? 'text-text-mute' : 'text-text'
         }`}>
           {item.n ?? item.nz ?? item.id}
         </span>
-        <span className={`text-[11px] font-bold tabular-nums tracking-[.04em] ${terminal ? 'text-rust' : 'text-green-hi'}`}>×{total}</span>
-        {stationName && !isRoot && <span className="text-[9px] text-text-dim uppercase tracking-[.1em] font-medium">{stationName}</span>}
+        <span className={`text-[12px] font-bold tabular-nums tracking-[.04em] ${terminal ? 'text-rust' : 'text-green-hi'}`}>×{total}</span>
+        {stationName && !isRoot && <span className="text-[11px] text-text-dim uppercase tracking-[.1em] font-medium">{stationName}</span>}
       </div>
     </div>
   )
@@ -147,7 +147,7 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
               <div key={gi} className="flow-branch-item vert flex flex-col items-center">
                 <div className="mt-[14px] p-2.5 bg-teal-bg border border-teal-dim min-w-[170px] relative"
                      style={{ borderLeftWidth: 2, borderLeftColor: '#6ea09a' }}>
-                  <div className="text-[9px] tracking-[.18em] uppercase text-teal font-semibold mb-1.5">◈ Choose one</div>
+                  <div className="text-[11px] tracking-[.18em] uppercase text-teal font-semibold mb-1.5">◈ Choose one</div>
                   <button
                     className="absolute top-1.5 right-1.5 flex items-center justify-center w-5 h-5 text-teal-dim hover:text-teal cursor-pointer transition-colors"
                     onClick={() => toggleOr(orKey)}
@@ -165,8 +165,8 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
                         onClick={() => { setOrSel(orKey, ai); clearToggle(orKey) }}
                       >
                         <Icon item={altItem} size={20} />
-                        <span className="flex-1 text-[11px] text-text truncate">{altItem?.n ?? altItem?.nz ?? alt.id}</span>
-                        <span className="text-[10px] font-bold text-teal tabular-nums">×{alt.q * total}</span>
+                        <span className="flex-1 text-[12px] text-text truncate">{altItem?.n ?? altItem?.nz ?? alt.id}</span>
+                        <span className="text-[11px] font-bold text-teal tabular-nums">×{alt.q * total}</span>
                       </div>
                     )
                   })}
@@ -183,7 +183,7 @@ function FlowNode({ graph, byId, id, qty, multiplier, isRoot = false, depth = 0,
                           toggledOr={toggledOr} toggleOr={toggleOr} clearToggle={clearToggle}
                           badge={
                             <button
-                              className="absolute z-10 -top-1.5 -right-2.5 flex items-center gap-0.5 px-1 py-0.5 bg-[rgba(109,158,148,.4)] border border-teal-dim text-teal text-[9px] font-semibold cursor-pointer hover:bg-[rgba(109,158,148,.6)] transition-colors"
+                              className="absolute z-10 -top-1.5 -right-2.5 flex items-center gap-0.5 px-1 py-0.5 bg-[rgba(109,158,148,.4)] border border-teal-dim text-teal text-[11px] font-semibold cursor-pointer hover:bg-[rgba(109,158,148,.6)] transition-colors"
                               onClick={(e) => { e.stopPropagation(); toggleOr(orKey) }}
                             >
                               ◈ {grp.items.length}

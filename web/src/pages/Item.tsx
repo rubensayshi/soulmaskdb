@@ -159,7 +159,7 @@ export default function Item() {
                       {maps.map(sm => (
                         <button key={sm.map}
                           onClick={() => { setActiveMap(sm.map); localStorage.setItem('spawn-map-pref', sm.map) }}
-                          className={`flex-1 py-[4px] text-[10px] tracking-[.08em] uppercase font-medium border-b-2 transition-colors ${
+                          className={`flex-1 py-[4px] text-[12px] tracking-[.08em] uppercase font-medium border-b-2 transition-colors ${
                             sm.map === current.map
                               ? 'text-rust border-rust'
                               : 'text-text-dim border-transparent hover:text-text'
@@ -241,7 +241,7 @@ export default function Item() {
                       if (next.has(cat)) next.delete(cat); else next.add(cat)
                       return next
                     })}
-                    className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+                    className={`px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors ${
                       active
                         ? 'bg-green-dim/30 border-green-dim text-green-hi'
                         : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
@@ -320,9 +320,9 @@ function SectionHeader({ title, sub, accent, count, trailing, qualityColor }: { 
     <div className="flex items-center gap-3.5 mt-7 mb-4">
       <Ornament accent={accent} qualityColor={qualityColor} />
       <span className={`font-display text-[16px] font-semibold tracking-[.04em] flex-shrink-0 ${titleColor}`} style={qualityColor ? { color: qualityColor } : undefined}>{title}</span>
-      <span className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium ml-1.5 flex-shrink-0">{sub}</span>
+      <span className="text-[12px] tracking-[.14em] uppercase text-text-dim font-medium ml-1.5 flex-shrink-0">{sub}</span>
       {count != null && (
-        <span className={`text-[10px] font-bold tabular-nums px-2 py-[2px] bg-panel border tracking-[.06em] flex-shrink-0 ${countColor}`}>
+        <span className={`text-[12px] font-bold tabular-nums px-2 py-[2px] bg-panel border tracking-[.06em] flex-shrink-0 ${countColor}`}>
           {count}
         </span>
       )}

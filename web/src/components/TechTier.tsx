@@ -40,16 +40,16 @@ export default function TechTier({ tier, tierIndex, expandedNodeId, onToggleNode
           <path d="M7 4 L10 7 L7 10 L4 7 Z" fill={color} stroke="none" opacity=".6" />
         </svg>
         <span className="font-display text-[15px] font-semibold tracking-[.04em]" style={{ color }}>{tier.name}</span>
-        <span className="text-[10px] tracking-[.14em] uppercase text-text-dim font-medium">Lv.{tier.awareness_level}</span>
+        <span className="text-[12px] tracking-[.14em] uppercase text-text-dim font-medium">Lv.{tier.awareness_level}</span>
         <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${color}80 0%, transparent 100%)` }} />
       </div>
 
-      <div className="flex p-2" style={{ minWidth: colCount * 180 + (colCount - 1) * 24 }}>
+      <div className="flex p-2" style={{ minWidth: colCount * 200 + (colCount - 1) * 24 }}>
         {tier.columns.map((col, colIdx) => (
           <div
             key={colIdx}
             className="flex-none flex flex-col gap-1"
-            style={{ width: 180, marginLeft: colIdx > 0 ? 24 : 0 }}
+            style={{ width: 200, marginLeft: colIdx > 0 ? 24 : 0 }}
           >
             {col.map(node => (
               <div

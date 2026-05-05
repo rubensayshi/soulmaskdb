@@ -19,7 +19,7 @@ export default function TechUnlock({ unlocks }: Props) {
         const parentName = u.parent_name_en ?? u.parent_name_zh
         const techSlug = slugify(name)
         return (
-          <Link key={u.id} to={`/tech-tree/${techSlug}`} className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] border border-hair bg-panel hover:border-green-dim transition-colors">
+          <Link key={u.id} to={`/tech-tree/${techSlug}`} className="inline-flex items-center gap-2 px-3 py-1.5 text-[13px] border border-hair bg-panel hover:border-green-dim transition-colors">
             <svg viewBox="0 0 12 12" className="w-3 h-3 text-gold flex-shrink-0" fill="currentColor">
               <path d="M6 0L7.5 4.5L12 6L7.5 7.5L6 12L4.5 7.5L0 6L4.5 4.5Z" />
             </svg>

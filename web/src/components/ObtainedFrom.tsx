@@ -62,7 +62,7 @@ export default function ObtainedFrom({ sources, maxRows }: Props) {
         <div className="flex flex-wrap gap-1.5 mb-1">
           <button
             onClick={() => setSelected(new Set())}
-            className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+            className={`px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors ${
               selected.size === 0
                 ? 'bg-rust/20 border-rust text-rust'
                 : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
@@ -81,7 +81,7 @@ export default function ObtainedFrom({ sources, maxRows }: Props) {
                   if (next.size === 0 || next.size === sortedTypes.length) return new Set()
                   return next
                 })}
-                className={`px-2.5 py-[3px] text-[10px] tracking-[.08em] uppercase font-medium border transition-colors ${
+                className={`px-2.5 py-[3px] text-[12px] tracking-[.08em] uppercase font-medium border transition-colors ${
                   active
                     ? 'bg-rust/20 border-rust text-rust'
                     : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
@@ -110,10 +110,10 @@ export default function ObtainedFrom({ sources, maxRows }: Props) {
               rowCount += shown.length
               return (
                 <div key={type}>
-                  <div className="text-[10px] tracking-[.12em] uppercase text-text-dim font-medium mb-1.5">{label}</div>
+                  <div className="text-[12px] tracking-[.12em] uppercase text-text-dim font-medium mb-1.5">{label}</div>
                   <div className="space-y-0">
                     {shown.map((s, i) => (
-                      <div key={i} className="flex items-center gap-3 text-[12px] py-[4px] border-b border-hair">
+                      <div key={i} className="flex items-center gap-3 text-[13px] py-[4px] border-b border-hair">
                         <span className="text-text flex-1">{s.source_name}</span>
                         <span className="text-text-dim tabular-nums w-[50px] text-right">{s.probability}%</span>
                         <span className="text-text-mute tabular-nums w-[60px] text-right">
@@ -130,7 +130,7 @@ export default function ObtainedFrom({ sources, maxRows }: Props) {
                 style={{ background: 'linear-gradient(transparent 0%, var(--color-bg) 80%)', height: 56 }}>
                 <button
                   onClick={() => setExpanded(true)}
-                  className="text-[10px] tracking-[.1em] uppercase text-text-dim hover:text-rust font-medium transition-colors"
+                  className="text-[12px] tracking-[.1em] uppercase text-text-dim hover:text-rust font-medium transition-colors"
                 >
                   Show all {totalRows} ▾
                 </button>

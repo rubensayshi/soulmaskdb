@@ -64,7 +64,7 @@ export default function PlannerRecipePanel({ selected, idx, data }: Props) {
 
   if (selected.size === 0) {
     return (
-      <div className="border-t border-hair bg-bg px-4 py-6 text-center text-[11px] text-text-dim">
+      <div className="border-t border-hair bg-bg px-4 py-6 text-center text-[13px] text-text-dim">
         Select tech nodes above to see unlocked recipes.
       </div>
     )
@@ -74,12 +74,12 @@ export default function PlannerRecipePanel({ selected, idx, data }: Props) {
 
   return (
     <div className="border-t border-hair bg-bg px-4 py-3">
-      <div className="text-[11px] text-text-dim mb-3">
+      <div className="text-[13px] text-text-dim mb-3">
         {totalRecipes} recipe{totalRecipes !== 1 ? 's' : ''} unlocked
       </div>
       {Array.from(grouped.entries()).map(([tierName, recipes]) => (
         <div key={tierName} className="mb-3">
-          <div className="text-[10px] text-text-dim uppercase tracking-wider2 mb-1.5">{tierName}</div>
+          <div className="text-[12px] text-text-dim uppercase tracking-wider2 mb-1.5">{tierName}</div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1.5">
             {recipes.map(({ recipe, subNodeName }) => (
               <Link
@@ -90,11 +90,11 @@ export default function PlannerRecipePanel({ selected, idx, data }: Props) {
                 {recipe.item_icon ? (
                   <img src={iconUrl(recipe.item_icon)} alt="" className="h-6 w-6 rounded object-contain" />
                 ) : (
-                  <div className="h-6 w-6 rounded bg-panel-2 flex items-center justify-center text-[10px] text-text-dim">?</div>
+                  <div className="h-6 w-6 rounded bg-panel-2 flex items-center justify-center text-[12px] text-text-dim">?</div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <div className="text-[11px] text-text truncate">{recipe.item_name || recipe.item_name_zh}</div>
-                  <div className="text-[9px] text-text-dim truncate">{subNodeName}</div>
+                  <div className="text-[13px] text-text truncate">{recipe.item_name || recipe.item_name_zh}</div>
+                  <div className="text-[11px] text-text-dim truncate">{subNodeName}</div>
                 </div>
               </Link>
             ))}

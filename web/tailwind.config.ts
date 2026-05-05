@@ -20,7 +20,7 @@ const config: Config = {
         // Text — cool cream
         text:            '#d8dcc8',
         'text-mute':     '#99a08a',
-        'text-dim':      '#6b7163',
+        'text-dim':      '#8b917e',
         'text-faint':    '#474c40',
 
         // Primary accent — game green

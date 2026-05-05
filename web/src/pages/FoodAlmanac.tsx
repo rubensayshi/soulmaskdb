@@ -7,7 +7,7 @@ import type { BuffedItem, BuffModifier } from '../lib/types'
 const ICON_BASE = import.meta.env.VITE_ICON_BASE || '/icons'
 
 const CATEGORIES = [
-  { key: 'meat',       label: 'Meat',        subtitle: 'HP & healing',             color: '#b85050' },
+  { key: 'meat',       label: 'Meat',        subtitle: 'HP & healing',             color: '#e56666' },
   { key: 'fruit',      label: 'Fruit & Veg', subtitle: 'Stamina & speed',          color: '#8aa074' },
   { key: 'staple',     label: 'Staple Food',  subtitle: 'Carry weight & defense',  color: '#b8a060' },
   { key: 'recreative', label: 'Recreative',   subtitle: 'Drinks · tobacco · misc', color: '#7a9db5' },
@@ -218,7 +218,7 @@ export default function FoodAlmanac() {
         <h1 className="font-heading text-[28px] font-bold text-text tracking-[.03em] mb-1">
           Food <span className="font-display italic font-semibold" style={{ color: activeCat.color }}>Almanac</span>
         </h1>
-        <p className="text-[12px] text-text-mute italic font-display">
+        <p className="text-[13px] text-text-mute italic font-display">
           Every dish in one category, side by side — pick your tab.
         </p>
       </div>
@@ -248,18 +248,18 @@ export default function FoodAlmanac() {
               />
               <div className="min-w-0 flex-1">
                 <div
-                  className={`text-[12px] font-semibold uppercase tracking-wider2 ${active ? '' : 'text-text-mute'}`}
+                  className={`text-[13px] font-semibold uppercase tracking-wider2 ${active ? '' : 'text-text-mute'}`}
                   style={active ? { color: cat.color } : undefined}
                 >
                   {cat.label}
                 </div>
-                <div className="text-[10px] text-text-dim truncate">{cat.subtitle}</div>
+                <div className="text-[12px] text-text-dim truncate">{cat.subtitle}</div>
               </div>
               <span
-                className="text-[11px] tabular-nums px-1.5 py-0.5 border"
+                className="text-[13px] tabular-nums px-1.5 py-0.5 border"
                 style={active
                   ? { borderColor: `rgba(${hexToRgb(cat.color)},.4)`, color: cat.color }
-                  : { borderColor: 'var(--color-hair, #373c32)', color: 'var(--color-text-dim, #6b7163)' }
+                  : { borderColor: 'var(--color-hair, #373c32)', color: 'var(--color-text-dim, #8b917e)' }
                 }
               >
                 {count}
@@ -272,11 +272,11 @@ export default function FoodAlmanac() {
       {/* Sub-header: category label + map filter + sort controls */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 py-3 border-b border-hair">
         <div className="flex items-center gap-4">
-          <div className="text-[11px] text-text-mute uppercase tracking-wider2">
+          <div className="text-[13px] text-text-mute uppercase tracking-wider2">
             <span style={{ color: activeCat.color }}>{'◆'}</span>
             {' '}{activeCat.label} — {activeCat.subtitle} · {categoryItems.length} items
           </div>
-          <div className="flex items-center gap-1.5 text-[11px]">
+          <div className="flex items-center gap-1.5 text-[13px]">
             <span className="text-text-dim">Map</span>
             {(['all', 'base', 'dlc'] as const).map(v => (
               <button
@@ -293,7 +293,7 @@ export default function FoodAlmanac() {
             ))}
           </div>
         </div>
-        <div className="flex flex-nowrap overflow-x-auto items-center gap-2 text-[11px]">
+        <div className="flex flex-nowrap overflow-x-auto items-center gap-2 text-[13px]">
           <span className="text-text-dim flex-shrink-0">Sort</span>
           <SortPill label="Tier" value="tier" current={sortBy} onChange={setSortBy} color={activeCat.color} />
           <SortPill label="Duration" value="duration" current={sortBy} onChange={setSortBy} color={activeCat.color} />
@@ -306,15 +306,16 @@ export default function FoodAlmanac() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[12px] border-collapse">
+        <table className="w-full text-[13px] border-collapse">
           <thead>
-            <tr className="border-b border-hair-strong text-[10px] text-text-dim uppercase tracking-wider2">
-              <th className="py-2 px-2 text-left w-[60px]" />
-              <th className="py-2 px-2 text-left min-w-[140px]">Item</th>
-              <th className="py-2 px-2 text-left w-[50px]">Dur.</th>
+            <tr className="border-b border-hair-strong text-[12px] text-text-dim uppercase tracking-wider2">
+              <th scope="col" className="py-2 px-2 text-left w-[60px]"><span className="sr-only">Tier</span></th>
+              <th scope="col" className="py-2 px-2 text-left min-w-[140px]">Item</th>
+              <th scope="col" className="py-2 px-2 text-left w-[50px]">Dur.</th>
               {columns.map(col => (
                 <th
                   key={col.key}
+                  scope="col"
                   className="py-2 px-2 text-left min-w-[90px] cursor-pointer hover:text-text-mute transition-colors"
                   onClick={() => setSortBy(col.key)}
                 >
@@ -397,7 +398,7 @@ function TierBadge({ tier, color }: { tier: 'top' | 'mid' | 'basic'; color: stri
     const rgb = hexToRgb(color)
     return (
       <span
-        className="inline-block px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider2 border"
+        className="inline-block px-1.5 py-0.5 text-[12px] font-medium uppercase tracking-wider2 border"
         style={{ borderColor: `rgba(${rgb},.4)`, backgroundColor: `rgba(${rgb},.12)`, color }}
       >
         {tier}
@@ -408,7 +409,7 @@ function TierBadge({ tier, color }: { tier: 'top' | 'mid' | 'basic'; color: stri
     ? 'border-hair-strong text-text-mute'
     : 'border-hair text-text-dim'
   return (
-    <span className={`inline-block px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider2 border ${cls}`}>
+    <span className={`inline-block px-1.5 py-0.5 text-[12px] font-medium uppercase tracking-wider2 border ${cls}`}>
       {tier}
     </span>
   )
@@ -439,7 +440,7 @@ function SortPill({ label, value, current, onChange, color }: {
   return (
     <button
       onClick={() => onChange(value)}
-      className={`px-2 py-[2px] text-[11px] border transition-colors ${
+      className={`px-2 py-[2px] text-[13px] border transition-colors ${
         active
           ? ''
           : 'bg-transparent border-hair text-text-dim hover:border-hair-strong'

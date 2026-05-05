@@ -74,12 +74,12 @@ export default function UsedIn({ graph, rootId, filterIds, catFilter }: Props) {
   return (
     <div>
       {showControl && (
-        <div className="flex items-center gap-3 mb-2 text-[11px]">
+        <div className="flex items-center gap-3 mb-2 text-[13px]">
           <span className="text-text-dim tracking-[.06em] uppercase font-medium">Depth</span>
           <div className="flex gap-1">
             {Array.from({ length: maxAvail }, (_, i) => i).map(d => (
               <button key={d} onClick={() => setUserDepth(d)}
-                className={`w-6 h-6 text-[11px] font-bold tabular-nums border transition-colors ${
+                className={`w-6 h-6 text-[13px] font-bold tabular-nums border transition-colors ${
                   d === depth
                     ? 'bg-gold-dim/30 border-gold-dim text-gold'
                     : 'bg-panel border-hair text-text-dim hover:text-text hover:border-text-dim'
@@ -88,7 +88,7 @@ export default function UsedIn({ graph, rootId, filterIds, catFilter }: Props) {
               </button>
             ))}
           </div>
-          <span className="text-text-dim/50 text-[10px] tabular-nums">{widths[depth] ?? 0} items</span>
+          <span className="text-text-dim/50 text-[12px] tabular-nums">{widths[depth] ?? 0} items</span>
         </div>
       )}
       <div ref={ref} className="flow-container flow-vert overflow-auto pb-5 mb-5 p-5 border border-hair"
@@ -125,9 +125,9 @@ function UsedInFlowNode({ graph, byId, usedInIdx, id, sourceId, depth, maxDepth,
     <div className="flex flex-col items-center gap-[7px] flex-shrink-0">
       <Diamond item={item} size={48} variant="rust" onClick={() => nav(itemPath(item))} />
       <div className="flex flex-col items-center gap-[2px] max-w-[110px] text-center">
-        <span className="text-[11px] text-rust leading-[1.25] tracking-[.02em]">{item.n ?? item.nz ?? item.id}</span>
-        {qty != null && <span className="text-[11px] font-bold text-rust tabular-nums">needs ×{qty}</span>}
-        {station?.n && <span className="text-[9px] text-text-dim uppercase tracking-[.1em] font-medium">{station.n}</span>}
+        <span className="text-[13px] text-rust leading-[1.25] tracking-[.02em]">{item.n ?? item.nz ?? item.id}</span>
+        {qty != null && <span className="text-[13px] font-bold text-rust tabular-nums">needs ×{qty}</span>}
+        {station?.n && <span className="text-[11px] text-text-dim uppercase tracking-[.1em] font-medium">{station.n}</span>}
       </div>
     </div>
   )

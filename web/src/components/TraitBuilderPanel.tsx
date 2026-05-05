@@ -2,7 +2,7 @@ import type { Trait } from '../lib/types'
 import { SLOT_CATEGORIES, type TraitFamilyLike } from '../lib/traitBuilder'
 
 const CLAN_META: Record<string, { label: string; color: string }> = {
-  claw: { label: 'Claw', color: '#b85050' },
+  claw: { label: 'Claw', color: '#e56666' },
   flint: { label: 'Flint', color: '#7a9db5' },
   fang: { label: 'Fang', color: '#6ea09a' },
   wolf: { label: 'Wolf', color: '#8a8ab5' },
@@ -82,11 +82,11 @@ export default function TraitBuilderPanel({
               <path d="M8 3 L5 6 L8 9" />
             </svg>
             {totalCount > 0 && (
-              <span className="text-[10px] font-semibold tabular-nums w-5 h-5 flex items-center justify-center rounded-full bg-green-dim text-green-hi">
+              <span className="text-[12px] font-semibold tabular-nums w-5 h-5 flex items-center justify-center rounded-full bg-green-dim text-green-hi">
                 {totalCount}
               </span>
             )}
-            <span className="text-[9px] text-text-dim uppercase tracking-wider2 [writing-mode:vertical-lr]">
+            <span className="text-[11px] text-text-dim uppercase tracking-wider2 [writing-mode:vertical-lr]">
               Build
             </span>
           </button>
@@ -97,9 +97,9 @@ export default function TraitBuilderPanel({
           onClick={onToggleCollapse}
           className="md:hidden fixed bottom-4 right-4 z-40 flex items-center gap-2 px-3 py-2 bg-panel border border-hair rounded-full shadow-lg"
         >
-          <span className="text-[11px] text-text-mute font-medium">Build</span>
+          <span className="text-[13px] text-text-mute font-medium">Build</span>
           {totalCount > 0 && (
-            <span className="text-[10px] font-semibold tabular-nums w-5 h-5 flex items-center justify-center rounded-full bg-green-dim text-green-hi">
+            <span className="text-[12px] font-semibold tabular-nums w-5 h-5 flex items-center justify-center rounded-full bg-green-dim text-green-hi">
               {totalCount}
             </span>
           )}
@@ -130,7 +130,7 @@ export default function TraitBuilderPanel({
         </div>
         <button
           onClick={onShare}
-          className="px-2 py-0.5 text-[10px] uppercase tracking-wider2 border border-hair text-text-mute hover:text-text hover:border-green-dim transition-colors"
+          className="px-2 py-0.5 text-[12px] uppercase tracking-wider2 border border-hair text-text-mute hover:text-text hover:border-green-dim transition-colors"
           disabled={totalCount === 0}
           style={totalCount === 0 ? { opacity: 0.4, cursor: 'default' } : undefined}
         >
@@ -141,7 +141,7 @@ export default function TraitBuilderPanel({
       {/* Clan indicator */}
       {lockedClan && CLAN_META[lockedClan] && (
         <div
-          className="flex items-center gap-2 px-4 py-2 border-b border-hair text-[11px]"
+          className="flex items-center gap-2 px-4 py-2 border-b border-hair text-[13px]"
           style={{ backgroundColor: `rgba(${hexToRgb(CLAN_META[lockedClan].color)},.06)` }}
         >
           <span
@@ -168,10 +168,10 @@ export default function TraitBuilderPanel({
           return (
             <div key={cat.key}>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] uppercase tracking-wider2 text-text-dim font-medium">
+                <span className="text-[12px] uppercase tracking-wider2 text-text-dim font-medium">
                   {cat.label}
                 </span>
-                <span className="text-[10px] tabular-nums text-text-dim">
+                <span className="text-[12px] tabular-nums text-text-dim">
                   {filled.length} / {cat.max}
                 </span>
               </div>
@@ -192,7 +192,7 @@ export default function TraitBuilderPanel({
                       className="flex items-center gap-2 px-2 py-1.5 bg-panel-2 border border-hair rounded-sm group"
                     >
                       <StarPips star={trait.star} />
-                      <span className="text-[12px] font-display font-semibold tracking-[.02em] text-text truncate flex-1">
+                      <span className="text-[13px] font-display font-semibold tracking-[.02em] text-text truncate flex-1">
                         {trait.name_en || trait.name_zh || trait.id}
                       </span>
                       {tierMeta && (
@@ -218,7 +218,7 @@ export default function TraitBuilderPanel({
 
                 {emptyCount > 0 && (
                   <div className="flex items-center justify-center px-2 py-1.5 border border-dashed border-hair rounded-sm">
-                    <span className="text-[10px] text-text-faint italic">
+                    <span className="text-[12px] text-text-faint italic">
                       {emptyCount === 1 ? 'empty slot' : `${emptyCount} empty slots`}
                     </span>
                   </div>
@@ -230,7 +230,7 @@ export default function TraitBuilderPanel({
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-t border-hair text-[11px]">
+      <div className="flex items-center justify-between px-4 py-2.5 border-t border-hair text-[13px]">
         <span className="text-text-mute">
           <span className="font-semibold text-text tabular-nums">{totalCount}</span> trait{totalCount !== 1 ? 's' : ''} selected
         </span>

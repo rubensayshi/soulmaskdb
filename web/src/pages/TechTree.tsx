@@ -413,7 +413,7 @@ export default function TechTree() {
               <button
                 key={m.key}
                 onClick={() => setMode(m.key)}
-                className={`px-3 py-1 text-[11px] font-semibold uppercase tracking-[.1em] transition-colors ${
+                className={`px-3 py-1 text-[13px] font-semibold uppercase tracking-[.1em] transition-colors ${
                   mode === m.key
                     ? 'bg-green/15 text-green border border-green-dim'
                     : 'bg-panel text-text-dim border border-hair hover:text-text-mute'
@@ -428,7 +428,7 @@ export default function TechTree() {
 
           <button
             onClick={handleTogglePlanner}
-            className="flex items-center gap-2 px-2.5 py-1 text-[11px] font-semibold tracking-[.06em] transition-colors group"
+            className="flex items-center gap-2 px-2.5 py-1 text-[13px] font-semibold tracking-[.06em] transition-colors group"
           >
             <span className={plannerMode ? 'text-green' : 'text-text-dim group-hover:text-text-mute'}>Planner</span>
             <span className={`relative inline-block w-7 h-3.5 rounded-full transition-colors ${plannerMode ? 'bg-green/40' : 'bg-panel-2'}`}>
@@ -441,7 +441,7 @@ export default function TechTree() {
             placeholder="Search tech nodes..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full md:w-52 order-last md:order-none border border-hair bg-panel px-3 py-1 text-[11px] text-text placeholder-text-dim outline-none focus:border-green-dim"
+            className="w-full md:w-52 order-last md:order-none border border-hair bg-panel px-3 py-1 text-[13px] text-text placeholder-text-dim outline-none focus:border-green-dim"
           />
         </div>
 
@@ -459,7 +459,7 @@ export default function TechTree() {
 
         {/* Toast */}
         {toast && (
-          <div className="fixed top-4 right-4 z-50 bg-green-dim text-text text-[11px] px-3 py-1.5 rounded shadow-lg">
+          <div className="fixed top-4 right-4 z-50 bg-green-dim text-text text-[13px] px-3 py-1.5 rounded shadow-lg">
             {toast}
           </div>
         )}

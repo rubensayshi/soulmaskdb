@@ -12,7 +12,7 @@ export default function PlannerBudgetBar({ pointsSpent, nodeCount, onShare, onCl
   const pct = Math.min(100, (pointsSpent / MAX_POINTS) * 100)
 
   return (
-    <div className="flex items-center gap-3 text-[11px]">
+    <div className="flex items-center gap-3 text-[13px]">
       <span className="text-text font-semibold">{pointsSpent} pts</span>
       <span className="text-text-dim">{nodeCount} node{nodeCount !== 1 ? 's' : ''}</span>
 
@@ -32,7 +32,7 @@ export default function PlannerBudgetBar({ pointsSpent, nodeCount, onShare, onCl
             <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 text-text-dim group-hover:text-text-mute transition-colors" fill="currentColor">
               <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm-.75 3.5a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0ZM7 7h1.25v4H7V7Z" />
             </svg>
-            <span className="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 w-60 bg-bg border border-hair rounded px-3 py-2 text-[10px] text-text-mute leading-relaxed shadow-lg whitespace-normal">
+            <span className="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 w-60 bg-bg border border-hair rounded px-3 py-2 text-[12px] text-text-mute leading-relaxed shadow-lg whitespace-normal">
               <span className="font-semibold text-text block mb-1">How points work</span>
               You earn 6 tech points per level. 
               Ancient tablets grant bonus points at certain milestones.

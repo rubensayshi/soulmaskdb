@@ -138,7 +138,7 @@ export default function SpawnMap({ groups, mapType = 'base', compact }: Props) {
       {legend.length > 1 && (
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5">
           {legend.map(l => (
-            <div key={l.creature} className="flex items-center gap-1 text-[10px]">
+            <div key={l.creature} className="flex items-center gap-1 text-[12px]">
               <span
                 className="w-2 h-2 rounded-full inline-block flex-shrink-0"
                 style={{ backgroundColor: l.color }}

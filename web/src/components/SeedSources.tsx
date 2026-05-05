@@ -31,7 +31,7 @@ function Stat({ label, value, accent }: { label: string; value: string; accent?:
   return (
     <div className="flex items-center gap-[7px] text-[11.5px] text-text-mute">
       <span className="w-[5px] h-[5px] rotate-45 bg-green opacity-80 flex-shrink-0" />
-      <span className="text-text-dim uppercase text-[10px] tracking-[.1em] font-medium">{label}</span>
+      <span className="text-text-dim uppercase text-[12px] tracking-[.1em] font-medium">{label}</span>
       <span className={`font-medium ${color}`}>{value}</span>
     </div>
   )
@@ -70,19 +70,19 @@ export default function SeedSources({ seed }: Props) {
             <svg viewBox="0 0 12 12" className="w-3 h-3 text-green-hi flex-shrink-0" fill="currentColor">
               <path d="M6 0L7.5 4.5L12 6L7.5 7.5L6 12L4.5 7.5L0 6L4.5 4.5Z" />
             </svg>
-            <span className="text-[10px] tracking-[.1em] uppercase font-medium text-green-hi">
+            <span className="text-[12px] tracking-[.1em] uppercase font-medium text-green-hi">
               Best source
             </span>
-            <span className="text-[10px] tracking-[.08em] uppercase text-text-dim ml-1">
+            <span className="text-[12px] tracking-[.08em] uppercase text-text-dim ml-1">
               {SOURCE_TYPE_LABELS[recommended.type] ?? recommended.type}
             </span>
           </div>
           <div className="px-4 py-3">
-            <div className="text-[12px] text-text">{recommended.description}</div>
+            <div className="text-[13px] text-text">{recommended.description}</div>
             {recommended.locations && recommended.locations.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {recommended.locations.map((loc, j) => (
-                  <span key={j} className="inline-flex items-center gap-1 px-2 py-[2px] text-[10px] tracking-[.03em] bg-green-dim/20 border border-green-dim/40 text-green-hi">
+                  <span key={j} className="inline-flex items-center gap-1 px-2 py-[2px] text-[12px] tracking-[.03em] bg-green-dim/20 border border-green-dim/40 text-green-hi">
                     <svg viewBox="0 0 8 10" className="w-2 h-2.5 opacity-60" fill="currentColor">
                       <path d="M4 0C1.8 0 0 1.8 0 4c0 3 4 6 4 6s4-3 4-6c0-2.2-1.8-4-4-4zm0 5.5c-.8 0-1.5-.7-1.5-1.5S3.2 2.5 4 2.5 5.5 3.2 5.5 4 4.8 5.5 4 5.5z" />
                     </svg>
@@ -92,7 +92,7 @@ export default function SeedSources({ seed }: Props) {
               </div>
             )}
             {recommended.notes && (
-              <div className="text-[11px] text-text-mute mt-1.5 italic">{recommended.notes}</div>
+              <div className="text-[13px] text-text-mute mt-1.5 italic">{recommended.notes}</div>
             )}
           </div>
         </div>
@@ -107,15 +107,15 @@ export default function SeedSources({ seed }: Props) {
                 <span className="w-[5px] h-[5px] rotate-45 bg-green opacity-80 flex-shrink-0 mt-[5px]" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2">
-                    <span className={`text-[10px] tracking-[.1em] uppercase font-medium flex-shrink-0 ${SOURCE_TYPE_ACCENT[s.type] ?? 'text-text-dim'}`}>
+                    <span className={`text-[12px] tracking-[.1em] uppercase font-medium flex-shrink-0 ${SOURCE_TYPE_ACCENT[s.type] ?? 'text-text-dim'}`}>
                       {SOURCE_TYPE_LABELS[s.type] ?? s.type}
                     </span>
-                    <span className="text-[12px] text-text-mute">{s.description}</span>
+                    <span className="text-[13px] text-text-mute">{s.description}</span>
                   </div>
                   {s.locations && s.locations.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {s.locations.map((loc, j) => (
-                        <span key={j} className="inline-flex items-center gap-1 px-2 py-[2px] text-[10px] tracking-[.03em] bg-surface border border-hair text-text-dim">
+                        <span key={j} className="inline-flex items-center gap-1 px-2 py-[2px] text-[12px] tracking-[.03em] bg-surface border border-hair text-text-dim">
                           <svg viewBox="0 0 8 10" className="w-2 h-2.5 text-rust/60" fill="currentColor">
                             <path d="M4 0C1.8 0 0 1.8 0 4c0 3 4 6 4 6s4-3 4-6c0-2.2-1.8-4-4-4zm0 5.5c-.8 0-1.5-.7-1.5-1.5S3.2 2.5 4 2.5 5.5 3.2 5.5 4 4.8 5.5 4 5.5z" />
                           </svg>
@@ -125,10 +125,10 @@ export default function SeedSources({ seed }: Props) {
                     </div>
                   )}
                   {s.notes && (
-                    <div className="text-[11px] text-text-mute mt-1.5 italic">{s.notes}</div>
+                    <div className="text-[13px] text-text-mute mt-1.5 italic">{s.notes}</div>
                   )}
                   {s.qty && (
-                    <div className="text-[11px] text-text-dim mt-1 tabular-nums">Qty: {s.qty}</div>
+                    <div className="text-[13px] text-text-dim mt-1 tabular-nums">Qty: {s.qty}</div>
                   )}
                 </div>
               </div>

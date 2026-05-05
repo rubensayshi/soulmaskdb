@@ -108,7 +108,7 @@ export default function Home() {
 
           {/* Right: copy */}
           <div>
-            <div className="flex items-center gap-3.5 mb-5 text-[11px] tracking-[.4em] uppercase text-gold justify-center md:justify-start">
+            <div className="flex items-center gap-3.5 mb-5 text-[13px] tracking-[.4em] uppercase text-gold justify-center md:justify-start">
               <span className="w-10 h-px bg-gold opacity-50" />
               V1.0 · The Crafted World
             </div>
@@ -143,7 +143,7 @@ export default function Home() {
               <span className="font-heading text-[22px] font-bold text-green tracking-[.04em] mb-1">
                 {s.num}
               </span>
-              <span className="text-[10px] tracking-[.3em] uppercase text-text-dim">
+              <span className="text-[12px] tracking-[.3em] uppercase text-text-dim">
                 ◆ {s.label}
               </span>
             </div>
@@ -156,8 +156,8 @@ export default function Home() {
         {/* Featured chains */}
         <div>
           <div className="flex items-center gap-3.5 mb-5">
-            <span className="text-[12px] text-green">◆</span>
-            <span className="font-heading text-[11px] tracking-[.32em] uppercase text-text-dim">Featured Chains</span>
+            <span className="text-[13px] text-green">◆</span>
+            <span className="font-heading text-[13px] tracking-[.32em] uppercase text-text-dim">Featured Chains</span>
             <div className="flex-1 h-px" style={{ background: 'rgba(138,160,116,.14)' }} />
           </div>
 
@@ -173,7 +173,7 @@ export default function Home() {
                   <div className="pointer-events-none absolute -top-px -left-px -right-px h-px opacity-60"
                        style={{ background: 'linear-gradient(90deg, transparent, #5a6e48 30%, #5a6e48 70%, transparent)' }} />
                   <div className="font-display text-[18px] text-text mb-1 tracking-[.02em] font-semibold">{f.label}</div>
-                  <div className="text-[12px] text-text-mute">{f.blurb}</div>
+                  <div className="text-[13px] text-text-mute">{f.blurb}</div>
                 </Link>
               )
             })}
@@ -188,20 +188,20 @@ export default function Home() {
         {/* Changelog */}
         <div>
           <div className="flex items-center gap-3.5 mb-5">
-            <span className="text-[12px] text-gold">◆</span>
-            <span className="font-heading text-[11px] tracking-[.32em] uppercase text-text-dim">Changelog</span>
+            <span className="text-[13px] text-gold">◆</span>
+            <span className="font-heading text-[13px] tracking-[.32em] uppercase text-text-dim">Changelog</span>
             <div className="flex-1 h-px" style={{ background: 'rgba(184,160,96,.14)' }} />
           </div>
 
           <div className="grid gap-1.5">
             {CHANGELOG.map((entry, i) => (
               <div key={i} className="flex gap-3 px-3 py-2.5 bg-panel border border-hair-strong">
-                <span className={`shrink-0 w-[38px] text-center mt-[3px] text-[9px] font-bold uppercase tracking-wider py-0.5 rounded ${
+                <span className={`shrink-0 w-[38px] text-center mt-[3px] text-[11px] font-bold uppercase tracking-wider py-0.5 rounded ${
                   entry.type === 'feat' ? 'bg-green/15 text-green' : 'bg-gold/15 text-gold'
                 }`}>
                   {entry.type}
                 </span>
-                <span className="text-[12px] text-text-mute leading-snug mt-[3px]">{entry.text}</span>
+                <span className="text-[13px] text-text-mute leading-snug mt-[3px]">{entry.text}</span>
               </div>
             ))}
           </div>

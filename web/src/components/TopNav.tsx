@@ -125,7 +125,7 @@ export default function TopNav() {
           <div className="font-heading text-[14px] font-bold text-text tracking-[.2em]">
             <span className="hidden md:inline">SOULMASK </span><span className="text-green" style={{ fontWeight: 800 }}>CODEX</span>
           </div>
-          <div className="hidden md:block font-display italic text-[12px] font-medium text-gold tracking-[.14em]">
+          <div className="hidden md:block font-display italic text-[13px] font-medium text-gold tracking-[.14em]">
             Atlas of the Crafted World
           </div>
         </div>
@@ -139,6 +139,7 @@ export default function TopNav() {
             <Link
               key={nav.label}
               to={nav.to}
+              aria-label={nav.label}
               className={`relative flex items-center px-2.5 transition-colors ${active ? 'text-green' : 'text-text-mute'}`}
             >
               {nav.icon}
@@ -150,6 +151,7 @@ export default function TopNav() {
         })}
 
         <button
+          aria-label="Search"
           onClick={() => { setSearchOpen(prev => !prev); setMenuOpen(false) }}
           className={`flex items-center px-2.5 transition-colors ${searchOpen ? 'text-green' : 'text-text-mute'}`}
         >
@@ -160,6 +162,7 @@ export default function TopNav() {
         </button>
 
         <button
+          aria-label="Menu"
           onClick={() => { setMenuOpen(prev => !prev); setSearchOpen(false) }}
           className={`flex items-center px-2.5 transition-colors ${menuOpen ? 'text-green' : 'text-text-mute'}`}
         >
@@ -177,7 +180,7 @@ export default function TopNav() {
             <Link
               key={tab.label}
               to={tab.to}
-              className={`relative px-[22px] flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest2 bg-transparent transition-colors ${active ? 'text-green' : 'text-text-mute hover:text-text'}`}
+              className={`relative px-[22px] flex items-center gap-1.5 text-[13px] font-semibold uppercase tracking-widest2 bg-transparent transition-colors ${active ? 'text-green' : 'text-text-mute hover:text-text'}`}
             >
               {tab.label}
               {active && (
@@ -207,10 +210,10 @@ export default function TopNav() {
                   key={hit.id}
                   to={`/item/${hit.id}`}
                   onClick={() => setSearchOpen(false)}
-                  className="flex items-center gap-2 px-3 py-2 text-[12px] text-text hover:bg-green-bg transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 text-[13px] text-text hover:bg-green-bg transition-colors"
                 >
                   <span className="truncate">{hit.name_en ?? hit.name_zh ?? hit.id}</span>
-                  {hit.category && <span className="text-[10px] text-text-dim ml-auto flex-shrink-0">{hit.category}</span>}
+                  {hit.category && <span className="text-[12px] text-text-dim ml-auto flex-shrink-0">{hit.category}</span>}
                 </Link>
               ))}
             </div>
