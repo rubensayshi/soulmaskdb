@@ -62,7 +62,7 @@ function TraitIcon({ name, size = 22, source, isNegative = false }: {
 }) {
   const [err, setErr] = useState(false)
   const badge = getBadgeStyle(source, isNegative)
-  const iconSize = Math.round(size * 0.56)
+  const iconSize = Math.ceil(size * 0.8 / 2) * 2
 
   return (
     <div className="relative flex-shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
@@ -248,9 +248,9 @@ export default function TraitBuilderPanel({
                   return (
                     <div
                       key={traitId}
-                      className="flex items-center gap-2 px-2 py-1.5 bg-panel-2 border border-hair rounded-sm group"
+                      className="flex items-center gap-2 px-2 py-0.5 bg-panel-2 border border-hair rounded-sm group"
                     >
-                      <TraitIcon name={trait.icon_name} size={20} source={trait.source ?? undefined} isNegative={trait.is_negative} />
+                      <TraitIcon name={trait.icon_name} size={26} source={trait.source ?? undefined} isNegative={trait.is_negative} />
                       <StarPips star={trait.star} />
                       <span className="text-[13px] font-display font-semibold tracking-[.02em] text-text truncate flex-1">
                         {trait.name_en || trait.name_zh || trait.id}

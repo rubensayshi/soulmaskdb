@@ -181,7 +181,7 @@ function TraitIcon({ name, size = 28, source, isNegative = false }: {
 }) {
   const [err, setErr] = useState(false)
   const badge = getBadgeStyle(source, isNegative)
-  const iconSize = Math.round(size * 0.56)
+  const iconSize = Math.ceil(size * 0.8 / 2) * 2
 
   return (
     <div className="relative flex-shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
@@ -725,9 +725,9 @@ export default function Traits() {
                   tabIndex={0}
                   onClick={() => setExpandedId(isExpanded ? null : fam.learnedId)}
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedId(isExpanded ? null : fam.learnedId) } }}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-panel-2 transition-colors cursor-pointer"
+                  className="w-full flex items-center gap-3 px-3 py-1 text-left hover:bg-panel-2 transition-colors cursor-pointer"
                 >
-                  <TraitIcon name={fam.iconName} size={26} source={fam.source} isNegative={fam.isNegative} />
+                  <TraitIcon name={fam.iconName} size={32} source={fam.source} isNegative={fam.isNegative} />
                   <StarPips star={topTier.star} />
                   <span className={`font-display text-[15px] font-semibold tracking-[.02em] min-w-0 truncate ${neg ? '' : 'text-text'}`} style={neg ? { color: '#c47070' } : undefined}>
                     {fam.name}
@@ -763,7 +763,7 @@ export default function Traits() {
                     </span>
                   )}
                   <span
-                    className="text-[11px] w-[52px] text-center py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
+                    className="text-[11px] w-[62px] text-center py-[2px] uppercase tracking-[.1em] font-semibold border flex-shrink-0"
                     style={fam.isBorn
                       ? { borderColor: 'rgba(184,160,96,.35)', color: '#b8a060' }
                       : { borderColor: 'rgba(138,160,116,.35)', color: '#8aa074' }
