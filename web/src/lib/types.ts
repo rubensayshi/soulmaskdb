@@ -143,11 +143,23 @@ export interface ResourceNodeMapData {
   nodes: ResourceNodePoint[]
 }
 
+export interface FarmPlotPoint {
+  lat: number
+  lon: number
+  tribe?: string | null
+}
+
+export interface FarmPlotMapData {
+  map: 'base' | 'dlc'
+  plots: FarmPlotPoint[]
+}
+
 export interface ItemDetail {
   id: string
   drop_sources: DropSource[]
   tech_unlocked_by: TechUnlock[]
   seed_source?: SeedSource
+  farm_plots?: FarmPlotMapData[]
   spawn_locations?: SpawnMapData[]
   resource_nodes?: ResourceNodeMapData[]
 }

@@ -2,6 +2,7 @@
   {
     "item_id": "Daoju_Item_Cotto_Seed",
     "name_en": "Cotton Seed",
+    "farm_crop": "Cotton",
     "map": "base",
     "grindable": false,
     "sources": [
@@ -27,6 +28,7 @@
   {
     "item_id": "DaoJu_Item_Corn_Seed",
     "name_en": "Corn Seed",
+    "farm_crop": "Corn",
     "map": "base",
     "grindable": true,
     "grinder_input": "Corn",
@@ -57,6 +59,7 @@
   {
     "item_id": "DaoJu_Item_Pumpkin_Seed",
     "name_en": "Pumpkin Seed",
+    "farm_crop": "Pumpkin",
     "map": "base",
     "grindable": true,
     "grinder_input": "Pumpkin",
@@ -82,6 +85,7 @@
   {
     "item_id": "DaoJu_Item_Chili_Seed",
     "name_en": "Chili Seed",
+    "farm_crop": "Chili",
     "map": "base",
     "grindable": true,
     "grinder_input": "Chili",
@@ -107,6 +111,7 @@
   {
     "item_id": "DaoJu_Item_Tomatoes_Seed",
     "name_en": "Tomato Seed",
+    "farm_crop": "Tomato",
     "map": "base",
     "grindable": true,
     "grinder_input": "Tomato",
@@ -132,6 +137,7 @@
   {
     "item_id": "DaoJu_Item_CashewNuts_Seed",
     "name_en": "Cashew Seed",
+    "farm_crop": "Cashew",
     "map": "base",
     "grindable": true,
     "grinder_input": "Cashew",
@@ -157,6 +163,7 @@
   {
     "item_id": "DaoJu_Item_Peanut_Seed",
     "name_en": "Peanut Seed",
+    "farm_crop": "Peanut",
     "map": "base",
     "grindable": true,
     "grinder_input": "Peanut",
@@ -181,6 +188,7 @@
   {
     "item_id": "DaoJu_Item_Pawpaw_Seed",
     "name_en": "Papaya Seed",
+    "farm_crop": "Papaya",
     "map": "base",
     "grindable": true,
     "grinder_input": "Papaya",
@@ -206,6 +214,7 @@
   {
     "item_id": "DaoJu_Item_Pomegranate_Seed",
     "name_en": "Guava Seed",
+    "farm_crop": "Guava",
     "map": "base",
     "grindable": true,
     "grinder_input": "Guava",
@@ -230,6 +239,7 @@
   {
     "item_id": "DaoJu_Item_Tobacco_Seed",
     "name_en": "Tobacco Seed",
+    "farm_crop": "Tobacco",
     "map": "base",
     "grindable": false,
     "sources": [
@@ -250,6 +260,7 @@
   {
     "item_id": "Daoju_Item_Aloe_Seed",
     "name_en": "Aloe Seed",
+    "farm_crop": "Aloe",
     "map": "both",
     "grindable": false,
     "sources": [
@@ -276,6 +287,7 @@
   {
     "item_id": "Daoju_Item_Agave_Seed",
     "name_en": "Agave Seed",
+    "farm_crop": "Agave",
     "map": "both",
     "grindable": false,
     "sources": [
@@ -315,6 +327,7 @@
   {
     "item_id": "DaoJu_Item_Flax_Seed",
     "name_en": "Flax Seed",
+    "farm_crop": "Flax",
     "map": "dlc",
     "grindable": false,
     "sources": [
@@ -336,6 +349,7 @@
   {
     "item_id": "DaoJu_Item_Chufa_Seed",
     "name_en": "Chufa Seed",
+    "farm_crop": "Chufa",
     "map": "dlc",
     "grindable": true,
     "grinder_input": "Chufa",
@@ -360,10 +374,17 @@
   {
     "item_id": "DaoJu_Item_Date_Seed",
     "name_en": "Date Seed",
+    "farm_crop": "Date",
     "map": "dlc",
     "grindable": true,
     "grinder_input": "Date",
     "sources": [
+      {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest date palms at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
       {
         "type": "grinder",
         "recommended": true,
@@ -380,6 +401,7 @@
   {
     "item_id": "DaoJu_Item_Fig_Seed",
     "name_en": "Fig Seed",
+    "farm_crop": "Fig",
     "map": "dlc",
     "grindable": true,
     "grinder_input": "Fig",
@@ -404,6 +426,7 @@
   {
     "item_id": "DaoJu_Item_Garlic_Seed",
     "name_en": "Garlic Seed",
+    "farm_crop": "Garlic",
     "map": "dlc",
     "grindable": true,
     "grinder_input": "Garlic",
@@ -429,16 +452,23 @@
   {
     "item_id": "DaoJu_Item_Grape_Seed",
     "name_en": "Grape Seed",
+    "farm_crop": "Grape",
     "map": "dlc",
     "grindable": true,
     "grinder_input": "Grape",
     "sources": [
       {
+        "type": "barracks_farm",
+        "recommended": true,
+        "description": "Harvest grapes at barracks farms",
+        "locations": ["DLC tribe barracks"]
+      },
+      {
         "type": "container",
         "recommended": true,
         "description": "DLC relic chests only",
         "locations": ["DLC relics (Lv40–60)"],
-        "notes": "Fairly common in those chests — no barracks farm source"
+        "notes": "Fairly common in those chests"
       },
       {
         "type": "grinder",
@@ -449,6 +479,7 @@
   {
     "item_id": "DaoJu_Item_Mint_Seed",
     "name_en": "Mint Seed",
+    "farm_crop": "Mint",
     "map": "dlc",
     "grindable": false,
     "sources": [
@@ -470,6 +501,7 @@
   {
     "item_id": "DaoJu_Item_Onion_Seed",
     "name_en": "Onion Seed",
+    "farm_crop": "Onion",
     "map": "dlc",
     "grindable": false,
     "sources": [

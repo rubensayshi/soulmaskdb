@@ -430,17 +430,30 @@ def main():
             optimal = f"{opt_m.group(1)}-{opt_m.group(2)}" if opt_m else None
             db.execute(
                 "INSERT INTO seed_sources (item_id, name_en, map, grindable, grinder_input, "
-                "fertilizer, temp_growth, temp_optimal, sources_json) "
-                "VALUES (?,?,?,?,?,?,?,?,?)",
+                "fertilizer, temp_growth, temp_optimal, sources_json, farm_crop) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?)",
                 (
                     s["item_id"], s["name_en"], s["map"],
                     1 if s.get("grindable") else 0,
                     s.get("grinder_input"),
                     fert, growth, optimal,
                     json.dumps(s["sources"]),
+                    s.get("farm_crop"),
                 ),
             )
             seed_source_count += 1
+
+    # --- farm plots ---
+    farm_plots_path = PARSED / "farm_plots.json"
+    farm_plot_count = 0
+    if farm_plots_path.exists():
+        farm_plots_data = json.loads(farm_plots_path.read_text(encoding="utf-8-sig"))
+        for fp in farm_plots_data:
+            db.execute(
+                "INSERT INTO farm_plots (crop, lat, lon, map, tribe) VALUES (?,?,?,?,?)",
+                (fp["crop"], round(fp["lat"]), round(fp["lon"]), fp["map"], fp.get("tribe")),
+            )
+            farm_plot_count += 1
 
     # --- traits ---
     traits_path = PARSED / "traits.json"
@@ -566,6 +579,7 @@ def main():
     print(f"  drop_items:        {drop_item_count}")
     print(f"  traits:            {trait_count}")
     print(f"  seed_sources:      {seed_source_count}")
+    print(f"  farm_plots:        {farm_plot_count}")
     print(f"  creature_spawns:   {spawn_count}")
     print(f"  resource_nodes:    {resource_node_count}")
 

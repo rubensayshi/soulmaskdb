@@ -110,8 +110,19 @@ CREATE TABLE seed_sources (
   fertilizer    TEXT,
   temp_growth   TEXT,
   temp_optimal  TEXT,
-  sources_json  TEXT NOT NULL
+  sources_json  TEXT NOT NULL,
+  farm_crop     TEXT
 );
+
+CREATE TABLE farm_plots (
+  id      INTEGER PRIMARY KEY AUTOINCREMENT,
+  crop    TEXT NOT NULL,
+  lat     INTEGER NOT NULL,
+  lon     INTEGER NOT NULL,
+  map     TEXT NOT NULL DEFAULT 'base',
+  tribe   TEXT
+);
+CREATE INDEX idx_farm_plots_crop ON farm_plots(crop);
 
 CREATE TABLE creature_spawns (
   creature_type TEXT NOT NULL,

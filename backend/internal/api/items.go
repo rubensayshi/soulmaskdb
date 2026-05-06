@@ -74,6 +74,17 @@ type ResourceNodeMap struct {
 	Nodes    []ResourceNodePoint `json:"nodes"`
 }
 
+type FarmPlotPoint struct {
+	Lat   int64   `json:"lat"`
+	Lon   int64   `json:"lon"`
+	Tribe *string `json:"tribe,omitempty"`
+}
+
+type FarmPlotMap struct {
+	Map   string          `json:"map"`
+	Plots []FarmPlotPoint `json:"plots"`
+}
+
 type ItemDetail struct {
 	ID             string            `json:"id"`
 	NameEn         *string           `json:"name_en"`
@@ -92,6 +103,7 @@ type ItemDetail struct {
 	RecipesUsedIn  []string          `json:"recipes_used_in"`
 	DropSources    []DropSource      `json:"drop_sources"`
 	SeedSource     *SeedSource       `json:"seed_source,omitempty"`
+	FarmPlots      []FarmPlotMap     `json:"farm_plots,omitempty"`
 	SpawnLocations []SpawnMap        `json:"spawn_locations,omitempty"`
 	ResourceNodes  []ResourceNodeMap `json:"resource_nodes,omitempty"`
 }
@@ -184,6 +196,26 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Farm plots — tribe barracks where this seed's crop grows
+	var farmPlots []FarmPlotMap
+	fpRows, _ := q.GetFarmPlotsForSeedItem(ctx, item.ID)
+	if len(fpRows) > 0 {
+		mapIdx := make(map[string]int)
+		for _, r := range fpRows {
+			mi, ok := mapIdx[r.Map]
+			if !ok {
+				mi = len(farmPlots)
+				mapIdx[r.Map] = mi
+				farmPlots = append(farmPlots, FarmPlotMap{Map: r.Map})
+			}
+			farmPlots[mi].Plots = append(farmPlots[mi].Plots, FarmPlotPoint{
+				Lat:   r.Lat,
+				Lon:   r.Lon,
+				Tribe: nullStr(r.Tribe),
+			})
+		}
+	}
+
 	// Resource nodes (ore deposits / mineral veins) keyed by map+category
 	rnRows, _ := q.GetResourceNodesForItem(ctx, item.ID)
 	var resourceNodes []ResourceNodeMap
@@ -256,6 +288,7 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		RecipesUsedIn:  usedInIDs,
 		DropSources:    dropSources,
 		SeedSource:     seedSource,
+		FarmPlots:      farmPlots,
 		SpawnLocations: spawnLocations,
 		ResourceNodes:  resourceNodes,
 	}

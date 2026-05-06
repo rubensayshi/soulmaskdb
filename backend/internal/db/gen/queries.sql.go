@@ -55,6 +55,49 @@ func (q *Queries) GetDropSourcesForItem(ctx context.Context, itemID string) ([]G
 	return items, nil
 }
 
+const getFarmPlotsForSeedItem = `-- name: GetFarmPlotsForSeedItem :many
+SELECT fp.lat, fp.lon, fp.map, fp.tribe
+FROM farm_plots fp
+JOIN seed_sources ss ON ss.farm_crop = fp.crop
+WHERE ss.item_id = ?
+ORDER BY fp.map, fp.lat, fp.lon
+`
+
+type GetFarmPlotsForSeedItemRow struct {
+	Lat   int64
+	Lon   int64
+	Map   string
+	Tribe sql.NullString
+}
+
+func (q *Queries) GetFarmPlotsForSeedItem(ctx context.Context, itemID string) ([]GetFarmPlotsForSeedItemRow, error) {
+	rows, err := q.db.QueryContext(ctx, getFarmPlotsForSeedItem, itemID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []GetFarmPlotsForSeedItemRow{}
+	for rows.Next() {
+		var i GetFarmPlotsForSeedItemRow
+		if err := rows.Scan(
+			&i.Lat,
+			&i.Lon,
+			&i.Map,
+			&i.Tribe,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getItem = `-- name: GetItem :one
 SELECT id, category, subcategory, name_zh, name_en, description_zh, description_en, weight, max_stack, durability, icon_path, role, stats_json, buffs_json, slug FROM items WHERE id = ?
 `

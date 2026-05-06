@@ -32,6 +32,15 @@ type DropSourceItem struct {
 	Weight      int64
 }
 
+type FarmPlot struct {
+	ID    int64
+	Crop  string
+	Lat   int64
+	Lon   int64
+	Map   string
+	Tribe sql.NullString
+}
+
 type Item struct {
 	ID            string
 	Category      sql.NullString
@@ -94,6 +103,7 @@ type SeedSource struct {
 	TempGrowth   sql.NullString
 	TempOptimal  sql.NullString
 	SourcesJson  string
+	FarmCrop     sql.NullString
 }
 
 type Station struct {

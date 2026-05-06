@@ -16,6 +16,7 @@ import ItemStats from '../components/ItemStats'
 import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
 import SpawnMap from '../components/SpawnMap'
 import ResourceNodeMap from '../components/ResourceNodeMap'
+import FarmPlotMap from '../components/FarmPlotMap'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -72,6 +73,7 @@ export default function Item() {
 
   const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set())
   const [activeMap, setActiveMap] = useState<string>(() => localStorage.getItem('spawn-map-pref') ?? 'base')
+  const [activeFarmMap, setActiveFarmMap] = useState<string>('base')
   useEffect(() => { setSelectedCats(new Set()); setQuality(0) }, [id])
 
   const finalCats = useMemo(() => {
@@ -278,6 +280,36 @@ export default function Item() {
           <ObtainedFrom sources={detail.drop_sources} />
         </>
       )}
+
+      {detail?.farm_plots && detail.farm_plots.length > 0 && (() => {
+        const maps = detail.farm_plots
+        const current = maps.find(m => m.map === activeFarmMap) ?? maps[0]
+        return (
+          <>
+            <SectionHeader title="Barracks Farm Locations" sub="Where tribes grow this crop" accent="green" />
+            <div className="border border-hair-strong p-2 bg-panel mb-4">
+              {maps.length > 1 && (
+                <div className="flex mb-2">
+                  {maps.map(m => (
+                    <button key={m.map}
+                      onClick={() => setActiveFarmMap(m.map)}
+                      className={`flex-1 py-[4px] text-[10px] tracking-[.08em] uppercase font-medium border-b-2 transition-colors ${
+                        m.map === current.map
+                          ? 'text-green-hi border-green-dim'
+                          : 'text-text-dim border-transparent hover:text-text'
+                      }`}
+                    >
+                      {m.map === 'base' ? 'Cloud & Mist' : 'Shifting Sands'}
+                      <span className="tabular-nums opacity-60 ml-1">{m.plots.length}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              <FarmPlotMap key={current.map} data={[current]} />
+            </div>
+          </>
+        )
+      })()}
 
       {detail?.resource_nodes && detail.resource_nodes.length > 0 && (
         <>

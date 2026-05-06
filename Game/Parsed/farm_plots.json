@@ -1,0 +1,5450 @@
+﻿[
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3145.4,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2458.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.5,
+        "weight":  50,
+        "crop":  "Aloe",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Aloe",
+        "lat":  -3487.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1800.4,
+        "weight":  20,
+        "crop":  "Aloe",
+        "lat":  -2372.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1783.8,
+        "weight":  50,
+        "crop":  "Aloe",
+        "lat":  -3493.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_KengDongQiuLing_ShenMi",
+        "lon":  1778.6,
+        "weight":  50,
+        "crop":  "Aloe",
+        "lat":  -3492.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1795.5,
+        "weight":  20,
+        "crop":  "Aloe",
+        "lat":  -2369.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.4,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1441.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1797.3,
+        "weight":  20,
+        "crop":  "Aloe",
+        "lat":  -2377.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1251.6,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2040.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.4,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2045.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1271.9,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2051.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_PingDingShan_ShenMi",
+        "lon":  1792.5,
+        "weight":  20,
+        "crop":  "Aloe",
+        "lat":  -2373.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.1,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1436.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1256,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2040.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.2,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2054.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.9,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1447.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.2,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2070.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1269.2,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2055.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1236.4,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2051.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3082
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -933.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2875.8,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1447
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1267.2,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2049.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1264.6,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2053.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1237.8,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2062.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1235.2,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2067
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Cotton",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  50,
+        "crop":  "Quinoa",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  50,
+        "crop":  "Cacao",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_HuAnSenLin_ZhiHui",
+        "lon":  1232.7,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -2062.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3178.2,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2449.6
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2880.7,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1441.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3173.3,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2451.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3082.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3535.1,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -937.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3528.1,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -937.2
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3531.7,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3538.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -940.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1231.6,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1620
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1231.6,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1620
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1231.6,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1620
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1231.6,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1620
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1212,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1628.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1212,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1628.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1212,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1628.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1212,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1628.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3500.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -901.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2870.1,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1439.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_DaCaoYuan_ZhiHui",
+        "lon":  2874.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -1436.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3497,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -905.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.7,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3077.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3496.5,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -897.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  30,
+        "crop":  "Peanut",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  30,
+        "crop":  "Papaya",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  20,
+        "crop":  "Cacao",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  30,
+        "crop":  "Agave",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  20,
+        "crop":  "Guava",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  40,
+        "crop":  "Aloe",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "DaXingBuLuo_NanBuHuangYuan_ShenMi",
+        "lon":  3493.1,
+        "weight":  50,
+        "crop":  "Tobacco",
+        "lat":  -901.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1228.8,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1628.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1228.8,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1628.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1228.8,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1628.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1228.8,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1628.9
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1216.9,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1627.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1216.9,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1627.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1216.9,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1627.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1216.9,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1627.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1233.5,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1632.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1233.5,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1632.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1233.5,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1632.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1233.5,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1632.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1210,
+        "weight":  20,
+        "crop":  "Potato",
+        "lat":  -1624.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1210,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1624.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1210,
+        "weight":  30,
+        "crop":  "Guava",
+        "lat":  -1624.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_GaoHanDi_ShenMi",
+        "lon":  1210,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1624.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1833.8,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1079.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1833.8,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1079.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1833.8,
+        "weight":  50,
+        "crop":  "Guava",
+        "lat":  -1079.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1833.8,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -1079.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1833.8,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1079.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1845.5,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1066.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1845.5,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1066.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1845.5,
+        "weight":  50,
+        "crop":  "Guava",
+        "lat":  -1066.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1845.5,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -1066.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1845.5,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1066.1
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1840.9,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1085.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1840.9,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1085.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1840.9,
+        "weight":  50,
+        "crop":  "Guava",
+        "lat":  -1085.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1840.9,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -1085.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1840.9,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1085.7
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1837.4,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -1082.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1837.4,
+        "weight":  30,
+        "crop":  "Quinoa",
+        "lat":  -1082.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1837.4,
+        "weight":  50,
+        "crop":  "Guava",
+        "lat":  -1082.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1837.4,
+        "weight":  20,
+        "crop":  "Peanut",
+        "lat":  -1082.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HanYeLin_ZhiHui",
+        "lon":  1837.4,
+        "weight":  20,
+        "crop":  "Agave",
+        "lat":  -1082.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2389.5,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3077.8
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3153.3,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3150.1,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2459.3
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  20,
+        "crop":  "Tomato",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  50,
+        "crop":  "Potato",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  20,
+        "crop":  "Chili",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_XiBuYuLin_ZhiHui",
+        "lon":  3148.6,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -2454.4
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  30,
+        "crop":  "Potato",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  30,
+        "crop":  "Corn",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  50,
+        "crop":  "Cotton",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  30,
+        "crop":  "Pumpkin",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  30,
+        "crop":  "Chili",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  20,
+        "crop":  "Quinoa",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  20,
+        "crop":  "Papaya",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  30,
+        "crop":  "Cacao",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "base",
+        "tribe":  "ZhongXingBuLuo_HongShuLin_ZhiHui",
+        "lon":  2384.6,
+        "weight":  50,
+        "crop":  "Cashew",
+        "lat":  -3090.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2831.9,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1112.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.1,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -2049.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1896.5,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -2047.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1894.8,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -2043.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1884.9,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -2039.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_02",
+        "lon":  1892.4,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -2035.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  20,
+        "crop":  "Grape",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2041.3,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1162.9
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2834,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1116.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2407.1,
+        "weight":  30,
+        "crop":  "Flax",
+        "lat":  -2825.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2407.1,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2825.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2407.1,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2825.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2407.1,
+        "weight":  20,
+        "crop":  "Garlic",
+        "lat":  -2825.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2407.1,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2825.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2813,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1120.4
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2849.3,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1106
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2846.8,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1101.8
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2810.8,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1125
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2830,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1118.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2853.8,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1103.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2828,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1114.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  15,
+        "crop":  "Flax",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Chufa",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Garlic",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  15,
+        "crop":  "Wheat",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Sesame",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Fig",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Grape",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_LargeTribe_SavageHorn_01",
+        "lon":  2851.4,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1099.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  20,
+        "crop":  "Grape",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2036.4,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1162.5
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  20,
+        "crop":  "Grape",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2042.2,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1158.2
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2401.3,
+        "weight":  30,
+        "crop":  "Flax",
+        "lat":  -2829
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2401.3,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2829
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2401.3,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2829
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2401.3,
+        "weight":  20,
+        "crop":  "Garlic",
+        "lat":  -2829
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2401.3,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2829
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2418.2,
+        "weight":  30,
+        "crop":  "Flax",
+        "lat":  -2820.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2418.2,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2820.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2418.2,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2820.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2418.2,
+        "weight":  20,
+        "crop":  "Garlic",
+        "lat":  -2820.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2418.2,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2820.6
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2423.8,
+        "weight":  30,
+        "crop":  "Flax",
+        "lat":  -2822.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2423.8,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2822.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2423.8,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2822.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2423.8,
+        "weight":  20,
+        "crop":  "Garlic",
+        "lat":  -2822.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2423.8,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2822.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  20,
+        "crop":  "Grape",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2021,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1161
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  20,
+        "crop":  "Flax",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  10,
+        "crop":  "Date",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  20,
+        "crop":  "Grape",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_03",
+        "lon":  2024.2,
+        "weight":  10,
+        "crop":  "Mint",
+        "lat":  -1164.1
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2411.4,
+        "weight":  30,
+        "crop":  "Flax",
+        "lat":  -2822.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2411.4,
+        "weight":  10,
+        "crop":  "Onion",
+        "lat":  -2822.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2411.4,
+        "weight":  20,
+        "crop":  "Chufa",
+        "lat":  -2822.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2411.4,
+        "weight":  20,
+        "crop":  "Garlic",
+        "lat":  -2822.3
+    },
+    {
+        "map":  "dlc",
+        "tribe":  "GamePlay2/Level_MediumTribe_SavageHorn_01",
+        "lon":  2411.4,
+        "weight":  20,
+        "crop":  "Wheat",
+        "lat":  -2822.3
+    }
+]

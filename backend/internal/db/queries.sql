@@ -93,6 +93,13 @@ WHERE cs.creature_type IN (
 )
 ORDER BY cs.map, cs.creature_type, cs.lat, cs.lon;
 
+-- name: GetFarmPlotsForSeedItem :many
+SELECT fp.lat, fp.lon, fp.map, fp.tribe
+FROM farm_plots fp
+JOIN seed_sources ss ON ss.farm_crop = fp.crop
+WHERE ss.item_id = ?
+ORDER BY fp.map, fp.lat, fp.lon;
+
 -- name: GetResourceNodesForItem :many
 SELECT rn.ore_type, rn.lat, rn.lon, rn.ore_category, rn.map
 FROM resource_nodes rn
