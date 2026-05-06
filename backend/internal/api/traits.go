@@ -10,6 +10,7 @@ import (
 type TraitResponse struct {
 	ID                 string      `json:"id"`
 	Star               int64       `json:"star"`
+	IconName           *string     `json:"icon_name"`
 	NameZh             *string     `json:"name_zh"`
 	NameEn             *string     `json:"name_en"`
 	DescriptionZh      *string     `json:"description_zh"`
@@ -47,6 +48,7 @@ func (s *Server) handleTraits(w http.ResponseWriter, r *http.Request) {
 		t := TraitResponse{
 			ID:                 row.ID,
 			Star:               row.Star,
+			IconName:           nullStr(row.IconName),
 			NameZh:             nullStr(row.NameZh),
 			NameEn:             nullStr(row.NameEn),
 			DescriptionZh:      nullStr(row.DescriptionZh),

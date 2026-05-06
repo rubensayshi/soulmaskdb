@@ -842,7 +842,7 @@ func (q *Queries) ListTechNodes(ctx context.Context) ([]TechNode, error) {
 }
 
 const listTraits = `-- name: ListTraits :many
-SELECT id, star, name_zh, name_en, description_zh, description_en,
+SELECT id, star, icon_name, name_zh, name_en, description_zh, description_en,
        description_vague_zh,
        source, effect, effect_attr, effect_value, effect_is_percentage,
        effect_probability, effect_cooldown, learned_id, upgrade_id,
@@ -865,6 +865,7 @@ func (q *Queries) ListTraits(ctx context.Context) ([]Trait, error) {
 		if err := rows.Scan(
 			&i.ID,
 			&i.Star,
+			&i.IconName,
 			&i.NameZh,
 			&i.NameEn,
 			&i.DescriptionZh,

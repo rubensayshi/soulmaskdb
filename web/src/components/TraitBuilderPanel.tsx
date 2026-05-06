@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import type { Trait } from '../lib/types'
 import { SLOT_CATEGORIES, type TraitFamilyLike } from '../lib/traitBuilder'
+
+const ICON_BASE = import.meta.env.VITE_ICON_BASE || '/icons'
 
 const CLAN_META: Record<string, { label: string; color: string }> = {
   claw: { label: 'Claw', color: '#e56666' },
@@ -22,6 +25,62 @@ function hexToRgb(hex: string): string {
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
   return `${r},${g},${b}`
+}
+
+type BadgeStyle = { shape: 'hexagon' | 'diamond' | 'shield'; fill: string; stroke: string; inner: string }
+
+function getBadgeStyle(source: string | undefined, isNegative: boolean): BadgeStyle {
+  if (source === 'XiHao') {
+    return isNegative
+      ? { shape: 'diamond', fill: '#3a2030', stroke: '#9a4050', inner: '#5a2535' }
+      : { shape: 'diamond', fill: '#2e2640', stroke: '#8a70b0', inner: '#3e3055' }
+  }
+  if (source === 'Normal' || !source) {
+    return isNegative
+      ? { shape: 'hexagon', fill: '#352025', stroke: '#9a4050', inner: '#4a2530' }
+      : { shape: 'hexagon', fill: '#1e2a1a', stroke: '#4a6a3a', inner: '#2a3a22' }
+  }
+  return isNegative
+    ? { shape: 'shield', fill: '#352025', stroke: '#9a4050', inner: '#4a2530' }
+    : { shape: 'shield', fill: '#2a2518', stroke: '#8a7a4a', inner: '#3a3420' }
+}
+
+const BADGE_PATHS: Record<BadgeStyle['shape'], string> = {
+  hexagon: 'M27,5 L73,5 L96,50 L73,95 L27,95 L4,50 Z',
+  diamond: 'M50,4 L96,50 L50,96 L4,50 Z',
+  shield: 'M50,6 L86,22 L86,54 Q86,82 50,95 Q14,82 14,54 L14,22 Z',
+}
+
+const BADGE_INNER: Record<BadgeStyle['shape'], string> = {
+  hexagon: 'M30,10 L70,10 L90,50 L70,90 L30,90 L10,50 Z',
+  diamond: 'M50,10 L90,50 L50,90 L10,50 Z',
+  shield: 'M50,11 L81,25 L81,52 Q81,78 50,90 Q19,78 19,52 L19,25 Z',
+}
+
+function TraitIcon({ name, size = 22, source, isNegative = false }: {
+  name: string | null; size?: number; source?: string; isNegative?: boolean
+}) {
+  const [err, setErr] = useState(false)
+  const badge = getBadgeStyle(source, isNegative)
+  const iconSize = Math.round(size * 0.56)
+
+  return (
+    <div className="relative flex-shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0" style={{ width: size, height: size }}>
+        <path d={BADGE_PATHS[badge.shape]} fill={badge.stroke} />
+        <path d={BADGE_INNER[badge.shape]} fill={badge.fill} />
+      </svg>
+      {name && !err && (
+        <img
+          src={`${ICON_BASE}/${name}.webp`}
+          alt=""
+          className="relative object-contain"
+          style={{ width: iconSize, height: iconSize }}
+          onError={() => setErr(true)}
+        />
+      )}
+    </div>
+  )
 }
 
 function StarPips({ star, max = 3 }: { star: number; max?: number }) {
@@ -191,6 +250,7 @@ export default function TraitBuilderPanel({
                       key={traitId}
                       className="flex items-center gap-2 px-2 py-1.5 bg-panel-2 border border-hair rounded-sm group"
                     >
+                      <TraitIcon name={trait.icon_name} size={20} source={trait.source ?? undefined} isNegative={trait.is_negative} />
                       <StarPips star={trait.star} />
                       <span className="text-[13px] font-display font-semibold tracking-[.02em] text-text truncate flex-1">
                         {trait.name_en || trait.name_zh || trait.id}

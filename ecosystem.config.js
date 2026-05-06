@@ -38,7 +38,7 @@ module.exports = {
       cwd: path.join(root, "web"),
       interpreter: "none",
       autorestart: false,
-      env: { VITE_BACKEND_PORT: String(bePort) },
+      env: { VITE_BACKEND_URL: `http://localhost:${bePort}` },
     },
   ],
 };
