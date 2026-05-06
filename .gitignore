@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 .claude/
 .superpowers/
+CLAUDE.local.md
 Game/Parsed/*_errors.json
 uasset_export/
 uasset_export_test/
