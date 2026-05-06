@@ -8,7 +8,7 @@ export interface SlotCategory {
 }
 
 export const SLOT_CATEGORIES: SlotCategory[] = [
-  { key: 'tribeBorn',     label: 'Tribe born',   sourceKey: 'BornBuLuoCiTiao', max: 4 },
+  { key: 'tribeBorn',     label: 'Tribe born',   sourceKey: 'BornBuLuoCiTiao', max: 1 },
   { key: 'combatLearned', label: 'Talents',       sourceKey: 'Normal',          max: 6 },
   { key: 'experience',    label: 'Experience',    sourceKey: 'JingLi',          max: 1 },
   { key: 'origin',        label: 'Origin',      sourceKey: 'BornChuShen',     max: 1 },

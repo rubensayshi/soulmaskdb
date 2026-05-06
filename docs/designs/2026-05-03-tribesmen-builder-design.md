@@ -8,7 +8,7 @@ Wishlist-style trait builder integrated into the existing `/traits` page as a co
 | ---------------- | ------------------ | --- | ---------------------------------------- |
 | Origin           | BornChuShen        | 1   | Pick 1                                   |
 | Personality      | XingGe             | 1   | Pick 1                                   |
-| Tribe born       | BornBuLuoCiTiao    | 4   | From active clan's pool only (cap approximate; game data shows 3-5 groups per clan) |
+| Tribe born       | BornBuLuoCiTiao    | 1   | Pick 1 from active clan's pool           |
 | Combat (learned) | Normal (learned)   | 6   | Any; respects clan lock                  |
 | Title            | ChengHao           | 1   | Pick 0-1                                 |
 | Preferences      | XiHao              | 3   | Positive only                            |
