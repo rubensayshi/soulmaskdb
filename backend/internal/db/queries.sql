@@ -99,6 +99,18 @@ FROM ore_spawns
 WHERE item_id = ?
 ORDER BY map, ore_category, ore_type, lat, lon;
 
+-- name: GetFarmPlotsForSeedItem :many
+SELECT fp.lat, fp.lon, fp.map, fp.tribe,
+  COALESCE((SELECT group_concat(DISTINCT fp2.crop)
+   FROM farm_plots fp2
+   WHERE fp2.map = fp.map AND fp2.lat = fp.lat AND fp2.lon = fp.lon
+     AND fp2.crop != fp.crop
+  ), '') AS other_crops
+FROM farm_plots fp
+JOIN seed_sources ss ON ss.farm_crop = fp.crop
+WHERE ss.item_id = ?
+ORDER BY fp.map, fp.lat, fp.lon;
+
 -- name: ListItemSlugs :many
 SELECT id, slug FROM items;
 

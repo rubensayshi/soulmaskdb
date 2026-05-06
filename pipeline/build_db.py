@@ -430,21 +430,32 @@ def main():
             optimal = f"{opt_m.group(1)}-{opt_m.group(2)}" if opt_m else None
             db.execute(
                 "INSERT INTO seed_sources (item_id, name_en, map, grindable, grinder_input, "
-                "fertilizer, temp_growth, temp_optimal, sources_json) "
-                "VALUES (?,?,?,?,?,?,?,?,?)",
+                "fertilizer, temp_growth, temp_optimal, sources_json, farm_crop) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?)",
                 (
                     s["item_id"], s["name_en"], s["map"],
                     1 if s.get("grindable") else 0,
                     s.get("grinder_input"),
                     fert, growth, optimal,
                     json.dumps(s["sources"]),
+                    s.get("farm_crop"),
                 ),
             )
             seed_source_count += 1
 
+    # --- farm plots ---
+    farm_plots_path = PARSED / "farm_plots.json"
+    farm_plot_count = 0
+    if farm_plots_path.exists():
+        farm_plots_data = json.loads(farm_plots_path.read_text(encoding="utf-8-sig"))
+        for fp in farm_plots_data:
+            db.execute(
+                "INSERT INTO farm_plots (crop, lat, lon, map, tribe) VALUES (?,?,?,?,?)",
+                (fp["crop"], round(fp["lat"]), round(fp["lon"]), fp["map"], fp.get("tribe")),
+            )
+            farm_plot_count += 1
+
     # --- compute maps_available for items with buffs ---
-    # Derive from seed_sources: crop_id (seed minus _Seed suffix) -> map.
-    # Walk recipe inputs up to 2 levels deep to tag buffed foods.
     crop_to_map = {}
     if seed_src_path.exists():
         for s in load_json(seed_src_path):
@@ -458,8 +469,6 @@ def main():
             recipes_by_output.setdefault(out, []).append(r)
 
     def item_map_availability(item_id: str, depth: int = 0) -> set[str] | None:
-        """Return {'base'}, {'dlc'}, or {'base','dlc'} based on seed-source
-        tracing through recipe inputs. None means no crop dependency found."""
         if depth > 2:
             return None
         low = item_id.lower()
@@ -671,6 +680,7 @@ def main():
     print(f"  drop_items:        {drop_item_count}")
     print(f"  traits:            {trait_count}")
     print(f"  seed_sources:      {seed_source_count}")
+    print(f"  farm_plots:        {farm_plot_count}")
     print(f"  creature_spawns:   {spawn_count}")
     print(f"  ore_spawns:        {ore_count}")
 

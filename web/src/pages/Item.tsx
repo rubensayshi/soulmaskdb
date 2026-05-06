@@ -15,6 +15,7 @@ import TechUnlock from '../components/TechUnlock'
 import ItemStats from '../components/ItemStats'
 import QualitySelector, { QUALITY_TIERS } from '../components/QualitySelector'
 import SpawnMap from '../components/SpawnMap'
+import FarmPlotMap from '../components/FarmPlotMap'
 
 export default function Item() {
   const { id: slugOrId } = useParams<{ id: string }>()
@@ -71,6 +72,7 @@ export default function Item() {
 
   const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set())
   const [activeMap, setActiveMap] = useState<string>(() => localStorage.getItem('spawn-map-pref') ?? 'base')
+  const [activeFarmMap, setActiveFarmMap] = useState<string>('base')
   useEffect(() => { setSelectedCats(new Set()); setQuality(0) }, [id])
 
   const finalCats = useMemo(() => {
@@ -131,7 +133,7 @@ export default function Item() {
           <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         )}
       </Helmet>
-      {detail?.spawn_locations && detail.spawn_locations.length > 0 ? (
+      {(detail?.spawn_locations && detail.spawn_locations.length > 0) || (detail?.farm_plots && detail.farm_plots.length > 0) ? (
         <div className="flex flex-col md:flex-row gap-5 items-start mb-[26px]">
           <div className="flex-1 min-w-0 w-full [&>div:first-child]:mb-0">
             <ItemHeader item={item} recipe={recipe} station={station} quality={quality} />
@@ -141,15 +143,15 @@ export default function Item() {
                 <TechUnlock unlocks={detail.tech_unlocked_by} />
               </div>
             )}
-            {detail.drop_sources && detail.drop_sources.length > 0 && (
+            {detail.seed_source && (
               <div className="mt-4">
-                <SectionHeader title="Obtained From" sub="Drop Sources" accent="rust" />
-                <ObtainedFrom sources={detail.drop_sources} maxRows={6} />
+                <SectionHeader title="Farming" sub="Planting Requirements" accent="green" />
+                <SeedFarmingStats seed={detail.seed_source} />
               </div>
             )}
           </div>
           <div className="w-full md:w-[50%] flex-shrink-0 border border-hair-strong p-2 bg-panel">
-            {(() => {
+            {detail.spawn_locations && detail.spawn_locations.length > 0 && (() => {
               const maps = detail.spawn_locations
               const current = maps.find(m => m.map === activeMap) ?? maps[0]
               return (
@@ -175,6 +177,32 @@ export default function Item() {
                 </>
               )
             })()}
+            {detail.farm_plots && detail.farm_plots.length > 0 && (() => {
+              const maps = detail.farm_plots
+              const current = maps.find(m => m.map === activeFarmMap) ?? maps[0]
+              return (
+                <>
+                  {maps.length > 1 && (
+                    <div className="flex mb-2">
+                      {maps.map(m => (
+                        <button key={m.map}
+                          onClick={() => setActiveFarmMap(m.map)}
+                          className={`flex-1 py-[4px] text-[12px] tracking-[.08em] uppercase font-medium border-b-2 transition-colors ${
+                            m.map === current.map
+                              ? 'text-teal border-teal'
+                              : 'text-text-dim border-transparent hover:text-text'
+                          }`}
+                        >
+                          {m.map === 'base' ? 'Cloud & Mist' : 'Shifting Sands'}
+                          <span className="tabular-nums opacity-60 ml-1">{m.plots.length}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <FarmPlotMap key={current.map} data={[current]} compact />
+                </>
+              )
+            })()}
           </div>
         </div>
       ) : (
@@ -186,13 +214,6 @@ export default function Item() {
               <TechUnlock unlocks={detail.tech_unlocked_by} />
             </>
           )}
-        </>
-      )}
-
-      {detail?.seed_source && (
-        <>
-          <SectionHeader title="Farming" sub="Planting Requirements" accent="green" />
-          <SeedFarmingStats seed={detail.seed_source} />
         </>
       )}
 
@@ -277,6 +298,7 @@ export default function Item() {
           <ObtainedFrom sources={detail.drop_sources} />
         </>
       )}
+
     </div>
   )
 }

@@ -64,6 +64,46 @@ type SpawnMap struct {
 	Groups []SpawnGroup `json:"groups"`
 }
 
+type FarmPlotPoint struct {
+	Lat        int64    `json:"lat"`
+	Lon        int64    `json:"lon"`
+	Tribe      *string  `json:"tribe,omitempty"`
+	OtherCrops []string `json:"other_crops,omitempty"`
+}
+
+type FarmPlotMap struct {
+	Map   string          `json:"map"`
+	Plots []FarmPlotPoint `json:"plots"`
+}
+
+var tribeNames = map[string]string{
+	"ZhongXingBuLuo_XiBuYuLin_ZhiHui":        "Western Rainforest (Medium)",
+	"ZhongXingBuLuo_KengDongQiuLing_ShenMi":   "Cave Hills (Medium)",
+	"ZhongXingBuLuo_PingDingShan_ShenMi":       "Flat Top Mountain (Medium)",
+	"ZhongXingBuLuo_DaCaoYuan_ZhiHui":          "Great Grassland (Medium)",
+	"ZhongXingBuLuo_GaoHanDi_ShenMi":           "Highland (Medium)",
+	"ZhongXingBuLuo_HanYeLin_ZhiHui":           "Cold Forest (Medium)",
+	"ZhongXingBuLuo_HongShuLin_ZhiHui":         "Mangrove Forest (Medium)",
+	"DaXingBuLuo_HuAnSenLin_ZhiHui":            "Lakeside Forest (Large)",
+	"DaXingBuLuo_NanBuHuangYuan_ShenMi":         "Southern Wasteland (Large)",
+}
+
+func translateTribe(s *string) *string {
+	if s == nil {
+		return nil
+	}
+	if name, ok := tribeNames[*s]; ok {
+		return &name
+	}
+	// DLC tribes: strip path prefix, humanize
+	v := *s
+	if idx := strings.LastIndex(v, "/"); idx >= 0 {
+		v = v[idx+1:]
+	}
+	v = strings.ReplaceAll(v, "_", " ")
+	return &v
+}
+
 type ItemDetail struct {
 	ID             string       `json:"id"`
 	NameEn         *string      `json:"name_en"`
@@ -82,7 +122,8 @@ type ItemDetail struct {
 	RecipesUsedIn  []string     `json:"recipes_used_in"`
 	DropSources    []DropSource `json:"drop_sources"`
 	SeedSource     *SeedSource  `json:"seed_source,omitempty"`
-	SpawnLocations []SpawnMap `json:"spawn_locations,omitempty"`
+	FarmPlots      []FarmPlotMap `json:"farm_plots,omitempty"`
+	SpawnLocations []SpawnMap   `json:"spawn_locations,omitempty"`
 }
 
 func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
@@ -170,6 +211,30 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		}
 		if seedRow.GrinderInput.Valid {
 			seedSource.GrinderInput = &seedRow.GrinderInput.String
+		}
+	}
+
+	// Farm plots — tribe barracks where this seed's crop grows
+	var farmPlots []FarmPlotMap
+	fpRows, _ := q.GetFarmPlotsForSeedItem(ctx, item.ID)
+	if len(fpRows) > 0 {
+		mapIdx := make(map[string]int)
+		for _, r := range fpRows {
+			mi, ok := mapIdx[r.Map]
+			if !ok {
+				mi = len(farmPlots)
+				mapIdx[r.Map] = mi
+				farmPlots = append(farmPlots, FarmPlotMap{Map: r.Map})
+			}
+			pt := FarmPlotPoint{
+				Lat:   r.Lat,
+				Lon:   r.Lon,
+				Tribe: translateTribe(nullStr(r.Tribe)),
+			}
+			if oc, ok := r.OtherCrops.(string); ok && oc != "" {
+				pt.OtherCrops = strings.Split(oc, ",")
+			}
+			farmPlots[mi].Plots = append(farmPlots[mi].Plots, pt)
 		}
 	}
 
@@ -266,6 +331,7 @@ func (s *Server) handleItem(w http.ResponseWriter, r *http.Request) {
 		RecipesUsedIn:  usedInIDs,
 		DropSources:    dropSources,
 		SeedSource:     seedSource,
+		FarmPlots:      farmPlots,
 		SpawnLocations: spawnLocations,
 	}
 
