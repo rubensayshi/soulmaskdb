@@ -165,17 +165,21 @@ def build_clan_map():
     return clan_map
 
 
-def derive_clan_from_name(name_zh, source):
-    """Derive clan from Chinese name patterns for BornBuLuoCiTiao traits."""
-    if source != "BornBuLuoCiTiao" or not name_zh:
+ICON_CLAN = {
+    "Icon_NG_BuLuo_LiZhua": "claw",
+    "Icon_NG_BuLuo_HuoShi": "flint",
+    "Icon_NG_BuLuo_DuYa": "fang",
+    "Icon_NG_BuLuo_HuangLang": "wolf",
+    "Icon_NG_BuLuo_ManJiao": "horn",
+    "Icon_NG_BuLuo_liufangzhe": "exile",
+}
+
+
+def derive_clan_from_icon(icon_name, source):
+    """Derive clan from icon texture name for BornBuLuoCiTiao traits."""
+    if source != "BornBuLuoCiTiao" or not icon_name:
         return None
-    if "荒狼" in name_zh:
-        return "wolf"
-    if "蛮角" in name_zh:
-        return "horn"
-    if name_zh.startswith("流放者"):
-        return "exile"
-    return None
+    return ICON_CLAN.get(icon_name)
 
 
 def parse_traits():
@@ -289,6 +293,7 @@ def parse_traits():
             "weapon_requirements": weapons if weapons else None,
             "conditions": conditions if conditions else None,
             "icon_ref": icon_ref,
+            "icon_name": icon_name,
         }
         traits.append(trait)
 
@@ -297,21 +302,20 @@ def parse_traits():
 
 
 def enrich_clans(traits):
-    """Add clan field from pool table conditions + name patterns."""
+    """Add clan field from icon textures + pool table conditions."""
     clan_map = build_clan_map()
-    name_derived = 0
+    icon_derived = 0
     pool_derived = 0
     for t in traits:
-        # Name pattern takes priority (more specific)
-        clan = derive_clan_from_name(t.get("name_zh"), t.get("source"))
+        clan = derive_clan_from_icon(t.get("icon_name"), t.get("source"))
         if clan:
-            name_derived += 1
+            icon_derived += 1
         else:
             clan = clan_map.get(t["id"])
             if clan:
                 pool_derived += 1
         t["clan"] = clan
-    print(f"  Clan tags: {name_derived} from name, {pool_derived} from pool tables")
+    print(f"  Clan tags: {icon_derived} from icon, {pool_derived} from pool tables")
 
 
 def main():
