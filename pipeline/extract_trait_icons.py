@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Extract trait icons from Soulmask modkit .uasset files.
 
-Each .uasset embeds a PNG at its source data section. This script:
-1. Scans all 5 subfolders under ChuShenTianFu/ for .uasset files
-2. Extracts the embedded PNG from each
-3. Converts to webp (quality 90)
-4. Saves to Game/Icons/
+UE4 stores two images per texture uasset:
+1. An uncompressed PNG (RGB only, alpha=255 everywhere) — the mip source.
+2. A zlib-compressed PNG (RGBA, proper transparency) — the full source art.
+
+This script uses the zlib-compressed PNG which has correct alpha, falling
+back to the uncompressed PNG if no zlib PNG is found.
 
 Usage:
     python3 pipeline/extract_trait_icons.py
@@ -13,7 +14,7 @@ Usage:
 
 import io
 import os
-import sys
+import zlib
 
 from PIL import Image
 
@@ -27,9 +28,12 @@ MODKIT_DIR = (
 
 PNG_HEADER = bytes([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
 IEND_MARKER = bytes([0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82])
+# Valid zlib compression level bytes following 0x78
+ZLIB_SECOND = {0x9C, 0xDA, 0x01, 0x5E}
 
 
 def extract_png(data: bytes) -> bytes | None:
+    """Extract the first uncompressed embedded PNG."""
     start = data.find(PNG_HEADER)
     if start == -1:
         return None
@@ -37,6 +41,19 @@ def extract_png(data: bytes) -> bytes | None:
     if end == -1:
         return None
     return data[start : end + len(IEND_MARKER)]
+
+
+def extract_zlib_png(data: bytes) -> bytes | None:
+    """Find and decompress the zlib-compressed PNG with proper alpha channel."""
+    for i in range(len(data) - 2):
+        if data[i] == 0x78 and data[i + 1] in ZLIB_SECOND:
+            try:
+                decompressed = zlib.decompress(data[i:])
+                if decompressed[:4] == PNG_HEADER[:4]:
+                    return decompressed
+            except zlib.error:
+                pass
+    return None
 
 
 def scan_uassets(root: str) -> dict[str, str]:
@@ -82,7 +99,9 @@ def main():
             continue
 
         raw = open(uasset_path, "rb").read()
-        png_data = extract_png(raw)
+
+        # Prefer the zlib-compressed PNG which has the real alpha channel
+        png_data = extract_zlib_png(raw) or extract_png(raw)
         if not png_data:
             errors.append((name, "no embedded PNG found"))
             continue
