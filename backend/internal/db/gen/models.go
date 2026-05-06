@@ -131,6 +131,7 @@ type TechNodeUnlocksRecipe struct {
 type Trait struct {
 	ID                 string
 	Star               int64
+	IconName           sql.NullString
 	NameZh             sql.NullString
 	NameEn             sql.NullString
 	DescriptionZh      sql.NullString

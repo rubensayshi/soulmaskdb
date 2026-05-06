@@ -511,13 +511,13 @@ def main():
         traits_data = load_json(traits_path)
         for t in traits_data:
             db.execute(
-                "INSERT INTO traits (id, star, name_zh, description_zh, description_vague_zh, "
+                "INSERT INTO traits (id, star, icon_name, name_zh, description_zh, description_vague_zh, "
                 "source, effect, effect_attr, effect_value, effect_is_percentage, "
                 "effect_probability, effect_cooldown, learned_id, upgrade_id, base_weight, "
                 "is_dlc, is_negative, clan, proficiencies_json, conditions_json, weapons_json) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (
-                    t["id"], t["star"], t.get("name_zh"), t.get("description_zh"),
+                    t["id"], t["star"], t.get("icon_name"), t.get("name_zh"), t.get("description_zh"),
                     t.get("description_vague_zh"), t.get("source"), t.get("effect"),
                     t.get("effect_attr"), t.get("effect_value"),
                     1 if t.get("effect_is_percentage") else 0,

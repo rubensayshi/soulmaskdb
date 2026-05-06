@@ -122,7 +122,7 @@ JOIN recipes r ON r.id = u.recipe_id
 JOIN items i ON i.id = r.output_item_id;
 
 -- name: ListTraits :many
-SELECT id, star, name_zh, name_en, description_zh, description_en,
+SELECT id, star, icon_name, name_zh, name_en, description_zh, description_en,
        description_vague_zh,
        source, effect, effect_attr, effect_value, effect_is_percentage,
        effect_probability, effect_cooldown, learned_id, upgrade_id,

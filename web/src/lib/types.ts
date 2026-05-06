@@ -190,6 +190,7 @@ export type TechMode = 'survival' | 'soldier' | 'management'
 export interface Trait {
   id: string
   star: number
+  icon_name: string | null
   name_zh: string | null
   name_en: string | null
   description_zh: string | null

@@ -10,6 +10,8 @@ import {
 } from '../lib/traitBuilder'
 import TraitBuilderPanel from '../components/TraitBuilderPanel'
 
+const ICON_BASE = import.meta.env.VITE_ICON_BASE || '/icons'
+
 const SOURCE_TABS = [
   { key: 'all',              label: 'All',         subtitle: 'Every trait',             color: '#8aa074' },
   { key: 'Normal',           label: 'Talents',     subtitle: 'Learned abilities',       color: '#e56666' },
@@ -55,6 +57,7 @@ const TIER_META: Record<string, { label: string; color: string; bg: string }> = 
 interface TraitFamily {
   learnedId: string
   name: string
+  iconName: string | null
   tiers: Trait[]
   source: string
   isDlc: boolean
@@ -143,6 +146,62 @@ function TierDiamond({ color, size = 10 }: { color: string; size?: number }) {
   )
 }
 
+type BadgeStyle = { shape: 'hexagon' | 'diamond' | 'shield'; fill: string; stroke: string; inner: string }
+
+function getBadgeStyle(source: string | undefined, isNegative: boolean): BadgeStyle {
+  if (source === 'XiHao') {
+    return isNegative
+      ? { shape: 'diamond', fill: '#3a2030', stroke: '#9a4050', inner: '#5a2535' }
+      : { shape: 'diamond', fill: '#2e2640', stroke: '#8a70b0', inner: '#3e3055' }
+  }
+  if (source === 'Normal' || !source) {
+    return isNegative
+      ? { shape: 'hexagon', fill: '#352025', stroke: '#9a4050', inner: '#4a2530' }
+      : { shape: 'hexagon', fill: '#1e2a1a', stroke: '#4a6a3a', inner: '#2a3a22' }
+  }
+  return isNegative
+    ? { shape: 'shield', fill: '#352025', stroke: '#9a4050', inner: '#4a2530' }
+    : { shape: 'shield', fill: '#2a2518', stroke: '#8a7a4a', inner: '#3a3420' }
+}
+
+const BADGE_PATHS: Record<BadgeStyle['shape'], string> = {
+  hexagon: 'M27,5 L73,5 L96,50 L73,95 L27,95 L4,50 Z',
+  diamond: 'M50,4 L96,50 L50,96 L4,50 Z',
+  shield: 'M50,6 L86,22 L86,54 Q86,82 50,95 Q14,82 14,54 L14,22 Z',
+}
+
+const BADGE_INNER: Record<BadgeStyle['shape'], string> = {
+  hexagon: 'M30,10 L70,10 L90,50 L70,90 L30,90 L10,50 Z',
+  diamond: 'M50,10 L90,50 L50,90 L10,50 Z',
+  shield: 'M50,11 L81,25 L81,52 Q81,78 50,90 Q19,78 19,52 L19,25 Z',
+}
+
+function TraitIcon({ name, size = 28, source, isNegative = false }: {
+  name: string | null; size?: number; source?: string; isNegative?: boolean
+}) {
+  const [err, setErr] = useState(false)
+  const badge = getBadgeStyle(source, isNegative)
+  const iconSize = Math.round(size * 0.56)
+
+  return (
+    <div className="relative flex-shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0" style={{ width: size, height: size }}>
+        <path d={BADGE_PATHS[badge.shape]} fill={badge.stroke} />
+        <path d={BADGE_INNER[badge.shape]} fill={badge.fill} />
+      </svg>
+      {name && !err && (
+        <img
+          src={`${ICON_BASE}/${name}.webp`}
+          alt=""
+          className="relative object-contain"
+          style={{ width: iconSize, height: iconSize }}
+          onError={() => setErr(true)}
+        />
+      )}
+    </div>
+  )
+}
+
 function StarPips({ star, max = 3 }: { star: number; max?: number }) {
   return (
     <span className="flex gap-[3px] items-center">
@@ -206,6 +265,7 @@ export default function Traits() {
         map.set(key, {
           learnedId: key,
           name: t.name_en || t.name_zh || t.id,
+          iconName: t.icon_name,
           tiers: [],
           source: src,
           isDlc: t.is_dlc,
@@ -667,6 +727,7 @@ export default function Traits() {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedId(isExpanded ? null : fam.learnedId) } }}
                   className="w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-panel-2 transition-colors cursor-pointer"
                 >
+                  <TraitIcon name={fam.iconName} size={26} source={fam.source} isNegative={fam.isNegative} />
                   <StarPips star={topTier.star} />
                   <span className={`font-display text-[15px] font-semibold tracking-[.02em] min-w-0 truncate ${neg ? '' : 'text-text'}`} style={neg ? { color: '#c47070' } : undefined}>
                     {fam.name}

@@ -136,6 +136,7 @@ CREATE TABLE ore_spawns (
 CREATE TABLE traits (
   id                    TEXT PRIMARY KEY,
   star                  INTEGER NOT NULL,
+  icon_name             TEXT,
   name_zh               TEXT,
   name_en               TEXT,
   description_zh        TEXT,
