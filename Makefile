@@ -19,21 +19,36 @@ help:
 	@echo "  icons-sync   Upload icons to Tigris CDN"
 	@echo "  clean        Remove build artifacts"
 
+PM2_NAMES := $(shell node -e " \
+	const c = require('./ecosystem.config.js'); \
+	console.log(c.apps.map(a => a.name).join(' ')); \
+")
+
 dev:
 	pm2 start ecosystem.config.js
 	@sleep 2
 	pm2 status
-	@echo ""
-	@echo "  Logs: make dev-logs    Stop: make dev-stop"
+	@node -e " \
+		const c = require('./ecosystem.config.js'); \
+		const be = c.apps[0], fe = c.apps[1]; \
+		const bePort = be.args.match(/-addr :(\d+)/)[1]; \
+		const fePort = fe.args.match(/--port (\d+)/)[1]; \
+		console.log('  Backend: http://localhost:' + bePort); \
+		console.log('  Frontend: http://localhost:' + fePort); \
+		console.log('  Logs: make dev-logs    Stop: make dev-stop'); \
+	"
 
 dev-stop:
-	pm2 stop souldb-be souldb-fe
+	pm2 stop $(PM2_NAMES)
+
+dev-cleanup:
+	pm2 delete $(PM2_NAMES)
 
 dev-status:
 	pm2 status
 
 dev-logs:
-	pm2 logs --lines 50
+	pm2 logs $(PM2_NAMES) --lines 50
 
 parse:
 	python3 pipeline/parse_items.py

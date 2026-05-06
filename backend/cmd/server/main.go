@@ -21,7 +21,8 @@ func main() {
 	addr := flag.String("addr", ":9060", "listen address")
 	dbPath := flag.String("db", "../data/app.db", "path to app.db")
 	iconsDir := flag.String("icons", "../Game/Icons", "path to icons directory")
-	dev := flag.Bool("dev", false, "reverse-proxy non-api to Vite on :5173")
+	dev := flag.Bool("dev", false, "reverse-proxy non-api to Vite")
+	viteURL := flag.String("vite", "http://localhost:5173", "Vite dev server URL (used with -dev)")
 	flag.Parse()
 
 	log := zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}).
@@ -38,7 +39,7 @@ func main() {
 
 	var spaHandler http.Handler
 	if *dev {
-		spaHandler, err = spa.DevHandler("http://localhost:5173")
+		spaHandler, err = spa.DevHandler(*viteURL)
 	} else {
 		spaHandler, err = spa.ProdHandler()
 	}
