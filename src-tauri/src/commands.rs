@@ -133,28 +133,35 @@ pub async fn capture_screen(app: AppHandle) -> Result<String, String> {
 pub fn capture_and_process(app: &AppHandle) {
     let app = app.clone();
     tauri::async_runtime::spawn(async move {
+        eprintln!("[capture] hotkey triggered, starting screen capture");
         app.emit("capture:status", "capturing").ok();
 
         let screenshot_path = match capture_screen(app.clone()).await {
-            Ok(p) => p,
+            Ok(p) => {
+                eprintln!("[capture] screenshot saved to {}", p);
+                p
+            }
             Err(e) => {
+                eprintln!("[capture] screenshot failed: {}", e);
                 app.emit("capture:error", e).ok();
                 return;
             }
         };
 
+        eprintln!("[capture] running sidecar processing");
         app.emit("capture:status", "processing").ok();
 
         match process_images(vec![screenshot_path.clone()], app.clone()).await {
             Ok(result) => {
+                eprintln!("[capture] done — {} cards, {} tribesmen", result.cards_found, result.tribesmen.len());
                 app.emit("capture:result", &result).ok();
             }
             Err(e) => {
+                eprintln!("[capture] processing failed: {}", e);
                 app.emit("capture:error", e).ok();
             }
         }
 
-        // Clean up the temp screenshot
         let _ = std::fs::remove_file(&screenshot_path);
     });
 }
