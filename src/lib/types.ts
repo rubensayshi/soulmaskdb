@@ -76,3 +76,12 @@ export interface SortState {
   key: string
   dir: 'asc' | 'desc'
 }
+
+export type SlotType = 'keep' | 'replace' | 'empty' | 'planned'
+export type PlannerLayout = 'planner' | 'stepper'
+
+export interface SlotState {
+  type: SlotType
+  originalTrait?: TraitMatch
+  desiredTraitId?: string
+}
