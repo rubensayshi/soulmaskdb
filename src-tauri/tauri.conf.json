@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/nicedoc/schemas/main/tauri/tauri.conf.json",
-  "productName": "Screenread",
+  "productName": "Soulmask Codex",
   "version": "0.1.0",
   "identifier": "com.soulmask-codex.screenread",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Screenread — Tribesman Roster",
+        "title": "Soulmask Codex — Tribesman Roster",
         "width": 1280,
         "height": 800,
         "minWidth": 960,
