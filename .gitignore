@@ -28,3 +28,7 @@ Game/Maps/
 
 # TS incremental build info
 web/tsconfig.tsbuildinfo
+
+# Screenread app
+sidecar/.venv/
+assets/atlas/
