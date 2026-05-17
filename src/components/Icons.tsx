@@ -98,6 +98,22 @@ export function IcoX({ size = 14 }: P) {
   )
 }
 
+export function IcoCheck({ size = 14 }: P) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
+}
+
+export function IcoChevDown({ size = 14 }: P) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  )
+}
+
 export function GroupDots() {
   return (
     <svg width={9} height={9} viewBox="0 0 10 10" style={{ flexShrink: 0 }}>

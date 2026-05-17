@@ -178,7 +178,7 @@ const tdStyle: React.CSSProperties = {
   height: 48,
 }
 
-function ExpandedRow({ tm, showProf }: { tm: Tribesman; showProf: boolean }) {
+export function ExpandedRow({ tm, showProf }: { tm: Tribesman; showProf: boolean }) {
   const byShape: Record<BadgeShape, typeof tm.traits> = {
     hexagon: tm.traits.filter(t => t.shape === 'hexagon'),
     shield: tm.traits.filter(t => t.shape === 'shield'),

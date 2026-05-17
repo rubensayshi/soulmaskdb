@@ -2,7 +2,13 @@ import { useState, useMemo } from 'react'
 import { MOCK_ROSTER, REVIEW_ITEMS } from './lib/data'
 import type { Filters, SortState, LayoutMode } from './lib/types'
 import { RosterTable, sortRows, filterRows } from './pages/Roster'
+import { CardsLayout } from './pages/CardsLayout'
+import { SplitLayout } from './pages/SplitLayout'
+import { EmptyState } from './pages/EmptyState'
 import { FilterBar } from './components/FilterBar'
+import { CaptureModal } from './components/CaptureModal'
+import { ReviewScreen } from './components/ReviewScreen'
+import { SettingsModal } from './components/SettingsModal'
 import { IcoCompass, IcoUsers, IcoCamera, IcoFlag, IcoCog, IcoSearch, IcoExport, IcoTable, IcoCards, IcoSplit } from './components/Icons'
 import './styles.css'
 
@@ -11,7 +17,9 @@ function App() {
   const [query, setQuery] = useState('')
   const [filters, setFilters] = useState<Filters>({ clan: 'all', status: 'all', groups: [] })
   const [sort, setSort] = useState<SortState>({ key: 'name', dir: 'asc' })
-  const [screen, setScreen] = useState<'roster' | 'empty'>('roster')
+  const [screen, setScreen] = useState<'roster' | 'empty' | 'review'>('roster')
+  const [showCapture, setShowCapture] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
 
   const rows = useMemo(
     () => sortRows(filterRows(MOCK_ROSTER, filters, query), sort),
@@ -86,10 +94,10 @@ function App() {
           <RailBtn active={screen === 'roster'} onClick={() => setScreen('roster')} title="Roster">
             <IcoUsers />
           </RailBtn>
-          <RailBtn onClick={() => {}} title="Capture (Alt+Shift+S)">
+          <RailBtn onClick={() => setShowCapture(true)} title="Capture (Alt+Shift+S)">
             <IcoCamera />
           </RailBtn>
-          <RailBtn onClick={() => {}} title="Review queue">
+          <RailBtn active={screen === 'review'} onClick={() => setScreen('review')} title="Review queue">
             <IcoFlag />
             <span
               className="absolute grid place-items-center rounded-full"
@@ -103,15 +111,15 @@ function App() {
             </span>
           </RailBtn>
           <div className="flex-1" />
-          <RailBtn onClick={() => {}} title="Settings">
+          <RailBtn onClick={() => setShowSettings(true)} title="Settings">
             <IcoCog />
           </RailBtn>
         </div>
 
         {/* Main content */}
         <div className="flex-1 min-w-0 flex flex-col min-h-0">
-          {/* Top bar */}
-          <div
+          {/* Top bar — only for roster */}
+          {screen === 'roster' && <div
             className="flex items-center gap-4 shrink-0"
             style={{
               height: 56,
@@ -180,34 +188,47 @@ function App() {
             <button className="btn-outline">
               <IcoExport />Export
             </button>
-            <button className="btn-primary">
+            <button className="btn-primary" onClick={() => setShowCapture(true)}>
               <IcoCamera size={12} />Capture
             </button>
-          </div>
+          </div>}
 
           {/* Filter bar */}
-          {layout !== 'split' && (
+          {screen === 'roster' && layout !== 'split' && (
             <FilterBar filters={filters} setFilters={setFilters} />
           )}
 
           {/* Content */}
           <div className="flex-1 min-h-0 overflow-auto content-scroll">
-            {layout === 'table' && (
+            {screen === 'empty' && (
+              <EmptyState onCapture={() => setShowCapture(true)} />
+            )}
+            {screen === 'review' && (
+              <ReviewScreen onDone={() => setScreen('roster')} />
+            )}
+            {screen === 'roster' && layout === 'table' && (
               <RosterTable rows={rows} sort={sort} setSort={setSort} showProf />
             )}
-            {layout === 'cards' && (
-              <div className="p-5 text-center" style={{ color: 'var(--color-muted)' }}>
-                Cards layout — coming soon
-              </div>
+            {screen === 'roster' && layout === 'cards' && (
+              <CardsLayout rows={rows} />
             )}
-            {layout === 'split' && (
-              <div className="p-5 text-center" style={{ color: 'var(--color-muted)' }}>
-                Split layout — coming soon
-              </div>
+            {screen === 'roster' && layout === 'split' && (
+              <SplitLayout rows={rows} showProf />
             )}
           </div>
         </div>
       </div>
+
+      {showCapture && (
+        <CaptureModal
+          onClose={() => setShowCapture(false)}
+          onDone={(action) => {
+            setShowCapture(false)
+            if (action === 'review') setScreen('review')
+          }}
+        />
+      )}
+      {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
     </div>
   )
 }
