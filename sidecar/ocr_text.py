@@ -42,15 +42,33 @@ def ocr_region(img: np.ndarray, psm: int = 7, threshold: int = 70, use_red: bool
 
 
 def parse_name(text: str) -> str:
+    # Strip leading OCR artifacts
     text = re.sub(r'^[◆◇♦<>\[\]©®°•·&@#%\d\s]+', '', text)
-    # Strip single leading char artifact (icon remnants like "x", "&")
     text = re.sub(r'^[a-z&@#]\s+', '', text)
-    # Strip trailing equipment text (contains digits: "Armor Alch 120", "124 Bow")
+    # OCR "|" is often "I"; treat as I when space-separated, else as space
+    text = re.sub(r'(?<=\s)\|(?=\s)', 'I', text)
+    text = re.sub(r'(?<=\S)\|(?=V)', ' I', text)
+    text = re.sub(r'[|®«»©]', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    # Normalize Roman numerals: ll/Il→II, VL→VI, VIL→VII
+    text = re.sub(r'(?<=[a-z])[lI]{2}(?=\s|$)', ' II', text)
+    text = re.sub(r'\s+[lI]{2}(?=\s|$)', ' II', text)
+    text = re.sub(r'\s+(V?I{0,3})L(?=["\x27\u201c\u201d\u2018\u2019\s]|$)', lambda m: ' ' + m.group(1) + 'I', text)
+    text = re.sub(r'["\x27\u201c\u201d\u2018\u2019]$', '', text).strip()
+    # Extract trailing Roman numeral (I-VII) before stripping garbage
+    roman_suffix = ""
+    rm = re.search(r'\s+(I{1,3}|IV|VI{0,3}|VII?)(?:\s|$)', text)
+    if rm:
+        roman_suffix = " " + rm.group(1)
+        text = text[:rm.start()]
+    # Strip trailing garbage
     text = re.sub(r'\s+[A-Za-z]*\s*\d+\s*[A-Za-z]*\s*$', '', text)
     text = re.sub(r'\s+[^\w\s].*$', '', text)
     text = re.sub(r'\s+[&@#<>\[\]©®°•·\-_|:;,.!?\d]+$', '', text)
-    text = re.sub(r'\s+\S{1,2}$', '', text)
-    return text.strip()
+    if not re.search(r'\s+[IVX]{1,4}$', text):
+        text = re.sub(r'\s+\S{1,2}$', '', text)
+    text = re.sub(r'[&@#\d\s.,:;!?]+$', '', text)
+    return (text + roman_suffix).strip()
 
 
 def parse_level_line(text: str) -> dict:
@@ -69,25 +87,27 @@ def parse_level_line(text: str) -> dict:
             "iint": "Flint", "ilint": "Flint", "flint": "Flint", "mint": "Flint",
             "lint": "Flint", "i lint": "Flint", "fint": "Flint", "fi": "Flint",
             "i": "Flint", "ilint i": "Flint", "flint f": "Flint", "oulcasl": "Outcast",
-            "flinlt": "Flint", "llint": "Flint", "ulint": "Flint",
+            "flinlt": "Flint", "llint": "Flint", "ulint": "Flint", "illint": "Flint",
+            "llmt": "Flint", "llmt tibe": "Flint", "llint lnbe": "Flint",
             "lang": "Long", "long": "Long", "iane": "Long", "iang": "Long",
+            "ianp": "Long", "lanp": "Long",
         }
         result["clan"] = CLAN_MAP.get(clan_raw.lower(), clan_raw)
         text = text[:clan_match.start()] + text[clan_match.end():]
 
-    # Extract level: LV.32  (OCR misreads L→1/I, or drops it entirely)
-    level_match = re.search(r'(?:[1lIL])?[Vv]\.?\s*(\d+)', text)
+    # Extract level: LV.32  (OCR misreads L→1/I, V→¥, or drops prefix)
+    level_match = re.search(r'(?:^|(?<=[\s|]))(?:[1lIL])?[Vv¥]\.?\s*(\d{1,3})(?=[\s).>]|$)', text)
+    if not level_match:
+        # Bare leading digits: "33 Skilled Guard" (1+ spaces before alpha)
+        level_match = re.match(r'(\d{2,3})\s+(?=[A-Z])', text)
     if level_match:
         result["level"] = int(level_match.group(1))
         text = text[:level_match.start()] + text[level_match.end():]
 
-    # Remaining text after level is the class, possibly with title appended
     class_name = text.strip().strip(".,;: ")
-    # Strip leading OCR artifacts (|, digits, punctuation from icon remnants)
     class_name = re.sub(r'^[\d|!\[\](){}<>"\'\s.,;:*#@&%^~`/\\]+', '', class_name).strip()
-    # Remove isolated single-char artifacts at start
-    class_name = re.sub(r'^\S\s{2,}', '', class_name).strip()
-    # Some cards have "Skilled Craftsman  Famous Trash" — title after double space
+    # Remove leading short artifacts (1-2 chars before space): "cv Novice..." → "Novice..."
+    class_name = re.sub(r'^\S{1,2}\s+', '', class_name).strip()
     parts = re.split(r'\s{2,}', class_name)
     parts = [p.strip() for p in parts if len(p.strip()) > 1]
     if parts:
@@ -99,8 +119,11 @@ def parse_level_line(text: str) -> dict:
 
 
 KNOWN_CLASSES = [
-    "Skilled Craftsman", "Novice Craftsman", "Skilled Warrior", "Novice Warrior",
-    "Skilled Guard", "Skilled Hunter", "Novice Hunter",
+    "Skilled Craftsman", "Novice Craftsman", "Master Craftsman",
+    "Skilled Warrior", "Novice Warrior", "Master Warrior",
+    "Skilled Guard", "Novice Guard", "Master Guard",
+    "Skilled Tamer", "Novice Tamer", "Master Tamer",
+    "Skilled Hunter", "Novice Hunter", "Master Hunter",
 ]
 
 
@@ -125,6 +148,36 @@ def _fuzzy_word(word: str, text: str) -> bool:
     return False
 
 
+def _merge_level_data(a: dict, b: dict) -> dict:
+    """Merge two level_line parse results, preferring whichever has more data."""
+    ca = a.get("class_name", "")
+    cb = b.get("class_name", "")
+    ca_known = ca in KNOWN_CLASSES
+    cb_known = cb in KNOWN_CLASSES
+
+    # For level: prefer the channel that also produced a known class (better OCR quality)
+    if a["level"] is not None and b["level"] is not None:
+        if cb_known and not ca_known:
+            level = b["level"]
+        elif ca_known and not cb_known:
+            level = a["level"]
+        else:
+            level = a["level"]
+    else:
+        level = a["level"] if a["level"] is not None else b["level"]
+
+    result = {"level": level}
+    if ca_known and not cb_known:
+        result["class_name"] = ca
+    elif cb_known and not ca_known:
+        result["class_name"] = cb
+    else:
+        result["class_name"] = ca or cb
+    result["clan"] = a.get("clan") or b.get("clan")
+    result["title"] = a.get("title") or b.get("title")
+    return result
+
+
 KNOWN_STATUSES = [
     "Idle", "Hosting", "Working", "Training in Progress",
     "Work Break", "Resting", "Mining", "Farming",
@@ -140,15 +193,21 @@ def parse_status(text: str) -> str | None:
     for s in KNOWN_STATUSES:
         if s.lower() in text.lower():
             return s
-    # Fuzzy: handle common OCR errors (W→W, B→R, etc.)
     t = re.sub(r'[^a-zA-Z\s]', '', text).lower().strip()
     if not t:
         return None
-    if "dle" in t or "idl" in t:
+    if "dle" in t or "idl" in t or "ldle" in t:
         return "Idle"
-    if re.search(r'w\w{0,3}k\s*\w{0,2}eak', t) or ("ork" in t and "eak" in t):
+    # "Work Break" — OCR produces Wook/Wark/Winrk + Rrea/Rreal/break/eak
+    if re.search(r'w\w{0,4}k\s+\w{0,2}rea', t) or ("ork" in t and "eak" in t):
+        return "Work Break"
+    if re.search(r'w\w{0,3}rk\s+r', t) and "rea" in t:
+        return "Work Break"
+    if "ark" in t and ("rea" in t or "eal" in t):
         return "Work Break"
     if re.search(r'rain\w*\s+in\s+\w*ro', t) or "raining" in t:
+        return "Training in Progress"
+    if re.search(r'rain.*in.*pro', t):
         return "Training in Progress"
     if "inin" in t or "minin" in t:
         return "Mining"
@@ -156,9 +215,9 @@ def parse_status(text: str) -> str | None:
         return "Farming"
     if "estin" in t:
         return "Resting"
-    if "orkin" in t:
+    if "orkin" in t or ("ark" in t and "in" in t and "rea" not in t and "eal" not in t):
         return "Working"
-    if "ostin" in t:
+    if "ostin" in t or "lostin" in t or "osting" in t or "nctin" in t:
         return "Hosting"
     return None
 
@@ -167,10 +226,10 @@ def parse_group(text: str) -> str | None:
     text = text.strip()
     if not text or text == "(Ungrouped)":
         return None
-    # Strip dropdown arrow and trailing OCR artifacts
-    text = re.sub(r"[\s▼▾↓vy~¥_|:;,.!?\d*#@&'‘’“”]+$", "", text).strip()
-    # Strip leading pipe/bracket artifacts
-    text = re.sub(r"^[|\[\]\s]+", "", text).strip()
+    text = re.sub(r"[\s▼▾↓vy~¥_|:;,.!?\d*#@&’’’""]+$", "", text).strip()
+    text = re.sub(r"^[|\[\]:_\s]+", "", text).strip()
+    # Strip trailing short OCR artifacts (dropdown arrows, noise)
+    text = re.sub(r'\s+\S{1,3}$', '', text).strip()
     if text.upper() == text and len(text) > 3 and not any(c.islower() for c in text):
         return None
     return text if text else None
@@ -183,15 +242,32 @@ def extract_card_text(card_img: np.ndarray) -> CardText:
     name_img = crop_region(card_img, "name")
     name = parse_name(ocr_region(name_img, psm=7, threshold=110))
 
-    # Level/class/clan: purple-ish text, dimmer — lower threshold
+    # Level/class/clan: purple text has poor grayscale contrast but high R channel.
+    # Run OCR on both channels and merge results.
     level_img = crop_region(card_img, "level_line")
-    level_data = parse_level_line(ocr_region(level_img, psm=7, threshold=65))
+    level_data_gray = parse_level_line(ocr_region(level_img, psm=7, threshold=65))
+    level_data_red = parse_level_line(ocr_region(level_img, psm=7, threshold=100, use_red=True))
+    level_data = _merge_level_data(level_data_gray, level_data_red)
 
     status_img = crop_region(card_img, "status")
-    # Status text can be white (Idle) or golden (Work Break). Try both channels.
-    s1 = parse_status(ocr_region(status_img, psm=7, threshold=170, use_red=True))
-    s2 = parse_status(ocr_region(status_img, psm=7, threshold=160))
-    status = s1 if _is_known_status(s1) else (s2 if _is_known_status(s2) else (s1 or s2))
+    # Status text can be white (Idle) or golden (Work Break). Try multiple thresholds.
+    status_attempts = [
+        ocr_region(status_img, psm=7, threshold=170, use_red=True),
+        ocr_region(status_img, psm=7, threshold=160),
+        ocr_region(status_img, psm=7, threshold=180),
+    ]
+    status = None
+    for raw in status_attempts:
+        s = parse_status(raw)
+        if _is_known_status(s):
+            status = s
+            break
+    if not status:
+        for raw in status_attempts:
+            s = parse_status(raw)
+            if s:
+                status = s
+                break
 
     group_img = crop_region(card_img, "group")
     group = parse_group(ocr_region(group_img, psm=7, threshold=90))

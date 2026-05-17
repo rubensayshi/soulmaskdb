@@ -24,7 +24,7 @@ class Card:
 # Tuned against 889×140 card crops from 2000×1121 fixture.
 LAYOUT = {
     "name":       {"x": 0.03, "y": 0.08, "w": 0.22, "h": 0.25},
-    "level_line": {"x": 0.01, "y": 0.34, "w": 0.50, "h": 0.20},
+    "level_line": {"x": 0.01, "y": 0.40, "w": 0.50, "h": 0.14},
     "trait_row":  {"x": 0.01, "y": 0.55, "w": 0.52, "h": 0.43},
     "status":     {"x": 0.78, "y": 0.43, "w": 0.19, "h": 0.15},
     "group":      {"x": 0.58, "y": 0.72, "w": 0.24, "h": 0.20},
@@ -43,13 +43,14 @@ def detect_cards(img: np.ndarray) -> list[Card]:
 
     cards = _build_grid(separator_ys, col_gap_x, w, h)
 
-    # Real cards have consistent height; filter out short UI chrome regions
     if cards:
         heights = sorted([c.h for c in cards], reverse=True)
         median_h = heights[len(heights) // 2]
         min_h = int(median_h * 0.7)
         cards = [c for c in cards if c.h >= min_h]
     cards = [c for c in cards if c.w > 100 and c.h > 50]
+    # Cards touching the bottom edge are likely UI chrome, not real cards
+    cards = [c for c in cards if c.y + c.h < h - 10]
     cards.sort(key=lambda c: (c.y, c.x))
     return cards
 

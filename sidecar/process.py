@@ -48,18 +48,42 @@ def process_image(image_path: str, atlas_dir: str) -> dict:
     return {"tribesmen": tribesmen, "cards_found": len(cards)}
 
 
+def process_images(image_paths: list[str], atlas_dir: str) -> dict:
+    """Process multiple screenshots and merge overlapping tribesmen."""
+    from merge import match_and_merge
+
+    per_image = []
+    total_cards = 0
+    for path in image_paths:
+        result = process_image(path, atlas_dir)
+        per_image.append(result.get("tribesmen", []))
+        total_cards += result.get("cards_found", 0)
+
+    merged = match_and_merge(per_image)
+    return {
+        "tribesmen": merged,
+        "cards_found": total_cards,
+        "images_processed": len(image_paths),
+        "unique_tribesmen": len(merged),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("image", help="Path to screenshot image")
+    parser.add_argument("image", nargs="+", help="Path(s) to screenshot image(s)")
     parser.add_argument("--atlas", default=os.path.join(os.path.dirname(__file__), "..", "assets", "atlas"))
     args = parser.parse_args()
 
-    if not os.path.exists(args.image):
-        print(json.dumps({"error": f"File not found: {args.image}", "tribesmen": []}))
+    missing = [p for p in args.image if not os.path.exists(p)]
+    if missing:
+        print(json.dumps({"error": f"File(s) not found: {missing}", "tribesmen": []}))
         sys.exit(1)
 
     try:
-        result = process_image(args.image, args.atlas)
+        if len(args.image) == 1:
+            result = process_image(args.image[0], args.atlas)
+        else:
+            result = process_images(args.image, args.atlas)
         print(json.dumps(result, ensure_ascii=False))
     except Exception as e:
         print(json.dumps({"error": str(e), "traceback": traceback.format_exc(), "tribesmen": []}))
