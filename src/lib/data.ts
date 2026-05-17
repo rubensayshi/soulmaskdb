@@ -1,5 +1,9 @@
 import type { Tribesman, Group, ClanName, StatusType, TraitMatch, BadgeShape } from './types'
 
+export const ENABLE_PROFICIENCIES = false
+
+export const PROF_SKILLS = ['Sword', 'Bow', 'Mining', 'Logging', 'Farming', 'Cooking', 'Smithing', 'Tanning']
+
 export const GROUPS: Group[] = [
   { id: 'vanguard', name: 'Vanguard', hint: 'Frontline fighters' },
   { id: 'hearth', name: 'Hearth Crew', hint: 'Base caretakers' },
@@ -27,32 +31,32 @@ export const STATUS_LABEL: Record<StatusType, string> = {
   resting: 'Resting',
 }
 
-const TRAIT_DEFS: Record<string, { name: string; shape: BadgeShape; eff: string }> = {
-  swift_pace:     { name: 'Swift Pace',       shape: 'hexagon', eff: 'Movement speed +3% per tier' },
-  iron_will:      { name: 'Iron Will',        shape: 'hexagon', eff: 'Stamina drain reduced 8%' },
-  chain_dodge:    { name: 'Chain Dodge',      shape: 'hexagon', eff: 'Dodge cooldown −0.5s' },
-  battle_tested:  { name: 'Battle-Tested',    shape: 'hexagon', eff: 'XP gain +15% in combat' },
-  crave_blood:    { name: 'Crave for Blood',  shape: 'hexagon', eff: 'Crit chance +4% below 50% HP' },
-  steel_body:     { name: 'Steel Body',       shape: 'hexagon', eff: 'Heavy armor weight −20%' },
-  refined_armor:  { name: 'Refined Armor',    shape: 'hexagon', eff: 'Armor crafting cost −10%' },
-  refined_tool:   { name: 'Refined Tool',     shape: 'hexagon', eff: 'Tool crafting cost −10%' },
-  firm_will:      { name: 'Firm Will',        shape: 'hexagon', eff: 'Insanity resist +12%' },
-  getting_braver: { name: 'Getting Braver',   shape: 'hexagon', eff: 'Fear effects shortened 30%' },
-  cold_blooded:   { name: 'Cold-Blooded',     shape: 'shield',  eff: 'Cold resistance +15%' },
-  scorching:      { name: 'Scorching Resist', shape: 'shield',  eff: 'Heat resistance +15%' },
-  radiation:      { name: 'Radiation Resist', shape: 'shield',  eff: 'Radiation resist +10%' },
-  born_runner:    { name: 'Born Runner',      shape: 'shield',  eff: 'Sprint speed +6%' },
-  hardened:       { name: 'Hardened',         shape: 'shield',  eff: 'Max HP +20' },
-  nightborn:      { name: 'Nightborn',        shape: 'shield',  eff: 'Stealth at night +25%' },
-  loves_meat:     { name: 'Loves Meat',       shape: 'diamond', eff: 'Cooked meat heals +20%' },
-  hates_fish:     { name: 'Hates Fish',       shape: 'diamond', eff: 'Fish gives no satiety' },
-  loves_steel:    { name: 'Loves Steel',      shape: 'diamond', eff: 'Steel weapons +8% dmg' },
-  hates_bows:     { name: 'Hates Bows',       shape: 'diamond', eff: 'Bow proficiency gain −50%' },
-  loves_mining:   { name: 'Loves Mining',     shape: 'diamond', eff: 'Mining XP +25%' },
-  hates_farming:  { name: 'Hates Farming',    shape: 'diamond', eff: 'Farming XP −20%' },
-  weapon_master:  { name: 'Weapon Master',    shape: 'shield',  eff: 'All weapons +5% dmg' },
-  nightwalker:    { name: 'Nightwalker',      shape: 'shield',  eff: 'Night vision unlocked' },
-  farming_expert: { name: 'Farming Expert',   shape: 'shield',  eff: 'Crop yield +30%' },
+const TRAIT_DEFS: Record<string, { name: string; shape: BadgeShape; eff: string; icon: string }> = {
+  swift_pace:     { name: 'Swift Pace',       shape: 'hexagon', eff: 'Movement speed +3% per tier',    icon: 'tianfu_yidongsudutisheng' },
+  iron_will:      { name: 'Iron Will',        shape: 'hexagon', eff: 'Stamina drain reduced 8%',       icon: 'tianfu_kangjie' },
+  chain_dodge:    { name: 'Chain Dodge',      shape: 'hexagon', eff: 'Dodge cooldown −0.5s',           icon: 'tianfu_tuijiaolinghuo' },
+  battle_tested:  { name: 'Battle-Tested',    shape: 'hexagon', eff: 'XP gain +15% in combat',        icon: 'tianfu_fanjishike' },
+  crave_blood:    { name: 'Crave for Blood',  shape: 'hexagon', eff: 'Crit chance +4% below 50% HP',  icon: 'tianfu_chuisizhengzha' },
+  steel_body:     { name: 'Steel Body',       shape: 'hexagon', eff: 'Heavy armor weight −20%',       icon: 'tianfu_shenqianglizhuang' },
+  refined_armor:  { name: 'Refined Armor',    shape: 'hexagon', eff: 'Armor crafting cost −10%',      icon: 'tianfu_fangyutisheng' },
+  refined_tool:   { name: 'Refined Tool',     shape: 'hexagon', eff: 'Tool crafting cost −10%',       icon: 'tianfu_fuzhongtisheng' },
+  firm_will:      { name: 'Firm Will',        shape: 'hexagon', eff: 'Insanity resist +12%',          icon: 'tianfu_weijifanying' },
+  getting_braver: { name: 'Getting Braver',   shape: 'hexagon', eff: 'Fear effects shortened 30%',    icon: 'tianfu_taotuosuming' },
+  cold_blooded:   { name: 'Cold-Blooded',     shape: 'shield',  eff: 'Cold resistance +15%',          icon: 'tianfu_kangkouke' },
+  scorching:      { name: 'Scorching Resist', shape: 'shield',  eff: 'Heat resistance +15%',          icon: 'tianfu_shanghaijianmiantisheng' },
+  radiation:      { name: 'Radiation Resist', shape: 'shield',  eff: 'Radiation resist +10%',         icon: 'tianfu_shengmingzhitisheng' },
+  born_runner:    { name: 'Born Runner',      shape: 'shield',  eff: 'Sprint speed +6%',              icon: 'tianfu_bulvqingying' },
+  hardened:       { name: 'Hardened',         shape: 'shield',  eff: 'Max HP +20',                    icon: 'tianfu_shengminghuifujiakuai' },
+  nightborn:      { name: 'Nightborn',        shape: 'shield',  eff: 'Stealth at night +25%',         icon: 'tianfu_qiaowushengxi' },
+  loves_meat:     { name: 'Loves Meat',       shape: 'diamond', eff: 'Cooked meat heals +20%',        icon: 'tianfu_baoshiduxiaohaosudujiangdi' },
+  hates_fish:     { name: 'Hates Fish',       shape: 'diamond', eff: 'Fish gives no satiety',         icon: 'tianfu_gongjisudutisheng' },
+  loves_steel:    { name: 'Loves Steel',      shape: 'diamond', eff: 'Steel weapons +8% dmg',         icon: 'tianfu_gongjilitisheng' },
+  hates_bows:     { name: 'Hates Bows',       shape: 'diamond', eff: 'Bow proficiency gain −50%',     icon: 'tianfu_jimin' },
+  loves_mining:   { name: 'Loves Mining',     shape: 'diamond', eff: 'Mining XP +25%',                icon: 'tianfu_shanyuweizhuang' },
+  hates_farming:  { name: 'Hates Farming',    shape: 'diamond', eff: 'Farming XP −20%',               icon: 'tianfu_qianliyan' },
+  weapon_master:  { name: 'Weapon Master',    shape: 'shield',  eff: 'All weapons +5% dmg',           icon: 'ChengHao_wuqidashi' },
+  nightwalker:    { name: 'Nightwalker',      shape: 'shield',  eff: 'Night vision unlocked',         icon: 'ChengHao_yexingzhe' },
+  farming_expert: { name: 'Farming Expert',   shape: 'shield',  eff: 'Crop yield +30%',               icon: 'ChengHao_zhongtiannengshou' },
 }
 
 const TRAIT_IDS = Object.keys(TRAIT_DEFS)
@@ -88,14 +92,14 @@ export const MOCK_ROSTER: Tribesman[] = NAMES.map((name, i) => {
   const tIds = shuf(TRAIT_IDS, i + 2).slice(0, traitCount)
   const traits: TraitMatch[] = tIds.map((id, k) => ({
     id,
-    icon_name: id,
+    icon_name: TRAIT_DEFS[id].icon,
     name: TRAIT_DEFS[id].name,
     shape: TRAIT_DEFS[id].shape,
     eff: TRAIT_DEFS[id].eff,
     star: 1 + ((i + k) % 3),
     confidence: 0.7 + ((i + k * 3) % 30) / 100,
   }))
-  const prof = Array.from({ length: 8 }, (_, k) => (i + k * 5 + 1) % 4)
+  const prof = Array.from({ length: 8 }, (_, k) => Math.min(200, ((i * 17 + k * 37 + 11) % 180) + (level > 40 ? 40 : 0)))
   const groupIdx = (i * 5 + 3) % 7
   const group = groupIdx < GROUPS.length ? GROUPS[groupIdx].id : 'unassigned'
   return {

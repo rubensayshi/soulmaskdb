@@ -59,10 +59,17 @@ export interface TraitInfo {
   effect_is_percentage: boolean
 }
 
+export interface ProfFilter {
+  skill: number
+  min: number
+}
+
 export interface Filters {
   clan: ClanName | 'all'
-  status: StatusType | 'all'
   groups: string[]
+  traits: string[]
+  minLevel: number | null
+  prof: ProfFilter | null
 }
 
 export interface SortState {

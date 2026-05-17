@@ -1,6 +1,6 @@
 import type { Tribesman } from '../lib/types'
 import { CLANS } from '../lib/data'
-import { ClanTag, GroupTag, StatusPill } from '../components/Parts'
+import { ClanTag, GroupTag } from '../components/Parts'
 import { TraitBadge } from '../components/TraitBadge'
 
 interface Props {
@@ -38,7 +38,7 @@ export function CardsLayout({ rows }: Props) {
             {/* Meta row */}
             <div className="flex items-center gap-2 flex-wrap" style={{ margin: '6px 0 12px', fontSize: 11.5, color: 'var(--color-muted)' }}>
               <ClanTag clan={tm.clan} />
-              <span style={{ color: 'var(--color-text-dim)', fontWeight: 400 }}>{tm.klass}</span>
+              <span style={{ color: 'var(--color-text-dim)', fontWeight: 400 }}>{tm.klass.replace(/^(Skilled|Novice|Master)\s+/, '')}</span>
               <span className="w-[3px] h-[3px] rounded-full" style={{ background: 'var(--color-border-strong)' }} />
               <GroupTag group={tm.group} />
             </div>
@@ -65,8 +65,7 @@ export function CardsLayout({ rows }: Props) {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between">
-              <StatusPill status={tm.status} />
+            <div className="flex items-center justify-end">
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, color: 'var(--color-muted)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 {tm.traits.length} traits
               </span>

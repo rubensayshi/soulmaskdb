@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { BadgeShape, TraitMatch } from '../lib/types'
 
 const SHAPE_COLORS: Record<BadgeShape, { stroke: string; fill: string; glyph: string }> = {
@@ -38,18 +39,33 @@ interface Props {
 }
 
 export function TraitBadge({ trait, size = 24, withPips = true }: Props) {
+  const [imgErr, setImgErr] = useState(false)
   const c = SHAPE_COLORS[trait.shape]
   const path = SHAPE_PATHS[trait.shape]
   const glyph = GLYPHS[hashGlyph(trait.id)]
+  const iconSize = Math.ceil(size * 0.7)
 
   return (
     <span className="inline-flex flex-col items-center" style={{ width: size }}>
-      <svg width={size} height={size} viewBox="0 0 24 24">
-        <path d={path} fill={c.fill} stroke={c.stroke} strokeWidth="1" />
-        <g opacity="0.65">
-          <path d={glyph} fill="none" stroke={c.glyph} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-      </svg>
+      <span className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+        <svg width={size} height={size} viewBox="0 0 24 24" className="absolute inset-0">
+          <path d={path} fill={c.fill} stroke={c.stroke} strokeWidth="1" />
+          {imgErr && (
+            <g opacity="0.65">
+              <path d={glyph} fill="none" stroke={c.glyph} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+          )}
+        </svg>
+        {!imgErr && (
+          <img
+            src={`/icons/${trait.icon_name}.webp`}
+            alt=""
+            className="relative object-contain"
+            style={{ width: iconSize, height: iconSize }}
+            onError={() => setImgErr(true)}
+          />
+        )}
+      </span>
       {withPips && (
         <span className="flex gap-[1.5px]" style={{ marginTop: 1 }}>
           {[1, 2, 3].map(s => (
@@ -69,7 +85,34 @@ export function TraitBadge({ trait, size = 24, withPips = true }: Props) {
 }
 
 export function TraitBadgeLg({ trait }: { trait: TraitMatch }) {
-  return <TraitBadge trait={trait} size={34} withPips={false} />
+  const [imgErr, setImgErr] = useState(false)
+  const size = 34
+  const c = SHAPE_COLORS[trait.shape]
+  const path = SHAPE_PATHS[trait.shape]
+  const glyph = GLYPHS[hashGlyph(trait.id)]
+  const iconSize = Math.ceil(size * 0.7)
+
+  return (
+    <span className="relative inline-flex items-center justify-center flex-shrink-0" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox="0 0 24 24" className="absolute inset-0">
+        <path d={path} fill={c.fill} stroke={c.stroke} strokeWidth="1" />
+        {imgErr && (
+          <g opacity="0.65">
+            <path d={glyph} fill="none" stroke={c.glyph} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+        )}
+      </svg>
+      {!imgErr && (
+        <img
+          src={`/icons/${trait.icon_name}.webp`}
+          alt=""
+          className="relative object-contain"
+          style={{ width: iconSize, height: iconSize }}
+          onError={() => setImgErr(true)}
+        />
+      )}
+    </span>
+  )
 }
 
 export { SHAPE_COLORS }

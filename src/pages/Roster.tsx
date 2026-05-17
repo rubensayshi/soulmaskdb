@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Tribesman, TraitMatch, SortState, BadgeShape } from '../lib/types'
-import { ClanTag, GroupTag, StatusPill, ProfGrid } from '../components/Parts'
+import { ClanTag, GroupTag } from '../components/Parts'
+import { PROF_SKILLS } from '../lib/data'
 import { TraitBadge, TraitBadgeLg, SHAPE_COLORS } from '../components/TraitBadge'
 import { IcoChevRight } from '../components/Icons'
 
@@ -26,8 +27,6 @@ export function RosterTable({ rows, sort, setSort, showProf }: Props) {
             <SortTh k="clan" label="Clan" sort={sort} setSort={setSort} width={100} />
             <SortTh k="title" label="Title" sort={sort} setSort={setSort} width={170} />
             <Th width="34%">Traits</Th>
-            {showProf && <Th width={80}>Prof.</Th>}
-            <Th width={130}>Status</Th>
           </tr>
         </thead>
         <tbody>
@@ -134,7 +133,7 @@ function Row({ tm, open, showProf, onClick }: { tm: Tribesman; open: boolean; sh
           </span>
         </td>
         <td style={{ ...tdStyle, color: 'var(--color-text-dim)', fontSize: '12.5px', borderBottom: open ? 'none' : undefined }}>
-          {tm.klass}
+          {stripClassPrefix(tm.klass)}
         </td>
         <td style={{ ...tdStyle, borderBottom: open ? 'none' : undefined }}>
           <ClanTag clan={tm.clan} />
@@ -151,18 +150,10 @@ function Row({ tm, open, showProf, onClick }: { tm: Tribesman; open: boolean; sh
             ))}
           </div>
         </td>
-        {showProf && (
-          <td style={{ ...tdStyle, borderBottom: open ? 'none' : undefined }}>
-            <ProfGrid prof={tm.prof} />
-          </td>
-        )}
-        <td style={{ ...tdStyle, borderBottom: open ? 'none' : undefined }}>
-          <StatusPill status={tm.status} />
-        </td>
       </tr>
       {open && (
         <tr style={{ background: 'oklch(0.18 0.010 140 / 0.4)' }}>
-          <td colSpan={showProf ? 9 : 8} style={{ padding: 0, borderBottom: '1px solid var(--color-border)', height: 'auto' }}>
+          <td colSpan={7} style={{ padding: 0, borderBottom: '1px solid var(--color-border)', height: 'auto' }}>
             <ExpandedRow tm={tm} showProf={showProf} />
           </td>
         </tr>
@@ -192,11 +183,10 @@ export function ExpandedRow({ tm, showProf }: { tm: Tribesman; showProf: boolean
           ◆ Details
         </h3>
         <dl className="grid gap-x-4 gap-y-1.5" style={{ gridTemplateColumns: 'max-content 1fr', fontSize: 12, marginBottom: 16 }}>
-          <Dt>Class</Dt><Dd>{tm.klass}</Dd>
+          <Dt>Class</Dt><Dd>{stripClassPrefix(tm.klass)}</Dd>
           <Dt>Title</Dt><Dd><em style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--color-gold)' }}>{tm.title}</em></Dd>
           <Dt>Group</Dt><Dd><GroupTag group={tm.group} /></Dd>
           <Dt>Location</Dt><Dd>{tm.location}</Dd>
-          <Dt>Status</Dt><Dd><StatusPill status={tm.status} /></Dd>
           <Dt>Clan</Dt><Dd><ClanTag clan={tm.clan} /></Dd>
         </dl>
 
@@ -206,10 +196,12 @@ export function ExpandedRow({ tm, showProf }: { tm: Tribesman; showProf: boolean
               ◆ Proficiencies
             </h3>
             <div className="grid grid-cols-4 gap-x-3.5 gap-y-1.5" style={{ fontSize: 11, color: 'var(--color-text-dim)' }}>
-              {['Sword', 'Bow', 'Mining', 'Logging', 'Farming', 'Cooking', 'Smithing', 'Tanning'].map((s, i) => (
+              {PROF_SKILLS.map((s, i) => (
                 <div key={s} className="flex items-center justify-between gap-1.5">
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: '0.06em', color: 'var(--color-muted)', textTransform: 'uppercase' }}>{s}</span>
-                  <ProfGrid prof={Array.from({ length: 8 }, (_, k) => k < (tm.prof[i] || 0) * 2 ? 1 : 0)} />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: (tm.prof[i] || 0) >= 120 ? 'oklch(0.65 0.2 25)' : (tm.prof[i] || 0) >= 90 ? 'oklch(0.75 0.15 70)' : 'var(--color-text-dim)', fontVariantNumeric: 'tabular-nums' }}>
+                    {tm.prof[i] || 0}
+                  </span>
                 </div>
               ))}
             </div>
@@ -267,6 +259,10 @@ function TraitDetailItem({ trait }: { trait: TraitMatch }) {
   )
 }
 
+function stripClassPrefix(klass: string): string {
+  return klass.replace(/^(Skilled|Novice|Master)\s+/, '')
+}
+
 export function sortRows(rows: Tribesman[], sort: SortState): Tribesman[] {
   const { key, dir } = sort
   const mult = dir === 'asc' ? 1 : -1
@@ -278,11 +274,16 @@ export function sortRows(rows: Tribesman[], sort: SortState): Tribesman[] {
   })
 }
 
-export function filterRows(rows: Tribesman[], filters: { clan: string; status: string; groups: string[] }, query: string): Tribesman[] {
+export function filterRows(rows: Tribesman[], filters: { clan: string; groups: string[]; traits: string[]; minLevel: number | null; prof: { skill: number; min: number } | null }, query: string): Tribesman[] {
   return rows.filter(r => {
     if (filters.clan !== 'all' && r.clan !== filters.clan) return false
-    if (filters.status !== 'all' && r.status !== filters.status) return false
     if (filters.groups.length > 0 && !filters.groups.includes(r.group)) return false
+    if (filters.minLevel !== null && r.level < filters.minLevel) return false
+    if (filters.traits.length > 0) {
+      const traitIds = new Set(r.traits.map(t => t.id))
+      if (!filters.traits.every(id => traitIds.has(id))) return false
+    }
+    if (filters.prof !== null && (r.prof[filters.prof.skill] ?? 0) < filters.prof.min) return false
     if (query) {
       const q = query.toLowerCase()
       const hay = (r.name + ' ' + r.title + ' ' + r.klass + ' ' + r.clan + ' ' + (r.group || '')).toLowerCase()

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { MOCK_ROSTER, REVIEW_ITEMS } from './lib/data'
+import { MOCK_ROSTER, REVIEW_ITEMS, ENABLE_PROFICIENCIES } from './lib/data'
 import type { Filters, SortState, LayoutMode } from './lib/types'
 import { RosterTable, sortRows, filterRows } from './pages/Roster'
 import { CardsLayout } from './pages/CardsLayout'
@@ -15,7 +15,7 @@ import './styles.css'
 function App() {
   const [layout, setLayout] = useState<LayoutMode>('table')
   const [query, setQuery] = useState('')
-  const [filters, setFilters] = useState<Filters>({ clan: 'all', status: 'all', groups: [] })
+  const [filters, setFilters] = useState<Filters>({ clan: 'all', groups: [], traits: [], minLevel: null, prof: null })
   const [sort, setSort] = useState<SortState>({ key: 'name', dir: 'asc' })
   const [screen, setScreen] = useState<'roster' | 'empty' | 'review'>('roster')
   const [showCapture, setShowCapture] = useState(false)
@@ -207,13 +207,13 @@ function App() {
               <ReviewScreen onDone={() => setScreen('roster')} />
             )}
             {screen === 'roster' && layout === 'table' && (
-              <RosterTable rows={rows} sort={sort} setSort={setSort} showProf />
+              <RosterTable rows={rows} sort={sort} setSort={setSort} showProf={ENABLE_PROFICIENCIES} />
             )}
             {screen === 'roster' && layout === 'cards' && (
               <CardsLayout rows={rows} />
             )}
             {screen === 'roster' && layout === 'split' && (
-              <SplitLayout rows={rows} showProf />
+              <SplitLayout rows={rows} showProf={ENABLE_PROFICIENCIES} />
             )}
           </div>
         </div>

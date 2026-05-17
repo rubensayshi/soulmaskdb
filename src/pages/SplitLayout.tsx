@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Tribesman } from '../lib/types'
 import { CLANS } from '../lib/data'
-import { ClanTag, GroupTag, StatusPill } from '../components/Parts'
+import { ClanTag, GroupTag } from '../components/Parts'
 import { ExpandedRow } from './Roster'
 
 interface Props {
@@ -44,7 +44,6 @@ export function SplitLayout({ rows, showProf }: Props) {
                   <GroupTag group={tm.group} />
                 </div>
               </div>
-              <StatusPill status={tm.status} />
             </div>
           )
         })}
@@ -64,7 +63,7 @@ export function SplitLayout({ rows, showProf }: Props) {
             <div className="flex items-center gap-3 flex-wrap mb-4">
               <ClanTag clan={sel.clan} />
               <GroupTag group={sel.group} />
-              <span style={{ color: 'var(--color-text-dim)' }}>{sel.klass}</span>
+              <span style={{ color: 'var(--color-text-dim)' }}>{sel.klass.replace(/^(Skilled|Novice|Master)\s+/, '')}</span>
               <span className="w-[3px] h-[3px] rounded-full" style={{ background: 'var(--color-border-strong)' }} />
               <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--color-gold)', fontSize: 17 }}>{sel.title}</span>
             </div>
@@ -78,7 +77,9 @@ export function SplitLayout({ rows, showProf }: Props) {
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, letterSpacing: '0.1em', color: 'var(--color-muted)', textTransform: 'uppercase' }}>◆ Location</span>
                 <span>{sel.location}</span>
               </div>
-              <StatusPill status={sel.status} />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9.5, color: 'var(--color-muted)', letterSpacing: '0.06em' }}>
+                {sel.traits.length} traits
+              </span>
             </div>
 
             {/* Detail panel */}
