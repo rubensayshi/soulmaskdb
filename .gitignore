@@ -1,38 +1,16 @@
-__pycache__/
-*.pyc
-.claude/
-.superpowers/
-CLAUDE.local.md
-Game/Parsed/*_errors.json
-uasset_export/
-uasset_export_test/
-uasset_export.zip
-_errors.txt
-
-# Build artifacts
-data/app.db
-backend/server
-web/.vite/
-web/node_modules/
-web/dist/
-backend/bin/
-backend/internal/spa/dist/*
-!backend/internal/spa/dist/.gitkeep
-
-# Pipeline outputs
-tasks/translate_batch.yaml
-tasks/chunks/
-
-# Raw map textures (too large, converted to JPEG in web/public/)
-Game/Maps/
-
-# TS incremental build info
-web/tsconfig.tsbuildinfo
-
-# Screenread app
-sidecar/.venv/
-assets/atlas/
 node_modules/
 dist/
-src-tauri/target/
+.venv/
+sidecar/.venv/
+__pycache__/
+*.pyc
+
+# Vite dev
 public/icons
+
+# Debug/temp images
+fixtures/debug-*
+screenshots/
+
+# Build artifacts
+src-tauri/target/

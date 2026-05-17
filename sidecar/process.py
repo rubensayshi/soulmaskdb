@@ -29,7 +29,8 @@ def process_image(image_path: str, atlas_dir: str) -> dict:
                 "class": text.class_name,
                 "clan": text.clan,
                 "title": text.title,
-                "location": text.location,
+                "status": text.status,
+                "group": text.group,
                 "traits": [
                     {"icon_name": m.icon_name, "confidence": round(m.confidence, 3)}
                     for m in matches
