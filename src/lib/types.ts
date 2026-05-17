@@ -1,17 +1,37 @@
+export type ClanName = 'Claw' | 'Flint' | 'Fang' | 'Wolf' | 'Horn' | 'Exile' | 'DLC'
+export type StatusType = 'idle' | 'hosting' | 'mining' | 'work-break' | 'resting'
+export type BadgeShape = 'hexagon' | 'diamond' | 'shield'
+export type LayoutMode = 'table' | 'cards' | 'split'
+
 export interface TraitMatch {
   icon_name: string
   confidence: number
+  id: string
+  name: string
+  shape: BadgeShape
+  eff: string
+  star: number
+}
+
+export interface Group {
+  id: string
+  name: string
+  hint?: string
 }
 
 export interface Tribesman {
+  id: string
   name: string
-  level: number | null
-  class: string | null
-  clan: string | null
-  title: string | null
-  location: string | null
+  level: number
+  klass: string
+  clan: ClanName
+  group: string
+  title: string
+  location: string
+  status: StatusType
   traits: TraitMatch[]
-  captured_at: string
+  prof: number[]
+  captured_at?: string
 }
 
 export interface Roster {
@@ -37,4 +57,15 @@ export interface TraitInfo {
   effect_attr: string | null
   effect_value: number | null
   effect_is_percentage: boolean
+}
+
+export interface Filters {
+  clan: ClanName | 'all'
+  status: StatusType | 'all'
+  groups: string[]
+}
+
+export interface SortState {
+  key: string
+  dir: 'asc' | 'desc'
 }
