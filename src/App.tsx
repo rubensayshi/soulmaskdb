@@ -25,7 +25,7 @@ function App() {
   const [showLog, setShowLog] = useState(false)
 
   const store = useRosterStore()
-  const rosterData = store.tribesmen.length > 0 ? store.tribesmen : MOCK_ROSTER
+  const rosterData = store.tribesmen.length > 0 ? store.tribesmen : (import.meta.env.DEV ? MOCK_ROSTER : [])
 
   useEffect(() => {
     if (!('__TAURI_INTERNALS__' in window)) return
@@ -281,6 +281,11 @@ function CaptureIndicator({ status, error, lastCount }: { status: CaptureStatus;
       }}
       title={error || undefined}
     >
+      {status === 'error' && error && (
+        <span style={{ color: 'oklch(0.65 0.2 25)', fontSize: 10, maxWidth: 400, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {error}
+        </span>
+      )}
       <span
         className="rounded-full"
         style={{

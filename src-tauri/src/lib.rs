@@ -1,10 +1,13 @@
 mod commands;
 
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let shortcut = Shortcut::new(Some(Modifiers::ALT | Modifiers::SHIFT), Code::KeyS);
+    let capturing = Arc::new(AtomicBool::new(false));
 
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
@@ -16,13 +19,21 @@ pub fn run() {
             commands::save_roster,
             commands::load_roster,
             commands::capture_screen,
+            commands::debug_capture,
         ])
         .setup(move |app| {
-            app.global_shortcut().register(shortcut)?;
             let handle = app.handle().clone();
-            let _ = app.global_shortcut().on_shortcut(shortcut, move |_app, _shortcut, _event| {
-                commands::capture_and_process(&handle);
-            });
+            app.global_shortcut().on_shortcut(shortcut, move |_app, _shortcut, _event| {
+                // Prevent double-firing from key repeat
+                if capturing.compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst).is_ok() {
+                    let capturing_clone = capturing.clone();
+                    let handle_clone = handle.clone();
+                    tauri::async_runtime::spawn(async move {
+                        commands::capture_and_process_inner(&handle_clone).await;
+                        capturing_clone.store(false, Ordering::SeqCst);
+                    });
+                }
+            })?;
             Ok(())
         })
         .run(tauri::generate_context!())

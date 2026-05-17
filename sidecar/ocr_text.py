@@ -1,8 +1,14 @@
 """Stage 2: OCR text extraction from cropped card regions."""
 import re
+import os
 import cv2
 import numpy as np
 import pytesseract
+
+# Ensure Tesseract is found on Windows
+_TESSERACT_WIN = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+if os.name == "nt" and os.path.exists(_TESSERACT_WIN):
+    pytesseract.pytesseract.tesseract_cmd = _TESSERACT_WIN
 from dataclasses import dataclass
 
 
