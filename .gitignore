@@ -32,3 +32,6 @@ web/tsconfig.tsbuildinfo
 # Screenread app
 sidecar/.venv/
 assets/atlas/
+node_modules/
+dist/
+src-tauri/target/
