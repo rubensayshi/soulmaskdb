@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::process::Command;
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Emitter, Manager};
+use xcap::Monitor;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TraitMatch {
@@ -111,11 +112,8 @@ pub async fn load_roster(app: AppHandle) -> Result<Option<Roster>, String> {
     Ok(Some(roster))
 }
 
-#[cfg(windows)]
 #[tauri::command]
-pub async fn capture_screen_cmd(app: AppHandle) -> Result<String, String> {
-    use xcap::Monitor;
-
+pub async fn capture_screen(app: AppHandle) -> Result<String, String> {
     let data_dir = app.path().app_data_dir().map_err(|e| e.to_string())?;
     std::fs::create_dir_all(&data_dir).map_err(|e| e.to_string())?;
     let timestamp = std::time::SystemTime::now()
@@ -124,16 +122,39 @@ pub async fn capture_screen_cmd(app: AppHandle) -> Result<String, String> {
         .as_millis();
     let path = data_dir.join(format!("capture_{}.png", timestamp));
 
-    let monitors = Monitor::all().map_err(|e| e.to_string())?;
+    let monitors = Monitor::all().map_err(|e| format!("Failed to list monitors: {}", e))?;
     let monitor = monitors.into_iter().next().ok_or("No monitor found")?;
-    let image = monitor.capture_image().map_err(|e| e.to_string())?;
-    image.save(&path).map_err(|e| e.to_string())?;
+    let image = monitor.capture_image().map_err(|e| format!("Failed to capture screen: {}", e))?;
+    image.save(&path).map_err(|e| format!("Failed to save screenshot: {}", e))?;
 
     Ok(path.to_string_lossy().to_string())
 }
 
-#[cfg(not(windows))]
-#[tauri::command]
-pub async fn capture_screen_cmd() -> Result<String, String> {
-    Err("Screen capture is only available on Windows".to_string())
+pub fn capture_and_process(app: &AppHandle) {
+    let app = app.clone();
+    tauri::async_runtime::spawn(async move {
+        app.emit("capture:status", "capturing").ok();
+
+        let screenshot_path = match capture_screen(app.clone()).await {
+            Ok(p) => p,
+            Err(e) => {
+                app.emit("capture:error", e).ok();
+                return;
+            }
+        };
+
+        app.emit("capture:status", "processing").ok();
+
+        match process_images(vec![screenshot_path.clone()], app.clone()).await {
+            Ok(result) => {
+                app.emit("capture:result", &result).ok();
+            }
+            Err(e) => {
+                app.emit("capture:error", e).ok();
+            }
+        }
+
+        // Clean up the temp screenshot
+        let _ = std::fs::remove_file(&screenshot_path);
+    });
 }

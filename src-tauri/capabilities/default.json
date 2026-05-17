@@ -6,6 +6,7 @@
     "core:default",
     "shell:allow-open",
     "dialog:allow-open",
-    "fs:default"
+    "fs:default",
+    "global-shortcut:default"
   ]
 }

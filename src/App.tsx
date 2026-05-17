@@ -1,6 +1,8 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { listen } from '@tauri-apps/api/event'
 import { MOCK_ROSTER, REVIEW_ITEMS, ENABLE_PROFICIENCIES } from './lib/data'
-import type { Filters, SortState, LayoutMode } from './lib/types'
+import { useRosterStore, type CaptureStatus } from './lib/store'
+import type { Filters, SortState, LayoutMode, ProcessResult } from './lib/types'
 import { RosterTable, sortRows, filterRows } from './pages/Roster'
 import { CardsLayout } from './pages/CardsLayout'
 import { SplitLayout } from './pages/SplitLayout'
@@ -21,9 +23,27 @@ function App() {
   const [showCapture, setShowCapture] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
 
+  const store = useRosterStore()
+  const rosterData = store.tribesmen.length > 0 ? store.tribesmen : MOCK_ROSTER
+
+  useEffect(() => {
+    if (!('__TAURI_INTERNALS__' in window)) return
+    const unsubs: (() => void)[] = []
+    listen<string>('capture:status', (e) => {
+      store.setCaptureStatus(e.payload as CaptureStatus)
+    }).then(u => unsubs.push(u))
+    listen<ProcessResult>('capture:result', (e) => {
+      store.addCaptureResult(e.payload)
+    }).then(u => unsubs.push(u))
+    listen<string>('capture:error', (e) => {
+      store.setCaptureError(e.payload)
+    }).then(u => unsubs.push(u))
+    return () => unsubs.forEach(u => u())
+  }, [])
+
   const rows = useMemo(
-    () => sortRows(filterRows(MOCK_ROSTER, filters, query), sort),
-    [filters, query, sort],
+    () => sortRows(filterRows(rosterData, filters, query), sort),
+    [rosterData, filters, query, sort],
   )
 
   return (
@@ -49,30 +69,7 @@ function App() {
           </span>
         </div>
         <div className="flex-1 flex justify-center">
-          <span
-            className="inline-flex items-center gap-2 rounded-full"
-            style={{
-              padding: '4px 10px',
-              border: '1px solid var(--color-border)',
-              background: 'oklch(0.18 0.008 130 / 0.6)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 10,
-              color: 'var(--color-muted)',
-              letterSpacing: '0.06em',
-            }}
-          >
-            <span
-              className="rounded-full"
-              style={{
-                width: 6, height: 6,
-                background: 'var(--color-accent)',
-                boxShadow: '0 0 8px var(--color-accent-glow)',
-                animation: 'pulse 2.4s infinite ease-in-out',
-              }}
-            />
-            CAPTURE READY ·{' '}
-            <kbd style={kbdStyle}>Alt</kbd>+<kbd style={kbdStyle}>Shift</kbd>+<kbd style={kbdStyle}>S</kbd>
-          </span>
+          <CaptureIndicator status={store.captureStatus} error={store.captureError} lastCount={store.lastCaptureCount} />
         </div>
       </div>
 
@@ -142,11 +139,13 @@ function App() {
                 paddingLeft: 14,
               }}
             >
-              <b style={{ color: 'var(--color-text)', fontWeight: 500 }}>{rows.length}</b> / {MOCK_ROSTER.length} tribesmen
+              <b style={{ color: 'var(--color-text)', fontWeight: 500 }}>{rows.length}</b> / {rosterData.length} tribesmen
             </span>
-            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--color-muted)', fontSize: 13 }}>
-              · captured 17 minutes ago
-            </span>
+            {store.lastUpdated && (
+              <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--color-muted)', fontSize: 13 }}>
+                · captured {timeAgo(store.lastUpdated)}
+              </span>
+            )}
             <span className="flex-1" />
 
             {/* Layout toggle */}
@@ -230,6 +229,56 @@ function App() {
       )}
       {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
     </div>
+  )
+}
+
+function timeAgo(iso: string): string {
+  const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 1000)
+  if (diff < 60) return 'just now'
+  if (diff < 3600) return `${Math.floor(diff / 60)} min ago`
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`
+  return `${Math.floor(diff / 86400)}d ago`
+}
+
+const STATUS_CONFIG: Record<CaptureStatus, { color: string; label: string; animate: boolean }> = {
+  idle:       { color: 'var(--color-accent)',   label: 'CAPTURE READY', animate: true },
+  capturing:  { color: 'oklch(0.75 0.15 70)',   label: 'CAPTURING…',    animate: true },
+  processing: { color: 'oklch(0.75 0.15 70)',   label: 'PROCESSING…',   animate: true },
+  done:       { color: 'var(--color-accent)',   label: 'CAPTURE DONE',  animate: false },
+  error:      { color: 'oklch(0.65 0.2 25)',    label: 'CAPTURE ERROR', animate: false },
+}
+
+function CaptureIndicator({ status, error, lastCount }: { status: CaptureStatus; error: string | null; lastCount: number | null }) {
+  const cfg = STATUS_CONFIG[status]
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-full"
+      style={{
+        padding: '4px 10px',
+        border: '1px solid var(--color-border)',
+        background: 'oklch(0.18 0.008 130 / 0.6)',
+        fontFamily: 'var(--font-mono)',
+        fontSize: 10,
+        color: 'var(--color-muted)',
+        letterSpacing: '0.06em',
+      }}
+      title={error || undefined}
+    >
+      <span
+        className="rounded-full"
+        style={{
+          width: 6, height: 6,
+          background: cfg.color,
+          boxShadow: `0 0 8px ${cfg.color}`,
+          animation: cfg.animate ? 'pulse 2.4s infinite ease-in-out' : undefined,
+        }}
+      />
+      {cfg.label}
+      {status === 'done' && lastCount != null && ` · ${lastCount} cards`}
+      {status === 'idle' && <>
+        {' · '}<kbd style={kbdStyle}>Alt</kbd>+<kbd style={kbdStyle}>Shift</kbd>+<kbd style={kbdStyle}>S</kbd>
+      </>}
+    </span>
   )
 }
 
