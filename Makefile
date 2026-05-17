@@ -1,4 +1,6 @@
-.PHONY: help dev dev-stop dev-status dev-logs build parse parse-spawns db sqlc tidy test translate clean deploy icons-sync
+.PHONY: help dev dev-stop dev-status dev-logs tauri-dev build parse parse-spawns db sqlc tidy test translate clean deploy icons-sync
+
+TAURI_PORT := $(shell node -e "console.log(require('./dev-ports.cjs').tauriPort)")
 
 help:
 	@echo "Usage: make <target>"
@@ -7,6 +9,7 @@ help:
 	@echo "  dev-stop     Stop dev servers"
 	@echo "  dev-status   Show dev server status"
 	@echo "  dev-logs     Tail dev server logs"
+	@echo "  tauri-dev    Start Tauri desktop app in dev mode (port $(TAURI_PORT))"
 	@echo "  build        Build SPA + embed into single Go binary at backend/bin/server"
 	@echo "  parse        Run all Stage 2 parsers (items, recipes, tech, drops, classify, food buffs)"
 	@echo "  parse-spawns Parse spawn data from spawns.json (scg_class resolution)"
@@ -20,16 +23,16 @@ help:
 	@echo "  clean        Remove build artifacts"
 
 PM2_NAMES := $(shell node -e " \
-	const c = require('./ecosystem.config.js'); \
+	const c = require('./ecosystem.config.cjs'); \
 	console.log(c.apps.map(a => a.name).join(' ')); \
 ")
 
 dev:
-	pm2 start ecosystem.config.js
+	pm2 start ecosystem.config.cjs
 	@sleep 2
 	pm2 status
 	@node -e " \
-		const c = require('./ecosystem.config.js'); \
+		const c = require('./ecosystem.config.cjs'); \
 		const be = c.apps[0], fe = c.apps[1]; \
 		const bePort = be.args.match(/-addr :(\d+)/)[1]; \
 		const fePort = fe.args.match(/--port (\d+)/)[1]; \
@@ -49,6 +52,10 @@ dev-status:
 
 dev-logs:
 	pm2 logs $(PM2_NAMES) --lines 50
+
+tauri-dev:
+	@echo "Tauri dev on port $(TAURI_PORT)"
+	pnpm tauri dev --config '{"build":{"devUrl":"http://localhost:$(TAURI_PORT)"}}'
 
 parse:
 	python3 pipeline/parse_items.py
