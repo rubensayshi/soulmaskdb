@@ -23,11 +23,11 @@ class Card:
 # Relative offsets within a card (fractions of card w/h).
 # Tuned against 889×140 card crops from 2000×1121 fixture.
 LAYOUT = {
-    "name":       {"x": 0.05, "y": 0.00, "w": 0.45, "h": 0.35},
-    "level_line": {"x": 0.00, "y": 0.30, "w": 0.55, "h": 0.30},
-    "trait_row":  {"x": 0.02, "y": 0.58, "w": 0.55, "h": 0.40},
-    "status":     {"x": 0.60, "y": 0.42, "w": 0.38, "h": 0.25},
-    "group":      {"x": 0.56, "y": 0.65, "w": 0.26, "h": 0.30},
+    "name":       {"x": 0.03, "y": 0.08, "w": 0.22, "h": 0.25},
+    "level_line": {"x": 0.01, "y": 0.34, "w": 0.50, "h": 0.20},
+    "trait_row":  {"x": 0.01, "y": 0.55, "w": 0.52, "h": 0.43},
+    "status":     {"x": 0.78, "y": 0.43, "w": 0.19, "h": 0.15},
+    "group":      {"x": 0.58, "y": 0.72, "w": 0.24, "h": 0.20},
 }
 
 
@@ -62,9 +62,6 @@ def _find_horizontal_separators(gray: np.ndarray, w: int, h: int) -> list[int]:
     horiz_lines = cv2.morphologyEx(binary, cv2.MORPH_OPEN, horiz_kernel)
 
     row_sums = np.sum(horiz_lines, axis=1) / 255
-
-    # Card separators span both columns (~70%+ of width).
-    # Internal card lines (within name/trait areas) are shorter.
     min_extent = w * 0.60
 
     strong_rows = np.where(row_sums > min_extent)[0]
@@ -75,7 +72,38 @@ def _find_horizontal_separators(gray: np.ndarray, w: int, h: int) -> list[int]:
             lines.append(int(r))
         last = r
 
-    # Merge double-lines (bottom-of-card-N + top-of-card-N+1 within ~20px)
+    if len(lines) < 2:
+        return lines
+
+    # Real card-row boundaries are double-lines (bottom of card N + top of
+    # card N+1, ~20-30px apart).  Internal card lines are singles.
+    # Identify double-line pairs and use their midpoints as separators.
+    pairs: list[tuple[int, int]] = []
+    used: set[int] = set()
+    for i in range(len(lines) - 1):
+        if i in used:
+            continue
+        if lines[i + 1] - lines[i] <= 35:
+            pairs.append((lines[i], lines[i + 1]))
+            used.add(i)
+            used.add(i + 1)
+
+    if len(pairs) < 3:
+        return _filter_by_gap(lines, h)
+
+    midpoints = [(a + b) // 2 for a, b in pairs]
+
+    gaps = [midpoints[i + 1] - midpoints[i] for i in range(len(midpoints) - 1)]
+    card_h = int(np.median(gaps))
+
+    first_top = max(0, midpoints[0] - card_h)
+    last_bottom = min(h, midpoints[-1] + card_h)
+
+    return [first_top] + midpoints + [last_bottom]
+
+
+def _filter_by_gap(lines: list[int], h: int) -> list[int]:
+    """Fallback separator filter for low-res images without double-lines."""
     merged: list[int] = []
     i = 0
     while i < len(lines):
@@ -89,36 +117,22 @@ def _find_horizontal_separators(gray: np.ndarray, w: int, h: int) -> list[int]:
     if len(merged) < 3:
         return merged
 
-    # Cards have internal border lines that we need to skip.
-    # True card separators produce consistent spacing (~card height).
-    # Find the dominant card height from the largest gaps.
     gaps = [merged[i + 1] - merged[i] for i in range(len(merged) - 1)]
     gaps_sorted = sorted(gaps, reverse=True)
     dominant_h = int(np.median(gaps_sorted[: max(len(gaps_sorted) // 2, 2)]))
     min_card_h = int(dominant_h * 0.65)
 
-    # Walk the lines bottom-up from the last (most reliable) separator.
-    # This avoids the ambiguous header/filter-bar area at the top.
     filtered = [merged[-1]]
     for y in reversed(merged[:-1]):
         if filtered[-1] - y >= min_card_h:
             filtered.append(y)
     filtered.reverse()
 
-    # The detected separators often start with the UI header/filter bar line,
-    # then an internal card line, then the first real card separator.
-    # The actual first card row's top edge isn't a detected separator —
-    # it's just below the header bar.
-    #
-    # Strategy: if the first two gaps are both shorter than the dominant card
-    # height, they're header + partial-card splits. Replace them with a single
-    # card row: top = first_sep, bottom = third_sep.
     if len(filtered) >= 3:
         g1 = filtered[1] - filtered[0]
         g2 = filtered[2] - filtered[1]
         combined = filtered[2] - filtered[0]
         if g1 < dominant_h * 0.85 and g2 < dominant_h * 0.85 and combined >= min_card_h:
-            # Drop the middle separator; first card runs from filtered[0] to filtered[2]
             filtered = [filtered[0]] + filtered[2:]
         elif g1 < dominant_h * 0.85:
             filtered = filtered[1:]
