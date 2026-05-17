@@ -1,7 +1,7 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { listen } from '@tauri-apps/api/event'
 import { MOCK_ROSTER, REVIEW_ITEMS, ENABLE_PROFICIENCIES } from './lib/data'
-import { useRosterStore, type CaptureStatus } from './lib/store'
+import { useRosterStore, type CaptureStatus, type LogEntry } from './lib/store'
 import type { Filters, SortState, LayoutMode, ProcessResult } from './lib/types'
 import { RosterTable, sortRows, filterRows } from './pages/Roster'
 import { CardsLayout } from './pages/CardsLayout'
@@ -11,7 +11,7 @@ import { FilterBar } from './components/FilterBar'
 import { CaptureModal } from './components/CaptureModal'
 import { ReviewScreen } from './components/ReviewScreen'
 import { SettingsModal } from './components/SettingsModal'
-import { IcoCompass, IcoUsers, IcoCamera, IcoFlag, IcoCog, IcoSearch, IcoExport, IcoTable, IcoCards, IcoSplit } from './components/Icons'
+import { IcoCompass, IcoUsers, IcoCamera, IcoFlag, IcoCog, IcoSearch, IcoExport, IcoTable, IcoCards, IcoSplit, IcoTerminal, IcoTrash } from './components/Icons'
 import './styles.css'
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
   const [screen, setScreen] = useState<'roster' | 'empty' | 'review'>('roster')
   const [showCapture, setShowCapture] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
+  const [showLog, setShowLog] = useState(false)
 
   const store = useRosterStore()
   const rosterData = store.tribesmen.length > 0 ? store.tribesmen : MOCK_ROSTER
@@ -93,6 +94,19 @@ function App() {
           </RailBtn>
           <RailBtn onClick={() => setShowCapture(true)} title="Capture (Alt+Shift+S)">
             <IcoCamera />
+          </RailBtn>
+          <RailBtn active={showLog} onClick={() => setShowLog(v => !v)} title="Capture log">
+            <IcoTerminal />
+            {store.captureLog.length > 0 && (
+              <span
+                className="absolute rounded-full"
+                style={{
+                  top: 6, right: 6, width: 7, height: 7,
+                  background: store.captureLog[store.captureLog.length - 1].level === 'error'
+                    ? 'oklch(0.65 0.2 25)' : 'var(--color-accent)',
+                }}
+              />
+            )}
           </RailBtn>
           <RailBtn active={screen === 'review'} onClick={() => setScreen('review')} title="Review queue">
             <IcoFlag />
@@ -215,6 +229,9 @@ function App() {
               <SplitLayout rows={rows} showProf={ENABLE_PROFICIENCIES} />
             )}
           </div>
+
+          {/* Capture log drawer */}
+          {showLog && <CaptureLogPanel log={store.captureLog} onClear={store.clearLog} />}
         </div>
       </div>
 
@@ -336,6 +353,72 @@ function SegBtn({ on, onClick, children }: { on: boolean; onClick: () => void; c
     >
       {children}
     </button>
+  )
+}
+
+const LOG_COLORS: Record<string, string> = {
+  info: 'var(--color-muted)',
+  success: 'var(--color-accent)',
+  error: 'oklch(0.65 0.2 25)',
+}
+
+function CaptureLogPanel({ log, onClear }: { log: LogEntry[]; onClear: () => void }) {
+  const bottomRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [log.length])
+
+  return (
+    <div
+      style={{
+        height: 180,
+        borderTop: '1px solid var(--color-border-soft)',
+        background: 'oklch(0.13 0.006 130)',
+        display: 'flex',
+        flexDirection: 'column',
+        flexShrink: 0,
+      }}
+    >
+      <div
+        className="flex items-center gap-2 shrink-0"
+        style={{
+          height: 28,
+          padding: '0 12px',
+          borderBottom: '1px solid var(--color-border-soft)',
+          background: 'oklch(0.15 0.006 130)',
+        }}
+      >
+        <IcoTerminal size={12} />
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.06em', color: 'var(--color-muted)' }}>
+          CAPTURE LOG
+        </span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--color-text-dim)' }}>
+          ({log.length})
+        </span>
+        <span className="flex-1" />
+        <button
+          onClick={onClear}
+          style={{ color: 'var(--color-muted)', display: 'inline-flex', alignItems: 'center', gap: 4 }}
+          title="Clear log"
+        >
+          <IcoTrash />
+        </button>
+      </div>
+      <div className="flex-1 overflow-auto content-scroll" style={{ padding: '6px 12px' }}>
+        {log.length === 0 && (
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--color-text-dim)', fontStyle: 'italic' }}>
+            No captures yet — press Alt+Shift+S to start
+          </span>
+        )}
+        {log.map((entry) => (
+          <div key={entry.id} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, lineHeight: '20px', display: 'flex', gap: 8 }}>
+            <span style={{ color: 'var(--color-text-dim)', flexShrink: 0 }}>{entry.time}</span>
+            <span style={{ color: LOG_COLORS[entry.level] }}>{entry.message}</span>
+          </div>
+        ))}
+        <div ref={bottomRef} />
+      </div>
+    </div>
   )
 }
 
