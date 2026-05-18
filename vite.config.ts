@@ -12,7 +12,9 @@ export default defineConfig({
     strictPort: true,
     host: host || false,
     hmr: host ? { protocol: 'ws', host, port: 1421 } : undefined,
-    watch: { usePolling: true },
+    watch: {
+      ignored: ['**/src-tauri/**', '**/node_modules/**', '**/.git/**'],
+    },
   },
   envPrefix: ['VITE_', 'TAURI_'],
 })
