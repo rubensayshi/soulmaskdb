@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { listen } from '@tauri-apps/api/event'
+import { invoke } from '@tauri-apps/api/core'
 import { MOCK_ROSTER, REVIEW_ITEMS, ENABLE_PROFICIENCIES } from './lib/data'
 import { useRosterStore, type CaptureStatus, type LogEntry } from './lib/store'
 import type { Filters, SortState, LayoutMode, ProcessResult } from './lib/types'
@@ -27,6 +28,23 @@ function App() {
   const store = useRosterStore()
   const rosterData = store.tribesmen.length > 0 ? store.tribesmen : (import.meta.env.DEV ? MOCK_ROSTER : [])
 
+  // Load persisted roster on startup
+  useEffect(() => {
+    if (!('__TAURI_INTERNALS__' in window)) return
+    invoke<{ last_updated: string; tribesmen: unknown[] } | null>('load_roster')
+      .then(raw => { if (raw) store.loadRoster(raw as Parameters<typeof store.loadRoster>[0]) })
+      .catch(console.error)
+  }, [])
+
+  // Auto-save roster whenever tribesmen change
+  useEffect(() => {
+    if (!('__TAURI_INTERNALS__' in window)) return
+    if (store.tribesmen.length === 0) return
+    invoke('save_roster', {
+      roster: { last_updated: store.lastUpdated ?? new Date().toISOString(), tribesmen: store.tribesmen }
+    }).catch(console.error)
+  }, [store.tribesmen])
+
   useEffect(() => {
     if (!('__TAURI_INTERNALS__' in window)) return
     const unsubs: (() => void)[] = []
@@ -38,6 +56,15 @@ function App() {
     }).then(u => unsubs.push(u))
     listen<string>('capture:error', (e) => {
       store.setCaptureError(e.payload)
+    }).then(u => unsubs.push(u))
+    listen<number>('capture:queued', (e) => {
+      store.setQueueCount(e.payload)
+    }).then(u => unsubs.push(u))
+    listen<string>('capture:queued_path', (e) => {
+      store.logQueuedPath(e.payload)
+    }).then(u => unsubs.push(u))
+    listen<string>('capture:progress', (e) => {
+      store.setProgress(e.payload)
     }).then(u => unsubs.push(u))
     return () => unsubs.forEach(u => u())
   }, [])
@@ -69,8 +96,11 @@ function App() {
             </span>
           </span>
         </div>
-        <div className="flex-1 flex justify-center">
-          <CaptureIndicator status={store.captureStatus} error={store.captureError} lastCount={store.lastCaptureCount} />
+        <div className="flex-1 flex justify-center items-center gap-3">
+          <CaptureIndicator status={store.captureStatus} error={store.captureError} lastCount={store.lastCaptureCount} progress={store.processProgress} />
+          {store.queueCount > 0 && (
+            <QueueBadge count={store.queueCount} onProcess={() => invoke('process_queue')} onClear={() => invoke('clear_queue')} />
+          )}
         </div>
       </div>
 
@@ -265,7 +295,7 @@ const STATUS_CONFIG: Record<CaptureStatus, { color: string; label: string; anima
   error:      { color: 'oklch(0.65 0.2 25)',    label: 'CAPTURE ERROR', animate: false },
 }
 
-function CaptureIndicator({ status, error, lastCount }: { status: CaptureStatus; error: string | null; lastCount: number | null }) {
+function CaptureIndicator({ status, error, lastCount, progress }: { status: CaptureStatus; error: string | null; lastCount: number | null; progress: string | null }) {
   const cfg = STATUS_CONFIG[status]
   return (
     <span
@@ -296,9 +326,11 @@ function CaptureIndicator({ status, error, lastCount }: { status: CaptureStatus;
         }}
       />
       {cfg.label}
+      {status === 'processing' && progress && <span style={{ color: 'oklch(0.75 0.15 70)', marginLeft: 4 }}>{progress} images</span>}
       {status === 'done' && lastCount != null && ` · ${lastCount} cards`}
       {status === 'idle' && <>
         {' · '}<kbd style={kbdStyle}>Alt</kbd>+<kbd style={kbdStyle}>Shift</kbd>+<kbd style={kbdStyle}>S</kbd>
+        <span style={{ color: 'var(--color-faint)', margin: '0 4px' }}>to queue</span>
       </>}
     </span>
   )
@@ -424,6 +456,54 @@ function CaptureLogPanel({ log, onClear }: { log: LogEntry[]; onClear: () => voi
         <div ref={bottomRef} />
       </div>
     </div>
+  )
+}
+
+function QueueBadge({ count, onProcess, onClear }: { count: number; onProcess: () => void; onClear: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full" style={{
+      padding: '3px 6px 3px 10px',
+      border: '1px solid oklch(0.55 0.12 70 / 0.5)',
+      background: 'oklch(0.20 0.04 70 / 0.35)',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 10,
+      color: 'oklch(0.80 0.12 70)',
+      letterSpacing: '0.06em',
+    }}>
+      <span className="rounded-full" style={{
+        width: 6, height: 6,
+        background: 'oklch(0.75 0.15 70)',
+        boxShadow: '0 0 6px oklch(0.75 0.15 70)',
+        animation: 'pulse 2.4s infinite ease-in-out',
+      }} />
+      {count} QUEUED
+      <button
+        onClick={onProcess}
+        title="Process queue (Alt+Shift+P)"
+        style={{
+          marginLeft: 4,
+          padding: '1px 7px',
+          borderRadius: 10,
+          background: 'oklch(0.75 0.15 70)',
+          color: '#1a1a14',
+          fontFamily: 'var(--font-mono)',
+          fontSize: 9.5,
+          fontWeight: 700,
+          letterSpacing: '0.06em',
+          cursor: 'pointer',
+          border: 'none',
+        }}
+      >
+        ⚡ PROCESS
+      </button>
+      <button
+        onClick={onClear}
+        title="Clear queue"
+        style={{ color: 'oklch(0.55 0.08 70)', marginLeft: 2, cursor: 'pointer', background: 'none', border: 'none', padding: '0 2px', fontSize: 11 }}
+      >
+        ✕
+      </button>
+    </span>
   )
 }
 
