@@ -13,5 +13,8 @@ fixtures/debug-*
 screenshots/
 Soulmask screenshot*.png
 
+# Raw UAssetGUI exports (too large for git)
+uasset_export/
+
 # Build artifacts
 src-tauri/target/
