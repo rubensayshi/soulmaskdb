@@ -18,12 +18,16 @@ export function TrainingPlanner({ layout }: { layout: PlannerLayout }) {
 
   const trainee = roster.find(tm => tm.id === traineeId) ?? null
 
+  const firstFillable = (sl: SlotState[]) =>
+    sl.findIndex(s => s.type === 'empty' || s.type === 'replace')
+
   const handleSelectTrainee = useCallback((id: string) => {
     setTraineeId(id)
     const tm = roster.find(t => t.id === id)
     if (tm) {
-      setSlots(buildSlots(tm))
-      setActiveSlotIdx(null)
+      const next = buildSlots(tm)
+      setSlots(next)
+      setActiveSlotIdx(firstFillable(next) === -1 ? null : firstFillable(next))
       setTraitSearch('')
     }
   }, [roster])
@@ -50,7 +54,7 @@ export function TrainingPlanner({ layout }: { layout: PlannerLayout }) {
       if (s.originalTrait) return { type: 'replace' as const, originalTrait: s.originalTrait }
       return { type: 'empty' as const }
     }))
-    setActiveSlotIdx(null)
+    setActiveSlotIdx(idx)
   }, [])
 
   const handleToggleForgetfulness = useCallback(() => {
@@ -91,11 +95,15 @@ export function TrainingPlanner({ layout }: { layout: PlannerLayout }) {
 
   const handleSelectTrait = useCallback((traitId: string) => {
     if (activeSlotIdx === null) return
-    setSlots(prev => prev.map((s, i) => {
-      if (i !== activeSlotIdx) return s
-      return { ...s, type: 'planned' as const, desiredTraitId: traitId }
-    }))
-    setActiveSlotIdx(null)
+    setSlots(prev => {
+      const next = prev.map((s, i) => {
+        if (i !== activeSlotIdx) return s
+        return { ...s, type: 'planned' as const, desiredTraitId: traitId }
+      })
+      const nextIdx = firstFillable(next)
+      setActiveSlotIdx(nextIdx === -1 ? null : nextIdx)
+      return next
+    })
     setTraitSearch('')
   }, [activeSlotIdx])
 
