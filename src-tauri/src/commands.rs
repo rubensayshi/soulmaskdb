@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::process::Command;
 use tauri::{AppHandle, Emitter, Manager};
-use xcap::Monitor;
+use xcap::{Monitor, Window};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TraitMatch {
@@ -140,19 +140,59 @@ pub async fn load_roster(app: AppHandle) -> Result<Option<Roster>, String> {
 
 #[tauri::command]
 pub async fn capture_screen(_app: AppHandle) -> Result<String, String> {
-    // Save to system temp dir — more reliable than AppData on some Windows setups
     let timestamp = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap()
         .as_millis();
     let path = std::env::temp_dir().join(format!("screenread_capture_{}.png", timestamp));
 
-    let monitors = Monitor::all().map_err(|e| format!("Failed to list monitors: {}", e))?;
-    let monitor = monitors.into_iter().next().ok_or("No monitor found")?;
-    let image = monitor.capture_image().map_err(|e| format!("Failed to capture screen: {}", e))?;
+    let image = capture_game_image()?;
     image.save(&path).map_err(|e| format!("Failed to save screenshot: {}", e))?;
-
     Ok(path.to_string_lossy().to_string())
+}
+
+/// Try to capture the Soulmask window directly; fall back to the largest monitor.
+/// Window capture works even when the game is on a non-primary monitor and crops
+/// out desktop chrome — giving detect_cards cleaner input.
+fn capture_game_image() -> Result<xcap::image::RgbaImage, String> {
+    // 1. Try direct window capture
+    if let Ok(windows) = Window::all() {
+        let soulmask = windows.into_iter().find(|w| {
+            let title = w.title().unwrap_or_default().to_lowercase();
+            let app   = w.app_name().unwrap_or_default().to_lowercase();
+            title.contains("soulmask")
+                || app.contains("soulmask")
+                || title.contains("ws-win64-shipping")
+                || app.contains("ws-win64")
+        });
+        if let Some(win) = soulmask {
+            log_to_file(&format!(
+                "[capture] window found: title={:?} app={:?}",
+                win.title(), win.app_name()
+            ));
+            match win.capture_image() {
+                Ok(img) => return Ok(img),
+                Err(e)  => log_to_file(&format!("[capture] window capture failed: {e}, falling back to monitor")),
+            }
+        } else {
+            log_to_file("[capture] no Soulmask window found, falling back to monitor");
+        }
+    }
+
+    // 2. Fall back to the largest monitor (most likely the gaming monitor)
+    let monitors = Monitor::all().map_err(|e| format!("Failed to list monitors: {e}"))?;
+    if monitors.is_empty() {
+        return Err("No monitor found".to_string());
+    }
+    let monitor = monitors
+        .into_iter()
+        .max_by_key(|m| m.width().unwrap_or(0) * m.height().unwrap_or(0))
+        .unwrap();
+    log_to_file(&format!(
+        "[capture] capturing monitor {}x{}",
+        monitor.width().unwrap_or(0), monitor.height().unwrap_or(0)
+    ));
+    monitor.capture_image().map_err(|e| format!("Monitor capture failed: {e}"))
 }
 
 fn log_to_file(msg: &str) {
@@ -195,12 +235,6 @@ pub async fn debug_capture(app: AppHandle) -> Result<String, String> {
     ))
 }
 
-pub fn capture_and_process(app: &AppHandle) {
-    let app = app.clone();
-    tauri::async_runtime::spawn(async move {
-        capture_and_process_inner(&app).await;
-    });
-}
 
 pub async fn capture_and_process_inner(app: &AppHandle) {
         eprintln!("[capture] hotkey triggered, starting screen capture");
