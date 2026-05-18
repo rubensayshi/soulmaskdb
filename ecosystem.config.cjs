@@ -1,22 +1,6 @@
 const path = require("path");
-const crypto = require("crypto");
-const root = __dirname;
+const { root, suffix, bePort, fePort } = require("./dev-ports.cjs");
 const db = path.join(root, "data/app.db");
-
-const mainRepo = "/Users/ruben/work/private/souldb";
-const isWorktree = root !== mainRepo;
-
-let suffix = "";
-let bePort = 9060;
-let fePort = 5173;
-
-if (isWorktree) {
-  suffix = `-${path.basename(root)}`;
-  const hash = crypto.createHash("md5").update(root).digest();
-  const offset = (hash.readUInt16BE(0) % 900) + 100; // 100–999
-  bePort = 9000 + offset;
-  fePort = 5100 + offset;
-}
 
 module.exports = {
   apps: [

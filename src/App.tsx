@@ -2,16 +2,17 @@ import { useState, useMemo, useEffect, useRef } from 'react'
 import { listen } from '@tauri-apps/api/event'
 import { MOCK_ROSTER, REVIEW_ITEMS, ENABLE_PROFICIENCIES } from './lib/data'
 import { useRosterStore, type CaptureStatus, type LogEntry } from './lib/store'
-import type { Filters, SortState, LayoutMode, ProcessResult } from './lib/types'
+import type { Filters, SortState, LayoutMode, PlannerLayout, ProcessResult } from './lib/types'
 import { RosterTable, sortRows, filterRows } from './pages/Roster'
 import { CardsLayout } from './pages/CardsLayout'
 import { SplitLayout } from './pages/SplitLayout'
 import { EmptyState } from './pages/EmptyState'
+import { TrainingPlanner } from './pages/TrainingPlanner'
 import { FilterBar } from './components/FilterBar'
 import { CaptureModal } from './components/CaptureModal'
 import { ReviewScreen } from './components/ReviewScreen'
 import { SettingsModal } from './components/SettingsModal'
-import { IcoCompass, IcoUsers, IcoCamera, IcoFlag, IcoCog, IcoSearch, IcoExport, IcoTable, IcoCards, IcoSplit, IcoTerminal, IcoTrash } from './components/Icons'
+import { IcoCompass, IcoUsers, IcoCamera, IcoFlag, IcoCog, IcoSearch, IcoExport, IcoTable, IcoCards, IcoSplit, IcoTerminal, IcoTrash, IcoTarget, IcoPlanner, IcoStepper } from './components/Icons'
 import './styles.css'
 
 function App() {
@@ -19,7 +20,10 @@ function App() {
   const [query, setQuery] = useState('')
   const [filters, setFilters] = useState<Filters>({ clan: 'all', groups: [], traits: [], minLevel: null, prof: null })
   const [sort, setSort] = useState<SortState>({ key: 'name', dir: 'asc' })
-  const [screen, setScreen] = useState<'roster' | 'empty' | 'review'>('roster')
+  const [screen, setScreen] = useState<'roster' | 'empty' | 'review' | 'planner'>('roster')
+  const [plannerLayout, setPlannerLayout] = useState<PlannerLayout>(() =>
+    (localStorage.getItem('plannerLayout') as PlannerLayout) || 'planner'
+  )
   const [showCapture, setShowCapture] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [showLog, setShowLog] = useState(false)
@@ -91,6 +95,9 @@ function App() {
           </div>
           <RailBtn active={screen === 'roster'} onClick={() => setScreen('roster')} title="Roster">
             <IcoUsers />
+          </RailBtn>
+          <RailBtn active={screen === 'planner'} onClick={() => setScreen('planner')} title="Training planner">
+            <IcoTarget />
           </RailBtn>
           <RailBtn onClick={() => setShowCapture(true)} title="Capture (Alt+Shift+S)">
             <IcoCamera />
@@ -206,6 +213,36 @@ function App() {
             </button>
           </div>}
 
+          {/* Planner top bar */}
+          {screen === 'planner' && <div
+            className="flex items-center gap-4 shrink-0"
+            style={{
+              height: 56,
+              padding: '0 22px',
+              borderBottom: '1px solid var(--color-border-soft)',
+              background: 'oklch(0.165 0.006 130 / 0.7)',
+            }}
+          >
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: 22, margin: 0, letterSpacing: '0.01em' }}>
+              Training <em style={{ fontStyle: 'italic', fontWeight: 500, color: 'var(--color-accent)', marginLeft: 2 }}>Planner</em>
+            </h1>
+            <span className="flex-1" />
+
+            {/* Layout toggle */}
+            <div
+              className="inline-flex gap-px rounded-[var(--radius)]"
+              style={{
+                height: 30,
+                border: '1px solid var(--color-border)',
+                background: 'oklch(0.18 0.008 130)',
+                padding: 2,
+              }}
+            >
+              <SegBtn on={plannerLayout === 'planner'} onClick={() => { setPlannerLayout('planner'); localStorage.setItem('plannerLayout', 'planner') }}><IcoPlanner />Planner</SegBtn>
+              <SegBtn on={plannerLayout === 'stepper'} onClick={() => { setPlannerLayout('stepper'); localStorage.setItem('plannerLayout', 'stepper') }}><IcoStepper />Stepper</SegBtn>
+            </div>
+          </div>}
+
           {/* Filter bar */}
           {screen === 'roster' && layout !== 'split' && (
             <FilterBar filters={filters} setFilters={setFilters} />
@@ -227,6 +264,9 @@ function App() {
             )}
             {screen === 'roster' && layout === 'split' && (
               <SplitLayout rows={rows} showProf={ENABLE_PROFICIENCIES} />
+            )}
+            {screen === 'planner' && (
+              <TrainingPlanner layout={plannerLayout} />
             )}
           </div>
 
